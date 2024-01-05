@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<View>
+
+
+
+  <Panel Style="Bind PlayerProfile.WindowStyle" Anchor="$CenterX,$CenterY" Bounds="-160,-120,320,240" InnerMargin="8,8,8,8" TransitionIn="Expand" TransitionOut="Shrink">
+
+    <Label Text="Display Mode" Font="Dialogue" Alignment="Vertical" Color="#D6C18BFF"/>
+    <Button Style="Bind PlayerProfile.WindowStyle" Bounds="0, 8, 100, 18" Alignment="Vertical" Action="ToggleFullscreen" InnerMargin="0,0,0,0" PushedStyle="Bind PlayerProfile.SelectedStyle">
+      <Label Text="Bind DisplayMode" Alignment="Center" Color="#C9BDBDFF" Font="Dialogue"/>
+    </Button>
+
+	  <LineBreak Height="25"/>
+
+    <Label Text="Sound Volume" Font="Dialogue" Alignment="Vertical" Color="#D6C18BFF"/>
+    <Panel Bounds="0,0,280,24" Alignment="Vertical">
+      <Gauge Minimum="0" Maximum="1" Frame="TechGauge" Background="TechGaugeBackground" Bounds="0,0,260,20" InnerMargin="3,0,3,0">
+        <GaugeBar Name="SoundBar" Bar="TechGaugeBar" Value="Bind SoundVolume">
+          <GaugeSlider Slider="TechSlider"/>
+        </GaugeBar>
+      </Gauge>
+    </Panel>
+
+	  <LineBreak Height="25"/>
+
+    <Label Text="Music Volume" Font="Dialogue" Alignment="Vertical" Color="#D6C18BFF"/>
+    <Panel Bounds="0,0,280,24" Alignment="Vertical">
+      <Gauge Minimum="0" Maximum="1" Frame="TechGauge" Background="TechGaugeBackground" Bounds="0,0,260,20" InnerMargin="3,0,3,0">
+        <GaugeBar Name="MusicBar" Bar="TechGaugeBar" Value="Bind MusicVolume">
+          <GaugeSlider Slider="TechSlider"/>
+        </GaugeBar>
+      </Gauge>
+    </Panel>
+
+  </Panel>
+
+</View>

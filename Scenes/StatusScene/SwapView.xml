@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<View>
+
+	<RadioBox Name="ItemList" Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-60,-5,180,50" InnerMargin="5,5,5,0" Items="Bind AvailableItems" Scrolling="True" OnSelect="UpdateDescription">
+		<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="0,0,170,10" Alignment="Vertical" Action="SelectEquipment" ActionParameter="Ref DataGrid">
+			<Image Icon="Ref DataGrid.ItemRecord.Icon" Alignment="Cascading" Bounds="1,1,10,10"/>
+			<Label Text="Ref DataGrid.ItemRecord.Name" Font="Main" Alignment="Cascading" TextAlignment="Left" Bounds="1,0,158,8"/>
+		</RadioButton>
+	</RadioBox>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-60,45,180,41" InnerMargin="6,5,6,0">
+		<CrawlText Name="Description" Text="Bind Description" Alignment="Stretch" Font="Main"/>
+	</Panel>
+	
+</View>

@@ -1,0 +1,537 @@
+[
+	{
+		"Name": "FoolIntro",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.0",
+				"Text": "Our plan is going really well so far!"
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "I know, right? If things continue going perfectly like they are now, we won't have anything to worry about!"
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "I just want to say that I really love you right now :)"
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Who are you talking to?"
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "You, of course. There's nobody else here."
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Are you sure there's nobody else here? Well anyways, let's keep moving on to the next floor up the tower."
+			},
+			{
+				"Text": "#F3C14CFF Use the arrow keys to explore the tower and find the staircase up to the next floor. Be on the lookout for treasure chests on the way."
+			}
+		]
+	},
+	{
+		"Name": "FoolCoffin",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.0",
+				"Text": "Oh! A sarcophagus! What do you think is inside? Maybe treasure or just a dead body?"
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Do you want to open it up?",
+				"Script": [
+					"WaitForText",
+					"SelectionPrompt",
+					"No",
+					"Yes",
+					"Maybe",
+					"End"
+				]
+			}
+		],
+		"EndScript": [
+			"Switch $selection",
+			"Case No",
+			"ChangeConversation NoCoffin",
+			"Break",
+			"Case Yes",
+			"ChangeConversation YesCoffin",
+			"Break",
+			"Case Maybe",
+			"ChangeConversation MaybeCoffin",
+			"Break",
+			"End"
+		]
+	},
+	{
+		"Name": "NoCoffin",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.0",
+				"Text": "Um.. no."
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Yeah, it's probably for the best."
+			}
+		]
+	},
+	{
+		"Name": "YesCoffin",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.0",
+				"Text": "Let's do it!"
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Hmph... give me a hand with this, will ya?"
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "Oof, it's not budging even a little."
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Forget it, probably not worth the trouble."
+			}
+		]
+	},
+	{
+		"Name": "MaybeCoffin",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.0",
+				"Text": "Mmm... maybe... ?"
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "What kind of decision is that?! That's basically the same thing as saying no, so let's just forget about it."
+			}
+		]
+	},
+	{
+		"Name": "EquipIntro",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.0",
+				"Text": "What are these things doing here?"
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "If they were placed inside of treasure chests, they must have been precious to somebody."
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "Do you think we should wear these?"
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "I have no idea, I'm just a fool."
+			},
+			{
+				"Text": "#F3C14CFF Press the ESC key to bring up the main menu. Navigate to the 'Equip' menu to assign newly discovered equipment to your party."
+			},
+			{
+				"Text": "#F3C14CFF Equippable items will not provide any benefit to your party unless equipped through this menu."
+			}
+		]
+	},
+	{
+		"Name": "FoolIntro2",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.0",
+				"Text": "Um... can we circle back to something you said earlier about us not being alone here?"
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Look behind you! So there -is- someone here! That must be a qliphoth. I've heard about them before.",
+				"Script": [ "SpawnMonster 23 14 Down RedCultist BansheeTower", "TurnParty 0 Right" ]
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "They're supposed to be dangerous, but that one doesn't look so tough."
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "This isn't supposed to happen. I don't like the look of this."
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "We can easily beat it if you work together with me."
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "..."
+			},
+			{
+				"Text": "#F3C14CFF Battle is initiated upon contact with wandering qliphoths. Avoid them if necessary, or fight them to gain experience points."
+			}
+		]
+	},
+	{
+		"Name": "FoolIntro3",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.1",
+				"Text": "Oh no, what's happening to the sun?"
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "Something is blotting it all out... this must be a really bad omen!"
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Watch out! A really powerful qliphoth is coming this way!"
+			}
+		]
+	},
+	{
+		"Name": "FoolOutro",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.1",
+				"Text": "I'm still good... I can keep fighting...",
+				"Script": [ "AnimateHero 1 Faint" ]
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "I hate you...",
+				"Script": [ "AnimateHero 0 Faint" ]
+			}
+		],
+		"EndScript": [ "SetFlag IntroComplete True", "StopMusic", "ChangeScene Elenigma.Scenes.ConversationScene.ConversationScene ManyLifetimesLater" ]
+	},
+	{
+		"Name": "ManyLifetimesLater",
+		"Background": "Blank",
+		"DialogueRecords": [
+			{
+				"Text": "Many lifetimes later..."
+			},
+			{
+				"Text": "Empires rise and fall... the cycle repeats itself. And every year, the corruption spreads further from the cursed tower."
+			},
+			{
+				"Text": "Investigating a mysterious connection to the tower, an imperial scholar charters an airship to a remote cave in the Forest of Giants..."
+			}
+		],
+		"EndScript": [ "ChangeScene Elenigma.Scenes.TitleScene.TitleScene True" ]
+	},
+	{
+		"Name": "AirshipIntro",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.0",
+				"Text": "Set me down right here, pilot. I can see the cave just ahead."
+			},
+			{
+				"Speaker": "Sidney",
+				"Text": "Yessir."
+			}
+		],
+		"EndScript": [ "ChangeMap Overworld 95 17" ]
+	},
+	{
+		"Name": "AirshipOutro",
+		"DialogueRecords": [
+			{
+				"Speaker": "Sidney",
+				"Text": "It's too risky for me to loiter here with the airship. When do you want me to come back, sir?"
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "I suppose I'll need a day to finish looking everything over. I'll camp overnight and you can return this time tomorrow morning."
+			},
+			{
+				"Speaker": "Sidney",
+				"Text": "Sounds like a plan. Please be careful, sir."
+			}
+		],
+		"EndScript": [ "TurnParty 0 Up", "Wait 400", "ChangeMap ManaspringCave" ]
+	},
+	{
+		"Name": "ReturnToCave",
+		"DialogueRecords": [
+			{
+				"Speaker": "Sparr",
+				"Text": "It's too soon for the airship to return just yet. I should return to the manaspring cave and camp there overnight for safety."
+			}
+		]
+	},
+	{
+		"Name": "ManaspringIntro",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.0",
+				"Text": "How remarkable, mana is pooling up almost to the surface here! The source of the mana must be somewhere below."
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "I'm sure this mana source must be related to the tower, somehow..."
+			}
+		]
+	},
+	{
+		"Name": "Manaspring",
+		"DialogueRecords": [
+			{
+				"Text": "#2CE32CFF MP restored!",
+				"Script": [ "Sound Cure", "RestoreMP" ]
+			}
+		]
+	},
+	{
+		"Name": "SavepointIntro",
+		"DialogueRecords": [
+			{
+				"Text": "#F3C14CFF This is a save point. While standing here, you may save your game progress through the main menu."
+			},
+			{
+				"Text": "#F3C14CFF You may also save your game progress any time while on the overworld map."
+			}
+		]
+	},
+	{
+		"Name": "WildlifeIntro",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.0",
+				"Text": "Hmph, I knew there would be dangerous wildlife down here. I don't really want to disturb them if possible."
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "But I can't let anything get in the way of my investigation either."
+			}
+		]
+	},
+	{
+		"Name": "ReunionIntro",
+		"DialogueRecords": [
+			{
+				"Speaker": "???",
+				"Text": "Hello. Been expecting you."
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Pardon me? I don't believe we've been introduced before."
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "Your name is Sparr Adams. I'm Envi, chief of the Morrigan tribe. Saw your arrival in a dream."
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Well, this is certainly unexpected and not what I was looking for... but, I admit you have my attention. Please tell me more."
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "Not tell. Show. Follow me to the back of this cavern."
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Ha ha, very well! Please, lead the way."
+			}
+		]
+	},
+	{
+		"Name": "SwordDare",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.1",
+				"Text": "You've already been down here, right? Why are you still using that club when there's a free sword right there?"
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "Don't need it. Like my club better.",
+				"Script": [
+					"WaitForText",
+					"SelectionPrompt",
+					"Insist on getting the sword",
+					"Drop the subject",
+					"End",
+					"ProceedText"
+				]
+			}
+		],
+		"EndScript": [
+			"Switch $selection",
+			"Case Insist on getting the sword",
+			"ChangeConversation SwordInsist",
+			"Break",
+			"Case Drop the subject",
+			"MoveParty Left",
+			"ResetTrigger",
+			"EndConversation",
+			"Break",
+			"End"
+		]
+	},
+	{
+		"Name": "SwordInsist",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.1",
+				"Text": "I insist, a warrior should have a sword. At the very least you could throw it at the bats if we run out of darts."
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "If you care that much... okay. Didn't expect fighting when I came up here, but now I feel danger. Maybe I'll take it.",
+				"Script": [ "SetFlag SwordDare True" ]
+			}
+		]
+	},
+	{
+		"Name": "MoreBats",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.0",
+				"Text": "The animals seem more restless now. More of them, too."
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Is that unusual? It was like this in the upper tunnels of the cave while I made my way down here."
+			}
+		]
+	},
+	{
+		"Name": "TouchCrystal",
+		"DialogueRecords": [
+			{
+				"Speaker": "$Party.1",
+				"Text": "That's the magic source I was searching for! I've never seen such a large crystal occur naturally before."
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "So you were leading me to it this whole time. For a moment I thought you just wanted... never mind."
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "I'll have to move this carefully to the cave entrance. When the airship returns I'll request a excavation team."
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "Touch the crystal.",
+				"Script": [ "MoveParty Up", "WaitParty", "Idle" ]
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Not so fast. These things are more delicate than they look."
+			},
+			{
+				"Speaker": "$Party.0",
+				"Text": "Touch crystal!",
+				"Script": [ "MoveParty Up", "WaitParty", "MoveParty Right", "WaitParty", "Idle", "TurnParty 0 Left" ]
+			},
+			{
+				"Speaker": "$Party.1",
+				"Text": "Right, right, calm down. I'll just make a quick inspection up close..."
+			},
+			{
+				"Text": "#F3C14CFF To be continued..."
+			}
+		],
+		"EndScript": [ "ChangeScene Elenigma.Scenes.ConversationScene.ConversationScene ThankYou" ]
+	},
+	{
+		"Name": "ThankYou",
+		"Background": "Blank",
+		"DialogueRecords": [
+			{
+				"Text": "#F3C14CFF Thank you for playing my game jam entry! This concludes all the game content for now."
+			}
+		],
+		"EndScript": [ "ChangeScene Elenigma.Scenes.TitleScene.TitleScene" ]
+	},
+	{
+		"Name": "InsideCrystal",
+		"DialogueRecords": [
+			{
+				"Speaker": "Sparr",
+				"Text": "What just happened... ?",
+				"Script": [ "Wait 250", "TurnParty 0 Right", "Wait 500", "TurnParty 0 Left", "Wait 500", "TurnParty 0 Up" ]
+			}
+		]
+	},
+	{
+		"Name": "FoolCrystal",
+		"DialogueRecords": [
+			{
+				"Speaker": "Fool",
+				"Text": "If I am you, and you am I, who decides who gets to drive?"
+			},
+			{
+				"Speaker": "Sparr",
+				"Text": "I don't understand anything you just said. You look very familiar, though."
+			},
+			{
+				"Speaker": "Fool",
+				"Text": "That's too bad, I spent a lot of time thinking that one up. I thought you'd get it for sure."
+			},
+			{
+				"Speaker": "Fool",
+				"Text": "Actually, I've spent a lot of time thinking about things. So do you want me to take over for a bit?"
+			},
+			{
+				"Speaker": "Sparr",
+				"Text": "I'm not sure what you mean by that, but I don't want you taking over anything."
+			},
+			{
+				"Speaker": "Fool",
+				"Text": "Okay, fine, just thought I'd offer. Let me know if you change your mind. Or if you want to change minds."
+			}
+		]
+	},
+	{
+		"Name": "HunterCrystal",
+		"DialogueRecords": [
+			{
+				"Speaker": "Sparr",
+				"Text": "You look like you know what's going on here."
+			},
+			{
+				"Speaker": "Hunter",
+				"Text": "One of us needs to. Have you figured out yet who spawned all the qliphoths in this cave?"
+			},
+			{
+				"Speaker": "Sparr",
+				"Text": "There are no qliphoths here. I made a thorough inspection and found native fauna in abundance, as expected."
+			},
+			{
+				"Speaker": "Hunter",
+				"Text": "Everything you fought since disembarking your flying machine has been a qliphoth."
+			},
+			{
+				"Speaker": "Hunter",
+				"Text": "If you lack mental discipline, the crystal can make your preconceptions real in the worst way."
+			},
+			{
+				"Speaker": "Sparr",
+				"Text": "..."
+			},
+			{
+				"Speaker": "Hunter",
+				"Text": "Please let me lead us for a while. I'll set us in the right direction while you keep figuring things out."
+			},
+			{
+				"Speaker": "Sparr",
+				"Text": "Is this a possession, then? Whom exactly am I speaking with?"
+			},
+			{
+				"Speaker": "Hunter",
+				"Text": "That's not quite it. And what was that dumb quip you made to Envi "
+			}
+		]
+	},
+	{
+		"Name": "Inn",
+		"DialogueRecords": [
+			{
+				"Text": "All abilities restored to maximum charges!"
+			}
+		]
+	}
+]

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<View>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-120,-60,74,88" InnerMargin="4,6,4,0" TransitionIn="Expand">
+		<RadioBox Name="ClassBox" Items="Bind AvailableClasses" Scrolling="False" Alignment="Stretch">
+			<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="0,-1,64,12" Alignment="Vertical" Action="SelectClass" ActionParameter="Ref DataGrid.Class" Enabled="Ref DataGrid.Enabled">
+				<Label Text="Ref DataGrid.Class" Alignment="Left" Font="Main" TextAlignment="Left" Bounds="2,1,64,10"/>
+			</RadioButton>
+		</RadioBox>
+	</Panel>
+
+</View>

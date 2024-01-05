@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<View>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-60,-60,180,105" InnerMargin="7,5,7,0">
+
+		<Panel Bounds="0,0,56,40" Alignment="Cascading">
+			<Label Text="Weapon:" Font="Main" Bounds="0,0,56,10" Alignment="Cascading" TextAlignment="Right"/>
+			<Label Text="Shield:" Font="Main" Bounds="0,0,56,10" Alignment="Cascading" TextAlignment="Right"/>
+			<Label Text="Armor:" Font="Main" Bounds="0,0,56,10" Alignment="Cascading" TextAlignment="Right"/>
+			<Label Text="Relic:" Font="Main" Bounds="0,0,56,10" Alignment="Cascading" TextAlignment="Right"/>
+		</Panel>
+	
+		<RadioBox Name="ItemList" Alignment="Cascading" Bounds="0,0,110,40" Items="Bind Equipment" Scrolling="True" OnSelect="UpdateDescription">
+			<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="2,0,110,10" Alignment="Vertical" Action="SelectEquipment" ActionParameter="Ref DataGrid">
+				<Image Icon="Ref DataGrid.Icon" Alignment="Cascading" Bounds="1,1,10,10"/>
+				<Label Text="Ref DataGrid.Name" Font="Main" Alignment="Cascading" TextAlignment="Left" Bounds="1,0,96,8"/>
+			</RadioButton>
+		</RadioBox>
+
+	</Panel>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-60,45,180,41" InnerMargin="6,5,6,0">
+		<CrawlText Name="Description" Text="Bind Description" Alignment="Stretch" Font="Main"/>
+	</Panel>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-130,24,70,21" InnerMargin="7,5,7,0">
+		<Label Text="Ref HeroModel.Name" Font="Main" Bounds="0,0,56,10" TextAlignment="Center"/>
+	</Panel>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-130,45,70,41" InnerMargin="7,5,7,0">
+		<Label Text="Bind StatLabel1" Font="Interface" Bounds="0,3,38,10" Alignment="Cascading" TextAlignment="Left"/>
+		<Label Text="Bind StatValue1" Font="Interface" Bounds="0,3,18,10" Alignment="Cascading" TextAlignment="Right" Color="Bind StatColor1"/>
+		<Label Text="Bind StatLabel2" Font="Interface" Bounds="0,3,38,10" Alignment="Cascading" TextAlignment="Left"/>
+		<Label Text="Bind StatValue2" Font="Interface" Bounds="0,3,18,10" Alignment="Cascading" TextAlignment="Right" Color="Bind StatColor2"/>
+		<Label Text="Bind StatLabel3" Font="Interface" Bounds="0,3,38,10" Alignment="Cascading" TextAlignment="Left"/>
+		<Label Text="Bind StatValue3" Font="Interface" Bounds="0,3,18,10" Alignment="Cascading" TextAlignment="Right" Color="Bind StatColor3"/>
+	</Panel>
+	
+</View>

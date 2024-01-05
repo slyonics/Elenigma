@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<View>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-125,-54,180,100" InnerMargin="4,5,4,0" TransitionIn="Expand">
+		
+		<RadioBox Name="EntryList" Items="Bind AvailableEntries" Scrolling="True" Bounds="0,0,170,90" OnSelect="UpdateDescription">
+			<RadioButton Style="Blank" PushedStyle="LabelGlow" Alignment="Cascading" Bounds="1,0,170,10" Action="SelectEntry" ActionParameter="Ref DataGrid">
+				<Image Icon="Ref DataGrid.Icon" Alignment="Cascading" Bounds="1,0,10,10"/>
+				<Label Text="Ref DataGrid.Name" Font="Main" Alignment="Cascading" TextAlignment="Left" Bounds="1,0,118,8"/>
+				<Label Text="Ref DataGrid.Price" Font="Main" Alignment="Cascading" TextAlignment="Right" Bounds="0,0,40,8"/>
+			</RadioButton>
+		</RadioBox>
+	</Panel>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-125,46,180,41" InnerMargin="6,5,6,0" TransitionIn="Expand">
+		<CrawlText Font="Main" Text="Bind Description" Alignment="Stretch"/>
+	</Panel>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="55,-54,68,31" InnerMargin="5,5,5,0">
+		<Label Text="Gold:" Font="Main" Alignment="Cascading" TextAlignment="Left" Bounds="1,0,58,10"/>
+		<Label Text="Bind PlayerProfile.Money" Font="Main" Alignment="Cascading" TextAlignment="Right" Bounds="0,0,58,10"/>
+	</Panel>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="55,-23,78,111" InnerMargin="7,5,7,0">
+
+		<DataGrid Items="Bind UsableBy" Anchor="$CenterX,$CenterY" Bounds="0,0,64,70" Alignment="Cascading">
+			<Label Text="Ref DataGrid" Bounds="0,0,64,10" Alignment="Cascading" TextAlignment="Left" Font="Main"/>
+		</DataGrid>
+
+		<Panel Bounds ="0,70,64,30">
+			<Label Text="Bind StatLabel1" Font="Interface" Bounds="0,3,46,10" Alignment="Cascading" TextAlignment="Left"/>
+			<Label Text="Bind StatValue1" Font="Interface" Bounds="0,3,18,10" Alignment="Cascading" TextAlignment="Right"/>
+			<Label Text="Bind StatLabel2" Font="Interface" Bounds="0,3,46,10" Alignment="Cascading" TextAlignment="Left"/>
+			<Label Text="Bind StatValue2" Font="Interface" Bounds="0,3,18,10" Alignment="Cascading" TextAlignment="Right"/>
+			<Label Text="Bind StatLabel3" Font="Interface" Bounds="0,3,46,10" Alignment="Cascading" TextAlignment="Left"/>
+			<Label Text="Bind StatValue3" Font="Interface" Bounds="0,3,18,10" Alignment="Cascading" TextAlignment="Right"/>
+		</Panel>
+	</Panel>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-125,-86,248,32" InnerMargin="7,5,7,0" TransitionIn="Expand">
+		<CrawlText Font="Main" Text="Bind Narration" Alignment="Stretch"/>
+	</Panel>
+
+	
+	
+</View>

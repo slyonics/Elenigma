@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<View>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-60,14,80,60" InnerMargin="5,5,5,0">
+		<RadioBox Name="CommandBox" Items="Ref AvailableCommands" Scrolling="False" Alignment="Stretch" SelectSound="None">
+			<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="0,0,70,12" Alignment="Vertical" Action="SelectCommand" ActionParameter="Ref DataGrid">
+				<Label Text="Ref DataGrid" Alignment="Left" Font="Main" TextAlignment="Center" Bounds="0,1,70,10"/>
+			</RadioButton>
+		</RadioBox>
+	</Panel>
+  
+</View>

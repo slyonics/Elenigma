@@ -1,0 +1,52 @@
+[
+	{
+		"Name": "Envi",
+		"Sprites": {
+			"Fool": "AdvF",
+			"Warrior": "BarF",
+			"Hunter": "HntF",
+			"Scholar": "SchF",
+			"Minstrel": "MinF",
+			"Paragon": "PrgF",
+			"Warlock": "WarF"
+		},
+		"Portraits": {
+			"Fool": "AdvF",
+			"Warrior": "BarF",
+			"Hunter": "HntF",
+			"Scholar": "SchF",
+			"Minstrel": "MinF",
+			"Paragon": "PrgF",
+			"Warlock": "WarF"
+		},
+		"StrengthModifier": 4,
+		"AgilityModifier": 4,
+		"VitalityModifier": 1,
+		"MagicModifier": 1
+	},
+	{
+		"Name": "Sparr",
+		"Sprites": {
+			"Fool": "AdvM",
+			"Warrior": "BarM",
+			"Hunter": "HntM",
+			"Scholar": "SchM",
+			"Minstrel": "MinM",
+			"Paragon": "PrgM",
+			"Warlock": "WarM"
+		},
+		"Portraits": {
+			"Fool": "AdvM",
+			"Warrior": "BarM",
+			"Hunter": "HntM",
+			"Scholar": "SchM",
+			"Minstrel": "MinM",
+			"Paragon": "PrgM",
+			"Warlock": "WarM"
+		},
+		"StrengthModifier": 1,
+		"AgilityModifier": 1,
+		"VitalityModifier": 4,
+		"MagicModifier": 4
+	}
+]

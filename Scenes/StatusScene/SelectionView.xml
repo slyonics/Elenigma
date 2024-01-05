@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<View>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-60,-60,180,105" InnerMargin="4,5,4,0">
+		<RadioBox Name="OptionsList" Items="Bind PlayerProfile.Party" Scrolling="False" Alignment="Stretch" SelectSound="None">
+			<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="0,0,170,48" Alignment="Vertical" Action="SelectHero" ActionParameter="Ref DataGrid">
+				<Image Picture="Bind DataGrid.PortraitSprite" Alignment="Cascading" Bounds="0,0,48,48"/>
+				<Panel Bounds="0,0,122,48" Alignment="Cascading">
+
+					<Label Text="Bind DataGrid.Name" Alignment="Cascading" Font="Main" TextAlignment="Left" Bounds="2,0,88,10"/>
+					<Label Text="LV" Alignment="Cascading" Font="Main" TextAlignment="Left" Bounds="0,0,16,10"/>
+					<Label Text="Bind DataGrid.Level" Alignment="Cascading" Font="Main" TextAlignment="Left" Bounds="0,0,16,10"/>
+
+					<Panel Bounds="0,0,122,10" Alignment="Cascading">
+						<Label Text="HP:" Font="Main" Alignment="Left" TextAlignment="Left" Bounds="2,0,24,10"/>
+						<Label Text="Bind DataGrid.HP" Font="Main" Color="Bind DataGrid.HealthColor" Alignment="Left" TextAlignment="Right" Bounds="0,0,32,10"/>
+						<Label Text="/" Font="Main" Color="Bind DataGrid.HealthColor" Alignment="Left" TextAlignment="Right" Bounds="0,0,8,10"/>
+						<Label Text="Bind DataGrid.MaxHP" Font="Main" Color="Bind DataGrid.HealthColor" Alignment="Left" TextAlignment="Left" Bounds="0,0,32,10"/>
+					</Panel>
+
+					<Panel Bounds="0,0,122,10" Alignment="Cascading">
+						<Label Text="MP:" Font="Main" Alignment="Left" TextAlignment="Left" Bounds="2,0,24,10"/>
+						<Label Text="Bind DataGrid.MP" Font="Main" Alignment="Left" TextAlignment="Right" Bounds="0,0,32,10"/>
+						<Label Text="/" Font="Main" Alignment="Left" TextAlignment="Right" Bounds="0,0,8,10"/>
+						<Label Text="Bind DataGrid.MaxMP" Font="Main" Alignment="Left" TextAlignment="Left" Bounds="0,0,32,10"/>
+					</Panel>
+				</Panel>
+			</RadioButton>
+		</RadioBox>
+	</Panel>
+</View>

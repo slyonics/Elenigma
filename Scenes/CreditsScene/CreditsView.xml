@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<View>
+
+  <Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-145,-90,290,180" InnerMargin="7,5,7,0" TransitionIn="Expand" TransitionOut="Shrink">
+
+    <Panel Bounds="0,0,276,170" InnerMargin="0,6,0,0">
+
+		<Label Text="Unfinished Fantasy" Alignment="Vertical" Font="Dialogue" Color="#C7895BFF"/>
+		<Label Text="Created by Slyonics for RPG Mania VI" Alignment="Vertical" Font="Interface" Bounds="0,0,276,13" Color="#E0BFA2FF"/>
+
+		<LineBreak/>
+
+		<Label Text="Using sprite art from" Alignment="Vertical" Font="Main" Color="#C7895BFF" Bounds="0,-10,276,13"/>
+		<Label Text="8bit Retro Graphic Materials All-in-One Pack - Marumugi4510" Alignment="Vertical" Font="Interface" Bounds="0,0,276,13" Color="#E0BFA2FF"/>
+
+		<LineBreak/>
+
+		<Label Text="Using music from" Alignment="Vertical" Font="Dialogue" Color="#C7895BFF" Bounds="0,-10,276,13"/>
+		<Label Text="8bit Sound Materials 'Orichalcum Sword' - Hobby Atelier Carrot Wine" Alignment="Vertical" Font="Interface" Bounds="0,0,276,13" Color="#E0BFA2FF"/>
+		<Label Text="Short Circuit3 Retro Bit Edition - Sound Optimize" Alignment="Vertical" Font="Interface" Bounds="0,-3,276,7" Color="#E0BFA2FF"/>
+		<Label Text="8-Bit Fantasy - Bit by Bit Sound" Alignment="Vertical" Font="Interface" Bounds="0,0,276,7" Color="#E0BFA2FF"/>
+		<Label Text="8-Bit Adventure - Steve Melin" Alignment="Vertical" Font="Interface" Bounds="0,0,276,7" Color="#E0BFA2FF"/>
+		
+		<LineBreak/>
+
+		<Label Text="Using sound effects from" Alignment="Vertical" Font="Dialogue" Color="#C7895BFF"/>
+		<Label Text="Retro SFX - Andrea Baroni / Cyberleaf Studio" Alignment="Vertical" Font="Interface" Bounds="0,0,276,13" Color="#E0BFA2FF"/>
+		<Label Text="JRPG 8-Bit/Chiptune SFX Pack - Joel Francis Burford" Alignment="Vertical" Font="Interface" Bounds="0,-3,276,7" Color="#E0BFA2FF"/>
+
+		<LineBreak/>
+
+		<Label Text="Includes fonts by" Alignment="Vertical" Font="Dialogue" Color="#C7895BFF"/>
+		<Label Text="Masubiwa, Patrick H. Lauke" Alignment="Vertical" Font="Interface" Bounds="0,0,276,13" Color="#E0BFA2FF"/>
+		
+    </Panel>
+  </Panel>
+  
+</View>

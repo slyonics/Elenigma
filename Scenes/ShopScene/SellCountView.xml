@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<View>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="55,-23,68,42" InnerMargin="7,5,7,0">
+		<Label Text="How" Bounds="0,0,40,10" Alignment="Cascading" TextAlignment="Left" Font="Main"/>
+		<Label Text="many?" Bounds="0,0,40,10" Alignment="Cascading" TextAlignment="Left" Font="Main"/>
+		<Label Text="Bind Quantity" Bounds="15,0,40,10" Font="Main" Alignment="Cascading" TextAlignment="Right"/>		
+	</Panel>
+
+</View>

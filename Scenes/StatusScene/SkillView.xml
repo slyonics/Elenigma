@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<View>
+
+	<RadioBox Name="ItemList" Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-60,-60,180,105" InnerMargin="4,5,4,0" Items="Bind AvailableItems" Scrolling="True" OnSelect="UpdateDescription" SelectSound="None">
+		<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="0,0,170,10" Alignment="Vertical" Action="SelectCommand" ActionParameter="Ref DataGrid" Enabled="Ref DataGrid.FieldUsable">
+			<Image Icon="Ref DataGrid.Icon" Alignment="Cascading" Bounds="1,0,10,10"/>
+			<Label Text="Ref DataGrid.Name" Font="Main" Alignment="Cascading" TextAlignment="Left" Bounds="1,0,116,8"/>
+			<Label Text="MP:" Font="Main" Alignment="Cascading" TextAlignment="Left" Bounds="0,0,24,8"/>
+			<Label Text="Ref DataGrid.Cost" Font="Main" Alignment="Cascading" TextAlignment="Left" Bounds="0,0,16,8"/>
+		</RadioButton>
+	</RadioBox>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-60,45,180,41" InnerMargin="6,5,6,0">
+		<CrawlText Name="Description" Text="Bind Description" Alignment="Stretch" Font="Main"/>
+	</Panel>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-130,24,70,21" InnerMargin="7,5,7,0">
+		<Label Text="Ref HeroModel.Name" Font="Main" Bounds="0,0,56,10" TextAlignment="Center"/>
+	</Panel>
+
+	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-130,45,70,21" InnerMargin="7,5,7,0">
+		<Label Text="MP:" Font="Main" Alignment="Cascading"/>
+		<Label Text="Bind CurrentMP" Font="Main" TextAlignment="Right" Alignment="Cascading" Bounds="8,0,24,10"/>
+	</Panel>
+	
+</View>
