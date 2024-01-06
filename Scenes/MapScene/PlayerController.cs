@@ -104,7 +104,7 @@ namespace Elenigma.Scenes.MapScene
             FindInteractables();
 
             mapScene.Tilemap.ClearFieldOfView();
-            mapScene.Tilemap.CalculateFieldOfView(mapScene.Tilemap.GetTile(Player.Center - new Vector2(0, 8)), MapScene.SIGHT_RANGE);
+            mapScene.Tilemap.CalculateFieldOfView(mapScene.Tilemap.GetTile(Player.Position - new Vector2(0, 1)), MapScene.SIGHT_RANGE);
         }
 
         private void FindInteractables()
@@ -116,8 +116,8 @@ namespace Elenigma.Scenes.MapScene
             Hero player = mapScene.PartyLeader;
             IOrderedEnumerable<IInteractive> sortedInteractableList = interactableList.OrderBy(x => player.Distance(x.Bounds));
             Rectangle interactZone = player.Bounds;
-            int zoneWidth = mapScene.Tilemap.Width;
-            int zoneHeight = mapScene.Tilemap.Height;
+            int zoneWidth = mapScene.Tilemap.TileSize;
+            int zoneHeight = mapScene.Tilemap.TileSize;
             switch (player.Orientation)
             {
                 case Orientation.Up:
@@ -127,7 +127,7 @@ namespace Elenigma.Scenes.MapScene
                     interactZone = new Rectangle((int)player.Position.X + 1, (int)player.Position.Y - zoneHeight, zoneWidth, zoneHeight);
                     break;
                 case Orientation.Down:
-                    player.InteractionZone.Y += mapScene.Tilemap.Height;
+                    player.InteractionZone.Y += mapScene.Tilemap.TileSize;
                     interactZone = new Rectangle((int)player.Position.X - 1 - zoneWidth / 2, (int)player.Position.Y - zoneHeight / 2, zoneWidth, zoneHeight);
                     break;
                 case Orientation.Left:

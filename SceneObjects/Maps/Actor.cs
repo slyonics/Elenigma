@@ -147,7 +147,117 @@ namespace Elenigma.SceneObjects.Maps
 
         private Vector2 ConstrainedPosition(Tilemap tilemap, Vector2 displacement)
         {
-            return position + displacement;
+            Vector2 endPosition = position + displacement;
+            Rectangle endBounds = UpdateBounds(endPosition);
+            Rectangle displacementBounds = Rectangle.Union(currentBounds, endBounds);
+
+            int startTileX = displacementBounds.Left / tilemap.TileSize;
+            int startTileY = displacementBounds.Top / tilemap.TileSize;
+            int endTileX = displacementBounds.Right / tilemap.TileSize;
+            int endTileY = displacementBounds.Bottom / tilemap.TileSize;
+            List<Rectangle> colliderList = new List<Rectangle>();
+            List<Rectangle> entityColliders = ActorColliders;
+
+            if (entityColliders != null) colliderList.AddRange(entityColliders);
+            for (int y = startTileY; y <= endTileY; y++)
+            {
+                for (int x = startTileX; x <= endTileX; x++)
+                {
+                    Tile tile = tilemap.GetTile(x, y);
+                    if (tile != null) colliderList.AddRange(tile.ColliderList);
+                }
+            }
+
+            Vector2 result = position + displacement;
+            if (colliderList.Count == 0) return result;
+            else
+            {
+                bool movingRight = displacement.X > 0.0f;
+                bool movingLeft = displacement.X < 0.0f;
+                bool movingDown = displacement.Y > 0.0f;
+                bool movingUp = displacement.Y < 0.0f;
+
+                float right = position.X + boundingBox.Right;
+                float left = position.X + boundingBox.Left;
+                float bottom = position.Y + boundingBox.Bottom;
+                float top = position.Y + boundingBox.Top;
+
+                float leadingStartX = -999;
+                int constraintX = -999;
+                if (movingRight) { leadingStartX = position.X + boundingBox.Right; constraintX = int.MaxValue; right += displacement.X; }
+                if (movingLeft) { leadingStartX = position.X + boundingBox.Left; constraintX = int.MinValue; left += displacement.X; }
+                float leadingEndX = leadingStartX + displacement.X;
+
+                float leadingStartY = -999;
+                int constraintY = -999;
+                if (movingUp) { leadingStartY = position.Y + boundingBox.Top; constraintY = int.MinValue; top += displacement.Y; }
+                if (movingDown) { leadingStartY = position.Y + boundingBox.Bottom; constraintY = int.MaxValue; bottom += displacement.Y; }
+                float leadingEndY = leadingStartY + displacement.Y;
+
+                bool constrainedX = false;
+                bool constrainedY = false;
+
+                foreach (Rectangle collider in colliderList)
+                {
+                    if (left > collider.Right) continue;
+                    if (right < collider.Left) continue;
+                    if (top > collider.Bottom) continue;
+                    if (bottom < collider.Top) continue;
+
+                    int blockingX = -999;
+                    if (movingRight) blockingX = collider.Left;
+                    if (movingLeft) blockingX = collider.Right;
+
+                    int blockingY = -999;
+                    if (movingUp) blockingY = collider.Bottom;
+                    if (movingDown) blockingY = collider.Top;
+
+                    if (movingRight && leadingStartX < blockingX && leadingEndX > blockingX && blockingX < constraintX) { constraintX = blockingX; constrainedX = true; }
+                    if (movingLeft && leadingStartX > blockingX && leadingEndX < blockingX && blockingX > constraintX) { constraintX = blockingX; constrainedX = true; }
+                    if (movingUp && leadingStartY > blockingY && leadingEndY < blockingY && blockingY > constraintY) { constraintY = blockingY; constrainedY = true; }
+                    if (movingDown && leadingStartY < blockingY && leadingEndY > blockingY && blockingY < constraintY) { constraintY = blockingY; constrainedY = true; }
+                }
+
+                if (constrainedX && constrainedY)
+                {
+                    hitTerrain = true;
+
+                    if (movingRight)
+                    {
+                        result = new Vector2(constraintX - boundingBox.Right - 0.001f, result.Y);
+                        if (movingUp) result.Y = constraintY - boundingBox.Top + 0.001f;
+                        if (movingDown) result.Y = constraintY - boundingBox.Bottom - 0.001f;
+                    }
+                    if (movingLeft)
+                    {
+                        result = new Vector2(constraintX - boundingBox.Left + 0.001f, result.Y);
+                        if (movingUp) result.Y = constraintY - boundingBox.Top + 0.001f;
+                        if (movingDown) result.Y = constraintY - boundingBox.Bottom - 0.001f;
+                    }
+                }
+                else if (constrainedX)
+                {
+                    hitTerrain = true;
+
+                    if (movingRight) result = new Vector2(constraintX - boundingBox.Right - 0.001f, result.Y);
+                    if (movingLeft) result = new Vector2(constraintX - boundingBox.Left + 0.001f, result.Y);
+
+                    float movementInterval = (Math.Abs(displacement.X) - Math.Abs(result.X - endPosition.X)) / Math.Abs(displacement.X);
+                    result.Y = position.Y + displacement.Y * movementInterval;
+                }
+                else if (constrainedY)
+                {
+                    hitTerrain = true;
+
+                    if (movingUp) result = new Vector2(result.X, constraintY - boundingBox.Top + 0.001f);
+                    if (movingDown) result = new Vector2(result.X, constraintY - boundingBox.Bottom - 0.001f);
+
+                    float movementInterval = (Math.Abs(displacement.Y) - Math.Abs(result.Y - endPosition.Y)) / Math.Abs(displacement.Y);
+                    result.X = position.X + displacement.X * movementInterval;
+                }
+
+                return result;
+            }
         }
 
         protected Rectangle UpdateBounds(Vector2 boxPosition)
@@ -293,10 +403,10 @@ namespace Elenigma.SceneObjects.Maps
         {
             get
             {
-                int tileStartX = currentBounds.Left / tilemap.Width - 1;
-                int tileEndX = currentBounds.Right / tilemap.Width + 1;
-                int tileStartY = currentBounds.Top / tilemap.Height - 1;
-                int tileEndY = currentBounds.Bottom / tilemap.Height + 1;
+                int tileStartX = currentBounds.Left / tilemap.TileSize - 1;
+                int tileEndX = currentBounds.Right / tilemap.TileSize + 1;
+                int tileStartY = currentBounds.Top / tilemap.TileSize - 1;
+                int tileEndY = currentBounds.Bottom / tilemap.TileSize + 1;
 
                 List<Rectangle> colliderList = new List<Rectangle>();
                 for (int x = tileStartX; x <= tileEndX; x++)

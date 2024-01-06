@@ -36,13 +36,13 @@ namespace Elenigma.SceneObjects.Maps
         {
             if (nodeX > 0) neighborList.Add(map.GetNavNode(nodeX - 1, nodeY));
             if (nodeY > 0) neighborList.Add(map.GetNavNode(nodeX, nodeY - 1));
-            if (nodeY < map.Height * 2 - 2) neighborList.Add(map.GetNavNode(nodeX, nodeY + 1));
-            if (nodeX < map.Width * 2 - 2) neighborList.Add(map.GetNavNode(nodeX + 1, nodeY));
+            if (nodeY < map.Rows * 2 - 2) neighborList.Add(map.GetNavNode(nodeX, nodeY + 1));
+            if (nodeX < map.Columns * 2 - 2) neighborList.Add(map.GetNavNode(nodeX + 1, nodeY));
 
             if (nodeX > 0 && nodeY > 0) neighborList.Add(map.GetNavNode(nodeX - 1, nodeY - 1));
             if (nodeX > 0 && nodeY < map.Height * 2 - 2) neighborList.Add(map.GetNavNode(nodeX - 1, nodeY + 1));
-            if (nodeX < map.Width * 2 - 2 && nodeY > 0) neighborList.Add(map.GetNavNode(nodeX + 1, nodeY - 1));
-            if (nodeX < map.Width * 2 - 2 && nodeY < map.Height * 2 - 2) neighborList.Add(map.GetNavNode(nodeX + 1, nodeY + 1));
+            if (nodeX < map.Columns * 2 - 2 && nodeY > 0) neighborList.Add(map.GetNavNode(nodeX + 1, nodeY - 1));
+            if (nodeX < map.Columns * 2 - 2 && nodeY < map.Height * 2 - 2) neighborList.Add(map.GetNavNode(nodeX + 1, nodeY + 1));
         }
 
         public bool AccessibleFromNode(NavNode origin, Actor actor)
@@ -91,10 +91,10 @@ namespace Elenigma.SceneObjects.Maps
         {
             Rectangle boundsForActor = BoundsForActor(actor);
 
-            int tileStartX = boundsForActor.Left / map.Width;
-            int tileEndX = boundsForActor.Right / map.Width;
-            int tileStartY = boundsForActor.Top / map.Height;
-            int tileEndY = boundsForActor.Bottom / map.Height;
+            int tileStartX = boundsForActor.Left / map.TileSize;
+            int tileEndX = boundsForActor.Right / map.TileSize;
+            int tileStartY = boundsForActor.Top / map.TileSize;
+            int tileEndY = boundsForActor.Bottom / map.TileSize;
 
             List<Rectangle> colliderList = new List<Rectangle>();
             for (int x = tileStartX; x <= tileEndX; x++)
