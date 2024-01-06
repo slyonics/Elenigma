@@ -64,20 +64,8 @@ namespace Elenigma.Scenes.ConversationScene
 
 
                 case "ChangeMap": MapScene.EventController.ChangeMap(tokens, MapScene.MapScene.Instance); break;
-                case "SpawnMonster": MapScene.EventController.SpawnMonster(tokens, MapScene.MapScene.Instance); break;
-                case "TurnParty": MapScene.EventController.Turn(tokens, MapScene.MapScene.Instance); break;
-                case "MoveParty": MapScene.EventController.Move(tokens, MapScene.MapScene.Instance); break;
-                case "WaitParty": MapScene.MapScene.Instance.CaterpillarController.FinishMovement = scriptParser.BlockScript(); return false;
-                case "Idle": MapScene.MapScene.Instance.CaterpillarController.Idle(); break;
                 case "AnimateHero": MapScene.MapScene.Instance.Party[int.Parse(tokens[1])].PlayAnimation(tokens[2], new AnimationFollowup(() => { })); break;
-                case "RestoreMP": foreach (var hero in GameProfile.PlayerProfile.Party) hero.Value.MP.Value = hero.Value.MaxMP.Value; break;
                 case "ResetTrigger": EventTrigger.LastTrigger.Terminated = false; MapScene.MapScene.Instance.EventTriggers.Add(EventTrigger.LastTrigger); break;
-
-                case "StoreParty":
-                    var storedHero = GameProfile.PlayerProfile.Party.ModelList.FirstOrDefault(x => x.Value.Name.Value == tokens[1]).Value;
-                    GameProfile.PlayerProfile.StoredHero = storedHero;
-                    GameProfile.PlayerProfile.Party.ModelList.RemoveAll(x => x.Value.Name.Value == tokens[1]);
-                    break;
 
                 default: return false;
             }

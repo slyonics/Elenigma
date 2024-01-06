@@ -4,10 +4,8 @@ global using Microsoft.Xna.Framework;
 using Elenigma.Models;
 using Elenigma.SceneObjects.Controllers;
 using Elenigma.SceneObjects.Shaders;
-using Elenigma.Scenes.BattleScene;
 using Elenigma.Scenes.ConversationScene;
 using Elenigma.Scenes.MapScene;
-using Elenigma.Scenes.ShopScene;
 using Elenigma.Scenes.SplashScene;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -87,15 +85,8 @@ namespace Elenigma.Main
 
             AssetCache.LoadContent(Content, GraphicsDevice);
 
-            EnemyRecord.ENEMIES = AssetCache.LoadRecords<EnemyRecord>("EnemyData");
-            EncounterRecord.ENCOUNTERS = AssetCache.LoadRecords<EncounterRecord>("EncounterData");
             HeroRecord.HEROES = AssetCache.LoadRecords<HeroRecord>("HeroData");
-            ClassRecord.CLASSES = AssetCache.LoadRecords<ClassRecord>("ClassData");
-            ItemRecord.ITEMS = AssetCache.LoadRecords<ItemRecord>("ItemData");
-            AbilityRecord.ABILITIES = AssetCache.LoadRecords<AbilityRecord>("AbilityData");
-            ShopRecord.SHOPS = AssetCache.LoadRecords<ShopRecord>("ShopData");
 
-            BattleScene.Initialize();
             ConversationScene.Initialize();
 
             CurrentScene = new SplashScene();

@@ -40,6 +40,8 @@ namespace Elenigma.SceneObjects.Maps
         private List<Tile> visibleTiles = new List<Tile>();
         private bool revealAll;
 
+        private NavNode[,] navMesh;
+
         public string Name { get => gameMap.ToString(); }
 
         public Tilemap(MapScene iScene, GameMap iGameMap)
@@ -82,6 +84,8 @@ namespace Elenigma.SceneObjects.Maps
                     tiles[x, y].AssignNeighbors();
                 }
             }
+
+            BuildNavMesh();
         }
 
         protected virtual void LoadLayers(LayerInstance[] layers)
@@ -186,13 +190,85 @@ namespace Elenigma.SceneObjects.Maps
             return tiles[tileX, tileY];
         }
 
-        public List<Tile> GetPath(Tile startNode, Tile endNode, Actor actor, int searchLimit)
+        public NavNode GetNavNode(Vector2 position)
         {
-            List<Tile> processedNodes = new List<Tile>();
-            List<Tile> unprocessedNodes = new List<Tile> { startNode };
-            Dictionary<Tile, Tile> cameFrom = new Dictionary<Tile, Tile>();
-            Dictionary<Tile, int> currentDistance = new Dictionary<Tile, int>();
-            Dictionary<Tile, int> predictedDistance = new Dictionary<Tile, int>();
+            int nodeX = (int)(position.X / NavNode.NODE_SIZE) - 1;
+            int nodeY = (int)(position.Y / NavNode.NODE_SIZE) - 1;
+            if (nodeX < 0) nodeX = 0;
+            if (nodeY < 0) nodeY = 0;
+            if (nodeX > Columns * 2 - 2) nodeX = Columns * 2 - 2;
+            if (nodeY > Rows * 2 - 2) nodeY = Rows * 2 - 2;
+
+            return navMesh[nodeX, nodeY];
+        }
+
+        public NavNode GetNavNode(Actor actor)
+        {
+            int nodeX = (int)(actor.Center.X / NavNode.NODE_SIZE) - 1;
+            int nodeY = (int)(actor.Bounds.Bottom / NavNode.NODE_SIZE) - 1;
+            if (nodeX < 0) nodeX = 0;
+            if (nodeY < 0) nodeY = 0;
+            if (nodeX > Columns * 2 - 2) nodeX = Columns * 2 - 2;
+            if (nodeY > Rows * 2 - 2) nodeY = Rows * 2 - 2;
+
+            NavNode closestNode = navMesh[nodeX, nodeY];
+
+            List<NavNode> nodeList = new List<NavNode>();
+            nodeList.Add(closestNode);
+            nodeList.AddRange(closestNode.NeighborList);
+
+            IOrderedEnumerable<NavNode> sortedNodes = nodeList.OrderBy(x => Vector2.Distance(x.Center, new Vector2(actor.Center.X, actor.Bounds.Bottom)));
+            return sortedNodes.FirstOrDefault(x => x.AccessibleFromActor(actor));
+        }
+
+        public NavNode GetNavNode(Actor seeker, Actor target)
+        {
+            NavNode targetNode = GetNavNode(target);
+            if (targetNode == null) return null;
+            if (targetNode.FitsActor(seeker)) return targetNode;
+
+            List<NavNode> nodeList = new List<NavNode>();
+            nodeList.Add(targetNode);
+            nodeList.AddRange(targetNode.NeighborList);
+
+            IOrderedEnumerable<NavNode> sortedNodes = nodeList.OrderBy(x => Vector2.Distance(x.Center, new Vector2(seeker.Center.X, seeker.Bounds.Bottom)));
+            return sortedNodes.FirstOrDefault(x => x.FitsActor(seeker));
+        }
+
+        public NavNode GetNavNode(int x, int y)
+        {
+            if (x < 0 || y < 0 || x >= Columns * 2 - 1 || y >= Rows * 2 - 1) return null;
+
+            return navMesh[x, y];
+        }
+
+        private void BuildNavMesh()
+        {
+            navMesh = new NavNode[Columns * 2 - 1, Rows * 2 - 1];
+            for (int y = 0; y < Rows * 2 - 1; y++)
+            {
+                for (int x = 0; x < Columns * 2 - 1; x++)
+                {
+                    navMesh[x, y] = new NavNode(this, x, y);
+                }
+            }
+
+            for (int y = 0; y < Rows * 2 - 1; y++)
+            {
+                for (int x = 0; x < Columns * 2 - 1; x++)
+                {
+                    navMesh[x, y].AssignNeighbors(this);
+                }
+            }
+        }
+
+        public List<NavNode> GetPath(NavNode startNode, NavNode endNode, Actor actor, int searchLimit)
+        {
+            List<NavNode> processedNodes = new List<NavNode>();
+            List<NavNode> unprocessedNodes = new List<NavNode> { startNode };
+            Dictionary<NavNode, NavNode> cameFrom = new Dictionary<NavNode, NavNode>();
+            Dictionary<NavNode, int> currentDistance = new Dictionary<NavNode, int>();
+            Dictionary<NavNode, int> predictedDistance = new Dictionary<NavNode, int>();
 
             int searchCount = 0;
 
@@ -204,7 +280,7 @@ namespace Elenigma.SceneObjects.Maps
                 searchCount++;
 
                 // get the node with the lowest estimated cost to finish
-                Tile current = (from p in unprocessedNodes orderby predictedDistance[p] ascending select p).First();
+                NavNode current = (from p in unprocessedNodes orderby predictedDistance[p] ascending select p).First();
 
                 // if it is the finish, return the path
                 if (current == endNode)
@@ -217,9 +293,9 @@ namespace Elenigma.SceneObjects.Maps
                 unprocessedNodes.Remove(current);
                 processedNodes.Add(current);
 
-                foreach (Tile neighbor in current.NeighborList)
+                foreach (NavNode neighbor in current.NeighborList)
                 {
-                    if (!neighbor.Blocked)
+                    if (neighbor.AccessibleFromNode(current, actor))
                     {
                         int tempCurrentDistance = currentDistance[current] + (int)Vector2.Distance(current.Center, neighbor.Center);
 
@@ -244,16 +320,43 @@ namespace Elenigma.SceneObjects.Maps
             return null;
         }
 
-        private static List<Tile> ReconstructPath(Dictionary<Tile, Tile> cameFrom, Tile current)
+        private static List<NavNode> ReconstructPath(Dictionary<NavNode, NavNode> cameFrom, NavNode current)
         {
             if (!cameFrom.Keys.Contains(current))
             {
-                return new List<Tile> { current };
+                return new List<NavNode> { current };
             }
 
-            List<Tile> path = ReconstructPath(cameFrom, cameFrom[current]);
+            List<NavNode> path = ReconstructPath(cameFrom, cameFrom[current]);
             path.Add(current);
             return path;
+        }
+
+        public bool CanTraverse(Actor actor, Tile destinationTile)
+        {
+            Rectangle destinationBounds = new Rectangle((int)destinationTile.Center.X + actor.BoundingBox.Left, (int)destinationTile.Center.Y + actor.BoundingBox.Top, actor.BoundingBox.Width, actor.BoundingBox.Height);
+            Rectangle boundsForActor = Rectangle.Union(actor.Bounds, destinationBounds);
+
+            int tileStartX = boundsForActor.Left / Width;
+            int tileEndX = boundsForActor.Right / Width;
+            int tileStartY = boundsForActor.Top / Height;
+            int tileEndY = boundsForActor.Bottom / Height;
+
+            List<Rectangle> colliderList = new List<Rectangle>();
+            for (int x = tileStartX; x <= tileEndX; x++)
+            {
+                for (int y = tileStartY; y <= tileEndY; y++)
+                {
+                    colliderList.AddRange(GetTile(x, y).ColliderList);
+                }
+            }
+
+            foreach (Rectangle collider in colliderList)
+            {
+                if (collider.Intersects(boundsForActor)) return false;
+            }
+
+            return true;
         }
 
         public void ClearFieldOfView()

@@ -67,16 +67,9 @@ namespace Elenigma.Scenes.MapScene
 
             CenterOn(iTilemap.GetTile(new Vector2(entityInstance.Px[0] + entityInstance.Width / 2, entityInstance.Px[1] + entityInstance.Height / 2)).Center);
 
-            if (this is Chest)
-            {
-
-            }
-            else
-            {
-                tilemap.GetTile(Center).Occupants.Add(this);
-                HostTile = tilemap.GetTile(Center);
-                Idle();
-            }
+            tilemap.GetTile(Center).Occupants.Add(this);
+            HostTile = tilemap.GetTile(Center);
+            Idle();
         }
 
         public Npc(MapScene iMapScene, Tilemap iTilemap, int x, int y, string spriteName, Orientation iOrientation = Orientation.Down)

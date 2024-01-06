@@ -25,10 +25,9 @@ namespace Elenigma.Scenes.MapScene
 
         public List<Hero> Party { get; private set; } = new List<Hero>();
         public Hero PartyLeader { get => Party.FirstOrDefault(); }
-        public CaterpillarController CaterpillarController { get; private set; }
+        public PlayerController PlayerController { get; private set; }
 
         public List<Npc> NPCs { get; private set; } = new List<Npc>();
-        public List<Enemy> Enemies { get; private set; } = new List<Enemy>();
         public List<EventTrigger> EventTriggers { get; private set; } = new List<EventTrigger>();
 
         private ParallaxBackdrop parallaxBackdrop;
@@ -63,13 +62,13 @@ namespace Elenigma.Scenes.MapScene
             Camera = new Camera(new Rectangle(0, 0, Tilemap.Width, Tilemap.Height));
             Tilemap.ClearFieldOfView();
 
-            var leaderHero = new Hero(this, Tilemap, new Vector2(32, 96), GameProfile.PlayerProfile.Party.First().Value);
+            var leaderHero = new Hero(this, Tilemap, new Vector2(32, 96), GameSprite.Actors_AdultMC);
             Party.Add(leaderHero);
-            CaterpillarController = AddController(new CaterpillarController(this));
+            PlayerController = AddController(new PlayerController(this, leaderHero));
 
             foreach (var partymember in GameProfile.PlayerProfile.Party.Skip(1))
             {
-                Hero follower = new Hero(this, Tilemap, new Vector2(64, 96), partymember.Value);
+                Hero follower = new Hero(this, Tilemap, new Vector2(64, 96), GameSprite.Actors_AdultMC);
                 Party.Add(follower);
             }
 
@@ -85,17 +84,6 @@ namespace Elenigma.Scenes.MapScene
                 {
                     switch (entity.Identifier)
                     {
-                        case "Enemy":
-                            Enemy enemy = new Enemy(this, Tilemap, entity);
-                            if (enemy.IdleScript != null)
-                            {
-                                EnemyController enemyController = new EnemyController(this, enemy);
-                                AddController(enemyController);
-                            }
-                            Enemies.Add(enemy);
-                            AddEntity(enemy);
-                            break;
-
                         case "NPC":
                             {
                                 var property = entity.FieldInstances.FirstOrDefault(x => x.Identifier == "DisableIf");
@@ -111,12 +99,6 @@ namespace Elenigma.Scenes.MapScene
                                 AddEntity(npc);
                                 break;
                             }
-
-                        case "Chest":
-                            Chest chest = new Chest(this, Tilemap, entity);
-                            NPCs.Add(chest);
-                            AddEntity(chest);
-                            break;
 
                         case "Interactable":
                         case "Automatic":
@@ -164,67 +146,6 @@ namespace Elenigma.Scenes.MapScene
             Tilemap.UpdateVisibility();
         }
 
-        public MapScene(GameMap gameMap, int startX, int startY)
-            : this(gameMap, startX, startY, Orientation.Right)
-        {
-            if (Party.Count == 2)
-            {
-                CaterpillarController.Move(Orientation.Right);
-                Update(new GameTime(new TimeSpan(0, 0, 2), new TimeSpan(0, 0, 2)));
-                Party[0].Orientation = Orientation.Left;
-                Party[0].Idle();
-                Party[1].Orientation = Orientation.Right;
-                Party[1].Idle();
-            }
-            else
-            {
-                Party[0].Hide = true;
-
-                var airship = new Airship(this, Tilemap, Party[0].Position, Orientation.Left);
-                airship.Idle();
-                airship.SetTargetAltitude(0);
-                airship.LandAction = new Action(() =>
-                {
-                    Audio.PlayMusic(GameMusic.NewDestinations);
-                    Party[0].Hide = false;
-                    CaterpillarController.Move(Orientation.Left, true);
-                    CaterpillarController.FinishMovement = new ScriptParser.UnblockFollowup(() =>
-                    {
-                        Party[0].Orientation = Orientation.Right;
-                        Party[0].Idle();
-                        var pilot = new Npc(this, Tilemap, 95, 17, "Pilot", Orientation.Left);
-                        AddEntity(pilot);
-                        ConversationScene.ConversationScene conversationScene = new ConversationScene.ConversationScene("AirshipOutro");
-                        CrossPlatformGame.StackScene(conversationScene);
-                    });
-                });
-                AddEntity(airship);
-            }
-        }
-
-        public MapScene(GameMap gameMap, Vector2 leaderPosition)
-            : this(gameMap)
-        {
-            PartyLeader.Position = leaderPosition;
-            PartyLeader.Orientation = Orientation.Down;
-            Tilemap.GetTile(PartyLeader.Center).Occupants.Add(PartyLeader);
-            PartyLeader.HostTile = Tilemap.GetTile(PartyLeader.Center);
-            PartyLeader.Idle();
-
-            PartyLeader.UpdateBounds();
-            Camera.Center(PartyLeader.Center);
-
-            int i = 1;
-            foreach (Hero hero in Party.Skip(1))
-            {
-                hero.CenterOn(new Vector2(PartyLeader.SpriteBounds.Left + i * 6, PartyLeader.SpriteBounds.Bottom - 12 + (i % 2) * 6));
-                hero.Orientation = Orientation.Down;
-                hero.Idle();
-
-                i++;
-            }
-        }
-
         public MapScene(string gameMap, string sourceMapName)
             : this((GameMap)Enum.Parse(typeof(GameMap), gameMap))
         {
@@ -266,8 +187,7 @@ namespace Elenigma.Scenes.MapScene
         public void SaveMapPosition()
         {
             GameProfile.SetSaveData<string>("LastMapName", Tilemap.Name);
-            GameProfile.SetSaveData<int>("LastPositionX", (int)PartyLeader.HostTile.TileX);
-            GameProfile.SetSaveData<int>("LastPositionY", (int)PartyLeader.HostTile.TileY);
+            GameProfile.SetSaveData<Vector2>("LastPosition", PartyLeader.Position);
             GameProfile.SetSaveData<string>("PlayerLocation", Tilemap.Level.FieldInstances.First(x => x.Identifier == "LocationName").Value);
         }
 
@@ -278,7 +198,6 @@ namespace Elenigma.Scenes.MapScene
             Camera.Center(PartyLeader.Center);
 
             NPCs.RemoveAll(x => x.Terminated);
-            Enemies.RemoveAll(x => x.Terminated);
 
             parallaxBackdrop?.Update(gameTime, Camera);
         }
@@ -318,43 +237,12 @@ namespace Elenigma.Scenes.MapScene
         public override void DrawGame(SpriteBatch spriteBatch, Effect shader, Matrix matrix)
         {
             base.DrawGame(spriteBatch, shader, matrix);
-
-            // TODO: disable rendering when battle scene active, unless it's transitioning out
         }
 
         public void HandleOffscreen()
         {
             var travelZone = EventTriggers.Where(x => x.TravelZone && x.DefaultTravelZone).OrderBy(x => Vector2.Distance(new Vector2(x.Bounds.Center.X, x.Bounds.Center.Y), PartyLeader.Position)).First();
             travelZone.Activate(PartyLeader);
-        }
-
-        public void RemoveNearbyEnemies()
-        {
-            foreach (Hero hero in Party)
-            {
-                Tile hostTile = Tilemap.GetTile(hero.Center);
-
-                foreach (Actor occupant in hostTile.Occupants) if (occupant is Enemy) occupant.Terminate();
-                hostTile.Occupants.RemoveAll(x => x.Terminated);
-
-                foreach (Tile neighbor in hostTile.NeighborList)
-                {
-                    foreach (Actor occupant in neighbor.Occupants) if (occupant is Enemy) occupant.Terminate();
-                    neighbor.Occupants.RemoveAll(x => x.Terminated);
-                }
-            }
-        }
-
-        public void SpawnMonster(int x, int y, string sprite, string encounter, Orientation orientation = Orientation.Down)
-        {
-            Enemy enemy = new Enemy(this, Tilemap, x, y, sprite, encounter, orientation);
-            if (enemy.IdleScript != null)
-            {
-                EnemyController enemyController = new EnemyController(this, enemy);
-                AddController(enemyController);
-            }
-            Enemies.Add(enemy);
-            AddEntity(enemy);
         }
     }
 }

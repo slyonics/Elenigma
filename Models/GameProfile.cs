@@ -33,7 +33,7 @@ namespace Elenigma.Models
         public static Dictionary<string, object> SaveData { get => saveData; }
 
         private static PlayerProfile playerProfile;
-        private static ModelCollection<ItemModel> inventory;
+        //private static ModelCollection<ItemModel> inventory;
 
         public static void NewState()
         {
@@ -41,7 +41,7 @@ namespace Elenigma.Models
             //saveSlot = 0;
             saveData = new Dictionary<string, object>(DEFAULT_SAVE_VALUES);
             playerProfile = new PlayerProfile();
-            inventory = new ModelCollection<ItemModel>();
+            //inventory = new ModelCollection<ItemModel>();
         }
 
         public static void LoadState(string saveFileName)
@@ -59,22 +59,7 @@ namespace Elenigma.Models
             {
                 saveData = (Dictionary<string, object>)binaryFormatter.Deserialize(fileStream);
                 playerProfile = (PlayerProfile)binaryFormatter.Deserialize(fileStream);
-                inventory = (ModelCollection<ItemModel>)binaryFormatter.Deserialize(fileStream);
-            }
-
-            foreach (var itemModel in inventory)
-            {
-                itemModel.Value.ReloadScripts();
-            }
-
-            foreach (var hero in playerProfile.Party)
-            {
-                hero.Value.NameColor = new ModelProperty<Color>();
-                hero.Value.HealthColor = new ModelProperty<Color>();
-                hero.Value.UpdateHealthColor();
-
-                hero.Value.InitiativeColor = new ModelProperty<Color>();
-                hero.Value.Initiative = new ModelProperty<float>();
+                //inventory = (ModelCollection<ItemModel>)binaryFormatter.Deserialize(fileStream);
             }
         }
 
@@ -105,8 +90,8 @@ namespace Elenigma.Models
                 binaryFormatter.Serialize(fileStream, playerProfile);
                 fileStream.Flush();
 
-                binaryFormatter.Serialize(fileStream, inventory);
-                fileStream.Flush();
+                //binaryFormatter.Serialize(fileStream, inventory);
+                //fileStream.Flush();
             }
         }
 
@@ -164,40 +149,8 @@ namespace Elenigma.Models
             return int.Parse(Path.GetFileNameWithoutExtension(saveName).Replace("Save", ""));
         }
 
-        public static void AddInventory(string itemName, int quantity)
-        {
-            var itemEntry = inventory.FirstOrDefault(x => x.Value.ItemRecord.Name == itemName);
-            if (itemEntry == null || quantity < 0)
-            {
-                inventory.Add(new ItemModel(itemName, quantity));
-            }
-            else
-            {
-                itemEntry.Value.Quantity.Value = itemEntry.Value.Quantity.Value + quantity;
-                if (itemEntry.Value.Quantity.Value < 1) inventory.Remove(itemEntry);
-            }
-        }
-
-        public static void RemoveInventory(ItemModel itemModel, int quantity)
-        {
-            var itemEntry = inventory.FirstOrDefault(x => x.Value == itemModel);
-
-            itemEntry.Value.Quantity.Value = itemEntry.Value.Quantity.Value + quantity;
-            if (itemEntry.Value.Quantity.Value < 1)
-            {
-                Inventory.Remove(itemEntry);
-            }
-        }
-
-        public static int GetInventoryCount(string itemName)
-        {
-            var itemEntry = inventory.FirstOrDefault(x => x.Value.ItemRecord.Name == itemName);
-            if (itemEntry == null) return 0;
-            else return itemEntry.Value.Quantity.Value;
-        }
-
         public static PlayerProfile PlayerProfile { get => playerProfile; }
-        public static ModelCollection<ItemModel> Inventory { get => inventory; }
+        // public static ModelCollection<ItemModel> Inventory { get => inventory; }
 
         public static List<string> SaveList
         {

@@ -2,7 +2,6 @@
 using Elenigma.Models;
 using Elenigma.SceneObjects.Widgets;
 using Elenigma.Scenes.SplashScene;
-using Elenigma.Scenes.StatusScene;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;

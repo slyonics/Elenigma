@@ -99,37 +99,12 @@ namespace Elenigma.Scenes.TitleScene
 
             if (Input.CurrentInput.CommandPressed(Command.Confirm) && titleMenuViewModel == null)
             {
-                if (savesAvailable && !skipMenu)
-                {
-                    titleMenuViewModel = AddView<TitleViewModel>(new TitleViewModel(this, GameView.TitleScene_TitleView));
+                titleMenuViewModel = AddView<TitleViewModel>(new TitleViewModel(this, GameView.TitleScene_TitleView));
 
-                    scrollProgress = flashProgress = 1.0f;
-                    flashEffect.Parameters["destroyInterval"].SetValue(1.1f);
-                    flashEffect.Parameters["flashColor"].SetValue(Color.White.ToVector4());
-                    flashEffect.Parameters["flashInterval"].SetValue(1.0f - flashProgress);
-                }
-                else if ((!savesAvailable || skipMenu) && flashProgress >= 1.0f)
-                {
-                    done = true;
-                    blinkProgress = 1;
-
-                    Audio.StopMusic();
-                    Audio.PlaySound(GameSound.Confirm);
-
-                    GameProfile.Inventory.ModelList.Clear();
-                    GameProfile.PlayerProfile.Party.ModelList.Clear();
-
-                    GameProfile.AddInventory("Tonic", 3);
-                    GameProfile.AddInventory("Ether", 1);
-
-                    GameProfile.PlayerProfile.Money.Value = 800;
-                    var sparr = new HeroModel(HeroType.Sparr, ClassType.Scholar, 1);
-                    sparr.Equip("Mahogany");
-                    sparr.Equip("Talisman");
-                    sparr.Equip("Fancy Robes");
-                    GameProfile.PlayerProfile.Party.Add(sparr);
-                    CrossPlatformGame.Transition(typeof(MapScene.MapScene), GameMap.Airship, 4, 3, SceneObjects.Maps.Orientation.Up);
-                }
+                scrollProgress = flashProgress = 1.0f;
+                flashEffect.Parameters["destroyInterval"].SetValue(1.1f);
+                flashEffect.Parameters["flashColor"].SetValue(Color.White.ToVector4());
+                flashEffect.Parameters["flashInterval"].SetValue(1.0f - flashProgress);
             }
         }
 

@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<View>
-	
-	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-145,30,180,60" InnerMargin="6,5,6,0">
-		<CrawlText Name="Description" Text="Ref Description" Alignment="Stretch" Font="Main"/>
-	</Panel>
-	
-</View>

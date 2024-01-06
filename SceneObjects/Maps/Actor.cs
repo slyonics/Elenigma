@@ -289,6 +289,28 @@ namespace Elenigma.SceneObjects.Maps
         public override float DepthPosition { get => currentBounds.Bottom; }
 
         public virtual List<Rectangle> ActorColliders { get => null; }
+        public List<Rectangle> NearbyColliders
+        {
+            get
+            {
+                int tileStartX = currentBounds.Left / tilemap.Width - 1;
+                int tileEndX = currentBounds.Right / tilemap.Width + 1;
+                int tileStartY = currentBounds.Top / tilemap.Height - 1;
+                int tileEndY = currentBounds.Bottom / tilemap.Height + 1;
+
+                List<Rectangle> colliderList = new List<Rectangle>();
+                for (int x = tileStartX; x <= tileEndX; x++)
+                {
+                    for (int y = tileStartY; y <= tileEndY; y++)
+                    {
+                        Tile nearbyTile = tilemap.GetTile(x, y);
+                        if (nearbyTile != null) colliderList.AddRange(tilemap.GetTile(x, y).ColliderList);
+                    }
+                }
+
+                return colliderList;
+            }
+        }
 
         public bool Visible { get => parentScene.Camera.View.Intersects(currentBounds); }
         public bool IgnoreObstacles { get => ignoreObstacles; }

@@ -308,6 +308,8 @@ namespace Elenigma.SceneObjects.Maps
         public bool Blocked { get; private set; }
         public List<Actor> Occupants { get; private set; } = new List<Actor>();
 
+        public List<Rectangle> ColliderList { get; private set; } = new List<Rectangle>();
+
         public bool BlockSight { set => blockSight = value; get => blockSight; }
         public bool Obscured { set => obscured = value; get => obscured; }
         public Color VisibilityColor { get => visibilityColor; }
