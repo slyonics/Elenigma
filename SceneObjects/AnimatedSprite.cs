@@ -268,6 +268,7 @@ namespace Elenigma.SceneObjects
             return new Rectangle((int)(position.X - frame.source.Width / 2), (int)(position.Y - frame.source.Height), frame.source.Width, frame.source.Height);
         }
 
+        public Texture2D SpriteTexture { set => sprite = value; }
         public Color SpriteColor { get => spriteColor; set => spriteColor = value; }
         public SpriteEffects SpriteEffects { set => spriteEffects = value; }
         public float Rotation { set => rotation = value; }

@@ -7831,7 +7831,7 @@
 			"savedSelections": [],
 			"cachedPixelData": {
 				"opaqueTiles": "11111111000111111110001111111100011111111000111111110001111111100011111111000111111110001111111100011111111000111111110001111111100011111111000111111110001111111100011111111000",
-				"averageColors": "f000fffff8cff46ff750f860f860f86086a866985698f771f871f981f881f961f971fa81fa71000000000000f364f550f450f84ef401f57cf350f8227bbf7bbf7bbff8aef9befabff9bef79bf89bf89cf89c6bbf6bbf6bbff330f520f416f35bf812f770f440f6634bbf4bbf4bbff66af76af76bf76afa41fa51fa51fa519bbf9bbf9bbff740f246f246f46cf253f357f246f3586bbf6bbf6bbff496f496f5a6f496f357f357f358f357000000000000f243f340f63af712f34af530f417f2351bbf1bbf1bbff999f999f999f888f950f850f950f850000000000000f549f417f549f549fcdffcdffcdffbcf1bbf1bbf1bbff888f750facff69cfcdffdeff888f7773bbf3bbf3bbff666f540f8aff850f840f368f368f4501bbf1bbf1bbff555f330f69ff850f850f369f368f3581bbf1bbf1bbff666f540f8aff357f357f888f888f7401bbf1bbf1bbff888f750facff357f357f888f888fa131bbf1bbf1bbf"
+				"averageColors": "f000fffff8cff46ff750f860f860f860668787879797f771f871f981f881f961f971fa81fa71000000000000f364f550f450f84ef401f57cf350f8227a4a7a4a7a4af8aef9befabff9bef79bf89bf89cf89c6a4a6a4a6a4af330f520f416f35bf812f770f440f6633a4a3a4a3a4af66af76af76bf76afa41fa51fa51fa519a4a9a4a9a4af740f246f246f46cf253f357f246f3587a4a7a4a7a4af496f496f5a6f496f357f357f358f357000000000000f243f340f63af712f34af530f417f2351a4a1a4a1a4af999f999f999f888f950f850f950f850000000000000f549f417f549f549fcdffcdffcdffbcf1a4a1a4a1a4af888f750facff69cfcdffdeff888f7773a4a3a4a3a4af666f540f8aff850f840f368f368f4501a4a1a4a1a4af555f330f69ff850f850f369f368f3581a4a1a4a1a4af666f540f8aff357f357f888f888f7401a4a1a4a1a4af888f750facff357f357f888f888fa131a4a1a4a1a4a"
 			}
 		},
 		{
@@ -8104,22 +8104,22 @@
 						},
 						{
 							"__identifier": "Automatic",
-							"__grid": [17,32],
+							"__grid": [31,29],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#D77643",
-							"__worldX": 272,
-							"__worldY": 512,
+							"__worldX": 496,
+							"__worldY": 464,
 							"iid": "228f1110-6280-11ee-a7c6-07192d8019cc",
 							"width": 96,
 							"height": 80,
 							"defUid": 1057,
-							"px": [272,512],
+							"px": [496,464],
 							"fieldInstances": [
 								{ "__identifier": "Script", "__type": "String", "__value": "Conversation FoolIntro\nSetFlag FoolIntro True", "__tile": null, "defUid": 1058, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Conversation FoolIntro\nSetFlag FoolIntro True"]
+									"params": ["Conversation FoolIntro\\nSetFlag FoolIntro True"]
 								}] },
 								{ "__identifier": "EnableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1059, "realEditorValues": [] },
 								{ "__identifier": "DisableIf", "__type": "String", "__value": "FoolIntro", "__tile": null, "defUid": 1060, "realEditorValues": [{
@@ -8153,6 +8153,37 @@
 									"id": "V_String",
 									"params": ["Coffin"]
 								}] }
+							]
+						},
+						{
+							"__identifier": "NPC",
+							"__grid": [6,32],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#32DB00",
+							"__worldX": 96,
+							"__worldY": 512,
+							"iid": "ddeac630-8990-11ee-a66b-f5d1c0dc4eb3",
+							"width": 16,
+							"height": 16,
+							"defUid": 572,
+							"px": [96,512],
+							"fieldInstances": [
+								{ "__identifier": "Sprite", "__type": "String", "__value": "Slyph", "__tile": null, "defUid": 573, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Slyph"]
+								}] },
+								{ "__identifier": "Label", "__type": "String", "__value": "Slyph", "__tile": null, "defUid": 574, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Slyph"]
+								}] },
+								{ "__identifier": "Direction", "__type": "String", "__value": "Down", "__tile": null, "defUid": 575, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Down"]
+								}] },
+								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 577, "realEditorValues": [] },
+								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
 							]
 						}
 					]

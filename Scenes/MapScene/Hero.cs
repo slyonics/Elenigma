@@ -87,6 +87,11 @@ namespace Elenigma.Scenes.MapScene
                 Debug.DrawBox(spriteBatch, InteractionZone);
         }
 
+        public void ChangeSprite(Texture2D newSprite)
+        {
+            AnimatedSprite.SpriteTexture = newSprite;
+        }
+
         public Rectangle InteractionZone;
 
         public bool Running { get; set; }

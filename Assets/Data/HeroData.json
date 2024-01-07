@@ -1,5 +1,10 @@
 [
 	{
+		"Name": "YoungMC",
+		"Sprite": "YoungMC",
+		"Portrait": "YoungMC"
+	},
+	{
 		"Name": "AdultMC",
 		"Sprite": "AdultMC",
 		"Portrait": "AdultMC"

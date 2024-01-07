@@ -72,6 +72,12 @@ namespace Elenigma.Scenes.MapScene
                 if (interactable.Activate(Player)) return;
             }
 
+            if (mapScene.ProcessAutoEvents())
+            {
+                movement = Vector2.Zero;
+                Player.Idle();
+            }
+
             if (movement.Length() < Input.THUMBSTICK_DEADZONE_THRESHOLD) Player.Idle();
             else
             {

@@ -62,9 +62,14 @@ namespace Elenigma.Scenes.MapScene
             Camera = new Camera(new Rectangle(0, 0, Tilemap.Width, Tilemap.Height));
             Tilemap.ClearFieldOfView();
 
-            var leaderHero = new Hero(this, Tilemap, new Vector2(32, 96), GameSprite.Actors_AdultMC);
+            var leaderHero = new Hero(this, Tilemap, new Vector2(32, 96), GameSprite.Actors_WindMC);
             Party.Add(leaderHero);
             PlayerController = AddController(new PlayerController(this, leaderHero));
+
+            Hero followerHero = new Hero(this, Tilemap, new Vector2(64, 96), GameSprite.Actors_Undine);
+            FollowerController followerController = new FollowerController(this, followerHero, leaderHero);
+            AddEntity(followerHero);
+            AddController(followerController);
 
             foreach (var partymember in GameProfile.PlayerProfile.Party.Skip(1))
             {

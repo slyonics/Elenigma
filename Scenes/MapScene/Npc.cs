@@ -23,21 +23,21 @@ namespace Elenigma.Scenes.MapScene
             WalkUp
         }
 
-        public const int NPC_WIDTH = 16;
-        public const int NPC_HEIGHT = 16;
+        public const int NPC_WIDTH = 32;
+        public const int NPC_HEIGHT = 32;
 
-        public static readonly Rectangle NPC_BOUNDS = new Rectangle(-8, -16, 16, 16);
+        public static readonly Rectangle NPC_BOUNDS = new Rectangle(-7, -8, 13, 7);
 
         private static readonly Dictionary<string, Animation> NPC_ANIMATIONS = new Dictionary<string, Animation>()
         {
             { NpcAnimation.IdleDown.ToString(), new Animation(1, 0, NPC_WIDTH, NPC_HEIGHT, 1, 1000) },
-            { NpcAnimation.IdleLeft.ToString(), new Animation(1, 1, NPC_WIDTH, NPC_HEIGHT, 1, 1000) },
+            { NpcAnimation.IdleLeft.ToString(), new Animation(1, 3, NPC_WIDTH, NPC_HEIGHT, 1, 1000) },
             { NpcAnimation.IdleRight.ToString(), new Animation(1, 2, NPC_WIDTH, NPC_HEIGHT, 1, 1000) },
-            { NpcAnimation.IdleUp.ToString(), new Animation(1, 3, NPC_WIDTH, NPC_HEIGHT, 1, 1000) },
+            { NpcAnimation.IdleUp.ToString(), new Animation(1, 1, NPC_WIDTH, NPC_HEIGHT, 1, 1000) },
             { NpcAnimation.WalkDown.ToString(), new Animation(0, 0, NPC_WIDTH, NPC_HEIGHT, 4, 240) },
-            { NpcAnimation.WalkLeft.ToString(), new Animation(0, 1, NPC_WIDTH, NPC_HEIGHT, 4, 240) },
+            { NpcAnimation.WalkLeft.ToString(), new Animation(0, 3, NPC_WIDTH, NPC_HEIGHT, 4, 240) },
             { NpcAnimation.WalkRight.ToString(), new Animation(0, 2, NPC_WIDTH, NPC_HEIGHT, 4, 240) },
-            { NpcAnimation.WalkUp.ToString(), new Animation(0, 3, NPC_WIDTH, NPC_HEIGHT, 4, 240) }
+            { NpcAnimation.WalkUp.ToString(), new Animation(0, 1, NPC_WIDTH, NPC_HEIGHT, 4, 240) },
         };
 
         private MapScene mapScene;
