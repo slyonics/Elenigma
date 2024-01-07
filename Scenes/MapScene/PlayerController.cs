@@ -1,4 +1,5 @@
-﻿using Elenigma.SceneObjects.Maps;
+﻿using Elenigma.Models;
+using Elenigma.SceneObjects.Maps;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,8 @@ namespace Elenigma.Scenes.MapScene
         private IInteractive interactable;
         private InteractionPrompt interactionView;
 
+        private SummonController summonController;
+
         public Hero Player { get; set; }
 
         public PlayerController(MapScene iMapScene, Hero iPlayer)
@@ -52,6 +55,14 @@ namespace Elenigma.Scenes.MapScene
 
                 return;
                 */
+            }
+            else
+            {
+                if (inputFrame.CommandDown(Command.Summon) && GameProfile.PlayerProfile.AvailableSummons.Count > 0)
+                {
+                    SummonOverlay summonOverlay = mapScene.AddOverlay(new SummonOverlay(GameProfile.PlayerProfile.AvailableSummons));
+                    summonController = mapScene.AddController(new SummonController(mapScene, summonOverlay));
+                }
             }
 
             Vector2 movement = Vector2.Zero;

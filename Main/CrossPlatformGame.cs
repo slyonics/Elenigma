@@ -85,8 +85,6 @@ namespace Elenigma.Main
 
             AssetCache.LoadContent(Content, GraphicsDevice);
 
-            HeroRecord.HEROES = AssetCache.LoadRecords<HeroRecord>("HeroData");
-
             ConversationScene.Initialize();
 
             CurrentScene = new SplashScene();

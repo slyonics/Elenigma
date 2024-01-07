@@ -71,17 +71,6 @@ namespace Elenigma.Scenes.MapScene
             AddEntity(followerHero);
             AddController(followerController);
 
-            foreach (var partymember in GameProfile.PlayerProfile.Party.Skip(1))
-            {
-                Hero follower = new Hero(this, Tilemap, new Vector2(64, 96), GameSprite.Actors_AdultMC);
-                Party.Add(follower);
-            }
-
-            foreach (var partymember in Party.Reverse<Hero>())
-            {
-                AddEntity(partymember);
-            }
-
             var entityLayers = Tilemap.Level.LayerInstances.Where(x => x.Type == "Entities");
             foreach (var entityLayer in entityLayers)
             {

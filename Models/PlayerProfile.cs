@@ -7,6 +7,14 @@ using System.Threading.Tasks;
 
 namespace Elenigma.Models
 {
+    public enum SummonType
+    {
+        Slyph,
+        Undine,
+        Salamander,
+        Gnome
+    }
+
     [Serializable]
     public class PlayerProfile
     {
@@ -15,10 +23,7 @@ namespace Elenigma.Models
 
         }
 
-        [field: NonSerialized]
-        public HeroModel StoredHero { get; set; }
-
-        public ModelCollection<HeroModel> Party { get; set; } = new ModelCollection<HeroModel>();
+        public List<SummonType> AvailableSummons { get; set; } = new List<SummonType>();
         public ModelProperty<long> Money { get; set; } = new ModelProperty<long>(13);
     }
 }

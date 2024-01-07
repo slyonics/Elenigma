@@ -173,12 +173,8 @@ namespace Elenigma.SceneObjects.Maps
                         break;
 
                     case "Floor": break;
-                    case "Wall": Blocked = true;
-                        ColliderList.Add(new Rectangle((int)position.X, (int)position.Y, 16, 16));
-                        blockSight = true; wall = true; break;
-                    case "Roof": Blocked = true;
-                        ColliderList.Add(new Rectangle((int)position.X, (int)position.Y, 16, 16));
-                        blockSight = true; roof = true; break;
+                    case "Wall": Blocked = true; blockSight = true; wall = true; break;
+                    case "Roof": Blocked = true; blockSight = true; roof = true; break;
 
                     case "ShortObstacle": Blocked = true; break;
                     case "Obstacle": Blocked = true; blockSight = true; break;
@@ -188,6 +184,11 @@ namespace Elenigma.SceneObjects.Maps
                 {
                     TerrainType = (TerrainType)Enum.Parse(typeof(TerrainType), terrain.EnumValueId);
                 }
+            }
+
+            if (Blocked)
+            {
+                ColliderList.Add(new Rectangle((int)position.X, (int)position.Y, 16, 16));
             }
 
             tileSprite.offset = new Vector2(layer.PxTotalOffsetX, layer.PxTotalOffsetY);

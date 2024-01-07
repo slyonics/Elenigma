@@ -79,7 +79,6 @@ namespace Elenigma.Main
     public enum GameData
     {
         ConversationData,
-        HeroData,
 
         None = -1
     }

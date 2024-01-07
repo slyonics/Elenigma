@@ -18,7 +18,8 @@ namespace Elenigma.Main
         Cancel,
         Menu,
         Interact,
-        Run
+        Run,
+        Summon
     }
 
     public enum PlayerNumber
@@ -53,6 +54,7 @@ namespace Elenigma.Main
             { Command.Menu, new List<Keys>() { Keys.Escape } },
             { Command.Interact, new List<Keys>() { Keys.Enter, Keys.Space } },
             { Command.Run, new List<Keys>() { Keys.RightShift, Keys.LeftShift } },
+            { Command.Summon, new List<Keys>() { Keys.Z } },
         };
 
         private static Dictionary<Command, List<Buttons>> MANDATORY_GAMEPAD_BINDINGS = new Dictionary<Command, List<Buttons>>()
@@ -65,7 +67,8 @@ namespace Elenigma.Main
             { Command.Cancel, new List<Buttons>() { Buttons.B } },
             { Command.Menu, new List<Buttons>() { Buttons.B } },
             { Command.Interact, new List<Buttons>() { Buttons.A } },
-            { Command.Run, new List<Buttons>() { Buttons.X } }
+            { Command.Run, new List<Buttons>() { Buttons.X } },
+            { Command.Summon, new List<Buttons>() { Buttons.Y } }
         };
 
         private List<float> keyActivity = new List<float>();
