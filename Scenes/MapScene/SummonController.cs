@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Elenigma.SceneObjects.Maps;
+using Elenigma.SceneObjects.Particles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +11,15 @@ namespace Elenigma.Scenes.MapScene
     public class SummonController : Controller
     {
         private MapScene mapScene;
+        private Hero player;
         private SummonOverlay summonOverlay;
 
 
-        public SummonController(MapScene iMapScene, SummonOverlay iSummonOverlay)
+        public SummonController(MapScene iMapScene, Hero iPlayer, SummonOverlay iSummonOverlay)
             : base (PriorityLevel.MenuLevel)
         {
             mapScene = iMapScene;
+            player = iPlayer;
             summonOverlay = iSummonOverlay;
         }
 
@@ -28,6 +32,16 @@ namespace Elenigma.Scenes.MapScene
             if (!inputFrame.CommandDown(Command.Summon))
             {
                 Terminate();
+                summonOverlay.Terminate();
+
+                Tile closestEmptyTile = mapScene.Tilemap.GetTile(player.Center).NeighborList.First(x => !x.Blocked);
+
+                Hero followerHero = new Spirit(mapScene, mapScene.Tilemap, closestEmptyTile.Center, GameSprite.Actors_Slyph);
+                FollowerController followerController = new FollowerController(mapScene, followerHero, player);
+                mapScene.AddEntity(followerHero);
+                mapScene.AddController(followerController);
+                mapScene.AddParticle(new AnimationParticle(mapScene, followerHero.Position, AnimationType.Smoke, true));
+
                 return;
             }
 

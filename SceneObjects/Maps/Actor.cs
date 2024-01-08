@@ -387,7 +387,7 @@ namespace Elenigma.SceneObjects.Maps
 
         public void SetFlight(int newHeight, Texture2D shadow)
         {
-            shadowSprite = new AnimatedSprite(shadow, new Dictionary<string, Animation>(animatedSprite.AnimationList));
+            shadowSprite = new AnimatedSprite(shadow, new Dictionary<string, Animation>() { { "Idle", new Animation(0, 0, 16, 16, 1, 1000) } } );
             positionZ = flightHeight = newHeight;
         }
 

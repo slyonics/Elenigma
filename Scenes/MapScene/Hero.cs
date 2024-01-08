@@ -33,7 +33,7 @@ namespace Elenigma.Scenes.MapScene
 
         public static readonly Rectangle HERO_BOUNDS = new Rectangle(-7, -8, 13, 7);
 
-        private static readonly Dictionary<string, Animation> HERO_ANIMATIONS = new Dictionary<string, Animation>()
+        protected static readonly Dictionary<string, Animation> HERO_ANIMATIONS = new Dictionary<string, Animation>()
         {
             { HeroAnimation.IdleDown.ToString(), new Animation(1, 0, HERO_WIDTH, HERO_HEIGHT, 1, 1000) },
             { HeroAnimation.IdleLeft.ToString(), new Animation(1, 3, HERO_WIDTH, HERO_HEIGHT, 1, 1000) },
@@ -49,7 +49,7 @@ namespace Elenigma.Scenes.MapScene
             { HeroAnimation.RunUp.ToString(), new Animation(0, 1, HERO_WIDTH, HERO_HEIGHT, 4, 120) }
         };
 
-        private MapScene mapScene;
+        protected MapScene mapScene;
 
         // private SceneObjects.Shaders.Light light;
 
@@ -58,15 +58,21 @@ namespace Elenigma.Scenes.MapScene
         {
             mapScene = iMapScene;
 
-            /*
-            if (mapScene.SceneShader != null && mapScene.SceneShader is SceneObjects.Shaders.DayNight)
+            if (gameSprite == GameSprite.Actors_Slyph)
             {
-                light = new SceneObjects.Shaders.Light(position - new Vector2(0, 6), 0.0f);
-                light.Color = Color.AntiqueWhite;
-                light.Intensity = 50;
-                (mapScene.SceneShader as SceneObjects.Shaders.DayNight).Lights.Add(light);
+                SetFlight(6, AssetCache.SPRITES[GameSprite.Actors_DroneShadow]);
             }
-            */
+        }
+
+        public Hero(MapScene iMapScene, Tilemap iTilemap, Vector2 iPosition, GameSprite gameSprite, Dictionary<string, Animation> animations, Orientation iOrientation = Orientation.Down)
+            : base(iMapScene, iTilemap, iPosition, AssetCache.SPRITES[gameSprite], animations, HERO_BOUNDS, iOrientation)
+        {
+            mapScene = iMapScene;
+
+            if (gameSprite == GameSprite.Actors_Slyph)
+            {
+                SetFlight(6, AssetCache.SPRITES[GameSprite.Actors_DroneShadow]);
+            }
         }
 
         public override void Update(GameTime gameTime)

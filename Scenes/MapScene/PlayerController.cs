@@ -60,8 +60,8 @@ namespace Elenigma.Scenes.MapScene
             {
                 if (inputFrame.CommandDown(Command.Summon) && GameProfile.PlayerProfile.AvailableSummons.Count > 0)
                 {
-                    SummonOverlay summonOverlay = mapScene.AddOverlay(new SummonOverlay(GameProfile.PlayerProfile.AvailableSummons));
-                    summonController = mapScene.AddController(new SummonController(mapScene, summonOverlay));
+                    SummonOverlay summonOverlay = mapScene.AddOverlay(new SummonOverlay(mapScene, Player, GameProfile.PlayerProfile.AvailableSummons));
+                    summonController = mapScene.AddController(new SummonController(mapScene, Player, summonOverlay));
                 }
             }
 
