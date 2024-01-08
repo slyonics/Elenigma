@@ -19,6 +19,7 @@ namespace Elenigma.Scenes.ConversationScene
     public class DialogueRecord
     {
         public string Speaker { get; set; }
+        public string Portait { get; set; }
         public string Text { get; set; }
         public string[] Script { get; set; }
     }

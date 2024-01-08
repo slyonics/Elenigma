@@ -4,16 +4,7 @@
 		"DialogueRecords": [
 			{
 				"Speaker": "Test",
-				"Text": "Intro conversation test."
-			}
-		]
-	},
-	{
-		"Name": "FoolCoffin",
-		"DialogueRecords": [
-			{
-				"Speaker": "TestConvo",
-				"Text": "Our plan is going really well so far!"
+				"Text": "Automatic conversation test."
 			}
 		]
 	},
@@ -22,6 +13,7 @@
 		"DialogueRecords": [
 			{
 				"Speaker": "Slyph",
+				"Portait": "Portraits_Slyph",
 				"Text": "Slyph is now available to summon!"
 			}
 		]
@@ -31,6 +23,7 @@
 		"DialogueRecords": [
 			{
 				"Speaker": "Undine",
+				"Portait": "Portraits_Undine",
 				"Text": "Undine is now available to summon!"
 			}
 		]
