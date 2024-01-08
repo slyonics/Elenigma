@@ -1,4 +1,5 @@
-﻿using Elenigma.SceneObjects.Maps;
+﻿using Elenigma.Main;
+using Elenigma.SceneObjects.Maps;
 using ldtk;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -56,6 +57,11 @@ namespace Elenigma.Scenes.MapScene
                     case "Sprite":
                         if (field.Value != null) animatedSprite = new AnimatedSprite(AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Actors_" + field.Value)], NPC_ANIMATIONS);
                         if (field.Value != null && (field.Value as string).Contains("Crystal")) PriorityLevel = PriorityLevel.CutsceneLevel;
+
+                        if (field.Value == "Slyph")
+                        {
+                            SetFlight(6, AssetCache.SPRITES[GameSprite.Actors_DroneShadow]);
+                        }
                         break;
 
                     case "Behavior": if (field.Value != null) Behavior = field.Value.Split('\n'); break;
@@ -70,6 +76,8 @@ namespace Elenigma.Scenes.MapScene
             tilemap.GetTile(Center).Occupants.Add(this);
             HostTile = tilemap.GetTile(Center);
             Idle();
+
+            
         }
 
         public Npc(MapScene iMapScene, Tilemap iTilemap, int x, int y, string spriteName, Orientation iOrientation = Orientation.Down)
@@ -84,6 +92,11 @@ namespace Elenigma.Scenes.MapScene
             tilemap.GetTile(Center).Occupants.Add(this);
             HostTile = tilemap.GetTile(Center);
             Idle();
+
+            if (spriteName == "Slyph")
+            {
+                SetFlight(6, AssetCache.SPRITES[GameSprite.Actors_DroneShadow]);
+            }
         }
 
         public override void Update(GameTime gameTime)

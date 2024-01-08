@@ -16,5 +16,23 @@
 				"Text": "Our plan is going really well so far!"
 			}
 		]
+	},
+	{
+		"Name": "SlyphIntro",
+		"DialogueRecords": [
+			{
+				"Speaker": "Slyph",
+				"Text": "Slyph is now available to summon!"
+			}
+		]
+	},
+	{
+		"Name": "UndineIntro",
+		"DialogueRecords": [
+			{
+				"Speaker": "Undine",
+				"Text": "Undine is now available to summon!"
+			}
+		]
 	}
 ]

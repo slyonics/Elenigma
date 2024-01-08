@@ -395,6 +395,7 @@ namespace Elenigma.SceneObjects.Maps
         public Rectangle BoundingBox { get => boundingBox; }
         public Rectangle Bounds { get => currentBounds; }
         public Vector2 Center { get => new Vector2((currentBounds.Left + currentBounds.Right) / 2, currentBounds.Center.Y); }
+        public Vector2 SpriteCenter { get => new Vector2((SpriteBounds.Left + SpriteBounds.Right) / 2, SpriteBounds.Center.Y); }
         public Vector2 Bottom { get => new Vector2((currentBounds.Left + currentBounds.Right) / 2, currentBounds.Bottom); }
         public override float DepthPosition { get => currentBounds.Bottom; }
 

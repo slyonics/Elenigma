@@ -48,8 +48,6 @@ namespace Elenigma.Scenes.SplashScene
         {
             GameProfile.NewState();
 
-            GameProfile.PlayerProfile.AvailableSummons.Add(SummonType.Slyph);
-            
             CrossPlatformGame.Transition(typeof(MapScene.MapScene), GameMap.TechWorldIntro, 19, 33, Orientation.Down);
         }
 

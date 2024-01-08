@@ -14,9 +14,11 @@ namespace Elenigma.Scenes.MapScene
         private Hero player;
         private SummonOverlay summonOverlay;
 
+        private bool ignoreFirstSummonKey = true;
+
 
         public SummonController(MapScene iMapScene, Hero iPlayer, SummonOverlay iSummonOverlay)
-            : base (PriorityLevel.MenuLevel)
+            : base (PriorityLevel.GameLevel)
         {
             mapScene = iMapScene;
             player = iPlayer;
@@ -29,29 +31,36 @@ namespace Elenigma.Scenes.MapScene
 
             InputFrame inputFrame = Input.CurrentInput;
 
-            if (!inputFrame.CommandDown(Command.Summon))
+            if (ignoreFirstSummonKey && inputFrame.CommandPressed(Command.Summon)) return;
+            else ignoreFirstSummonKey = false;
+
+            if (summonOverlay.Scrolling) return;
+
+            if (inputFrame.CommandPressed(Command.Cancel) || inputFrame.CommandPressed(Command.Summon))
             {
                 Terminate();
                 summonOverlay.Terminate();
 
-                Tile closestEmptyTile = mapScene.Tilemap.GetTile(player.Center).NeighborList.First(x => !x.Blocked);
+                return;
+            }
+            
+            if (inputFrame.CommandPressed(Command.Confirm))
+            {
+                Terminate();
+                summonOverlay.Terminate();
 
-                Hero followerHero = new Spirit(mapScene, mapScene.Tilemap, closestEmptyTile.Center, GameSprite.Actors_Slyph);
-                FollowerController followerController = new FollowerController(mapScene, followerHero, player);
-                mapScene.AddEntity(followerHero);
-                mapScene.AddController(followerController);
-                mapScene.AddParticle(new AnimationParticle(mapScene, followerHero.Position, AnimationType.Smoke, true));
+                mapScene.Summon(summonOverlay.SummonSelection);
 
                 return;
             }
 
             if (inputFrame.CommandPressed(Command.Left))
             {
-
+                summonOverlay.ScrollLeft();
             }
             else if (inputFrame.CommandPressed(Command.Right))
             {
-
+                summonOverlay.ScrollRight();
             }
         }
 

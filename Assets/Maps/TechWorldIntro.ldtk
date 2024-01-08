@@ -8182,7 +8182,44 @@
 									"id": "V_String",
 									"params": ["Down"]
 								}] },
-								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 577, "realEditorValues": [] },
+								{ "__identifier": "Interact", "__type": "String", "__value": "Conversation SlyphIntro\nLearnSummon Slyph", "__tile": null, "defUid": 577, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Conversation SlyphIntro\\nLearnSummon Slyph"]
+								}] },
+								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
+							]
+						},
+						{
+							"__identifier": "NPC",
+							"__grid": [8,35],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#32DB00",
+							"__worldX": 128,
+							"__worldY": 560,
+							"iid": "4ad3abe0-8990-11ee-afa7-f3b6941dfedc",
+							"width": 16,
+							"height": 16,
+							"defUid": 572,
+							"px": [128,560],
+							"fieldInstances": [
+								{ "__identifier": "Sprite", "__type": "String", "__value": "Undine", "__tile": null, "defUid": 573, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Undine"]
+								}] },
+								{ "__identifier": "Label", "__type": "String", "__value": "Undine", "__tile": null, "defUid": 574, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Undine"]
+								}] },
+								{ "__identifier": "Direction", "__type": "String", "__value": "Down", "__tile": null, "defUid": 575, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Down"]
+								}] },
+								{ "__identifier": "Interact", "__type": "String", "__value": "Conversation UndineIntro\nLearnSummon Undine", "__tile": null, "defUid": 577, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Conversation UndineIntro\\nLearnSummon Undine"]
+								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
 							]
 						}

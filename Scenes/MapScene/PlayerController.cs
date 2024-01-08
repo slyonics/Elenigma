@@ -42,6 +42,12 @@ namespace Elenigma.Scenes.MapScene
 
         public override void PreUpdate(GameTime gameTime)
         {
+            if (summonController != null)
+            {
+                if (summonController.Terminated) summonController = null;
+                else return;
+            }
+
             InputFrame inputFrame = Input.CurrentInput;
 
             if (Input.CurrentInput.CommandPressed(Command.Cancel))
@@ -58,7 +64,7 @@ namespace Elenigma.Scenes.MapScene
             }
             else
             {
-                if (inputFrame.CommandDown(Command.Summon) && GameProfile.PlayerProfile.AvailableSummons.Count > 0)
+                if (inputFrame.CommandPressed(Command.Summon) && GameProfile.PlayerProfile.AvailableSummons.Count > 0)
                 {
                     SummonOverlay summonOverlay = mapScene.AddOverlay(new SummonOverlay(mapScene, Player, GameProfile.PlayerProfile.AvailableSummons));
                     summonController = mapScene.AddController(new SummonController(mapScene, Player, summonOverlay));

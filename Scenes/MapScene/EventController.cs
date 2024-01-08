@@ -33,10 +33,13 @@ namespace Elenigma.Scenes.MapScene
                 case "EndGame": EndGame = true; break;
                 case "ChangeMap": ChangeMap(tokens, mapScene); break;
                 case "SetWaypoint": SetWaypoint(tokens); break;
-                case "Conversation": Conversation(tokens, scriptParser); break;
+                case "Conversation": Conversation(tokens, scriptParser); mapScene.PartyLeader.Idle(); break;
                 case "Animate": mapScene.Party[int.Parse(tokens[1])].PlayAnimation(tokens[2]); break;
 
                 case "ResetTrigger": EventTrigger.LastTrigger.Terminated = false; mapScene.EventTriggers.Add(EventTrigger.LastTrigger); break;
+
+                case "LearnSummon": GameProfile.PlayerProfile.AvailableSummons.Add((SummonType)Enum.Parse(typeof(SummonType), tokens[1])); break;
+
                 default: return false;
             }
 

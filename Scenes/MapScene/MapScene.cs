@@ -2,6 +2,7 @@
 using Elenigma.Models;
 using Elenigma.SceneObjects;
 using Elenigma.SceneObjects.Maps;
+using Elenigma.SceneObjects.Particles;
 using ldtk;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -233,6 +234,31 @@ namespace Elenigma.Scenes.MapScene
         {
             var travelZone = EventTriggers.Where(x => x.TravelZone && x.DefaultTravelZone).OrderBy(x => Vector2.Distance(new Vector2(x.Bounds.Center.X, x.Bounds.Center.Y), PartyLeader.Position)).First();
             travelZone.Activate(PartyLeader);
+        }
+
+        public void Summon(SummonType summon)
+        {
+            Spirit existingSummon = entityList.FirstOrDefault(x => x is Spirit) as Spirit;
+            if (existingSummon != null)
+            {
+                if (existingSummon.SummonType == summon)
+                {
+                    (existingSummon as Spirit).RefreshLifespan();
+                    return;
+                }
+                else
+                {
+                    existingSummon.Terminate();
+                }
+            }
+
+            Tile closestEmptyTile = Tilemap.GetTile(PartyLeader.Center).NeighborList.First(x => !x.Blocked);
+
+            Spirit followerHero = new Spirit(this, Tilemap, closestEmptyTile.Center, summon);
+            FollowerController followerController = new FollowerController(this, followerHero, PartyLeader);
+            AddEntity(followerHero);
+            AddController(followerController);
+            AddParticle(new AnimationParticle(this, followerHero.Position, AnimationType.Smoke, true));
         }
     }
 }

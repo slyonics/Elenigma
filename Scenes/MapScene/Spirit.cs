@@ -1,4 +1,5 @@
-﻿using Elenigma.SceneObjects.Maps;
+﻿using Elenigma.Models;
+using Elenigma.SceneObjects.Maps;
 using Elenigma.SceneObjects.Particles;
 using System;
 using System.Collections.Generic;
@@ -23,12 +24,13 @@ namespace Elenigma.Scenes.MapScene
         };
 
         private int lifespan = 3000;
+        public SummonType SummonType { get; set; }
 
 
-        public Spirit(MapScene iMapScene, Tilemap iTilemap, Vector2 iPosition, GameSprite gameSprite, Orientation iOrientation = Orientation.Down)
-            : base(iMapScene, iTilemap, iPosition, gameSprite, gameSprite == GameSprite.Actors_Slyph ? SLYPH_ANIMATIONS : HERO_ANIMATIONS, iOrientation)
+        public Spirit(MapScene iMapScene, Tilemap iTilemap, Vector2 iPosition, SummonType summonType, Orientation iOrientation = Orientation.Down)
+            : base(iMapScene, iTilemap, iPosition, (GameSprite)Enum.Parse(typeof(GameSprite), "Actors_" + summonType), summonType == SummonType.Slyph ? SLYPH_ANIMATIONS : HERO_ANIMATIONS, iOrientation)
         {
-
+            SummonType = summonType;
         }
 
         public override void Update(GameTime gameTime)

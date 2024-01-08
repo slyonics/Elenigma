@@ -31,10 +31,6 @@ namespace Elenigma.Scenes.TitleScene
         public TitleScene()
             : base()
         {
-            airshipSprite = new AnimatedSprite(AssetCache.SPRITES[GameSprite.Actors_Airship], new System.Collections.Generic.Dictionary<string, Animation>()
-            {
-                {"Idle", new Animation(0, 1, 16, 16, 4, 100) }
-            });
 
             flashEffect = AssetCache.EFFECTS[GameShader.BattleEnemy].Clone();
 
@@ -45,11 +41,6 @@ namespace Elenigma.Scenes.TitleScene
             : base()
         {
             skipMenu = bool.Parse(iSkipMenu);
-
-            airshipSprite = new AnimatedSprite(AssetCache.SPRITES[GameSprite.Actors_Airship], new System.Collections.Generic.Dictionary<string, Animation>()
-            {
-                {"Idle", new Animation(0, 1, 16, 16, 4, 100) }
-            });
 
             flashEffect = AssetCache.EFFECTS[GameShader.BattleEnemy].Clone();
 
