@@ -132,6 +132,7 @@ namespace Elenigma.Main
         Portraits_AdultMC,
         Portraits_Slyph,
         Portraits_Undine,
+        Tiles_GroundTiles,
         Tiles_Tl_Dungeon_A1,
         Tiles_Tl_Dungeon_A2,
         Tiles_Tl_Dungeon_A4,
