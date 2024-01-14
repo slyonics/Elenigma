@@ -259,6 +259,9 @@ namespace Elenigma.Scenes.MapScene
             AddEntity(followerHero);
             AddController(followerController);
             AddParticle(new AnimationParticle(this, followerHero.Position, AnimationType.Smoke, true));
+
+            TargetOverlay targetOverlay = AddOverlay(new TargetOverlay(this, PartyLeader.Center));
+            AddController(new TargetController(this, PartyLeader, followerHero, targetOverlay));
         }
     }
 }

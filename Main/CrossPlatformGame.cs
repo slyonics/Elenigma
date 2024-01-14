@@ -7,6 +7,7 @@ using Elenigma.SceneObjects.Shaders;
 using Elenigma.Scenes.ConversationScene;
 using Elenigma.Scenes.MapScene;
 using Elenigma.Scenes.SplashScene;
+using Elenigma.Scenes.IntroScene;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -87,7 +88,7 @@ namespace Elenigma.Main
 
             ConversationScene.Initialize();
 
-            CurrentScene = new SplashScene();
+            CurrentScene = new IntroScene();
         }
 
         public void ApplySettings()
