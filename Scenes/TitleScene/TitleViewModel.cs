@@ -1,5 +1,6 @@
 ﻿using Elenigma.Main;
 using Elenigma.Models;
+using Elenigma.SceneObjects.Maps;
 using Elenigma.SceneObjects.Widgets;
 using Elenigma.Scenes.SplashScene;
 using Microsoft.Xna.Framework.Graphics;
@@ -57,9 +58,18 @@ namespace Elenigma.Scenes.TitleScene
 
             LoadView(GameView.TitleScene_TitleView);
 
-            commandBox = GetWidget<RadioBox>("CommandBox");
-            commandBox.Selection = 1;
-            (commandBox.ChildList[1] as RadioButton).RadioSelect();
+            var saves = GameProfile.GetAllSaveData();
+            if (saves.Count == 0)
+            {
+                commandBox = GetWidget<RadioBox>("CommandBox");
+                (commandBox.ChildList[1] as RadioButton).Enabled = false;
+            }
+            else
+            {
+                commandBox = GetWidget<RadioBox>("CommandBox");
+                commandBox.Selection = 1;
+                (commandBox.ChildList[1] as RadioButton).RadioSelect();
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -90,7 +100,11 @@ namespace Elenigma.Scenes.TitleScene
 
             switch (command)
             {
-                case "New Game": commandBox.Enabled = false; SplashScene.SplashScene.NewGame(); break;
+                case "New Game":
+                    commandBox.Enabled = false;
+                    GameProfile.NewState();
+                    CrossPlatformGame.Transition(typeof(MapScene.MapScene), GameMap.TechWorldIntro, 19, 33, Orientation.Down);
+                    break;
 
                 case "Continue":
                     commandBox.Enabled = false;
