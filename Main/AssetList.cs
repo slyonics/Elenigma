@@ -165,6 +165,7 @@ namespace Elenigma.Main
         Widgets_BattleFrame,
         Widgets_BattleWindow,
         Widgets_Blank,
+        Widgets_ChatBoxes,
         Widgets_ClassicFrame,
         Widgets_ClassicWindow,
         Widgets_Convobox,
