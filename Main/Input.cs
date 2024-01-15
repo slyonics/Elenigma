@@ -25,7 +25,7 @@ namespace Elenigma.Main
         private static MouseState oldMouseState;
         private static MouseState newMouseState;
 
-        public static bool MOUSE_MODE = true;
+        public static bool MOUSE_MODE = false;
 
         public static void ApplySettings()
         {

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <View>
 
-	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="Bind Window" InnerMargin="8,5,8,8" TransitionIn="Expand" TransitionOut="Shrink">
-		<CrawlText Name="ConversationText" Text="Bind Dialogue" Font="Bind ConversationFont" Alignment="Stretch" Color="#FFFFFFFF" VoiceSound="Blip"/>
+	<Panel Style="LightFrame" Anchor="$CenterX,$CenterY" Bounds="Bind Window" InnerMargin="8,5,8,8" TransitionIn="Expand" TransitionOut="Shrink">
+		<CrawlText Name="ConversationText" Text="Bind Dialogue" Font="Bind ConversationFont" Alignment="Stretch" Color="#4D2B32FF" VoiceSound="Blip"/>
 
-		<Panel Style="BattleWindow" Alignment="Left" Bounds="0,-45,40,40" Visible="Bind ShowPortrait">
+		<Panel Style="LightFrame" Alignment="Left" Bounds="0,-39,34,34" Visible="Bind ShowPortrait">
 			<Image Picture="Bind Portrait" Alignment="Center" Bounds="0,0,32,32"/>
 		</Panel>
-		<Textplate Name="SpeakerPlate" Style="BattleWindow" Alignment="Left" Bounds="0,-26,-1,-1" InnerMargin="9,4,7,4" Font="Bind ConversationFont" Text="Bind Speaker" Color="#E0BFA2FF"/>
+		<Textplate Name="SpeakerPlate" Style="Textplate_Panel" Alignment="Left" Bounds="0,-26,-1,-1" InnerMargin="9,4,7,4" Font="Bind ConversationFont" Text="Bind Speaker" Color="#AD7757FF"/>
 		
 		<Image Sprite="Enter,0,0,16,16,3,1000,-1" Alignment="BottomRight" Bounds="7,7,12,12" Visible="Bind ReadyToProceed"/>
 	</Panel>

@@ -10,7 +10,7 @@ namespace Elenigma.Scenes.MapScene
 {
     public class InteractionPrompt : Overlay
     {
-        private const string PROMPT_FRAME = "DarkFrame";
+        private const string PROMPT_FRAME = "LightFrame";
         private const GameFont PROMPT_FONT = GameFont.Interface;
 
         private MapScene mapScene;
@@ -18,7 +18,7 @@ namespace Elenigma.Scenes.MapScene
 
         private NinePatch textbox;
 
-        private Color color = new Color(252, 224, 168);
+        private Color color = new Color(173, 119, 87);
 
         public InteractionPrompt(MapScene iMapScene)
         {

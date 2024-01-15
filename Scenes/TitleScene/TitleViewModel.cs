@@ -62,6 +62,7 @@ namespace Elenigma.Scenes.TitleScene
             if (saves.Count == 0)
             {
                 commandBox = GetWidget<RadioBox>("CommandBox");
+                commandBox.Selection = 0;
                 (commandBox.ChildList[1] as RadioButton).Enabled = false;
             }
             else

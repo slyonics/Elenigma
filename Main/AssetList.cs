@@ -171,6 +171,7 @@ namespace Elenigma.Main
         Widgets_Convobox,
         Widgets_DarkFrame,
         Widgets_LabelGlow,
+        Widgets_LightFrame,
         Widgets_MagicFrame,
         Widgets_MagicFrameSelected,
         Widgets_MagicLabel,

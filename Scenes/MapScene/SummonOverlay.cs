@@ -48,7 +48,7 @@ namespace Elenigma.Scenes.MapScene
                 {
                     Summon = summon,
                     Sprite = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Widgets_Icons_" + summon)],
-                    Textbox = new NinePatch("DarkFrame", 0.05f)
+                    Textbox = new NinePatch("LightFrame", 0.05f)
                 };
                 summonEntry.Textbox.Bounds = new Rectangle(0, 0, 15, 14);
 
@@ -56,7 +56,7 @@ namespace Elenigma.Scenes.MapScene
                 i++;
             }
 
-            labelBox = new NinePatch("DarkFrame", 0.05f);
+            labelBox = new NinePatch("LightFrame", 0.05f);
             labelBox.Bounds = new Rectangle(0, 0, Text.GetStringLength(GameFont.Dialogue, summons.First().Summon.ToString()) + 12, 13);
         }
 
@@ -116,7 +116,7 @@ namespace Elenigma.Scenes.MapScene
             if (!Scrolling)
             {
                 labelBox.Draw(spriteBatch, selectionOffset + new Vector2(-labelBox.Bounds.Width / 2, -21));
-                Text.DrawCenteredText(spriteBatch, selectionOffset + new Vector2(0, -13), GameFont.Dialogue, summons.First().Summon.ToString(), 0.03f);
+                Text.DrawCenteredText(spriteBatch, selectionOffset + new Vector2(0, -13), GameFont.Dialogue, summons.First().Summon.ToString(), new Color(173, 119, 87), 0.03f);
             }
         }
 
