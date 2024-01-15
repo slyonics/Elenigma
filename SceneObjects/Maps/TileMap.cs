@@ -42,6 +42,8 @@ namespace Elenigma.SceneObjects.Maps
 
         private NavNode[,] navMesh;
 
+        public List<Rectangle> MapColliders { get; } = new List<Rectangle>();
+
         public string Name { get => gameMap.ToString(); }
 
         public Tilemap(MapScene iScene, GameMap iGameMap)
@@ -86,7 +88,21 @@ namespace Elenigma.SceneObjects.Maps
             }
 
             BuildNavMesh();
-        }
+
+            var entityLayers = Level.LayerInstances.Where(x => x.Type == "Entities");
+            foreach (var entityLayer in entityLayers)
+            {
+                foreach (EntityInstance entity in entityLayer.EntityInstances)
+                {
+                    switch (entity.Identifier)
+                    {
+                        case "ColliderBox":
+                            MapColliders.Add(new Rectangle((int)entity.Px[0], (int)entity.Px[1], (int)entity.Width, (int)entity.Height));
+                            break;
+                    }
+                }
+            }
+                    }
 
         protected virtual void LoadLayers(LayerInstance[] layers)
         {
@@ -350,6 +366,8 @@ namespace Elenigma.SceneObjects.Maps
                     colliderList.AddRange(GetTile(x, y).ColliderList);
                 }
             }
+
+            colliderList.AddRange(MapColliders);
 
             foreach (Rectangle collider in colliderList)
             {

@@ -152,7 +152,12 @@ namespace Elenigma.SceneObjects.Maps
             var terrain = tileset.EnumTags.FirstOrDefault(x => x.TileIds.Contains(tile.T));
             if (terrain != null)
             {
-                switch (terrain.EnumValueId)
+                if (terrain.EnumValueId.Contains("Height"))
+                {
+                    ApplyEntityTile(tile, layer, source, atlas, int.Parse(terrain.EnumValueId.Last().ToString()));
+                    return;
+                }
+                else switch (terrain.EnumValueId)
                 {
                     case "SnowForest":
                     case "Forest": blockSight = true; break;

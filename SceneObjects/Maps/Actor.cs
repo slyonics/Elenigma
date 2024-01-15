@@ -158,6 +158,7 @@ namespace Elenigma.SceneObjects.Maps
             List<Rectangle> colliderList = new List<Rectangle>();
             List<Rectangle> entityColliders = ActorColliders;
 
+            colliderList.AddRange(tilemap.MapColliders);
             if (entityColliders != null) colliderList.AddRange(entityColliders);
             for (int y = startTileY; y <= endTileY; y++)
             {
