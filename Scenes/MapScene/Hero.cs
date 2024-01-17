@@ -31,6 +31,8 @@ namespace Elenigma.Scenes.MapScene
         public const int HERO_WIDTH = 32;
         public const int HERO_HEIGHT = 32;
 
+        private const float FOOTSTEP_INTERVAL = 25000.0f;
+
         public static readonly Rectangle HERO_BOUNDS = new Rectangle(-7, -8, 13, 7);
 
         protected static readonly Dictionary<string, Animation> HERO_ANIMATIONS = new Dictionary<string, Animation>()
@@ -52,6 +54,9 @@ namespace Elenigma.Scenes.MapScene
         protected MapScene mapScene;
 
         // private SceneObjects.Shaders.Light light;
+
+        private float footstepCooldown = 0;
+        public GameSound FootstepSound { get; set; } = GameSound.None;
 
         public Hero(MapScene iMapScene, Tilemap iTilemap, Vector2 iPosition, GameSprite gameSprite, Orientation iOrientation = Orientation.Down)
             : base(iMapScene, iTilemap, iPosition, AssetCache.SPRITES[gameSprite], HERO_ANIMATIONS, HERO_BOUNDS, iOrientation)
@@ -78,6 +83,31 @@ namespace Elenigma.Scenes.MapScene
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            float speed = Velocity.Length();
+            if (FootstepSound != GameSound.None && speed > 0.01f)
+            {
+                footstepCooldown -= (float)gameTime.ElapsedGameTime.TotalMilliseconds * speed;
+                if (footstepCooldown < 0)
+                {
+                    Audio.PlaySound(FootstepSound);
+                    footstepCooldown = FOOTSTEP_INTERVAL;
+                    switch (Rng.RandomInt(0, 3))
+                    {
+                        case 0: FootstepSound = GameSound.footsteps_grass_1; break;
+                        case 1: FootstepSound = GameSound.footsteps_grass_2; break;
+                        case 2: FootstepSound = GameSound.footsteps_grass_3; break;
+                        //case 3: FootstepSound = GameSound.footsteps_grass_4; break;
+                    }
+                }
+            }
+        }
+
+        public override void Idle()
+        {
+            base.Idle();
+
+            footstepCooldown = 0;
         }
 
         public override void CenterOn(Vector2 destination)

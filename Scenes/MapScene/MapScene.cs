@@ -64,6 +64,7 @@ namespace Elenigma.Scenes.MapScene
             Tilemap.ClearFieldOfView();
 
             var leaderHero = new Hero(this, Tilemap, new Vector2(32, 96), GameSprite.Actors_AdultMC);
+            leaderHero.FootstepSound = GameSound.footsteps_grass_1;
             AddEntity(leaderHero);
             Party.Add(leaderHero);
             PlayerController = AddController(new PlayerController(this, leaderHero));

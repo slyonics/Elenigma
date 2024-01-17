@@ -11,10 +11,8 @@ namespace Elenigma.Main
     {
         Tooltip,
         Dialogue,
-        DotFont,
         Interface,
         Label,
-        Pixel,
         Main
     }
 
@@ -32,12 +30,11 @@ namespace Elenigma.Main
 
         public static readonly Dictionary<GameFont, GameFontData> FONT_DATA = new Dictionary<GameFont, GameFontData>()
         {
-            { GameFont.Dialogue, new GameFontData() { fontFile = "final-fantasy-3", fontSize = 8, fontHeight = 10, heightOffset = -2 } },
+            { GameFont.Dialogue, new GameFontData() { fontFile = "NanoPlus", fontSize = 17, fontHeight = 17, heightOffset = 0 } },
             { GameFont.Interface, new GameFontData() { fontFile = "Ridiculousdot-H6", fontSize = 6, fontHeight = 8 } },
-            { GameFont.Pixel, new GameFontData() { fontFile = "PixelSquared", fontSize = 11, fontHeight = 9 } },
             { GameFont.Label, new GameFontData() { fontFile = "Futuradot-H10", fontSize = 10, fontHeight = 8 } },
             { GameFont.Tooltip, new GameFontData() { fontFile = "Futuradot-H10", fontSize = 10, fontHeight = 10 } },
-            { GameFont.Main, new GameFontData() { fontFile = "final-fantasy-3", fontSize = 8, fontHeight = 10, heightOffset = -2 } },
+            { GameFont.Main, new GameFontData() { fontFile = "NanoPlus", fontSize = 17, fontHeight = 14, heightOffset = 0 } },
         };
 
         public static readonly Dictionary<GameFont, SpriteFont> GAME_FONTS = new Dictionary<GameFont, SpriteFont>();
