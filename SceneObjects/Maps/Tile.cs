@@ -11,18 +11,6 @@ using System.Threading.Tasks;
 
 namespace Elenigma.SceneObjects.Maps
 {
-    public enum TerrainType
-    {
-        None,
-
-        Shore,
-        Ocean,
-        Plains,
-        Forest,
-        Wasteland,
-        Mountains
-    }
-
     public class Tile
     {
         private class TileSprite
@@ -46,15 +34,6 @@ namespace Elenigma.SceneObjects.Maps
         private Dictionary<int, List<TileSprite>> entitySprites = new Dictionary<int, List<TileSprite>>();
 
         private List<Tile> neighborList = new List<Tile>();
-
-        public TerrainType TerrainType { get; private set; }
-
-        private bool wall;
-        private bool roof;
-        private bool blockSight;
-        private bool obscured;
-        private float visibilityInterval;
-        private Color visibilityColor;
 
         public Tile(Tilemap iTileMap, int iTileX, int iTileY)
         {
@@ -82,8 +61,6 @@ namespace Elenigma.SceneObjects.Maps
                     }
                 }
             }
-
-            UpdateVisibility(gameTime);
         }
 
         public void DrawBackground(SpriteBatch spriteBatch, Camera camera)
@@ -91,8 +68,7 @@ namespace Elenigma.SceneObjects.Maps
             float depth = 0.9f;
             foreach (TileSprite backgroundSprite in backgroundSprites)
             {
-                //spriteBatch.Draw(backgroundSprite.atlas, position + backgroundSprite.offset - camera.Position - new Vector2(camera.CenteringOffsetX, camera.CenteringOffsetY), backgroundSprite.source, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
-                spriteBatch.Draw(backgroundSprite.atlas, position + backgroundSprite.offset - camera.Position - new Vector2(camera.CenteringOffsetX, camera.CenteringOffsetY), backgroundSprite.source, visibilityColor, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
+                spriteBatch.Draw(backgroundSprite.atlas, position + backgroundSprite.offset - camera.Position - new Vector2(camera.CenteringOffsetX, camera.CenteringOffsetY), backgroundSprite.source, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
                 depth -= 0.001f;
             }
         }
@@ -106,8 +82,7 @@ namespace Elenigma.SceneObjects.Maps
 
                 foreach (TileSprite tileSprite in tileSprites.Value)
                 {
-                    //spriteBatch.Draw(tileSprite.atlas, position + tileSprite.offset, tileSprite.source, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
-                    spriteBatch.Draw(tileSprite.atlas, position + tileSprite.offset, tileSprite.source, visibilityColor, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
+                    spriteBatch.Draw(tileSprite.atlas, position + tileSprite.offset, tileSprite.source, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
                     depth -= 0.0001f;
                 }
             }
@@ -156,38 +131,6 @@ namespace Elenigma.SceneObjects.Maps
                 {
                     ApplyEntityTile(tile, layer, source, atlas, int.Parse(terrain.EnumValueId.Last().ToString()));
                     return;
-                }
-                else switch (terrain.EnumValueId)
-                {
-                    case "SnowForest":
-                    case "Forest": blockSight = true; break;
-
-                    case "SnowMountains":
-                    case "Mountains": blockSight = true; Blocked = true; break;
-
-                    case "Shore":
-                        Blocked = true;
-
-                        int[] tokens = new int[4] { 0, 7, 14, 7 };
-                        tileSprite.animationTime = 700;
-                        tileSprite.anims = new Rectangle[tokens.Length];
-                        for (int i = 0; i < tokens.Length; i++)
-                        {
-                            tileSprite.anims[i] = new Rectangle(source.X + source.Width * tokens[i], source.Y, source.Width, source.Height);
-                        }
-                        break;
-
-                    case "Floor": break;
-                    case "Wall": Blocked = true; blockSight = true; wall = true; break;
-                    case "Roof": Blocked = true; blockSight = true; roof = true; break;
-
-                    case "ShortObstacle": Blocked = true; break;
-                    case "Obstacle": Blocked = true; blockSight = true; break;
-                }
-
-                if (Enum.IsDefined(typeof(TerrainType), terrain.EnumValueId))
-                {
-                    TerrainType = (TerrainType)Enum.Parse(typeof(TerrainType), terrain.EnumValueId);
                 }
             }
 
@@ -247,64 +190,6 @@ namespace Elenigma.SceneObjects.Maps
             if (TileX > 0 && TileY < parentMap.Rows - 1) neighborList.Add(parentMap.GetTile(TileX - 1, TileY + 1));
             if (TileX < parentMap.Columns - 1 && TileY > 0) neighborList.Add(parentMap.GetTile(TileX + 1, TileY - 1));
             if (TileX < parentMap.Columns - 1 && TileY < parentMap.Rows - 1) neighborList.Add(parentMap.GetTile(TileX + 1, TileY + 1));
-
-            if (wall || roof)
-            {
-                visibilityNeighbor = BottommostWall();
-                if (roof && visibilityNeighbor == null)
-                {
-                    var downLeft = parentMap.GetTile(TileX - 1, TileY + 1);
-                    var left = parentMap.GetTile(TileX - 1, TileY);
-                    if (downLeft != null && downLeft.wall) visibilityNeighbor = downLeft.BottommostWall();
-                    else if (left != null && left.wall) visibilityNeighbor = left.BottommostWall();
-                    else
-                    {
-                        var downRight = parentMap.GetTile(TileX + 1, TileY + 1);
-                        var right = parentMap.GetTile(TileX + 1, TileY);
-                        if (downRight != null && downRight.wall) visibilityNeighbor = downRight.BottommostWall();
-                        else if (right != null && right.wall) visibilityNeighbor = right.BottommostWall();
-                    }
-                }
-            }
-        }
-
-        public void UpdateVisibility(GameTime gameTime)
-        {
-            bool correctedObscured = obscured;
-            if (visibilityNeighbor != null)
-            {
-                correctedObscured = obscured && visibilityNeighbor.Obscured;
-            }
-
-            if (correctedObscured) visibilityInterval = Math.Max(0.0f, visibilityInterval - gameTime.ElapsedGameTime.Milliseconds / 200.0f);
-            else visibilityInterval = Math.Min(1.0f, visibilityInterval + gameTime.ElapsedGameTime.Milliseconds / 200.0f);
-            visibilityColor = Color.Lerp(Color.Black, Color.White, visibilityInterval);
-        }
-
-        public void UpdateVisibility()
-        {
-            bool correctedObscured = obscured;
-            if (visibilityNeighbor != null)
-            {
-                correctedObscured = obscured && visibilityNeighbor.Obscured;
-            }
-
-            if (correctedObscured) visibilityColor = Color.Black;
-            else
-            {
-                visibilityColor = Color.White;
-                visibilityInterval = 1.0f;
-            }
-        }
-
-        public Tile BottommostWall()
-        {
-            var tileBelow = parentMap.GetTile(TileX, TileY + 1);
-            if (tileBelow == null || !tileBelow.wall)
-            {
-                return wall ? this : null;
-            }
-            return tileBelow.BottommostWall();
         }
 
         public int TileX { get; private set; }
@@ -313,23 +198,10 @@ namespace Elenigma.SceneObjects.Maps
         public Vector2 Bottom { get => center + new Vector2(0, parentMap.TileSize / 2); }
 
         public List<Tile> NeighborList { get => neighborList; }
-        public Tile visibilityNeighbor;
-
         public bool Blocked { get; private set; }
         public List<Actor> Occupants { get; private set; } = new List<Actor>();
 
         public List<Rectangle> ColliderList { get; private set; } = new List<Rectangle>();
-
-        public bool BlockSight { set => blockSight = value; get => blockSight; }
-        public bool Obscured { set => obscured = value; get => obscured; }
-        public Color VisibilityColor { get => visibilityColor; }
-        public Color HostVisibilityColor
-        {
-            get
-            {
-                return Color.Lerp(Color.Black, Color.White, visibilityInterval);
-            }
-        }
 
         public bool Savepoint { get; private set; }
     }

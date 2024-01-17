@@ -2526,35 +2526,6 @@
 					"gridTiles": [],
 					"entityInstances": [
 						{
-							"__identifier": "Travel",
-							"__grid": [20,5],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#447FDB",
-							"iid": "8dabdb20-3b70-11ee-8a49-13a721ce17ba",
-							"width": 16,
-							"height": 16,
-							"defUid": 628,
-							"px": [320,80],
-							"fieldInstances": [
-								{ "__identifier": "Name", "__type": "String", "__value": "Tower2", "__tile": null, "defUid": 629, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Tower2"]
-								}] },
-								{ "__identifier": "Direction", "__type": "String", "__value": "Left", "__tile": null, "defUid": 630, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Left"]
-								}] },
-								{ "__identifier": "Label", "__type": "String", "__value": "Ascend", "__tile": null, "defUid": 631, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Ascend"]
-								}] }
-							],
-							"__worldX": 320,
-							"__worldY": 80
-						},
-						{
 							"__identifier": "Automatic",
 							"__grid": [31,29],
 							"__pivot": [0,0],
@@ -2582,7 +2553,7 @@
 						},
 						{
 							"__identifier": "Interactable",
-							"__grid": [18,19],
+							"__grid": [31,23],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -2591,7 +2562,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 1072,
-							"px": [288,304],
+							"px": [496,368],
 							"fieldInstances": [
 								{ "__identifier": "Script", "__type": "String", "__value": "Conversation FoolCoffin", "__tile": null, "defUid": 1073, "realEditorValues": [{
 									"id": "V_String",
@@ -2604,8 +2575,8 @@
 									"params": ["Coffin"]
 								}] }
 							],
-							"__worldX": 288,
-							"__worldY": 304
+							"__worldX": 496,
+							"__worldY": 368
 						},
 						{
 							"__identifier": "NPC",
@@ -2696,9 +2667,9 @@
 									"id": "V_String",
 									"params": ["Right"]
 								}] },
-								{ "__identifier": "Label", "__type": "String", "__value": "To West Side", "__tile": null, "defUid": 631, "realEditorValues": [{
+								{ "__identifier": "Label", "__type": "String", "__value": "To West_Side", "__tile": null, "defUid": 631, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["To West Side"]
+									"params": ["To West_Side"]
 								}] }
 							],
 							"__worldX": 1,
@@ -2725,9 +2696,9 @@
 									"id": "V_String",
 									"params": ["Left"]
 								}] },
-								{ "__identifier": "Label", "__type": "String", "__value": "To Secret Meadow", "__tile": null, "defUid": 631, "realEditorValues": [{
+								{ "__identifier": "Label", "__type": "String", "__value": "To Secret_Meadow", "__tile": null, "defUid": 631, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["To Secret Meadow"]
+									"params": ["To Secret_Meadow"]
 								}] }
 							],
 							"__worldX": 618,
@@ -2754,13 +2725,42 @@
 									"id": "V_String",
 									"params": ["Left"]
 								}] },
-								{ "__identifier": "Label", "__type": "String", "__value": "To Slyph's Domain", "__tile": null, "defUid": 631, "realEditorValues": [{
+								{ "__identifier": "Label", "__type": "String", "__value": "To Slyph's_Domain", "__tile": null, "defUid": 631, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["To Slyph's Domain"]
+									"params": ["To Slyph's_Domain"]
 								}] }
 							],
 							"__worldX": 618,
 							"__worldY": 512
+						},
+						{
+							"__identifier": "Travel",
+							"__grid": [26,18],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#447FDB",
+							"iid": "c6eefd50-b0a0-11ee-b713-7961bae0305c",
+							"width": 29,
+							"height": 20,
+							"defUid": 628,
+							"px": [416,289],
+							"fieldInstances": [
+								{ "__identifier": "Name", "__type": "String", "__value": "TreeHouse1", "__tile": null, "defUid": 629, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["TreeHouse1"]
+								}] },
+								{ "__identifier": "Direction", "__type": "String", "__value": "Down", "__tile": null, "defUid": 630, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Down"]
+								}] },
+								{ "__identifier": "Label", "__type": "String", "__value": "Willow's_House", "__tile": null, "defUid": 631, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Willow's_House"]
+								}] }
+							],
+							"__worldX": 416,
+							"__worldY": 289
 						}
 					]
 				},

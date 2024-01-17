@@ -61,7 +61,6 @@ namespace Elenigma.Scenes.MapScene
             }
 
             Camera = new Camera(new Rectangle(0, 0, Tilemap.Width, Tilemap.Height));
-            Tilemap.ClearFieldOfView();
 
             var leaderHero = new Hero(this, Tilemap, new Vector2(32, 96), GameSprite.Actors_AdultMC);
             leaderHero.FootstepSound = GameSound.footsteps_grass_1;
@@ -133,9 +132,6 @@ namespace Elenigma.Scenes.MapScene
             }
 
             Camera.Center(PartyLeader.Center);
-
-            foreach (Hero hero in Party) Tilemap.CalculateFieldOfView(Tilemap.GetTile(hero.Center), SIGHT_RANGE);
-            Tilemap.UpdateVisibility();
         }
 
         public MapScene(string gameMap, string sourceMapName)
@@ -171,9 +167,6 @@ namespace Elenigma.Scenes.MapScene
 
                 i++;
             }
-
-            foreach (Hero hero in Party) Tilemap.CalculateFieldOfView(Tilemap.GetTile(hero.Center), SIGHT_RANGE);
-            Tilemap.UpdateVisibility();
         }
 
         public void SaveMapPosition()

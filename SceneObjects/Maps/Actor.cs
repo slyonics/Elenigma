@@ -94,8 +94,6 @@ namespace Elenigma.SceneObjects.Maps
         public override void Draw(SpriteBatch spriteBatch, Camera camera)
         {
             Tile hostTile = tilemap.GetTile(Center);
-            AnimatedSprite.SpriteColor = hostTile.VisibilityColor;
-            if (shadowSprite != null) shadowSprite.SpriteColor = hostTile.VisibilityColor;
 
             float depth = (camera == null) ? 0 : camera.GetDepth(DepthPosition);
             shadowSprite?.Draw(spriteBatch, position, camera, depth);

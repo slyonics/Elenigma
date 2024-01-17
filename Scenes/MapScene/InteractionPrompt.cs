@@ -44,12 +44,19 @@ namespace Elenigma.Scenes.MapScene
                 textbox.Bounds = new Rectangle(0, 0, width + 10, height * textLines.Count() + 3);
                 Vector2 cameraOffset = new Vector2(mapScene.Camera.CenteringOffsetX, mapScene.Camera.CenteringOffsetY);
 
-                textbox.Draw(spriteBatch, target.LabelPosition - mapScene.Camera.Position - new Vector2(textbox.Bounds.Width / 2, 0) - cameraOffset);
+                Vector2 drawPosition = target.LabelPosition;
+                if (drawPosition.X - (textbox.Bounds.Width / 2) <= mapScene.Camera.Position.X) drawPosition.X = mapScene.Camera.Position.X + (textbox.Bounds.Width / 2);
+                if (drawPosition.X + (textbox.Bounds.Width / 2) - mapScene.Camera.Position.X >= CrossPlatformGame.ScreenWidth)
+                {
+                    drawPosition.X = CrossPlatformGame.ScreenWidth - (textbox.Bounds.Width / 2) + mapScene.Camera.Position.X;
+                }
+
+                textbox.Draw(spriteBatch, drawPosition - mapScene.Camera.Position - new Vector2(textbox.Bounds.Width / 2, 0) - cameraOffset);
 
                 int row = 0;
                 foreach (string text in textLines)
                 {
-                    Text.DrawCenteredText(spriteBatch, target.LabelPosition + new Vector2(1, 7) - mapScene.Camera.Position - cameraOffset, PROMPT_FONT, text, color, 0.03f, row);
+                    Text.DrawCenteredText(spriteBatch, drawPosition + new Vector2(1, 7) - mapScene.Camera.Position - cameraOffset, PROMPT_FONT, text, color, 0.03f, row);
                     row++;
                 }
             }

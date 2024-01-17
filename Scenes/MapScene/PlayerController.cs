@@ -125,9 +125,6 @@ namespace Elenigma.Scenes.MapScene
             }
 
             FindInteractables();
-
-            mapScene.Tilemap.ClearFieldOfView();
-            mapScene.Tilemap.CalculateFieldOfView(mapScene.Tilemap.GetTile(Player.Position - new Vector2(0, 1)), MapScene.SIGHT_RANGE);
         }
 
         private void FindInteractables()
