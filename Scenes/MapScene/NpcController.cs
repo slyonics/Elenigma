@@ -66,7 +66,7 @@ namespace Elenigma.Scenes.MapScene
                     currentTile = destinationTile;
                     destinationTile = null;
 
-                    if (mapScene.PriorityLevel > this.PriorityLevel || mapScene.BattleImminent) npc.Idle();
+                    if (mapScene.PriorityLevel > this.PriorityLevel) npc.Idle();
                 }
             }
         }
@@ -104,7 +104,7 @@ namespace Elenigma.Scenes.MapScene
         {
             switch (tokens[0])
             {
-                case "Wander": if (!mapScene.BattleImminent) Move((Orientation)Rng.RandomInt(0, 3), int.Parse(tokens[1]) / 1000.0f); break;
+                case "Wander": Move((Orientation)Rng.RandomInt(0, 3), int.Parse(tokens[1]) / 1000.0f); break;
                 case "Animate": npc.PlayAnimation(tokens[1]); break;
                 default: return false;
             }

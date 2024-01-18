@@ -34,6 +34,7 @@ namespace Elenigma.Models
 
         private static PlayerProfile playerProfile;
         //private static ModelCollection<ItemModel> inventory;
+        private static int worldTime;
 
         public static void NewState()
         {
@@ -151,6 +152,8 @@ namespace Elenigma.Models
 
         public static PlayerProfile PlayerProfile { get => playerProfile; }
         // public static ModelCollection<ItemModel> Inventory { get => inventory; }
+
+        public static int WorldTime { get => worldTime; set => worldTime = value; }
 
         public static List<string> SaveList
         {

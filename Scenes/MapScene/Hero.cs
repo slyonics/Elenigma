@@ -58,6 +58,8 @@ namespace Elenigma.Scenes.MapScene
         private float footstepCooldown = 0;
         public GameSound FootstepSound { get; set; } = GameSound.None;
 
+        private SceneObjects.Shaders.Light light;
+
         public Hero(MapScene iMapScene, Tilemap iTilemap, Vector2 iPosition, GameSprite gameSprite, Orientation iOrientation = Orientation.Down)
             : base(iMapScene, iTilemap, iPosition, AssetCache.SPRITES[gameSprite], HERO_ANIMATIONS, HERO_BOUNDS, iOrientation)
         {
@@ -66,6 +68,14 @@ namespace Elenigma.Scenes.MapScene
             if (gameSprite == GameSprite.Actors_Slyph)
             {
                 SetFlight(6, AssetCache.SPRITES[GameSprite.Actors_DroneShadow]);
+            }
+
+            if (mapScene.SceneShader != null && mapScene.SceneShader is SceneObjects.Shaders.DayNight)
+            {
+                light = new SceneObjects.Shaders.Light(position - new Vector2(0, 6), 0.0f);
+                light.Color = Color.AntiqueWhite;
+                light.Intensity = 50;
+                (mapScene.SceneShader as SceneObjects.Shaders.DayNight).Lights.Add(light);
             }
         }
 
@@ -101,6 +111,8 @@ namespace Elenigma.Scenes.MapScene
                     }
                 }
             }
+
+            if (light != null) light.Position = position - new Vector2(0, 6);
         }
 
         public override void Idle()
@@ -113,6 +125,13 @@ namespace Elenigma.Scenes.MapScene
         public override void CenterOn(Vector2 destination)
         {
             base.CenterOn(destination);
+
+            CenterLight();
+        }
+
+        public void CenterLight()
+        {
+            if (light != null) light.Position = position - new Vector2(0, 6);
         }
 
         public override void Draw(SpriteBatch spriteBatch, Camera camera)

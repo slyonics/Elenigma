@@ -77,6 +77,8 @@ namespace Elenigma.GameObjects.Maps
             if (!Indoors) worldTime += seconds * TIME_SCALE * timeScale;
 
             while (worldTime > MINUTES_PER_DAY) worldTime -= MINUTES_PER_DAY;
+
+            GameProfile.WorldTime = (int)worldTime;
         }
 
         public static int ParseTime(string timeString)

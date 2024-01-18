@@ -83,7 +83,7 @@ namespace Elenigma.SceneObjects.Maps
                 foreach (TileSprite tileSprite in tileSprites.Value)
                 {
                     spriteBatch.Draw(tileSprite.atlas, position + tileSprite.offset, tileSprite.source, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
-                    depth -= 0.0001f;
+                    depth -= 0.001f;
                 }
             }
         }

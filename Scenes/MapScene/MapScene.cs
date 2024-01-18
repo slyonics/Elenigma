@@ -1,8 +1,10 @@
-﻿using Elenigma.Main;
+﻿using Elenigma.GameObjects.Maps;
+using Elenigma.Main;
 using Elenigma.Models;
 using Elenigma.SceneObjects;
 using Elenigma.SceneObjects.Maps;
 using Elenigma.SceneObjects.Particles;
+using Elenigma.SceneObjects.Shaders;
 using ldtk;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -33,15 +35,18 @@ namespace Elenigma.Scenes.MapScene
 
         private ParallaxBackdrop parallaxBackdrop;
 
-        public bool BattleImminent { get; set; }
 
-        public string BattleBackground { get; private set; }
+        public bool Indoors { get; private set; }
+        public WeatherController WeatherController { get; set; }
+
 
         public MapScene(GameMap gameMap)
         {
             Instance = this;
 
             Tilemap = AddEntity(new Tilemap(this, gameMap));
+
+            Color mapColor = Color.White;
 
             foreach (FieldInstance field in Tilemap.Level.FieldInstances)
             {
@@ -50,13 +55,12 @@ namespace Elenigma.Scenes.MapScene
                     case "Music": if (!string.IsNullOrEmpty(field.Value) && (gameMap != GameMap.Overworld || Audio.CurrentMusic != GameMusic.BeyondtheHills)) Audio.PlayMusic((GameMusic)Enum.Parse(typeof(GameMusic), field.Value)); break;
                     case "Script": if (!string.IsNullOrEmpty(field.Value)) AddController(new EventController(this, field.Value.Split('\n'))); break;
 
-                    case "ColorFilter": SceneShader = new SceneObjects.Shaders.ColorFade(Graphics.ParseHexcode("#" + field.Value.Substring(3)), 0.75f); break;
-                    case "DayNight": SceneShader = new SceneObjects.Shaders.DayNight(Graphics.ParseHexcode("#" + field.Value.Substring(3)), 1.2f); break;
+                    case "ColorFilter": SceneShader = new SceneObjects.Shaders.ColorFade(Graphics.ParseHexcode("#" + field.Value.Substring(1)), 0.75f); break;
+                    case "DayNight": SceneShader = new SceneObjects.Shaders.DayNight(Graphics.ParseHexcode("#" + field.Value.Substring(1)), 1.2f); break;
                     case "HeatDistortion": SceneShader = new SceneObjects.Shaders.HeatDistortion(); break;
 
                     case "LocationName": if (!string.IsNullOrEmpty(field.Value)) LocationName = field.Value; else LocationName = Tilemap.Name; break;
                     case "Background": if (!string.IsNullOrEmpty(field.Value)) BuildParallaxBackground(field.Value); break;
-                    case "BattleBackground": if (!string.IsNullOrEmpty(field.Value)) BattleBackground = field.Value; break;
                 }
             }
 
@@ -107,6 +111,17 @@ namespace Elenigma.Scenes.MapScene
                             }
                     }
                 }
+            }
+
+            var dayNight = SceneShader as DayNight;
+            if (dayNight != null)
+            {
+                WeatherController = new WeatherController(dayNight, GameProfile.WorldTime, 2, Indoors);
+                AddController(WeatherController);
+                WeatherController.PreUpdate(new GameTime());
+
+                if (!WeatherController.Indoors) dayNight.Ambient = WeatherController.AmbientLight.ToVector4();
+                else WeatherController.AmbientLight = mapColor;
             }
         }
 
