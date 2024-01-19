@@ -34,7 +34,7 @@ namespace Elenigma.Models
 
         private static PlayerProfile playerProfile;
         //private static ModelCollection<ItemModel> inventory;
-        private static int worldTime;
+        private static int worldTime = 360;
 
         public static void NewState()
         {

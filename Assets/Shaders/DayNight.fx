@@ -25,6 +25,7 @@ float4 PixelShaderFunction(float4 position : SV_POSITION, float4 color1 : COLOR0
 	float distance1 = 0;
 	if (lightI._11 > 0) distance1 = (lightI._11 - sqrt(pow(position.x - lightX._11, 2) + pow(position.y - lightY._11, 2))) / pow(lightI._11, 2.3);
 	if (distance1 < 0) distance1 = 0;
+	else distance1 = round(distance1 * 1000.0f) / 1000.0f;
 
 	float distance2 = 0;
 	if (lightI._12 > 0) distance2 = (lightI._12 - sqrt(pow(position.x - lightX._12, 2) + pow(position.y - lightY._12, 2))) / pow(lightI._12, 2.3);

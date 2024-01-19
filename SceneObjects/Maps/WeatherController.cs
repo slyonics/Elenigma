@@ -69,7 +69,7 @@ namespace Elenigma.GameObjects.Maps
 
             bloom = 1.0f;
 
-            ProceedTime(gameTime.ElapsedGameTime.Milliseconds / 100.0f);
+            // ProceedTime(gameTime.ElapsedGameTime.Milliseconds / 100.0f);
         }
 
         public void ProceedTime(float seconds)
