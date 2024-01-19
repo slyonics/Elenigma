@@ -1,4 +1,5 @@
-﻿using Elenigma.Scenes.MapScene;
+﻿using Elenigma.SceneObjects.Shaders;
+using Elenigma.Scenes.MapScene;
 using ldtk;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -43,6 +44,8 @@ namespace Elenigma.SceneObjects.Maps
         private NavNode[,] navMesh;
 
         public List<Rectangle> MapColliders { get; } = new List<Rectangle>();
+
+        public List<Light> Lights { get; private set; } = new List<Light>();
 
         public string Name { get => gameMap.ToString(); }
 
@@ -99,6 +102,15 @@ namespace Elenigma.SceneObjects.Maps
                         case "ColliderBox":
                             MapColliders.Add(new Rectangle((int)entity.Px[0], (int)entity.Px[1], (int)entity.Width, (int)entity.Height));
                             break;
+
+                        case "Light":
+                            {
+                                Light light = new Light(new Vector2(entity.Px[0] + entity.Width / 2, entity.Px[1] + entity.Height / 2), 0.0f);
+                                light.Color = Graphics.ParseHexcode("#" + entity.FieldInstances.FirstOrDefault(x => x.Identifier == "Color").Value.Substring(1));
+                                light.Intensity = entity.FieldInstances.FirstOrDefault(x => x.Identifier == "Intensity").Value;
+                                Lights.Add(light);
+                                break;
+                            }
                     }
                 }
             }

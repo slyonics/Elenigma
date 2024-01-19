@@ -21,7 +21,7 @@ namespace Elenigma.Main
         public class GameFontData
         {
             public string fontFile;
-            public int fontSize;
+            public float fontSize;
             public int fontHeight;
             public int heightOffset;
         }
@@ -34,7 +34,7 @@ namespace Elenigma.Main
             { GameFont.Interface, new GameFontData() { fontFile = "Ridiculousdot-H6", fontSize = 6, fontHeight = 8 } },
             { GameFont.Label, new GameFontData() { fontFile = "Futuradot-H10", fontSize = 10, fontHeight = 8 } },
             { GameFont.Tooltip, new GameFontData() { fontFile = "Futuradot-H10", fontSize = 10, fontHeight = 10 } },
-            { GameFont.Main, new GameFontData() { fontFile = "NanoPlus", fontSize = 17, fontHeight = 14, heightOffset = 0 } },
+            { GameFont.Main, new GameFontData() { fontFile = "retro-pixel-thick", fontSize = 20.0f, fontHeight = 16, heightOffset = 1 } },
         };
 
         public static readonly Dictionary<GameFont, SpriteFont> GAME_FONTS = new Dictionary<GameFont, SpriteFont>();

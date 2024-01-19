@@ -56,7 +56,7 @@ namespace Elenigma.Scenes.MapScene
                     case "Script": if (!string.IsNullOrEmpty(field.Value)) AddController(new EventController(this, field.Value.Split('\n'))); break;
 
                     case "ColorFilter": SceneShader = new SceneObjects.Shaders.ColorFade(Graphics.ParseHexcode("#" + field.Value.Substring(1)), 0.75f); break;
-                    case "DayNight": SceneShader = new SceneObjects.Shaders.DayNight(Graphics.ParseHexcode("#" + field.Value.Substring(1)), 1.2f); break;
+                    case "DayNight": SceneShader = new SceneObjects.Shaders.DayNight(Graphics.ParseHexcode("#" + field.Value.Substring(1)), 1.0f); break;
                     case "HeatDistortion": SceneShader = new SceneObjects.Shaders.HeatDistortion(); break;
 
                     case "LocationName": if (!string.IsNullOrEmpty(field.Value)) LocationName = field.Value; else LocationName = Tilemap.Name; break;
@@ -116,6 +116,8 @@ namespace Elenigma.Scenes.MapScene
             var dayNight = SceneShader as DayNight;
             if (dayNight != null)
             {
+                dayNight.Lights.AddRange(Tilemap.Lights);
+
                 WeatherController = new WeatherController(dayNight, GameProfile.WorldTime, 2, Indoors);
                 AddController(WeatherController);
                 WeatherController.PreUpdate(new GameTime());

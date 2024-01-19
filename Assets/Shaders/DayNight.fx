@@ -25,27 +25,32 @@ float4 PixelShaderFunction(float4 position : SV_POSITION, float4 color1 : COLOR0
 	float distance1 = 0;
 	if (lightI._11 > 0) distance1 = (lightI._11 - sqrt(pow(position.x - lightX._11, 2) + pow(position.y - lightY._11, 2))) / pow(lightI._11, 2.3);
 	if (distance1 < 0) distance1 = 0;
-	else distance1 = round(distance1 * 1000.0f) / 1000.0f;
+	else if (distance1 < 0.003 / lightI._11 * 50) distance1 = round(distance1 * 1000.0f) / 1000.0f;
 
 	float distance2 = 0;
 	if (lightI._12 > 0) distance2 = (lightI._12 - sqrt(pow(position.x - lightX._12, 2) + pow(position.y - lightY._12, 2))) / pow(lightI._12, 2.3);
 	if (distance2 < 0) distance2 = 0;
+	else if (distance2 < 0.003 / lightI._12 * 50) distance2 = round(distance2 * 1000.0f) / 1000.0f;
 
 	float distance3 = 0;
 	if (lightI._13 > 0) distance3 = (lightI._13 - sqrt(pow(position.x - lightX._13, 2) + pow(position.y - lightY._13, 2))) / pow(lightI._13, 2.3);
 	if (distance3 < 0) distance3 = 0;
+	else if (distance3 < 0.003 / lightI._13 * 50) distance3 = round(distance3 * 1000.0f) / 1000.0f;
 
 	float distance4 = 0;
 	if (lightI._14 > 0) distance4 = (lightI._14 - sqrt(pow(position.x - lightX._14, 2) + pow(position.y - lightY._14, 2))) / pow(lightI._14, 2.3);
 	if (distance4 < 0) distance4 = 0;
+	else if (distance4 < 0.003 / lightI._14 * 50) distance4 = round(distance4 * 1000.0f) / 1000.0f;
 
 	float distance5 = 0;
 	if (lightI._21 > 0) distance5 = (lightI._21 - sqrt(pow(position.x - lightX._21, 2) + pow(position.y - lightY._21, 2))) / pow(lightI._21, 2.3);
 	if (distance5 < 0) distance5 = 0;
+	else if (distance5 < 0.003 / lightI._21 * 50) distance5 = round(distance5 * 1000.0f) / 1000.0f;
 
 	float distance6 = 0;
 	if (lightI._22 > 0) distance6 = (lightI._22 - sqrt(pow(position.x - lightX._22, 2) + pow(position.y - lightY._22, 2))) / pow(lightI._22, 2.3);
 	if (distance6 < 0) distance6 = 0;
+	else if (distance6 < 0.003 / lightI._22 * 50) distance6 = round(distance6 * 1000.0f) / 1000.0f;
 
 	float distance7 = 0;
 	if (lightI._23 > 0) distance7 = (lightI._23 - sqrt(pow(position.x - lightX._23, 2) + pow(position.y - lightY._23, 2))) / pow(lightI._23, 2.3);
