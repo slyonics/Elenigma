@@ -22,59 +22,91 @@ float4 PixelShaderFunction(float4 position : SV_POSITION, float4 color1 : COLOR0
 {
 	float4 pixel = tex2D(s0, texCoord) * color1;
 
+	float dist;
 	float distance1 = 0;
-	if (lightI._11 > 0) distance1 = (lightI._11 - sqrt(pow(position.x - lightX._11, 2) + pow(position.y - lightY._11, 2))) / pow(lightI._11, 2.3);
-	if (distance1 < 0) distance1 = 0;
-	else if (distance1 < 0.003 / lightI._11 * 50) distance1 = round(distance1 * 1000.0f) / 1000.0f;
-
 	float distance2 = 0;
-	if (lightI._12 > 0) distance2 = (lightI._12 - sqrt(pow(position.x - lightX._12, 2) + pow(position.y - lightY._12, 2))) / pow(lightI._12, 2.3);
-	if (distance2 < 0) distance2 = 0;
-	else if (distance2 < 0.003 / lightI._12 * 50) distance2 = round(distance2 * 1000.0f) / 1000.0f;
-
 	float distance3 = 0;
-	if (lightI._13 > 0) distance3 = (lightI._13 - sqrt(pow(position.x - lightX._13, 2) + pow(position.y - lightY._13, 2))) / pow(lightI._13, 2.3);
-	if (distance3 < 0) distance3 = 0;
-	else if (distance3 < 0.003 / lightI._13 * 50) distance3 = round(distance3 * 1000.0f) / 1000.0f;
-
 	float distance4 = 0;
-	if (lightI._14 > 0) distance4 = (lightI._14 - sqrt(pow(position.x - lightX._14, 2) + pow(position.y - lightY._14, 2))) / pow(lightI._14, 2.3);
-	if (distance4 < 0) distance4 = 0;
-	else if (distance4 < 0.003 / lightI._14 * 50) distance4 = round(distance4 * 1000.0f) / 1000.0f;
-
 	float distance5 = 0;
-	if (lightI._21 > 0) distance5 = (lightI._21 - sqrt(pow(position.x - lightX._21, 2) + pow(position.y - lightY._21, 2))) / pow(lightI._21, 2.3);
-	if (distance5 < 0) distance5 = 0;
-	else if (distance5 < 0.003 / lightI._21 * 50) distance5 = round(distance5 * 1000.0f) / 1000.0f;
-
 	float distance6 = 0;
-	if (lightI._22 > 0) distance6 = (lightI._22 - sqrt(pow(position.x - lightX._22, 2) + pow(position.y - lightY._22, 2))) / pow(lightI._22, 2.3);
-	if (distance6 < 0) distance6 = 0;
-	else if (distance6 < 0.003 / lightI._22 * 50) distance6 = round(distance6 * 1000.0f) / 1000.0f;
-
 	float distance7 = 0;
-	if (lightI._23 > 0) distance7 = (lightI._23 - sqrt(pow(position.x - lightX._23, 2) + pow(position.y - lightY._23, 2))) / pow(lightI._23, 2.3);
-	if (distance7 < 0) distance7 = 0;
-
 	float distance8 = 0;
-	if (lightI._24 > 0) distance8 = (lightI._24 - sqrt(pow(position.x - lightX._24, 2) + pow(position.y - lightY._24, 2))) / pow(lightI._24, 2.3);
-	if (distance8 < 0) distance8 = 0;
-
 	float distance9 = 0;
-	if (lightI._31 > 0) distance9 = (lightI._31 - sqrt(pow(position.x - lightX._31, 2) + pow(position.y - lightY._31, 2))) / pow(lightI._31, 2.3);
-	if (distance9 < 0) distance9 = 0;
-
 	float distance10 = 0;
-	if (lightI._32 > 0) distance10 = (lightI._32 - sqrt(pow(position.x - lightX._32, 2) + pow(position.y - lightY._32, 2))) / pow(lightI._32, 2.3);
-	if (distance10 < 0) distance10 = 0;
-
 	float distance11 = 0;
-	if (lightI._33 > 0) distance11 = (lightI._33 - sqrt(pow(position.x - lightX._33, 2) + pow(position.y - lightY._33, 2))) / pow(lightI._33, 2.3);
-	if (distance11 < 0) distance11 = 0;
-
 	float distance12 = 0;
-	if (lightI._34 > 0) distance12 = (lightI._34 - sqrt(pow(position.x - lightX._34, 2) + pow(position.y - lightY._34, 2))) / pow(lightI._34, 2.3);;
-	if (distance12 < 0) distance12 = 0;
+
+	if (lightI._11 > 0)
+	{
+		dist = distance(position, float2(lightX._11, lightY._11));
+		distance1 = round((1.0f - smoothstep(0, lightI._11, dist)) * 12.0f) / lightI._11 / 12.0f;
+	}
+
+	if (lightI._12 > 0)
+	{
+		dist = distance(position, float2(lightX._12, lightY._12));
+		distance2 = round((1.0f - smoothstep(0, lightI._12, dist)) * 12.0f) / lightI._12 / 12.0f;
+	}
+
+	if (lightI._13 > 0)
+	{
+		dist = distance(position, float2(lightX._13, lightY._13));
+		distance3 = round((1.0f - smoothstep(0, lightI._13, dist)) * 12.0f) / lightI._13 / 12.0f;
+	}
+
+	if (lightI._14 > 0)
+	{
+		dist = distance(position, float2(lightX._14, lightY._14));
+		distance4 = round((1.0f - smoothstep(0, lightI._14, dist)) * 12.0f) / lightI._14 / 12.0f;
+	}
+
+	if (lightI._21 > 0)
+	{
+		dist = distance(position, float2(lightX._21, lightY._21));
+		distance5 = round((1.0f - smoothstep(0, lightI._21, dist)) * 12.0f) / lightI._21 / 12.0f;
+	}
+
+	if (lightI._22 > 0)
+	{
+		dist = distance(position, float2(lightX._22, lightY._22));
+		distance6 = round((1.0f - smoothstep(0, lightI._22, dist)) * 12.0f) / lightI._22 / 12.0f;
+	}
+
+	if (lightI._23 > 0)
+	{
+		dist = distance(position, float2(lightX._23, lightY._23));
+		distance7 = round((1.0f - smoothstep(0, lightI._23, dist)) * 12.0f) / lightI._23 / 12.0f;
+	}
+
+	if (lightI._24 > 0)
+	{
+		dist = distance(position, float2(lightX._24, lightY._24));
+		distance8 = round((1.0f - smoothstep(0, lightI._24, dist)) * 12.0f) / lightI._24 / 12.0f;
+	}
+
+	if (lightI._31 > 0)
+	{
+		dist = distance(position, float2(lightX._31, lightY._31));
+		distance9 = round((1.0f - smoothstep(0, lightI._31, dist)) * 12.0f) / lightI._31 / 12.0f;
+	}
+
+	if (lightI._32 > 0)
+	{
+		dist = distance(position, float2(lightX._32, lightY._32));
+		distance10 = round((1.0f - smoothstep(0, lightI._32, dist)) * 12.0f) / lightI._32 / 12.0f;
+	}
+
+	if (lightI._33 > 0)
+	{
+		dist = distance(position, float2(lightX._33, lightY._33));
+		distance11 = round((1.0f - smoothstep(0, lightI._33, dist)) * 12.0f) / lightI._33 / 12.0f;
+	}
+
+	if (lightI._34 > 0)
+	{
+		dist = distance(position, float2(lightX._34, lightY._34));
+		distance12 = round((1.0f - smoothstep(0, lightI._34, dist)) * 12.0f) / lightI._34 / 12.0f;
+	}
 
 	float redlight = distance1 * lightR._11 + distance2 * lightR._12 + distance3 * lightR._13 + distance4 * lightR._14 + distance5 * lightR._21 + distance6 * lightR._22 + distance7 * lightR._23 + distance8 * lightR._24 + distance9 * lightR._31 + distance10 * lightR._32 + distance11 * lightR._33 + distance11 * lightR._34;
 	if (redlight > bloom) redlight = bloom;
