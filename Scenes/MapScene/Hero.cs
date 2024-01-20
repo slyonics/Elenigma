@@ -33,7 +33,7 @@ namespace Elenigma.Scenes.MapScene
 
         private const float FOOTSTEP_INTERVAL = 25000.0f;
 
-        public static readonly Rectangle HERO_BOUNDS = new Rectangle(-7, -8, 13, 7);
+        public static readonly Rectangle HERO_BOUNDS = new Rectangle(-7, -7, 13, 7);
 
         protected static readonly Dictionary<string, Animation> HERO_ANIMATIONS = new Dictionary<string, Animation>()
         {
