@@ -118,6 +118,7 @@ namespace Elenigma.Main
         Keyboard,
         Target,
         Title,
+        TurningBook,
         Up,
         UpSelected,
         Actors_AdultMC,
