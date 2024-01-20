@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <View>
 
-	<Panel Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-40,20,80,64" InnerMargin="5,5,5,0">
+	<Panel Style="LightFrame" Anchor="$CenterX,$CenterY" Bounds="-90,10,80,64" InnerMargin="5,5,5,0">
 		<RadioBox Name="CommandBox" Items="Ref AvailableCommands" Scrolling="False" Alignment="Stretch" SelectSound="None">
 			<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="0,0,70,13" Alignment="Vertical" Action="SelectCommand" ActionParameter="Ref DataGrid">
-				<Label Text="Ref DataGrid" Alignment="Left" Font="Main" TextAlignment="Center" Bounds="0,1,70,11"/>
+				<Label Text="Ref DataGrid" Alignment="Left" Font="Main" TextAlignment="Center" Bounds="0,1,70,11" Color="#4D2B32FF"/>
 			</RadioButton>
 		</RadioBox>
 	</Panel>

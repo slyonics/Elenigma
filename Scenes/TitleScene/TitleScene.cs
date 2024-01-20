@@ -54,7 +54,7 @@ namespace Elenigma.Scenes.TitleScene
 
             if (titleMenuViewModel == null && (int)blinkProgress % 2 == 0 && priorityLevel != PriorityLevel.TransitionLevel)
             {
-                Text.DrawCenteredText(spriteBatch, new Vector2(CrossPlatformGame.ScreenWidth / 2, 148), GameFont.Main, "- Press Any Button -");
+                Text.DrawCenteredText(spriteBatch, new Vector2(CrossPlatformGame.ScreenWidth / 2 - 45, 118), GameFont.Main, "- Press Any Button -");
             }
         }
 
