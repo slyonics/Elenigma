@@ -27,7 +27,7 @@ namespace Elenigma.Scenes.MapScene
         private IInteractive interactable;
         private InteractionPrompt interactionView;
 
-        private SummonController summonController;
+        private Controller summonController;
 
         public Hero Player { get; set; }
 
@@ -135,6 +135,12 @@ namespace Elenigma.Scenes.MapScene
             }
 
             FindInteractables();
+        }
+
+        public void MoveTo(int tileX, int tileY)
+        {
+            var tile = mapScene.Tilemap.GetTile(tileX, tileY);
+            summonController = mapScene.AddController(new PathingController(PriorityLevel.CutsceneLevel, mapScene.Tilemap, Player, tile.Center, WALKING_SPEED));
         }
 
         private void FindInteractables()

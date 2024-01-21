@@ -77,6 +77,8 @@ namespace Elenigma.Scenes.MapScene
                 light.Intensity = 50;
                 (mapScene.SceneShader as SceneObjects.Shaders.DayNight).Lights.Add(light);
             }
+
+            priorityLevel = PriorityLevel.CutsceneLevel;
         }
 
         public Hero(MapScene iMapScene, Tilemap iTilemap, Vector2 iPosition, GameSprite gameSprite, Dictionary<string, Animation> animations, Orientation iOrientation = Orientation.Down)
@@ -112,7 +114,7 @@ namespace Elenigma.Scenes.MapScene
                 }
             }
 
-            if (light != null) light.Position = position - new Vector2(0, 6);
+            CenterLight();
         }
 
         public override void Idle()

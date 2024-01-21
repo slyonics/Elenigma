@@ -2139,11 +2139,11 @@
 			"doc": null,
 			"width": 16,
 			"height": 16,
-			"resizableX": false,
-			"resizableY": false,
-			"minWidth": null,
+			"resizableX": true,
+			"resizableY": true,
+			"minWidth": 16,
 			"maxWidth": null,
-			"minHeight": null,
+			"minHeight": 16,
 			"maxHeight": null,
 			"keepAspectRatio": false,
 			"tileOpacity": 1,
@@ -3380,35 +3380,6 @@
 						},
 						{
 							"__identifier": "Travel",
-							"__grid": [0,12],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#447FDB",
-							"iid": "138df4f0-b0a0-11ee-b24a-c3a5c69a3280",
-							"width": 20,
-							"height": 30,
-							"defUid": 628,
-							"px": [1,192],
-							"fieldInstances": [
-								{ "__identifier": "Name", "__type": "String", "__value": "WestVillage", "__tile": null, "defUid": 629, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["WestVillage"]
-								}] },
-								{ "__identifier": "Direction", "__type": "String", "__value": "Right", "__tile": null, "defUid": 630, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Right"]
-								}] },
-								{ "__identifier": "Label", "__type": "String", "__value": "To West_Side", "__tile": null, "defUid": 631, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["To West_Side"]
-								}] }
-							],
-							"__worldX": 1,
-							"__worldY": 192
-						},
-						{
-							"__identifier": "Travel",
 							"__grid": [38,8],
 							"__pivot": [0,0],
 							"__tags": [],
@@ -3435,35 +3406,6 @@
 							],
 							"__worldX": 618,
 							"__worldY": 128
-						},
-						{
-							"__identifier": "Travel",
-							"__grid": [38,32],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#447FDB",
-							"iid": "28eb7840-b0a0-11ee-b24a-1bd8b0d622ff",
-							"width": 21,
-							"height": 30,
-							"defUid": 628,
-							"px": [618,512],
-							"fieldInstances": [
-								{ "__identifier": "Name", "__type": "String", "__value": "SlyphFoyer", "__tile": null, "defUid": 629, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["SlyphFoyer"]
-								}] },
-								{ "__identifier": "Direction", "__type": "String", "__value": "Left", "__tile": null, "defUid": 630, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Left"]
-								}] },
-								{ "__identifier": "Label", "__type": "String", "__value": "To Slyph's_Domain", "__tile": null, "defUid": 631, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["To Slyph's_Domain"]
-								}] }
-							],
-							"__worldX": 618,
-							"__worldY": 512
 						},
 						{
 							"__identifier": "Light",
@@ -3559,6 +3501,106 @@
 							],
 							"__worldX": 208,
 							"__worldY": 114
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [37,31],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#BE4A2F",
+							"iid": "4468a730-b0a0-11ee-9081-cda1aecec685",
+							"width": 33,
+							"height": 34,
+							"defUid": 1072,
+							"px": [604,510],
+							"fieldInstances": [
+								{ "__identifier": "Script", "__type": "String", "__value": "Conversation NoGoSlyph\nMovePlayerTo 35 33", "__tile": null, "defUid": 1073, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Conversation NoGoSlyph\\nMovePlayerTo 35 33"]
+								}] },
+								{ "__identifier": "EnableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1074, "realEditorValues": [] },
+								{ "__identifier": "DisableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1075, "realEditorValues": [] },
+								{ "__identifier": "Label", "__type": "String", "__value": "To Slyph's_Domain", "__tile": null, "defUid": 1076, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["To Slyph's_Domain"]
+								}] }
+							],
+							"__worldX": 604,
+							"__worldY": 510
+						},
+						{
+							"__identifier": "Interactable",
+							"__grid": [0,11],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#BE4A2F",
+							"iid": "0eb1a380-b0a0-11ee-ac89-e72879da54d3",
+							"width": 35,
+							"height": 34,
+							"defUid": 1072,
+							"px": [2,190],
+							"fieldInstances": [
+								{ "__identifier": "Script", "__type": "String", "__value": "Conversation NoGoWest\nMovePlayerTo 3 13", "__tile": null, "defUid": 1073, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Conversation NoGoWest\\nMovePlayerTo 3 13"]
+								}] },
+								{ "__identifier": "EnableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1074, "realEditorValues": [] },
+								{ "__identifier": "DisableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1075, "realEditorValues": [] },
+								{ "__identifier": "Label", "__type": "String", "__value": "To West_Side", "__tile": null, "defUid": 1076, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["To West_Side"]
+								}] }
+							],
+							"__worldX": 2,
+							"__worldY": 190
+						},
+						{
+							"__identifier": "Automatic",
+							"__grid": [38,30],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#D77643",
+							"iid": "44c10e20-b0a0-11ee-ac89-ef1183fdd63f",
+							"width": 31,
+							"height": 67,
+							"defUid": 1057,
+							"px": [617,492],
+							"fieldInstances": [
+								{ "__identifier": "Script", "__type": "String", "__value": "Conversation NoGoSlyph\nMovePlayerTo 35 33\nResetTrigger", "__tile": null, "defUid": 1058, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Conversation NoGoSlyph\\nMovePlayerTo 35 33\\nResetTrigger"]
+								}] },
+								{ "__identifier": "EnableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1059, "realEditorValues": [] },
+								{ "__identifier": "DisableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1060, "realEditorValues": [] }
+							],
+							"__worldX": 617,
+							"__worldY": 492
+						},
+						{
+							"__identifier": "Automatic",
+							"__grid": [0,10],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#D77643",
+							"iid": "5ea3f280-b0a0-11ee-ac89-e79306b9057f",
+							"width": 24,
+							"height": 67,
+							"defUid": 1057,
+							"px": [2,172],
+							"fieldInstances": [
+								{ "__identifier": "Script", "__type": "String", "__value": "Conversation NoGoWest\nMovePlayerTo 3 13\nResetTrigger", "__tile": null, "defUid": 1058, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Conversation NoGoWest\\nMovePlayerTo 3 13\\nResetTrigger"]
+								}] },
+								{ "__identifier": "EnableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1059, "realEditorValues": [] },
+								{ "__identifier": "DisableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1060, "realEditorValues": [] }
+							],
+							"__worldX": 2,
+							"__worldY": 172
 						}
 					]
 				},

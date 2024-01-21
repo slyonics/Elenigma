@@ -1,10 +1,19 @@
 [
 	{
-		"Name": "FoolIntro",
+		"Name": "NoGoSlyph",
 		"DialogueRecords": [
 			{
-				"Speaker": "Test",
-				"Text": "Automatic conversation test."
+				"Speaker": "Bruno",
+				"Portrait": "Portraits_AdultMC",
+				"Text": "I don't have any reason to visit Slyph right now."
+			}
+		]
+	},
+	{
+		"Name": "NoGoWest",
+		"DialogueRecords": [
+			{
+				"Text": "[This area is still under construction]"
 			}
 		]
 	},
