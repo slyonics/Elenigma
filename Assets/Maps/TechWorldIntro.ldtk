@@ -3312,7 +3312,7 @@
 					"entityInstances": [
 						{
 							"__identifier": "NPC",
-							"__grid": [37,37],
+							"__grid": [8,34],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -3321,7 +3321,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 572,
-							"px": [592,592],
+							"px": [128,544],
 							"fieldInstances": [
 								{ "__identifier": "Sprite", "__type": "String", "__value": "Slyph", "__tile": null, "defUid": 573, "realEditorValues": [{
 									"id": "V_String",
@@ -3341,12 +3341,12 @@
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
 							],
-							"__worldX": 592,
-							"__worldY": 592
+							"__worldX": 128,
+							"__worldY": 544
 						},
 						{
 							"__identifier": "NPC",
-							"__grid": [35,37],
+							"__grid": [6,32],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -3355,7 +3355,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 572,
-							"px": [560,592],
+							"px": [96,512],
 							"fieldInstances": [
 								{ "__identifier": "Sprite", "__type": "String", "__value": "Undine", "__tile": null, "defUid": 573, "realEditorValues": [{
 									"id": "V_String",
@@ -3375,8 +3375,8 @@
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
 							],
-							"__worldX": 560,
-							"__worldY": 592
+							"__worldX": 96,
+							"__worldY": 512
 						},
 						{
 							"__identifier": "Travel",
