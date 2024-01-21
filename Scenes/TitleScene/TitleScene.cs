@@ -28,7 +28,7 @@ namespace Elenigma.Scenes.TitleScene
         {
             base.BeginScene();
 
-            // Audio.PlayMusic(GameMusic.BlastingThroughtheSky);
+            Audio.PlayMusic(GameMusic.Elenigma);
         }
 
         public override void Update(GameTime gameTime)

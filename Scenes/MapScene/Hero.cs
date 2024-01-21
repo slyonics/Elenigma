@@ -118,7 +118,6 @@ namespace Elenigma.Scenes.MapScene
         public override void Idle()
         {
             base.Idle();
-
             footstepCooldown = 0;
         }
 

@@ -68,6 +68,9 @@ namespace Elenigma.Scenes.MapScene
                 {
                     SummonOverlay summonOverlay = mapScene.AddOverlay(new SummonOverlay(mapScene, Player, GameProfile.PlayerProfile.AvailableSummons));
                     summonController = mapScene.AddController(new SummonController(mapScene, Player, summonOverlay));
+                    
+                    Player.Idle();
+                    return;
                 }
             }
 
@@ -86,13 +89,20 @@ namespace Elenigma.Scenes.MapScene
 
             if (inputFrame.CommandPressed(Command.Interact) && interactable != null)
             {
-                if (interactable.Activate(Player)) return;
+                if (interactable.Activate(Player))
+                {
+                    Player.Idle();
+                    Player.Velocity = Vector2.Zero;
+
+                    return;
+                }
             }
 
             if (mapScene.ProcessAutoEvents())
             {
                 movement = Vector2.Zero;
                 Player.Idle();
+                Player.Velocity = Vector2.Zero;
             }
 
             if (movement.Length() < Input.THUMBSTICK_DEADZONE_THRESHOLD) Player.Idle();

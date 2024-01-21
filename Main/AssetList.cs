@@ -73,6 +73,7 @@ namespace Elenigma.Main
 
     public enum GameMusic
     {
+        Elenigma,
         BeyondtheHills,
         BlastingThroughtheSky,
         ChoiceEncounter,

@@ -57,7 +57,7 @@ namespace Elenigma.Scenes.MapScene
             }
 
             labelBox = new NinePatch("LightFrame", 0.05f);
-            labelBox.Bounds = new Rectangle(0, 0, Text.GetStringLength(GameFont.Dialogue, summons.First().Summon.ToString()) + 12, 13);
+            labelBox.Bounds = new Rectangle(0, 0, Text.GetStringLength(GameFont.Tooltip, summons.First().Summon.ToString()) + 12, 13);
         }
 
         public override void Update(GameTime gameTime)
@@ -75,7 +75,7 @@ namespace Elenigma.Scenes.MapScene
                         summons.Add(summons.First());
                         summons.RemoveAt(0);
 
-                        labelBox.Bounds = new Rectangle(0, 0, Text.GetStringLength(GameFont.Dialogue, summons.First().Summon.ToString()) + 12, 13);
+                        labelBox.Bounds = new Rectangle(0, 0, Text.GetStringLength(GameFont.Tooltip, summons.First().Summon.ToString()) + 12, 13);
                     }
                 }
                 else
@@ -87,7 +87,7 @@ namespace Elenigma.Scenes.MapScene
                         summons.Insert(0, summons.Last());
                         summons.RemoveAt(summons.Count - 1);
 
-                        labelBox.Bounds = new Rectangle(0, 0, Text.GetStringLength(GameFont.Dialogue, summons.First().Summon.ToString()) + 12, 13);
+                        labelBox.Bounds = new Rectangle(0, 0, Text.GetStringLength(GameFont.Tooltip, summons.First().Summon.ToString()) + 12, 13);
                     }
                 }
 
@@ -104,7 +104,9 @@ namespace Elenigma.Scenes.MapScene
             {
                 float Angle = (i > 0) ? intervalLength * i : 0;
                 Vector2 offset = player.Center - mapScene.Camera.Position + new Vector2((float)Math.Sin(Angle + scrollOffset) * RING_RADIUS, -(float)Math.Cos(Angle + scrollOffset) * RING_RADIUS) - new Vector2(7, 8);
-                entry.Textbox.Draw(spriteBatch, offset);
+                entry.Textbox.Bounds = new Rectangle((int)offset.X, (int)offset.Y, entry.Textbox.Bounds.Width, entry.Textbox.Bounds.Height);
+                offset = new Vector2(entry.Textbox.Bounds.X, entry.Textbox.Bounds.Y);
+                entry.Textbox.Draw(spriteBatch, Vector2.Zero);
                 spriteBatch.Draw(entry.Sprite, offset + new Vector2(4, 3), null, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.045f);
 
                 i++;
@@ -116,7 +118,7 @@ namespace Elenigma.Scenes.MapScene
             if (!Scrolling)
             {
                 labelBox.Draw(spriteBatch, selectionOffset + new Vector2(-labelBox.Bounds.Width / 2, -21));
-                Text.DrawCenteredText(spriteBatch, selectionOffset + new Vector2(0, -13), GameFont.Dialogue, summons.First().Summon.ToString(), new Color(173, 119, 87), 0.03f);
+                Text.DrawCenteredText(spriteBatch, selectionOffset + new Vector2(0, -13), GameFont.Tooltip, summons.First().Summon.ToString(), new Color(173, 119, 87), 0.03f);
             }
         }
 

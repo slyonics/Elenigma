@@ -18,7 +18,7 @@ namespace Elenigma.Scenes.MapScene
 
 
         public SummonController(MapScene iMapScene, Hero iPlayer, SummonOverlay iSummonOverlay)
-            : base (PriorityLevel.GameLevel)
+            : base (PriorityLevel.MenuLevel)
         {
             mapScene = iMapScene;
             player = iPlayer;

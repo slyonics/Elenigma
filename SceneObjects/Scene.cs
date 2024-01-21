@@ -67,10 +67,10 @@ namespace Elenigma.SceneObjects
 
             int i = 0;
 
+            priorityLevel = PriorityLevel.GameLevel;
             for (i = 0; i < Enum.GetNames(typeof(PriorityLevel)).Length; i++)
             {
                 if (controllerList[i].Count > 0) priorityLevel = (PriorityLevel)i;
-                else priorityLevel = PriorityLevel.GameLevel;
             }
 
             List<Controller> activeControllers = controllerList.LastOrDefault(x => x.All(y => y.PriorityLevel >= priorityLevel) && x.Count > 0);
