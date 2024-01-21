@@ -40,7 +40,7 @@ namespace Elenigma.Scenes.MapScene
 
                 case "LearnSummon": GameProfile.PlayerProfile.AvailableSummons.Add((SummonType)Enum.Parse(typeof(SummonType), tokens[1])); break;
                 case "MovePlayerTo": mapScene.PlayerController.MoveTo(int.Parse(tokens[1]), int.Parse(tokens[2])); break;
-                case "WaitPlayer": break;
+                case "WaitPlayer": mapScene.PlayerController.ChildController.OnTerminated += new TerminationFollowup(() => scriptParser.BlockScript()); break;
 
                 default: return false;
             }

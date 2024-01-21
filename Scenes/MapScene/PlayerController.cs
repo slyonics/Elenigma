@@ -27,7 +27,7 @@ namespace Elenigma.Scenes.MapScene
         private IInteractive interactable;
         private InteractionPrompt interactionView;
 
-        private Controller summonController;
+        public Controller ChildController { get; set; }
 
         public Hero Player { get; set; }
 
@@ -42,9 +42,9 @@ namespace Elenigma.Scenes.MapScene
 
         public override void PreUpdate(GameTime gameTime)
         {
-            if (summonController != null)
+            if (ChildController != null)
             {
-                if (summonController.Terminated) summonController = null;
+                if (ChildController.Terminated) ChildController = null;
                 else return;
             }
 
@@ -67,7 +67,7 @@ namespace Elenigma.Scenes.MapScene
                 if (inputFrame.CommandPressed(Command.Summon) && GameProfile.PlayerProfile.AvailableSummons.Count > 0)
                 {
                     SummonOverlay summonOverlay = mapScene.AddOverlay(new SummonOverlay(mapScene, Player, GameProfile.PlayerProfile.AvailableSummons));
-                    summonController = mapScene.AddController(new SummonController(mapScene, Player, summonOverlay));
+                    ChildController = mapScene.AddController(new SummonController(mapScene, Player, summonOverlay));
                     
                     Player.Idle();
                     return;
@@ -140,7 +140,7 @@ namespace Elenigma.Scenes.MapScene
         public void MoveTo(int tileX, int tileY)
         {
             var tile = mapScene.Tilemap.GetTile(tileX, tileY);
-            summonController = mapScene.AddController(new PathingController(PriorityLevel.CutsceneLevel, mapScene.Tilemap, Player, tile.Center, WALKING_SPEED));
+            ChildController = mapScene.AddController(new PathingController(PriorityLevel.CutsceneLevel, mapScene.Tilemap, Player, tile.Center, WALKING_SPEED));
         }
 
         private void FindInteractables()

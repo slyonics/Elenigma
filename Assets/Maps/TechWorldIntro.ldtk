@@ -11,7 +11,7 @@
 	"iid": "5c1d34d0-3b70-11ee-9d66-d3a28cc7a2b6",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 1393,
+	"nextUid": 1395,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -3312,7 +3312,7 @@
 					"entityInstances": [
 						{
 							"__identifier": "NPC",
-							"__grid": [6,32],
+							"__grid": [37,37],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -3321,7 +3321,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 572,
-							"px": [96,512],
+							"px": [592,592],
 							"fieldInstances": [
 								{ "__identifier": "Sprite", "__type": "String", "__value": "Slyph", "__tile": null, "defUid": 573, "realEditorValues": [{
 									"id": "V_String",
@@ -3341,12 +3341,12 @@
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
 							],
-							"__worldX": 96,
-							"__worldY": 512
+							"__worldX": 592,
+							"__worldY": 592
 						},
 						{
 							"__identifier": "NPC",
-							"__grid": [8,35],
+							"__grid": [35,37],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -3355,7 +3355,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 572,
-							"px": [128,560],
+							"px": [560,592],
 							"fieldInstances": [
 								{ "__identifier": "Sprite", "__type": "String", "__value": "Undine", "__tile": null, "defUid": 573, "realEditorValues": [{
 									"id": "V_String",
@@ -3375,8 +3375,8 @@
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
 							],
-							"__worldX": 128,
-							"__worldY": 560
+							"__worldX": 560,
+							"__worldY": 592
 						},
 						{
 							"__identifier": "Travel",
@@ -3601,6 +3601,68 @@
 							],
 							"__worldX": 2,
 							"__worldY": 172
+						},
+						{
+							"__identifier": "NPC",
+							"__grid": [22,26],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#32DB00",
+							"iid": "54b7ad30-b0a0-11ee-ac89-69bde2424598",
+							"width": 16,
+							"height": 16,
+							"defUid": 572,
+							"px": [352,429],
+							"fieldInstances": [
+								{ "__identifier": "Sprite", "__type": "String", "__value": "Townie1", "__tile": null, "defUid": 573, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Townie1"]
+								}] },
+								{ "__identifier": "Label", "__type": "String", "__value": "Hana", "__tile": null, "defUid": 574, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Hana"]
+								}] },
+								{ "__identifier": "Direction", "__type": "String", "__value": null, "__tile": null, "defUid": 575, "realEditorValues": [] },
+								{ "__identifier": "Interact", "__type": "String", "__value": "Conversation Townie1", "__tile": null, "defUid": 577, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Conversation Townie1"]
+								}] },
+								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
+							],
+							"__worldX": 352,
+							"__worldY": 429
+						},
+						{
+							"__identifier": "NPC",
+							"__grid": [32,15],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#32DB00",
+							"iid": "1b4c0d50-b0a0-11ee-ac89-8b10a0e61b1f",
+							"width": 16,
+							"height": 16,
+							"defUid": 572,
+							"px": [512,253],
+							"fieldInstances": [
+								{ "__identifier": "Sprite", "__type": "String", "__value": "Townie2", "__tile": null, "defUid": 573, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Townie2"]
+								}] },
+								{ "__identifier": "Label", "__type": "String", "__value": "Blake", "__tile": null, "defUid": 574, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Blake"]
+								}] },
+								{ "__identifier": "Direction", "__type": "String", "__value": null, "__tile": null, "defUid": 575, "realEditorValues": [] },
+								{ "__identifier": "Interact", "__type": "String", "__value": "Conversation Townie2", "__tile": null, "defUid": 577, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Conversation Townie2"]
+								}] },
+								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
+							],
+							"__worldX": 512,
+							"__worldY": 253
 						}
 					]
 				},

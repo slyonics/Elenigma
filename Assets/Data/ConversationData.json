@@ -18,6 +18,24 @@
 		]
 	},
 	{
+		"Name": "Townie1",
+		"DialogueRecords": [
+			{
+				"Speaker": "Hana",
+				"Text": "Good luck on your journey!"
+			}
+		]
+	},
+	{
+		"Name": "Townie2",
+		"DialogueRecords": [
+			{
+				"Speaker": "Blake",
+				"Text": "I can't wait until I'm old enough to train and be a spirit talker too!"
+			}
+		]
+	},
+	{
 		"Name": "SlyphIntro",
 		"DialogueRecords": [
 			{
