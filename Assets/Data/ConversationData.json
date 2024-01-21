@@ -36,11 +36,21 @@
 		]
 	},
 	{
+		"Name": "KeevaIntro",
+		"DialogueRecords": [
+			{
+				"Speaker": "Slyph",
+				"Portrait": "Portraits_Slyph",
+				"Text": "Slyph is now available to summon!"
+			}
+		]
+	},
+	{
 		"Name": "SlyphIntro",
 		"DialogueRecords": [
 			{
 				"Speaker": "Slyph",
-				"Portait": "Portraits_Slyph",
+				"Portrait": "Portraits_Slyph",
 				"Text": "Slyph is now available to summon!"
 			}
 		]
@@ -50,7 +60,7 @@
 		"DialogueRecords": [
 			{
 				"Speaker": "Undine",
-				"Portait": "Portraits_Undine",
+				"Portrait": "Portraits_Undine",
 				"Text": "Undine is now available to summon!"
 			}
 		]

@@ -32,7 +32,7 @@ namespace Elenigma.Scenes.ConversationScene
             currentDialogue = conversationRecord.DialogueRecords[dialogueIndex];
 
             Speaker.Value = string.IsNullOrEmpty(currentDialogue.Speaker) ? "" : currentDialogue.Speaker;
-            Portrait.Value = string.IsNullOrEmpty(currentDialogue.Portait) ? GameSprite.Actors_Blank : (GameSprite)Enum.Parse(typeof(GameSprite), currentDialogue.Portait);
+            Portrait.Value = string.IsNullOrEmpty(currentDialogue.Portrait) ? GameSprite.Actors_Blank : (GameSprite)Enum.Parse(typeof(GameSprite), currentDialogue.Portrait);
             ShowPortrait.Value = Portrait.Value != GameSprite.Actors_Blank;
             Dialogue.Value = currentDialogue.Text;
 
@@ -55,7 +55,7 @@ namespace Elenigma.Scenes.ConversationScene
             currentDialogue = conversationRecord.DialogueRecords[dialogueIndex];
 
             Speaker.Value = string.IsNullOrEmpty(currentDialogue.Speaker) ? "" : currentDialogue.Speaker;
-            Portrait.Value = string.IsNullOrEmpty(currentDialogue.Portait) ? GameSprite.Actors_Blank : (GameSprite)Enum.Parse(typeof(GameSprite), currentDialogue.Portait);
+            Portrait.Value = string.IsNullOrEmpty(currentDialogue.Portrait) ? GameSprite.Actors_Blank : (GameSprite)Enum.Parse(typeof(GameSprite), currentDialogue.Portrait);
             ShowPortrait.Value = Portrait.Value != GameSprite.Actors_Blank;
             Dialogue.Value = currentDialogue.Text;
             if (conversationBounds.Width != 0 && conversationBounds.Height != 0) Window.Value = conversationBounds;
@@ -156,7 +156,7 @@ namespace Elenigma.Scenes.ConversationScene
 
             Dialogue.Value = currentDialogue.Text;
             Speaker.Value = string.IsNullOrEmpty(currentDialogue.Speaker) ? "" : currentDialogue.Speaker;
-            Portrait.Value = string.IsNullOrEmpty(currentDialogue.Portait) ? GameSprite.Actors_Blank : (GameSprite)Enum.Parse(typeof(GameSprite), currentDialogue.Portait);
+            Portrait.Value = string.IsNullOrEmpty(currentDialogue.Portrait) ? GameSprite.Actors_Blank : (GameSprite)Enum.Parse(typeof(GameSprite), currentDialogue.Portrait);
             ShowPortrait.Value = Portrait.Value != GameSprite.Actors_Blank;
 
             ReadyToProceed.Value = false;
@@ -186,7 +186,7 @@ namespace Elenigma.Scenes.ConversationScene
             currentDialogue = conversationRecord.DialogueRecords[dialogueIndex];
 
             Speaker.Value = string.IsNullOrEmpty(currentDialogue.Speaker) ? "" : currentDialogue.Speaker;
-            Portrait.Value = string.IsNullOrEmpty(currentDialogue.Portait) ? GameSprite.Actors_Blank : (GameSprite)Enum.Parse(typeof(GameSprite), currentDialogue.Portait);
+            Portrait.Value = string.IsNullOrEmpty(currentDialogue.Portrait) ? GameSprite.Actors_Blank : (GameSprite)Enum.Parse(typeof(GameSprite), currentDialogue.Portrait);
             ShowPortrait.Value = Portrait.Value != GameSprite.Actors_Blank;
             Dialogue.Value = currentDialogue.Text;
 
