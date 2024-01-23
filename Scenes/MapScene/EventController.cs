@@ -1,6 +1,7 @@
 ﻿using Elenigma.Models;
 using Elenigma.SceneObjects.Controllers;
 using Elenigma.SceneObjects.Maps;
+using Elenigma.SceneObjects.Particles;
 using Elenigma.SceneObjects.Shaders;
 using Elenigma.Scenes.ConversationScene;
 using FMOD;
@@ -44,7 +45,7 @@ namespace Elenigma.Scenes.MapScene
                 case "WaitPlayer": mapScene.PlayerController.ChildController.OnTerminated += new TerminationFollowup(() => scriptParser.BlockScript()); break;
                 case "ChangeSprite": ChangeSprite(tokens); break;
                 case "RemoveNpc": mapScene.NPCs.First(x => x.Name == tokens[1]).Terminate(); break;
-                case "Recruit": break;
+                case "Recruit": Recruit(tokens); break;
 
                 default: return false;
             }
@@ -110,6 +111,17 @@ namespace Elenigma.Scenes.MapScene
         {
             var npc = mapScene.NPCs.First(x => x.Name == tokens[1]);
             npc.AnimatedSprite.SpriteTexture = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Actors_" + tokens[2])];
+        }
+
+        public void Recruit(string[] tokens)
+        {
+            if (tokens[1] == "Keeva")
+            {
+                var npc = mapScene.NPCs.First(x => x.Name == "Familiar");
+                Hero follower = mapScene.AddEntity(new Hero(mapScene, mapScene.Tilemap, npc.Position, GameSprite.Actors_DogFamiliar, npc.Orientation));
+                mapScene.AddController(new FollowerController(mapScene, follower, mapScene.PartyLeader));
+                mapScene.AddParticle(new AnimationParticle(mapScene, follower.Position + new Vector2(2, 0), AnimationType.Smoke, true));
+            }
         }
     }
 }

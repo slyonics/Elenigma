@@ -72,6 +72,13 @@ namespace Elenigma.Scenes.MapScene
             Party.Add(leaderHero);
             PlayerController = AddController(new PlayerController(this, leaderHero));
 
+            if (GameProfile.GetSaveData<bool>("MetKeeva"))
+            {
+                Hero follower = AddEntity(new Hero(this, Tilemap, leaderHero.Position, GameSprite.Actors_DogFamiliar));
+                AddController(new FollowerController(this, follower, leaderHero));
+                Party.Add(follower);
+            }
+
             var entityLayers = Tilemap.Level.LayerInstances.Where(x => x.Type == "Entities");
             foreach (var entityLayer in entityLayers)
             {
