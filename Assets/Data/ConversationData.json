@@ -30,7 +30,34 @@
 		"Name": "Townie2",
 		"DialogueRecords": [
 			{
+				"Speaker": "Kim",
+				"Text": "I can't wait until I'm old enough to train and become a spirit talker too!"
+			}
+		]
+	},
+	{
+		"Name": "Townie3",
+		"DialogueRecords": [
+			{
 				"Speaker": "Blake",
+				"Text": "I can't wait until I'm old enough to train and become a spirit talker too!"
+			}
+		]
+	},
+	{
+		"Name": "Townie4",
+		"DialogueRecords": [
+			{
+				"Speaker": "Young Tom",
+				"Text": "I can't wait until I'm old enough to train and become a spirit talker too!"
+			}
+		]
+	},
+	{
+		"Name": "TownieRival",
+		"DialogueRecords": [
+			{
+				"Speaker": "Shane",
 				"Text": "I can't wait until I'm old enough to train and become a spirit talker too!"
 			}
 		]
@@ -39,9 +66,29 @@
 		"Name": "KeevaIntro",
 		"DialogueRecords": [
 			{
-				"Speaker": "Slyph",
-				"Portrait": "Portraits_Slyph",
-				"Text": "Slyph is now available to summon!"
+				"Speaker": "Keeva",
+				"Portrait": "Portraits_DogFamiliar",
+				"Text": "..."
+			}
+		]
+	},
+	{
+		"Name": "KeevaIntro2",
+		"DialogueRecords": [
+			{
+				"Speaker": "Bruno",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "whta keeva doing here ya'll now'"
+			}
+		]
+	},
+	{
+		"Name": "KeevaIntro3",
+		"DialogueRecords": [
+			{
+				"Speaker": "Bruno",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "buckup on now"
 			}
 		]
 	},

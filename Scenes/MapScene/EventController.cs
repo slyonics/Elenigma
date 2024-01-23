@@ -40,7 +40,11 @@ namespace Elenigma.Scenes.MapScene
 
                 case "LearnSummon": GameProfile.PlayerProfile.AvailableSummons.Add((SummonType)Enum.Parse(typeof(SummonType), tokens[1])); break;
                 case "MovePlayerTo": mapScene.PlayerController.MoveTo(int.Parse(tokens[1]), int.Parse(tokens[2])); break;
+                case "MoveNpcTo": MoveNpcTo(tokens); break;
                 case "WaitPlayer": mapScene.PlayerController.ChildController.OnTerminated += new TerminationFollowup(() => scriptParser.BlockScript()); break;
+                case "ChangeSprite": ChangeSprite(tokens); break;
+                case "RemoveNpc": mapScene.NPCs.First(x => x.Name == tokens[1]).Terminate(); break;
+                case "Recruit": break;
 
                 default: return false;
             }
@@ -93,6 +97,19 @@ namespace Elenigma.Scenes.MapScene
                 conversationScene.OnTerminated += new TerminationFollowup(scriptParser.BlockScript());
                 CrossPlatformGame.StackScene(conversationScene);
             }
+        }
+
+        public void MoveNpcTo(string[] tokens)
+        {
+            var npc = mapScene.NPCs.First(x => x.Name == tokens[1]);
+            var destination = mapScene.Tilemap.GetTile(int.Parse(tokens[2]), int.Parse(tokens[3])).Center;
+            mapScene.AddController(new PathingController(PriorityLevel.CutsceneLevel, mapScene.Tilemap, npc, destination, PlayerController.RUN_SPEED));
+        }
+
+        public void ChangeSprite(string[] tokens)
+        {
+            var npc = mapScene.NPCs.First(x => x.Name == tokens[1]);
+            npc.AnimatedSprite.SpriteTexture = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Actors_" + tokens[2])];
         }
     }
 }

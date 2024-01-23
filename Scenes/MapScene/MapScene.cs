@@ -66,7 +66,7 @@ namespace Elenigma.Scenes.MapScene
 
             Camera = new Camera(new Rectangle(0, 0, Tilemap.Width, Tilemap.Height));
 
-            var leaderHero = new Hero(this, Tilemap, new Vector2(32, 96), GameSprite.Actors_AdultMC);
+            var leaderHero = new Hero(this, Tilemap, new Vector2(32, 96), GameSprite.Actors_YoungMC);
             leaderHero.FootstepSound = GameSound.footsteps_grass_1;
             AddEntity(leaderHero);
             Party.Add(leaderHero);
