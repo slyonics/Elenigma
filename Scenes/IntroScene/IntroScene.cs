@@ -40,6 +40,13 @@ namespace Elenigma.Scenes.IntroScene
             */
         }
 
+        public override void BeginScene()
+        {
+            base.BeginScene();
+
+            Audio.PlayMusic(GameMusic.Awakening);
+        }
+
         public override void DrawBackground(SpriteBatch spriteBatch)
         {
             base.DrawBackground(spriteBatch);
