@@ -68,6 +68,7 @@ namespace Elenigma.Scenes.MapScene
                     case "Interact": if (field.Value != null) interactionScript = field.Value.Split('\n'); break;
                     case "Direction": if (field.Value != null) Orientation = (Orientation)Enum.Parse(typeof(Orientation), field.Value); break;
                     case "Label": Label = field.Value; break;
+                    case "LabelOffset": LabelOffset = (int)field.Value; break;
                     case "Name": Name = field.Value; break;
                 }
             }
@@ -127,7 +128,8 @@ namespace Elenigma.Scenes.MapScene
         public string Name { get; protected set; } = "Npc";
         public string Label { get; protected set; } = "NPC";
         public string[] Behavior { get; protected set; } = null;
-        public Vector2 LabelPosition { get => new Vector2(position.X, position.Y - animatedSprite.SpriteBounds().Height - 8); }
+        public Vector2 LabelPosition { get => new Vector2(position.X, position.Y - animatedSprite.SpriteBounds().Height - LabelOffset); }
+        private int LabelOffset { get; set; } = 8;
         public virtual bool Interactive { get => interactionScript != null; }
 
         public Tile HostTile { get; set; }

@@ -111,9 +111,9 @@
 				"Script": [
 					"WaitForText",
 					"SelectionPrompt",
-					"Insist on getting the sword",
-					"Drop the subject",
-					"Drop the subject",
+					"Cheer her up alpha",
+					"Cheer her up beta",
+					"Cheer her up delta",
 					"End",
 					"ProceedText"
 				]
@@ -121,14 +121,14 @@
 		],
 		"EndScript": [
 			"Switch $selection",
-			"Case Insist on getting the sword",
-			"ChangeConversation SwordInsist",
+			"Case Cheer her up alpha",
+			"ChangeConversation KeevaConsole1",
 			"Break",
-			"Case Drop the subject",
-			"ChangeConversation SwordInsist",
+			"Case Cheer her up beta",
+			"ChangeConversation KeevaConsole2",
 			"Break",
-			"Case Drop the subject",
-			"ChangeConversation SwordInsist",
+			"Case Cheer her up delta",
+			"ChangeConversation KeevaConsole3",
 			"Break",
 			"End"
 		]
@@ -139,17 +139,17 @@
 			{
 				"Speaker": "Bruno",
 				"Portrait": "Portraits_YoungMC",
-				"Text": "whta keeva doing here ya'll now'"
+				"Text": "Cheer her up alpha"
 			},
 			{
 				"Speaker": "Keeva",
 				"Portrait": "Portraits_HumanFamiliar",
-				"Text": "..."
+				"Text": "I feel better now"
 			},
 			{
 				"Speaker": "Bruno",
 				"Portrait": "Portraits_YoungMC",
-				"Text": "buckup on now"
+				"Text": "Right lets go"
 			}
 		]
 	},
@@ -159,17 +159,17 @@
 			{
 				"Speaker": "Bruno",
 				"Portrait": "Portraits_YoungMC",
-				"Text": "whta keeva doing here ya'll now'"
+				"Text": "Cheer her up beta"
 			},
 			{
 				"Speaker": "Keeva",
 				"Portrait": "Portraits_HumanFamiliar",
-				"Text": "..."
+				"Text": "I feel better now"
 			},
 			{
 				"Speaker": "Bruno",
 				"Portrait": "Portraits_YoungMC",
-				"Text": "buckup on now"
+				"Text": "Right lets go"
 			}
 		]
 	},
@@ -179,17 +179,17 @@
 			{
 				"Speaker": "Bruno",
 				"Portrait": "Portraits_YoungMC",
-				"Text": "whta keeva doing here ya'll now'"
+				"Text": "Cheer her up delta"
 			},
 			{
 				"Speaker": "Keeva",
 				"Portrait": "Portraits_HumanFamiliar",
-				"Text": "..."
+				"Text": "I feel better now"
 			},
 			{
 				"Speaker": "Bruno",
 				"Portrait": "Portraits_YoungMC",
-				"Text": "buckup on now"
+				"Text": "Right lets go"
 			}
 		]
 	},
