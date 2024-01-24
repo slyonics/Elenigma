@@ -54,11 +54,20 @@
 		]
 	},
 	{
-		"Name": "TownieRival",
+		"Name": "RivalIntro",
 		"DialogueRecords": [
 			{
 				"Speaker": "Shane",
-				"Text": "I can't wait until I'm old enough to train and become a spirit talker too!"
+				"Text": "asddfad dfdfdf dfdf you suck!"
+			}
+		]
+	},
+	{
+		"Name": "RivalRepeat",
+		"DialogueRecords": [
+			{
+				"Speaker": "Shane",
+				"Text": "usuck"
 			}
 		]
 	},
@@ -85,6 +94,98 @@
 	{
 		"Name": "KeevaIntro3",
 		"DialogueRecords": [
+			{
+				"Speaker": "Keeva",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "..."
+			},
+			{
+				"Speaker": "Bruno",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "buckup on now"
+			},
+			{
+				"Speaker": "Keeva",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "...",
+				"Script": [
+					"WaitForText",
+					"SelectionPrompt",
+					"Insist on getting the sword",
+					"Drop the subject",
+					"Drop the subject",
+					"End",
+					"ProceedText"
+				]
+			}
+		],
+		"EndScript": [
+			"Switch $selection",
+			"Case Insist on getting the sword",
+			"ChangeConversation SwordInsist",
+			"Break",
+			"Case Drop the subject",
+			"ChangeConversation SwordInsist",
+			"Break",
+			"Case Drop the subject",
+			"ChangeConversation SwordInsist",
+			"Break",
+			"End"
+		]
+	},
+	{
+		"Name": "KeevaConsole1",
+		"DialogueRecords": [
+			{
+				"Speaker": "Bruno",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "whta keeva doing here ya'll now'"
+			},
+			{
+				"Speaker": "Keeva",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "..."
+			},
+			{
+				"Speaker": "Bruno",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "buckup on now"
+			}
+		]
+	},
+	{
+		"Name": "KeevaConsole2",
+		"DialogueRecords": [
+			{
+				"Speaker": "Bruno",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "whta keeva doing here ya'll now'"
+			},
+			{
+				"Speaker": "Keeva",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "..."
+			},
+			{
+				"Speaker": "Bruno",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "buckup on now"
+			}
+		]
+	},
+	{
+		"Name": "KeevaConsole3",
+		"DialogueRecords": [
+			{
+				"Speaker": "Bruno",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "whta keeva doing here ya'll now'"
+			},
+			{
+				"Speaker": "Keeva",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "..."
+			},
 			{
 				"Speaker": "Bruno",
 				"Portrait": "Portraits_YoungMC",

@@ -3308,74 +3308,6 @@
 					"gridTiles": [],
 					"entityInstances": [
 						{
-							"__identifier": "NPC",
-							"__grid": [8,34],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#32DB00",
-							"iid": "ddeac630-8990-11ee-a66b-f5d1c0dc4eb3",
-							"width": 16,
-							"height": 16,
-							"defUid": 572,
-							"px": [128,544],
-							"fieldInstances": [
-								{ "__identifier": "Sprite", "__type": "String", "__value": "Slyph", "__tile": null, "defUid": 573, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Slyph"]
-								}] },
-								{ "__identifier": "Label", "__type": "String", "__value": "Slyph", "__tile": null, "defUid": 574, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Slyph"]
-								}] },
-								{ "__identifier": "Direction", "__type": "String", "__value": "Down", "__tile": null, "defUid": 575, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Down"]
-								}] },
-								{ "__identifier": "Interact", "__type": "String", "__value": "Conversation SlyphIntro\nLearnSummon Slyph", "__tile": null, "defUid": 577, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Conversation SlyphIntro\\nLearnSummon Slyph"]
-								}] },
-								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
-							],
-							"__worldX": 128,
-							"__worldY": 544
-						},
-						{
-							"__identifier": "NPC",
-							"__grid": [6,32],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#32DB00",
-							"iid": "4ad3abe0-8990-11ee-afa7-f3b6941dfedc",
-							"width": 16,
-							"height": 16,
-							"defUid": 572,
-							"px": [96,512],
-							"fieldInstances": [
-								{ "__identifier": "Sprite", "__type": "String", "__value": "Undine", "__tile": null, "defUid": 573, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Undine"]
-								}] },
-								{ "__identifier": "Label", "__type": "String", "__value": "Undine", "__tile": null, "defUid": 574, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Undine"]
-								}] },
-								{ "__identifier": "Direction", "__type": "String", "__value": "Down", "__tile": null, "defUid": 575, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Down"]
-								}] },
-								{ "__identifier": "Interact", "__type": "String", "__value": "Conversation UndineIntro\nLearnSummon Undine", "__tile": null, "defUid": 577, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Conversation UndineIntro\\nLearnSummon Undine"]
-								}] },
-								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
-							],
-							"__worldX": 96,
-							"__worldY": 512
-						},
-						{
 							"__identifier": "Travel",
 							"__grid": [38,8],
 							"__pivot": [0,0],
@@ -3601,7 +3533,7 @@
 						},
 						{
 							"__identifier": "NPC",
-							"__grid": [22,26],
+							"__grid": [14,14],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -3610,7 +3542,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 572,
-							"px": [352,429],
+							"px": [224,237],
 							"fieldInstances": [
 								{ "__identifier": "Sprite", "__type": "String", "__value": "Townie1", "__tile": null, "defUid": 573, "realEditorValues": [{
 									"id": "V_String",
@@ -3627,12 +3559,12 @@
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
 							],
-							"__worldX": 352,
-							"__worldY": 429
+							"__worldX": 224,
+							"__worldY": 237
 						},
 						{
 							"__identifier": "NPC",
-							"__grid": [32,15],
+							"__grid": [27,19],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -3641,15 +3573,15 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 572,
-							"px": [512,253],
+							"px": [432,317],
 							"fieldInstances": [
 								{ "__identifier": "Sprite", "__type": "String", "__value": "Townie2", "__tile": null, "defUid": 573, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Townie2"]
 								}] },
-								{ "__identifier": "Label", "__type": "String", "__value": "Blake", "__tile": null, "defUid": 574, "realEditorValues": [{
+								{ "__identifier": "Label", "__type": "String", "__value": "Kim", "__tile": null, "defUid": 574, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Blake"]
+									"params": ["Kim"]
 								}] },
 								{ "__identifier": "Direction", "__type": "String", "__value": null, "__tile": null, "defUid": 575, "realEditorValues": [] },
 								{ "__identifier": "Interact", "__type": "String", "__value": "Conversation Townie2", "__tile": null, "defUid": 577, "realEditorValues": [{
@@ -3658,8 +3590,103 @@
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
 							],
-							"__worldX": 512,
-							"__worldY": 253
+							"__worldX": 432,
+							"__worldY": 317
+						},
+						{
+							"__identifier": "NPC",
+							"__grid": [9,31],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#32DB00",
+							"iid": "1ca56620-b0a0-11ee-aa8d-416b31a869d6",
+							"width": 16,
+							"height": 16,
+							"defUid": 572,
+							"px": [144,509],
+							"fieldInstances": [
+								{ "__identifier": "Sprite", "__type": "String", "__value": "Townie3", "__tile": null, "defUid": 573, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Townie3"]
+								}] },
+								{ "__identifier": "Label", "__type": "String", "__value": "Blake", "__tile": null, "defUid": 574, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Blake"]
+								}] },
+								{ "__identifier": "Direction", "__type": "String", "__value": null, "__tile": null, "defUid": 575, "realEditorValues": [] },
+								{ "__identifier": "Interact", "__type": "String", "__value": "Conversation Townie3", "__tile": null, "defUid": 577, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Conversation Townie3"]
+								}] },
+								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
+							],
+							"__worldX": 144,
+							"__worldY": 509
+						},
+						{
+							"__identifier": "NPC",
+							"__grid": [30,29],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#32DB00",
+							"iid": "8d600aa0-b0a0-11ee-aa8d-35f33ebbb9e8",
+							"width": 16,
+							"height": 16,
+							"defUid": 572,
+							"px": [480,477],
+							"fieldInstances": [
+								{ "__identifier": "Sprite", "__type": "String", "__value": "Townie4", "__tile": null, "defUid": 573, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Townie4"]
+								}] },
+								{ "__identifier": "Label", "__type": "String", "__value": "Young Tom", "__tile": null, "defUid": 574, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Young Tom"]
+								}] },
+								{ "__identifier": "Direction", "__type": "String", "__value": null, "__tile": null, "defUid": 575, "realEditorValues": [] },
+								{ "__identifier": "Interact", "__type": "String", "__value": "Conversation Townie4", "__tile": null, "defUid": 577, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Conversation Townie4"]
+								}] },
+								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
+							],
+							"__worldX": 480,
+							"__worldY": 477
+						},
+						{
+							"__identifier": "NPC",
+							"__grid": [18,7],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#32DB00",
+							"iid": "9f577f90-b0a0-11ee-aa8d-7f4ed246eea9",
+							"width": 16,
+							"height": 16,
+							"defUid": 572,
+							"px": [288,125],
+							"fieldInstances": [
+								{ "__identifier": "Sprite", "__type": "String", "__value": "Rival", "__tile": null, "defUid": 573, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Rival"]
+								}] },
+								{ "__identifier": "Label", "__type": "String", "__value": "Shane", "__tile": null, "defUid": 574, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Shane"]
+								}] },
+								{ "__identifier": "Direction", "__type": "String", "__value": null, "__tile": null, "defUid": 575, "realEditorValues": [] },
+								{ "__identifier": "Interact", "__type": "String", "__value": "If $flag.MetRival\n Conversation RivalRepeat\nElse\n Conversation RivalIntro\n    SetFlag MetRival True\nEnd", "__tile": null, "defUid": 577, "realEditorValues": [{
+									"id": "V_String",
+									"params": [
+										"If $flag.MetRival\\n Conversation RivalRepeat\\nElse\\n Conversation RivalIntro\\n    SetFlag MetRival True\\nEnd"
+									]
+								}] },
+								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] }
+							],
+							"__worldX": 288,
+							"__worldY": 125
 						}
 					]
 				},
