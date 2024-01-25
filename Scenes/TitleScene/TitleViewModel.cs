@@ -104,7 +104,7 @@ namespace Elenigma.Scenes.TitleScene
                 case "New Game":
                     commandBox.Enabled = false;
                     GameProfile.NewState();
-                    CrossPlatformGame.Transition(typeof(MapScene.MapScene), GameMap.TechWorldIntro, 19, 33, Orientation.Down);
+                    CrossPlatformGame.Transition(typeof(MapScene.MapScene), GameMap.TechWorldIntro, 22, 37, Orientation.Down);
                     break;
 
                 case "Continue":

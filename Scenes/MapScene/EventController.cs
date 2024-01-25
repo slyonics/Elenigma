@@ -63,7 +63,8 @@ namespace Elenigma.Scenes.MapScene
             {
                 switch (parameter)
                 {
-
+                    case "$party2x": return ((int)mapScene.Party[1].Position.X + 4).ToString();
+                    case "$party2y": return ((int)mapScene.Party[1].Position.Y + 8).ToString();
                     default: return null;
                 }
             }
@@ -109,8 +110,11 @@ namespace Elenigma.Scenes.MapScene
 
         public void ChangeSprite(string[] tokens)
         {
-            var npc = mapScene.NPCs.First(x => x.Name == tokens[1]);
-            npc.AnimatedSprite.SpriteTexture = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Actors_" + tokens[2])];
+            Actor actor;
+            if (tokens[1] == "Party2") actor = mapScene.Party[1];
+            else actor = mapScene.NPCs.First(x => x.Name == tokens[1]);
+
+            actor.AnimatedSprite.SpriteTexture = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Actors_" + tokens[2])];
         }
 
         public void Recruit(string[] tokens)
@@ -120,7 +124,7 @@ namespace Elenigma.Scenes.MapScene
                 var npc = mapScene.NPCs.First(x => x.Name == "Familiar");
                 Hero follower = mapScene.AddEntity(new Hero(mapScene, mapScene.Tilemap, npc.Position, GameSprite.Actors_DogFamiliar, npc.Orientation));
                 mapScene.AddController(new FollowerController(mapScene, follower, mapScene.PartyLeader));
-                mapScene.AddParticle(new AnimationParticle(mapScene, follower.Position + new Vector2(2, 0), AnimationType.Smoke, true));
+                mapScene.AddParticle(new AnimationParticle(mapScene, follower.Position + new Vector2(1, 0), AnimationType.Smoke, true));
             }
         }
     }

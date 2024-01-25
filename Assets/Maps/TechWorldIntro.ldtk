@@ -3145,7 +3145,7 @@
 							"__smartColor": "#262B44",
 							"iid": "9b147c70-b0a0-11ee-9ed8-bb5e4e4e7bf2",
 							"width": 23,
-							"height": 61,
+							"height": 71,
 							"defUid": 1232,
 							"px": [511,562],
 							"fieldInstances": [],
@@ -3193,7 +3193,7 @@
 							"__smartColor": "#262B44",
 							"iid": "a4f2e240-b0a0-11ee-9ed8-8968e14d3b19",
 							"width": 16,
-							"height": 382,
+							"height": 395,
 							"defUid": 1232,
 							"px": [1,239],
 							"fieldInstances": [],
@@ -3644,7 +3644,7 @@
 						},
 						{
 							"__identifier": "NPC",
-							"__grid": [14,14],
+							"__grid": [18,15],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -3653,15 +3653,15 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 572,
-							"px": [224,237],
+							"px": [288,253],
 							"fieldInstances": [
 								{ "__identifier": "Sprite", "__type": "String", "__value": "Townie1", "__tile": null, "defUid": 573, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Townie1"]
 								}] },
-								{ "__identifier": "Label", "__type": "String", "__value": "Hana", "__tile": null, "defUid": 574, "realEditorValues": [{
+								{ "__identifier": "Label", "__type": "String", "__value": "Mom", "__tile": null, "defUid": 574, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Hana"]
+									"params": ["Mom"]
 								}] },
 								{ "__identifier": "Direction", "__type": "String", "__value": null, "__tile": null, "defUid": 575, "realEditorValues": [] },
 								{ "__identifier": "Interact", "__type": "String", "__value": "Conversation Townie1", "__tile": null, "defUid": 577, "realEditorValues": [{
@@ -3673,12 +3673,12 @@
 								{ "__identifier": "DisableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1396, "realEditorValues": [] },
 								{ "__identifier": "LabelOffset", "__type": "Int", "__value": 4, "__tile": null, "defUid": 1395, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
 							],
-							"__worldX": 224,
-							"__worldY": 237
+							"__worldX": 288,
+							"__worldY": 253
 						},
 						{
 							"__identifier": "NPC",
-							"__grid": [27,19],
+							"__grid": [28,28],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -3687,7 +3687,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 572,
-							"px": [432,317],
+							"px": [448,461],
 							"fieldInstances": [
 								{ "__identifier": "Sprite", "__type": "String", "__value": "Townie2", "__tile": null, "defUid": 573, "realEditorValues": [{
 									"id": "V_String",
@@ -3707,8 +3707,8 @@
 								{ "__identifier": "DisableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1396, "realEditorValues": [] },
 								{ "__identifier": "LabelOffset", "__type": "Int", "__value": 4, "__tile": null, "defUid": 1395, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
 							],
-							"__worldX": 432,
-							"__worldY": 317
+							"__worldX": 448,
+							"__worldY": 461
 						},
 						{
 							"__identifier": "NPC",
@@ -3746,7 +3746,7 @@
 						},
 						{
 							"__identifier": "NPC",
-							"__grid": [30,29],
+							"__grid": [29,6],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -3755,7 +3755,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 572,
-							"px": [480,477],
+							"px": [464,109],
 							"fieldInstances": [
 								{ "__identifier": "Sprite", "__type": "String", "__value": "Townie4", "__tile": null, "defUid": 573, "realEditorValues": [{
 									"id": "V_String",
@@ -3775,12 +3775,12 @@
 								{ "__identifier": "DisableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1396, "realEditorValues": [] },
 								{ "__identifier": "LabelOffset", "__type": "Int", "__value": 4, "__tile": null, "defUid": 1395, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
 							],
-							"__worldX": 480,
-							"__worldY": 477
+							"__worldX": 464,
+							"__worldY": 109
 						},
 						{
 							"__identifier": "NPC",
-							"__grid": [18,7],
+							"__grid": [15,7],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
@@ -3789,7 +3789,7 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 572,
-							"px": [288,125],
+							"px": [240,125],
 							"fieldInstances": [
 								{ "__identifier": "Sprite", "__type": "String", "__value": "Rival", "__tile": null, "defUid": 573, "realEditorValues": [{
 									"id": "V_String",
@@ -3800,10 +3800,10 @@
 									"params": ["Shane"]
 								}] },
 								{ "__identifier": "Direction", "__type": "String", "__value": null, "__tile": null, "defUid": 575, "realEditorValues": [] },
-								{ "__identifier": "Interact", "__type": "String", "__value": "If $flag.MetRival\n Conversation RivalRepeat\nElse\n Conversation RivalIntro\n    SetFlag MetRival True\nEnd", "__tile": null, "defUid": 577, "realEditorValues": [{
+								{ "__identifier": "Interact", "__type": "String", "__value": "If $flag.MetKeeva\n If $flag.PlanRival\n     Conversation PlanRepeat\n    Else\n     Particle Smoke $party2x $party2y\n        ChangeSprite Party2 HumanFamiliar\n  Conversation PlanRival\n        SetFlag PlanRival True\n        Particle Smoke $party2x $party2y\n        ChangeSprite Party2 DogFamiliar\n    End\nElse\n If $flag.MetRival\n   Conversation RivalRepeat\n Else\n  Conversation RivalIntro\n  SetFlag MetRival True\n End\nEnd", "__tile": null, "defUid": 577, "realEditorValues": [{
 									"id": "V_String",
 									"params": [
-										"If $flag.MetRival\\n Conversation RivalRepeat\\nElse\\n Conversation RivalIntro\\n    SetFlag MetRival True\\nEnd"
+										"If $flag.MetKeeva\\n If $flag.PlanRival\\n     Conversation PlanRepeat\\n    Else\\n     Particle Smoke $party2x $party2y\\n        ChangeSprite Party2 HumanFamiliar\\n  Conversation PlanRival\\n        SetFlag PlanRival True\\n        Particle Smoke $party2x $party2y\\n        ChangeSprite Party2 DogFamiliar\\n    End\\nElse\\n If $flag.MetRival\\n   Conversation RivalRepeat\\n Else\\n  Conversation RivalIntro\\n  SetFlag MetRival True\\n End\\nEnd"
 									]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] },
@@ -3811,8 +3811,91 @@
 								{ "__identifier": "DisableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1396, "realEditorValues": [] },
 								{ "__identifier": "LabelOffset", "__type": "Int", "__value": 4, "__tile": null, "defUid": 1395, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
 							],
-							"__worldX": 288,
+							"__worldX": 240,
 							"__worldY": 125
+						},
+						{
+							"__identifier": "Automatic",
+							"__grid": [19,35],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#D77643",
+							"iid": "f34030a0-b0a0-11ee-91fa-ffd2ad3f46e5",
+							"width": 103,
+							"height": 60,
+							"defUid": 1057,
+							"px": [306,560],
+							"fieldInstances": [
+								{ "__identifier": "Script", "__type": "String", "__value": "Conversation AutoIntro\nSetFlag AutoIntro True", "__tile": null, "defUid": 1058, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Conversation AutoIntro\\nSetFlag AutoIntro True"]
+								}] },
+								{ "__identifier": "EnableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1059, "realEditorValues": [] },
+								{ "__identifier": "DisableIf", "__type": "String", "__value": "AutoIntro", "__tile": null, "defUid": 1060, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["AutoIntro"]
+								}] }
+							],
+							"__worldX": 306,
+							"__worldY": 560
+						},
+						{
+							"__identifier": "Automatic",
+							"__grid": [35,6],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#D77643",
+							"iid": "597a70b0-b0a0-11ee-91fa-bd45a7dc9c7e",
+							"width": 68,
+							"height": 68,
+							"defUid": 1057,
+							"px": [571,108],
+							"fieldInstances": [
+								{ "__identifier": "Script", "__type": "String", "__value": "Conversation IntroWrapup\nSetFlag IntroWrapup True", "__tile": null, "defUid": 1058, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Conversation IntroWrapup\\nSetFlag IntroWrapup True"]
+								}] },
+								{ "__identifier": "EnableIf", "__type": "String", "__value": "MetKeeva", "__tile": null, "defUid": 1059, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["MetKeeva"]
+								}] },
+								{ "__identifier": "DisableIf", "__type": "String", "__value": "IntroWrapup", "__tile": null, "defUid": 1060, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["IntroWrapup"]
+								}] }
+							],
+							"__worldX": 571,
+							"__worldY": 108
+						},
+						{
+							"__identifier": "Automatic",
+							"__grid": [33,6],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#D77643",
+							"iid": "223d25b0-b0a0-11ee-a7a2-15c5b9180797",
+							"width": 109,
+							"height": 94,
+							"defUid": 1057,
+							"px": [540,97],
+							"fieldInstances": [
+								{ "__identifier": "Script", "__type": "String", "__value": "If !$flag.MetRival\n Conversation NoGoMeadow\n    MovePlayerTo 31 9\n ResetTrigger\nEnd", "__tile": null, "defUid": 1058, "realEditorValues": [{
+									"id": "V_String",
+									"params": [
+										"If !$flag.MetRival\\n Conversation NoGoMeadow\\n    MovePlayerTo 31 9\\n ResetTrigger\\nEnd"
+									]
+								}] },
+								{ "__identifier": "EnableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1059, "realEditorValues": [] },
+								{ "__identifier": "DisableIf", "__type": "String", "__value": "MetRival", "__tile": null, "defUid": 1060, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["MetRival"]
+								}] }
+							],
+							"__worldX": 540,
+							"__worldY": 97
 						}
 					]
 				},

@@ -1,10 +1,35 @@
 [
 	{
+		"Name": "AutoIntro",
+		"DialogueRecords": [
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "It's getting late and we need to get ready for our voyage. First, let's find Nota."
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "Maybe the villagers will know where she is."
+			}
+		]
+	},
+	{
+		"Name": "NoGoMeadow",
+		"DialogueRecords": [
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "I need to find Nota. Maybe the villagers will know where she is."
+			}
+		]
+	},
+	{
 		"Name": "NoGoSlyph",
 		"DialogueRecords": [
 			{
-				"Speaker": "Bruno",
-				"Portrait": "Portraits_AdultMC",
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
 				"Text": "I don't have any reason to visit Slyph right now."
 			}
 		]
@@ -21,8 +46,8 @@
 		"Name": "Townie1",
 		"DialogueRecords": [
 			{
-				"Speaker": "Hana",
-				"Text": "Good luck on your journey!"
+				"Speaker": "Mom",
+				"Text": "My child, I am going to be so sad when you leave."
 			}
 		]
 	},
@@ -31,7 +56,7 @@
 		"DialogueRecords": [
 			{
 				"Speaker": "Kim",
-				"Text": "I can't wait until I'm old enough to train and become a spirit talker too!"
+				"Text": "Look at you all grown up! Are you ready to explore the world?"
 			}
 		]
 	},
@@ -49,7 +74,7 @@
 		"DialogueRecords": [
 			{
 				"Speaker": "Young Tom",
-				"Text": "I can't wait until I'm old enough to train and become a spirit talker too!"
+				"Text": "Arthur! I can't believe you're about to go on your journey. Nota was just here!"
 			}
 		]
 	},
@@ -58,7 +83,38 @@
 		"DialogueRecords": [
 			{
 				"Speaker": "Shane",
-				"Text": "asddfad dfdfdf dfdf you suck!"
+				"Text": "**COUGH** Hey Arthur, how are you?"
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "I am okay! A bit nervous for my voyage today though and I can't find Nota."
+			},
+			{
+				"Speaker": "Shane",
+				"Text": "**COUGH** I see. Still planning to go on that trip with your familiar?"
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "Yes. Wish I didn't have to leave home, but it's part of our journey."
+			},
+			{
+				"Speaker": "Shane",
+				"Text": "I understand. Since I was a child, I was somehow exposed to miasma."
+			},
+			{
+				"Speaker": "Shane",
+				"Text": "With my parents' death and my illness, I wasn't able to go on my voyage. COUGH."
+			},
+			{
+				"Speaker": "Shane",
+				"Text": "I think I saw Nota in the forest towards the east."
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "Thank you Shane! I will be right back!"
 			}
 		]
 	},
@@ -67,7 +123,97 @@
 		"DialogueRecords": [
 			{
 				"Speaker": "Shane",
-				"Text": "usuck"
+				"Text": "I think I saw Nota in the forest towards the east."
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "Thank you Shane! I will be right back!"
+			}
+		]
+	},
+	{
+		"Name": "PlanRival",
+		"DialogueRecords": [
+			{
+				"Speaker": "Shane",
+				"Text": "**COUGH** So you found Nota."
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "Yes! Thank you for all your help!"
+			},
+			{
+				"Speaker": "Shane",
+				"Text": "Nota, you can't be running off anymore. You are Arthur's familiar."
+			},
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "I know, I just needed some time to get some fresh air."
+			},
+			{
+				"Speaker": "Shane",
+				"Text": "I'm really going to miss you both... we have been friends for 18 years."
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "Shane... we will be back!"
+			},
+			{
+				"Speaker": "Shane",
+				"Text": "I wonder why the gods made me this sick. I don't know why the spirits won't help more often."
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "Shane, don't speak like that... I know it's been hard but things will get better."
+			},
+			{
+				"Speaker": "Shane",
+				"Text": "I hope so. Some people from the capital are visiting in the next few days."
+			},
+			{
+				"Speaker": "Shane",
+				"Text": "Maybe I can see one of their doctors and find out why I'm still sick."
+			},
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "Okay... let's make a promise! Like when we were kids."
+			},
+			{
+				"Speaker": "Shane",
+				"Text": "**Cough** Ha ha, like a pinky promise?"
+			},
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "No! Like... a pack. We'll travel this world. The three of us."
+			},
+			{
+				"Speaker": "Shane",
+				"Text": "**Cough** Are you joking, Nota? I'm too sick."
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "I'm in! I'm sure we can figure out a plan once our voyage is done."
+			},
+			{
+				"Speaker": "Shane",
+				"Text": "Fine, I will wait for you all here. Then we will see, ha! Just be safe okay?"
+			}
+		]
+	},
+	{
+		"Name": "PlanRepeat",
+		"DialogueRecords": [
+			{
+				"Speaker": "Shane",
+				"Text": "Fine, I will wait for you all here. Then we will see, ha! Just be safe okay?"
 			}
 		]
 	},
@@ -75,7 +221,7 @@
 		"Name": "KeevaIntro",
 		"DialogueRecords": [
 			{
-				"Speaker": "Keeva",
+				"Speaker": "Nota",
 				"Portrait": "Portraits_DogFamiliar",
 				"Text": "..."
 			}
@@ -85,9 +231,9 @@
 		"Name": "KeevaIntro2",
 		"DialogueRecords": [
 			{
-				"Speaker": "Bruno",
+				"Speaker": "Arthur",
 				"Portrait": "Portraits_YoungMC",
-				"Text": "whta keeva doing here ya'll now'"
+				"Text": "Why is Nota running off like that?"
 			}
 		]
 	},
@@ -95,25 +241,19 @@
 		"Name": "KeevaIntro3",
 		"DialogueRecords": [
 			{
-				"Speaker": "Keeva",
+				"Speaker": "Nota",
 				"Portrait": "Portraits_HumanFamiliar",
-				"Text": "..."
+				"Text": "I'm sorry Arthur..."
 			},
 			{
-				"Speaker": "Bruno",
+				"Speaker": "Arthur",
 				"Portrait": "Portraits_YoungMC",
-				"Text": "buckup on now"
-			},
-			{
-				"Speaker": "Keeva",
-				"Portrait": "Portraits_HumanFamiliar",
-				"Text": "...",
+				"Text": "[Nota looks sad... what should I do?]",
 				"Script": [
 					"WaitForText",
 					"SelectionPrompt",
-					"Cheer her up alpha",
-					"Cheer her up beta",
-					"Cheer her up delta",
+					"Cheer her up",
+					"Ask what's wrong",
 					"End",
 					"ProceedText"
 				]
@@ -121,14 +261,11 @@
 		],
 		"EndScript": [
 			"Switch $selection",
-			"Case Cheer her up alpha",
+			"Case Cheer her up",
 			"ChangeConversation KeevaConsole1",
 			"Break",
-			"Case Cheer her up beta",
+			"Case Ask what's wrong",
 			"ChangeConversation KeevaConsole2",
-			"Break",
-			"Case Cheer her up delta",
-			"ChangeConversation KeevaConsole3",
 			"Break",
 			"End"
 		]
@@ -137,19 +274,19 @@
 		"Name": "KeevaConsole1",
 		"DialogueRecords": [
 			{
-				"Speaker": "Bruno",
-				"Portrait": "Portraits_YoungMC",
-				"Text": "Cheer her up alpha"
-			},
-			{
-				"Speaker": "Keeva",
+				"Speaker": "Nota",
 				"Portrait": "Portraits_HumanFamiliar",
-				"Text": "I feel better now"
+				"Text": "Are we truly ready for this voyage?"
 			},
 			{
-				"Speaker": "Bruno",
+				"Speaker": "Arthur",
 				"Portrait": "Portraits_YoungMC",
-				"Text": "Right lets go"
+				"Text": "Of course we are! And if not, we'll take it day by day."
+			},
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "You're right, let's go."
 			}
 		]
 	},
@@ -157,39 +294,39 @@
 		"Name": "KeevaConsole2",
 		"DialogueRecords": [
 			{
-				"Speaker": "Bruno",
+				"Speaker": "Arthur",
 				"Portrait": "Portraits_YoungMC",
-				"Text": "Cheer her up beta"
+				"Text": "Hey, cheer up! We're gonna get through this together!"
 			},
 			{
-				"Speaker": "Keeva",
+				"Speaker": "Nota",
 				"Portrait": "Portraits_HumanFamiliar",
-				"Text": "I feel better now"
+				"Text": "Thanks Arthur, I just don't want to let you down. Are we truly ready for this voyage?"
 			},
 			{
-				"Speaker": "Bruno",
+				"Speaker": "Arthur",
 				"Portrait": "Portraits_YoungMC",
-				"Text": "Right lets go"
+				"Text": "Of course we are! And if not, we'll take it day by day."
+			},
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "You're right, let's go."
 			}
 		]
 	},
 	{
-		"Name": "KeevaConsole3",
+		"Name": "IntroWrapup",
 		"DialogueRecords": [
 			{
-				"Speaker": "Bruno",
+				"Speaker": "Arthur",
 				"Portrait": "Portraits_YoungMC",
-				"Text": "Cheer her up delta"
+				"Text": "Let's say goodbye to Shane and the family!"
 			},
 			{
-				"Speaker": "Keeva",
-				"Portrait": "Portraits_HumanFamiliar",
-				"Text": "I feel better now"
-			},
-			{
-				"Speaker": "Bruno",
-				"Portrait": "Portraits_YoungMC",
-				"Text": "Right lets go"
+				"Speaker": "Nota",
+				"Portrait": "Portraits_DogFamiliar",
+				"Text": "Yip!"
 			}
 		]
 	},
