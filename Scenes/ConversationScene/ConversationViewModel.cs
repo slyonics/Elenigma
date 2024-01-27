@@ -20,6 +20,7 @@ namespace Elenigma.Scenes.ConversationScene
         private CrawlText crawlText;
 
         public bool AutoProceed { get; set; }
+        public int AutoProceedLength { get; set; } = 1000;
 
         public ModelProperty<bool> CrystalVisible { get; set; } = new ModelProperty<bool>();
 
@@ -63,7 +64,7 @@ namespace Elenigma.Scenes.ConversationScene
             AutoProceed = autoProceed;
             if (autoProceed)
             {
-                parentScene.AddController(new SkippableWaitController(PriorityLevel.GameLevel, this, false, 2000));
+                parentScene.AddController(new SkippableWaitController(PriorityLevel.GameLevel, this, false, AutoProceedLength));
                 OnTerminated += new Action(() => parentScene.EndScene());
                 LoadView(GameView.ConversationScene_ConversationView3);
             }
@@ -166,7 +167,7 @@ namespace Elenigma.Scenes.ConversationScene
 
             if (AutoProceed)
             {
-                parentScene.AddController(new SkippableWaitController(PriorityLevel.GameLevel, this, false, 2000));
+                parentScene.AddController(new SkippableWaitController(PriorityLevel.GameLevel, this, false, AutoProceedLength));
             }
         }
 

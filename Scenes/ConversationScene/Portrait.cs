@@ -41,7 +41,7 @@ namespace Elenigma.Scenes.ConversationScene
 
         public override void Draw(SpriteBatch spriteBatch, Camera camera)
         {
-            if (SpriteBounds.Top < 0) position = new Vector2(position.X, position.Y - SpriteBounds.Top);
+            // if (SpriteBounds.Top < 0) position = new Vector2(position.X, position.Y - SpriteBounds.Top);
 
             if (Shader == null)
                 base.Draw(spriteBatch, camera);
@@ -49,7 +49,7 @@ namespace Elenigma.Scenes.ConversationScene
 
         public override void DrawShader(SpriteBatch spriteBatch, Camera camera, Matrix matrix)
         {
-            if (SpriteBounds.Top < 0) position = new Vector2(position.X, position.Y - SpriteBounds.Top);
+            //if (SpriteBounds.Top < 0) position = new Vector2(position.X, position.Y - SpriteBounds.Top);
 
 
             if (Shader != null)

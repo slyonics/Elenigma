@@ -52,7 +52,7 @@ namespace Elenigma.Scenes.MapScene
             {
                 switch (field.Identifier)
                 {
-                    case "Music": if (!string.IsNullOrEmpty(field.Value) && (gameMap != GameMap.Overworld || Audio.CurrentMusic != GameMusic.BeyondtheHills)) Audio.PlayMusic((GameMusic)Enum.Parse(typeof(GameMusic), field.Value)); break;
+                    case "Music": if (!string.IsNullOrEmpty(field.Value)) Audio.PlayMusic((GameMusic)Enum.Parse(typeof(GameMusic), field.Value)); break;
                     case "Script": if (!string.IsNullOrEmpty(field.Value)) AddController(new EventController(this, field.Value.Split('\n'))); break;
 
                     case "ColorFilter": SceneShader = new SceneObjects.Shaders.ColorFade(Graphics.ParseHexcode("#" + field.Value.Substring(1)), 0.75f); break;

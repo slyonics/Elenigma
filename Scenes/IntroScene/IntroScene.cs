@@ -14,13 +14,11 @@ using System.Threading.Tasks;
 
 namespace Elenigma.Scenes.IntroScene
 {
-    public class IntroScene : Scene, ISkippableWait
+    public class IntroScene : Scene
     {
         public IntroScene()
             : base()
         {
-            AddController(new SkippableWaitController(PriorityLevel.GameLevel, this, true, 10000));
-
             AddView(new IntroViewModel(this, GameView.IntroScene_IntroView));
         }
 
@@ -40,13 +38,6 @@ namespace Elenigma.Scenes.IntroScene
             */
         }
 
-        public override void BeginScene()
-        {
-            base.BeginScene();
-
-            Audio.PlayMusic(GameMusic.Awakening);
-        }
-
         public override void DrawBackground(SpriteBatch spriteBatch)
         {
             base.DrawBackground(spriteBatch);
@@ -56,7 +47,9 @@ namespace Elenigma.Scenes.IntroScene
         {
             GameProfile.NewState();
 
-            CrossPlatformGame.Transition(typeof(MapScene.MapScene), GameMap.TechWorldIntro, 19, 33, Orientation.Down);
+            CrossPlatformGame.Transition(typeof(ConversationScene.ConversationScene), "Prologue", new Rectangle(-140, -14, 280, 78), true);
+
+            // CrossPlatformGame.Transition(typeof(MapScene.MapScene), GameMap.TechWorldIntro, 19, 33, Orientation.Down);
         }
 
         public bool Terminated { get => false; }

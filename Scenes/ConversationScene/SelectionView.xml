@@ -4,7 +4,7 @@
 	<Panel Style="LightFrame" Anchor="$CenterX,$CenterY" Bounds="Bind WindowSize" TransitionIn="Expand" TransitionOut="Shrink">
 		<RadioBox Name="OptionsList" Items="Bind AvailableOptions" Alignment="Stretch" InnerMargin="1,5,1,0" Scrolling="False">
 			<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="Bind ButtonSize" Alignment="Vertical" Action="SelectOption" ActionParameter="Ref DataGrid" InnerMargin="1,2,1,2">
-				<Label Text="Ref DataGrid" Font="Main" Bounds="Bind LabelSize" Alignment="Center" Color="#FFFFFFFF"/>
+				<Label Text="Ref DataGrid" Font="Main" Bounds="Bind LabelSize" Alignment="Center" Color="#4D2B32FF"/>
 			</RadioButton>
 		</RadioBox>
 	</Panel>  

@@ -14,7 +14,7 @@ namespace Elenigma.Scenes.IntroScene
 
     public class IntroViewModel : ViewModel
     {
-        public const int FADE_LENGTH = 800;
+        public const int FADE_LENGTH = 1000;
 
         private int fadeIndex = 0;
         private int fadeTime = 0;
@@ -24,15 +24,8 @@ namespace Elenigma.Scenes.IntroScene
             : base(iScene, PriorityLevel.GameLevel, viewName)
         {
 
-            TextBlocks.Add(new IntroTextBlock() { Text = new ModelProperty<string>("Today, There are 6 known regions inhabited by humans.") });
-            TextBlocks.Add(new IntroTextBlock() { Text = new ModelProperty<string>("") });
-            TextBlocks.Add(new IntroTextBlock() { Text = new ModelProperty<string>("The 4 Great Elemental Regions - guided by the spirits.") });
-            TextBlocks.Add(new IntroTextBlock() { Text = new ModelProperty<string>("") });
-            TextBlocks.Add(new IntroTextBlock() { Text = new ModelProperty<string>("The Capital - the most advanced region") });
-            TextBlocks.Add(new IntroTextBlock() { Text = new ModelProperty<string>("springing from innovation and technology") });
-            TextBlocks.Add(new IntroTextBlock() { Text = new ModelProperty<string>("") });
-            TextBlocks.Add(new IntroTextBlock() { Text = new ModelProperty<string>("The Tribal Land - a small village that to this day,") });
-            TextBlocks.Add(new IntroTextBlock() { Text = new ModelProperty<string>("pray to and worship the first gods.") });
+            TextBlocks.Add(new IntroTextBlock() { Text = new ModelProperty<string>("I see you have returned hero.") });
+            TextBlocks.Add(new IntroTextBlock() { Text = new ModelProperty<string>("Let's start from the beginning...") });
 
             LoadView(GameView.IntroScene_IntroView);
         }
@@ -41,13 +34,26 @@ namespace Elenigma.Scenes.IntroScene
         {
             base.Update(gameTime);
 
-            if (fadeIndex >= 9) return;
+            if (Input.CurrentInput.AnythingPressed())
+            {
+                CrossPlatformGame.Transition(typeof(TitleScene.TitleScene));
+                return;
+            }
 
             if (waitTime > 0)
             {
                 waitTime -= (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+                if (waitTime <= 0 && fadeIndex >= 2)
+                {
+                    IntroScene.NewGame();
+                    return;
+                }
+
                 return;
             }
+
+            if (fadeIndex >= 2) return;
 
             if (fadeTime < FADE_LENGTH)
             {
@@ -58,7 +64,13 @@ namespace Elenigma.Scenes.IntroScene
                     TextBlocks.ModelList[fadeIndex].Value.Color.Value = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                     fadeIndex++;
                     fadeTime = 0;
-                    waitTime = 200;
+                    waitTime = 500;
+
+                    if (fadeIndex >= 2)
+                    {
+                        waitTime = 1500;
+                        return;
+                    }
                 }
                 else
                 {

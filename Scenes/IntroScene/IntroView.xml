@@ -3,7 +3,7 @@
 
 	<Image Picture="Background_Blank" Anchor="$CenterX,$CenterY" Bounds="-128,-128,256,256" Depth="0.9"/>
 	
-	<DataGrid Anchor="$CenterX,$CenterY" Bounds="-145,-45,290,90" Items="Bind TextBlocks">
+	<DataGrid Anchor="$CenterX,$CenterY" Bounds="-145,-10,290,90" Items="Bind TextBlocks">
 		
 		<Label Text="Bind DataGrid.Text" Alignment="Vertical" TextAlignment="Center" Font="Interface" Color="Bind DataGrid.Color"/>
 		

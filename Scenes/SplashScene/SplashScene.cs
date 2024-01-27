@@ -34,21 +34,7 @@ namespace Elenigma.Scenes.SplashScene
         {
             GameProfile.NewState();
 
-            if (GameProfile.SaveList.Count > 0)
-            {
-                CrossPlatformGame.Transition(typeof(TitleScene.TitleScene));
-            }
-            else
-            {
-                NewGame();
-            }
-        }
-
-        public static void NewGame()
-        {
-            GameProfile.NewState();
-
-            CrossPlatformGame.Transition(typeof(MapScene.MapScene), GameMap.TechWorldIntro, 19, 33, Orientation.Down);
+            CrossPlatformGame.Transition(typeof(IntroScene.IntroScene));
         }
 
         public bool Terminated { get => false; }

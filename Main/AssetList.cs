@@ -75,6 +75,7 @@ namespace Elenigma.Main
     {
         Awakening,
         Elenigma,
+        Home,
         BeyondtheHills,
         BlastingThroughtheSky,
         ChoiceEncounter,
@@ -150,8 +151,11 @@ namespace Elenigma.Main
         Particles_Gust,
         Particles_Smoke,
         Portraits_AdultMC,
+        Portraits_DarkGoddess,
+        Portraits_DivineBeast,
         Portraits_DogFamiliar,
         Portraits_HumanFamiliar,
+        Portraits_LightGod,
         Portraits_Slyph,
         Portraits_Undine,
         Portraits_YoungMC,
@@ -238,19 +242,8 @@ namespace Elenigma.Main
 
     public enum GameMap
     {
-        Airship,
-        InsideCrystal,
-        ManaspringCave,
-        ManaspringCave2,
-        ManaspringCave3,
-        ManaspringCave4,
-        ManaspringCave5,
-        Overworld,
         SecretMeadow,
         TechWorldIntro,
-        Tower,
-        Tower2,
-        Tower3,
 
         None = -1
     }

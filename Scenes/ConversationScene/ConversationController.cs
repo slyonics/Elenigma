@@ -61,7 +61,7 @@ namespace Elenigma.Scenes.ConversationScene
                 case "SelectionPrompt": SelectionPrompt(tokens); return false;
                 case "ChangeConversation": ChangeConversation(tokens); break;
                 case "EndConversation": conversationScene.ConversationViewModel.Close(); break;
-
+                case "SetAutoProceed": conversationScene.ConversationViewModel.AutoProceedLength = int.Parse(tokens[1]); break;
 
                 case "ChangeMap": MapScene.EventController.ChangeMap(tokens, MapScene.MapScene.Instance); break;
                 case "AnimateHero": MapScene.MapScene.Instance.Party[int.Parse(tokens[1])].PlayAnimation(tokens[2], new AnimationFollowup(() => { })); break;

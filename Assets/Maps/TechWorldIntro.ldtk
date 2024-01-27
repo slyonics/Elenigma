@@ -2944,11 +2944,14 @@
 			"__bgPos": null,
 			"externalRelPath": null,
 			"fieldInstances": [
-				{ "__identifier": "LocationName", "__type": "String", "__value": "West Village", "__tile": null, "defUid": 251, "realEditorValues": [{
+				{ "__identifier": "LocationName", "__type": "String", "__value": "Tribal Village", "__tile": null, "defUid": 251, "realEditorValues": [{
 					"id": "V_String",
-					"params": ["West Village"]
+					"params": ["Tribal Village"]
 				}] },
-				{ "__identifier": "Music", "__type": "String", "__value": null, "__tile": null, "defUid": 252, "realEditorValues": [null] },
+				{ "__identifier": "Music", "__type": "String", "__value": "Home", "__tile": null, "defUid": 252, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["Home"]
+				}] },
 				{ "__identifier": "DayNight", "__type": "Color", "__value": "#1BAFEF", "__tile": null, "defUid": 1276, "realEditorValues": [{ "id": "V_Int", "params": [1814511] }] }
 			],
 			"layerInstances": [
