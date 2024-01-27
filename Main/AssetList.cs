@@ -156,6 +156,7 @@ namespace Elenigma.Main
         Portraits_DogFamiliar,
         Portraits_HumanFamiliar,
         Portraits_LightGod,
+        Portraits_Regions,
         Portraits_Slyph,
         Portraits_Undine,
         Portraits_YoungMC,

@@ -81,7 +81,7 @@ namespace Elenigma.Main
             MusicVolume = Settings.GetProgramSetting<int>("MusicVolume") / 100.0f;
         }
 
-        public static void PlayMusic(GameMusic musicType)
+        public static void PlayMusic(GameMusic musicType, bool looping = true)
         {
             if (musicType == currentMusic) return;
 
@@ -89,15 +89,26 @@ namespace Elenigma.Main
 
             fmodSystem.playSound(GAME_MUSIC[musicType], null, false, out fmodChannel);
             if (fmodChannel != null) fmodChannel.setVolume(musicVolume);
-            fmodChannel.setMode(MODE.LOOP_NORMAL);
-            fmodChannel.setLoopCount(-1);
+
+            if (looping)
+            {
+                fmodChannel.setMode(MODE.LOOP_NORMAL);
+                fmodChannel.setLoopCount(-1);
+            }
+            else
+            {
+                fmodChannel.setMode(MODE.LOOP_OFF);
+                fmodChannel.setLoopCount(0);
+            }
 
             currentMusic = musicType;
         }
 
         public static void PlayMusic(string[] scriptTokens)
         {
-            PlayMusic((GameMusic)Enum.Parse(typeof(GameMusic), scriptTokens[1]));
+            bool looping = true;
+            if (scriptTokens.Length > 2) looping = bool.Parse(scriptTokens[2]);
+            PlayMusic((GameMusic)Enum.Parse(typeof(GameMusic), scriptTokens[1]), looping);
         }
 
         public static void PauseMusic(bool pause)

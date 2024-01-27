@@ -47,7 +47,7 @@ namespace Elenigma.Scenes.IntroScene
         {
             GameProfile.NewState();
 
-            CrossPlatformGame.Transition(typeof(ConversationScene.ConversationScene), "Prologue", new Rectangle(-140, -14, 280, 78), true);
+            CrossPlatformGame.Transition(typeof(ConversationScene.ConversationScene), "Prologue", new Rectangle(-140, 25, 280, 62), true);
 
             // CrossPlatformGame.Transition(typeof(MapScene.MapScene), GameMap.TechWorldIntro, 19, 33, Orientation.Down);
         }

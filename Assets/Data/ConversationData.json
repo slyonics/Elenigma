@@ -5,19 +5,27 @@
 		"DialogueRecords": [
 			{
 				"Text": "This world was created by three gods.",
-				"Script": [ "Music Awakening", "SetAutoProceed 2500" ]
+				"Script": [ "SetAutoProceed 2000" ]
 			},
 			{
-				"Text": "The God of Light, gifted knowledge that manifested in elemental spirits to ensure we seeked wisdom passed down.",
-				"Script": [ "AddPortrait Symbol LightGod 145 72 0.4" ]
+				"Text": "The God of Light, gifted elemental spirits to ensure we seeked wisdom passed down.",
+				"Script": [ "Music Awakening False", "AddPortrait Symbol LightGod 145 90 0.4" ]
 			},
 			{
-				"Text": "The Sacred Beast, gifted companionship that manifested into familiar to ensure no being felt alone in this world.",
+				"Text": "The Sacred Beast, gifted familiars to ensure no being felt alone in this world.",
 				"Script": [ "PortraitSprite Symbol DivineBeast 0.4" ]
 			},
 			{
-				"Text": "The Goddess of Darkness gifted destruction that manifested in emotions to ensure that choices we made were influenced by experience.",
-				"Script": [ "PortraitSprite Symbol DarkGoddess 0.4" ]
+				"Text": "The Goddess of Darkness gifted emotions to ensure that choices were influenced by experience.",
+				"Script": [ "PortraitSprite Symbol DarkGoddess 0.4", "SetAutoProceed 1500" ]
+			},
+			{
+				"Text": "Today, four Great Elemental Regions are guided by the spirits.",
+				"Script": [ "RemovePortrait Symbol 0.01", "AddPortrait Region Regions 145 110 0.4" ]
+			},
+			{
+				"Text": "And in the Tribal Lands, a small village still prays to the first gods...",
+				"Script": [ "Wait 1500", "ChangeScene Elenigma.Scenes.TitleScene.TitleScene"]
 			}
 		]
 	},
