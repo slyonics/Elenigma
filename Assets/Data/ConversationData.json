@@ -25,7 +25,7 @@
 			},
 			{
 				"Text": "And in the Tribal Lands, a small village still prays to the first gods...",
-				"Script": [ "Wait 1500", "ChangeScene Elenigma.Scenes.TitleScene.TitleScene"]
+				"Script": [ "Wait 1500", "ChangeScene Elenigma.Scenes.TitleScene.TitleScene" ]
 			}
 		]
 	},
@@ -73,7 +73,7 @@
 		]
 	},
 	{
-		"Name": "Townie1",
+		"Name": "TownieMom",
 		"DialogueRecords": [
 			{
 				"Speaker": "Mom",
@@ -239,6 +239,15 @@
 		]
 	},
 	{
+		"Name": "Rival",
+		"DialogueRecords": [
+			{
+				"Speaker": "Shane",
+				"Text": "Fine, I will wait for you all here. Then we will see, ha! Just be safe okay?"
+			}
+		]
+	},
+	{
 		"Name": "PlanRepeat",
 		"DialogueRecords": [
 			{
@@ -357,6 +366,85 @@
 				"Speaker": "Nota",
 				"Portrait": "Portraits_DogFamiliar",
 				"Text": "Yip!"
+			}
+		]
+	},
+	{
+		"Name": "SendOff",
+		"DialogueRecords": [
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "Mom, Dad, and Modi! You're all here!"
+			},
+			{
+				"Speaker": "Mom",
+				"Text": "Of course we are, we have to give you a proper send off!"
+			},
+			{
+				"Speaker": "Modi",
+				"Text": "Can I go with them?"
+			},
+			{
+				"Speaker": "Mom",
+				"Text": "Nooo Modi."
+			},
+			{
+				"Speaker": "Modi",
+				"Text": "But WHYYY!?"
+			},
+			{
+				"Speaker": "Dad",
+				"Text": "Villagers become adults on their 18th birthday and must go on a voyage in the wilderness."
+			},
+			{
+				"Speaker": "Dad",
+				"Text": "They become stronger, learn from nature, and gain an understanding of the self."
+			},
+			{
+				"Speaker": "Dad",
+				"Text": "It has been a practice since the beginning."
+			},
+			{
+				"Speaker": "Modi",
+				"Text": "But when will Arthur and Nota come back?"
+			},
+			{
+				"Speaker": "Mom",
+				"Text": "Whenever he feels ready to return."
+			},
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "Don't worry, I'm here to protect him and make sure he doesn't do anything stupid."
+			},
+			{
+				"Speaker": "Dad",
+				"Text": "Thank you Nota. Arthur, my son. I want to give you treasures for your journey."
+			},
+			{
+				"Text": "Received Crystal Sword!"
+			},
+			{
+				"Text": "Received Old Map!"
+			},
+			{
+				"Speaker": "Dad",
+				"Text": "Let this sword aid you in any challenges you face. Let this map guide you on your voyage."
+			},
+			{
+				"Speaker": "Dad",
+				"Text": "As you can see, there's not much on this map. This is where you will record your own path."
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "Understood. I will cherish these gifts dearly. I love you all so much and I think we are ready!"
+			},
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "We sure are. Let's go!"
 			}
 		]
 	},

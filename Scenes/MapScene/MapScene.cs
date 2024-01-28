@@ -91,6 +91,9 @@ namespace Elenigma.Scenes.MapScene
                                 var property = entity.FieldInstances.FirstOrDefault(x => x.Identifier == "DisableIf");
                                 if (property != null && property.Value != null && GameProfile.GetSaveData<bool>(property.Value)) continue;
 
+                                property = entity.FieldInstances.FirstOrDefault(x => x.Identifier == "EnableIf");
+                                if (property != null && property.Value != null && !GameProfile.GetSaveData<bool>(property.Value)) continue;
+
                                 Npc npc = new Npc(this, Tilemap, entity);
                                 if (npc.Behavior != null)
                                 {
