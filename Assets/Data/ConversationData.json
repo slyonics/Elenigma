@@ -68,7 +68,9 @@
 		"Name": "NoGoWest",
 		"DialogueRecords": [
 			{
-				"Text": "[This area is still under construction]"
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "This road leads to the capital but my journey isn't taking me there."
 			}
 		]
 	},
@@ -135,7 +137,7 @@
 			},
 			{
 				"Speaker": "Shane",
-				"Text": "With my parents' death and my illness, I wasn't able to go on my voyage. COUGH."
+				"Text": "With my parents' death and my illness, I wasn't able to go on my voyage. **COUGH**"
 			},
 			{
 				"Speaker": "Shane",
@@ -236,16 +238,40 @@
 				"Speaker": "Shane",
 				"Text": "Fine, I will wait for you all here. Then we will see, ha! Just be safe okay?"
 			}
+		],
+		"EndScript": [
+			"If $flag.SendOff",
+			"ChangeConversation RivalToMontage",
+			"Else",
+			"ChangeConversation RivalToFamily",
+			"End"
 		]
 	},
 	{
-		"Name": "Rival",
+		"Name": "RivalToFamily",
 		"DialogueRecords": [
 			{
-				"Speaker": "Shane",
-				"Text": "Fine, I will wait for you all here. Then we will see, ha! Just be safe okay?"
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "I'll make sure of it."
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "Okay, now I just gotta say goodbye to my family!"
 			}
 		]
+	},
+	{
+		"Name": "RivalToMontage",
+		"DialogueRecords": [
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "Yeah and you stay safe too. Let's go!"
+			}
+		],
+		"EndScript": [ "ChangeScene Elenigma.Scenes.MontageScene.MontageScene" ]
 	},
 	{
 		"Name": "PlanRepeat",
@@ -446,7 +472,8 @@
 				"Portrait": "Portraits_HumanFamiliar",
 				"Text": "We sure are. Let's go!"
 			}
-		]
+		],
+		"EndScript": [ "ChangeScene Elenigma.Scenes.MontageScene.MontageScene" ]
 	},
 	{
 		"Name": "SlyphIntro",
