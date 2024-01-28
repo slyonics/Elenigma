@@ -34,6 +34,21 @@ namespace Elenigma.Scenes.ConversationScene
             portraitControllers.Add(iScene.AddController(new PortraitColorController(this, new Color(255, 255, 255, 255), iTransitionLength)));
         }
 
+        public Portrait(ConversationScene iScene, string iName, string iSprite, Vector2 iPosition, int cellWidth, int cellHeight, int cellCount, int frameLength, float iTransitionLength)
+            : base(iScene, iPosition)
+        {
+            Name = iName;
+
+            Dictionary<string, Animation> animations = new Dictionary<string, Animation>()
+            {
+                { "Idle", new Animation(0, 0, cellWidth, cellHeight, cellCount, frameLength) }
+            };
+            animatedSprite = new AnimatedSprite(AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Portraits_" + iSprite)], null);
+            animatedSprite.SpriteColor = new Color(0, 0, 0, 0);
+
+            portraitControllers.Add(iScene.AddController(new PortraitColorController(this, new Color(255, 255, 255, 255), iTransitionLength)));
+        }
+
         public override void Update(GameTime gameTime)
         {
             portraitControllers.RemoveAll(x => x.Terminated);

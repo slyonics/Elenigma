@@ -101,6 +101,21 @@ namespace Elenigma.Scenes.ConversationScene
                 Portrait portrait = new Portrait(conversationScene, name, sprite, new Vector2(startX, startY), new Vector2(endX, endY), transitionLength);
                 conversationScene.AddPortrait(portrait);
             }
+            else if (tokens.Length > 8)
+            {
+                string name = tokens[1];
+                string sprite = tokens[2];
+                int positionX = int.Parse(tokens[3]);
+                int positionY = int.Parse(tokens[4]);
+                int cellWidth = int.Parse(tokens[5]);
+                int cellHeight = int.Parse(tokens[6]);
+                int cellCount = int.Parse(tokens[7]);
+                int frameLength = int.Parse(tokens[8]);
+                float transitionLength = (tokens.Length > 9) ? float.Parse(tokens[9]) : 1.0f;
+
+                Portrait portrait = new Portrait(conversationScene, name, sprite, new Vector2(positionX, positionY), cellWidth, cellHeight, cellCount, frameLength, transitionLength);
+                conversationScene.AddPortrait(portrait);
+            }
             else
             {
                 string name = tokens[1];
