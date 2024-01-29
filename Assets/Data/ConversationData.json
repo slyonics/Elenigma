@@ -449,9 +449,11 @@
 				"Text": "Thank you Nota. Arthur, my son. I want to give you treasures for your journey."
 			},
 			{
+				"Portrait": "Portraits_Sword",
 				"Text": "Received Crystal Sword!"
 			},
 			{
+				"Portrait": "Portraits_Map",
 				"Text": "Received Old Map!"
 			},
 			{
