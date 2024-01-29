@@ -154,5 +154,6 @@ namespace Elenigma.Scenes.ConversationScene
         public List<Portrait> Portraits { get => portraits; }
         public ConversationViewModel ConversationViewModel { get => conversationViewModel; }
         public ConversationController ConversationController { get => conversationController; set => conversationController = value; }
+        public Texture2D BackgroundSprite { set => backgroundSprite = value; }
     }
 }

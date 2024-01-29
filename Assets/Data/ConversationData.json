@@ -42,7 +42,8 @@
 				"Portrait": "Portraits_YoungMC",
 				"Text": "Maybe the villagers will know where she is."
 			}
-		]
+		],
+		"EndScript": [ "ChangeScene Elenigma.Scenes.ConversationScene.ConversationScene Montage True" ]
 	},
 	{
 		"Name": "NoGoMeadow",
@@ -515,13 +516,16 @@
 	},
 	{
 		"Name": "Montage",
-		"Background": "Blank",
+		"Background": "Montage",
 		"DialogueRecords": [
 			{
 				"Text": "And so their journey began.",
 				"Script": [
-					"AddPortrait Runners MontageRunning1 45 98 64 32 4 200 0.4",
+					"RemoveBackground",
+					"AddPortrait Bg1 MontageBackground 290 100 0.001",
+					"AddPortrait Runners MontageRunning1 45 100 64 32 4 100 0.4",
 					"PortraitVelocity Runners 8 0",
+					"PortraitVelocity Bg1 -10 0",
 					"SetAutoProceed 2000"
 				]
 			},
@@ -546,19 +550,22 @@
 			{
 				"Text": "Five years passed since their voyage began. They trained everyday.",
 				"Script": [
-					"PortraitSprite Runners MontageRunning2 1.0",
+					"PortraitSprite Runners MontageRunning2 2.0",
+					"PortraitSprite Bg1 MontageBackground 2.2",
 					"Wait 6000",
 					"ProceedText"
 				]
 			},
 			{
-				"Text": "In moments of weakness, they relied on each other."
+				"Text": "In moments of weakness, they relied on each other.",
+				"Script": [ "SetAutoProceed 25000" ]
 			},
 			{
 				"Text": "As the lake shimmered and the wind whispered, who had they become?"
 			}
 		],
 		"EndScript": [
+			"Wait 3000",
 			"ChangeScene Elenigma.Scenes.TitleScene.TitleScene"
 		]
 	},
