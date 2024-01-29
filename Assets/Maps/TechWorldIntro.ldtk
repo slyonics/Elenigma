@@ -3355,7 +3355,7 @@
 							"__tile": null,
 							"__smartColor": "#262B44",
 							"iid": "03d89b10-b0a0-11ee-8a86-8b436f784e3a",
-							"width": 118,
+							"width": 109,
 							"height": 23,
 							"defUid": 1232,
 							"px": [166,93],
@@ -3365,19 +3365,19 @@
 						},
 						{
 							"__identifier": "ColliderBox",
-							"__grid": [3,19],
+							"__grid": [3,20],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#262B44",
 							"iid": "08dfaf40-b0a0-11ee-8a86-e3117968a29a",
-							"width": 118,
-							"height": 23,
+							"width": 109,
+							"height": 20,
 							"defUid": 1232,
-							"px": [54,317],
+							"px": [54,320],
 							"fieldInstances": [],
 							"__worldX": 54,
-							"__worldY": 317
+							"__worldY": 320
 						},
 						{
 							"__identifier": "ColliderBox",
@@ -3667,10 +3667,10 @@
 									"params": ["Mom"]
 								}] },
 								{ "__identifier": "Direction", "__type": "String", "__value": null, "__tile": null, "defUid": 575, "realEditorValues": [] },
-								{ "__identifier": "Interact", "__type": "String", "__value": "If $flag.MetKeeva\n Particle Smoke $party2x $party2y\n    ChangeSprite Party2 HumanFamiliar\n   Conversation SendOff\n    SetFlag SendOff True\nElse\n Conversation TownieMom\nEnd", "__tile": null, "defUid": 577, "realEditorValues": [{
+								{ "__identifier": "Interact", "__type": "String", "__value": "If $flag.MetKeeva\n If $flag.SendOff\n  Conversation SendOffRepeat\n Else\n  Particle Smoke $party2x $party2y\n  ChangeSprite Party2 HumanFamiliar\n  Conversation SendOff\n  SetFlag SendOff True\n  If !$flag.PlanRival\n   Particle Smoke $party2x $party2y\n   ChangeSprite Party2 DogFamiliar\n  End\n End\nElse\n Conversation TownieMom\nEnd", "__tile": null, "defUid": 577, "realEditorValues": [{
 									"id": "V_String",
 									"params": [
-										"If $flag.MetKeeva\\n Particle Smoke $party2x $party2y\\n    ChangeSprite Party2 HumanFamiliar\\n   Conversation SendOff\\n    SetFlag SendOff True\\nElse\\n Conversation TownieMom\\nEnd"
+										"If $flag.MetKeeva\\n If $flag.SendOff\\n  Conversation SendOffRepeat\\n Else\\n  Particle Smoke $party2x $party2y\\n  ChangeSprite Party2 HumanFamiliar\\n  Conversation SendOff\\n  SetFlag SendOff True\\n  If !$flag.PlanRival\\n   Particle Smoke $party2x $party2y\\n   ChangeSprite Party2 DogFamiliar\\n  End\\n End\\nElse\\n Conversation TownieMom\\nEnd"
 									]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] },
@@ -3924,10 +3924,10 @@
 									"params": ["Dad"]
 								}] },
 								{ "__identifier": "Direction", "__type": "String", "__value": null, "__tile": null, "defUid": 575, "realEditorValues": [] },
-								{ "__identifier": "Interact", "__type": "String", "__value": "Particle Smoke $party2x $party2y\nChangeSprite Party2 HumanFamiliar\nConversation SendOff\nSetFlag SendOff True", "__tile": null, "defUid": 577, "realEditorValues": [{
+								{ "__identifier": "Interact", "__type": "String", "__value": "If $flag.SendOff\n Conversation SendOffRepeat\nElse\n Particle Smoke $party2x $party2y\n ChangeSprite Party2 HumanFamiliar\n Conversation SendOff\n SetFlag SendOff True\n If !$flag.PlanRival\n  Particle Smoke $party2x $party2y\n  ChangeSprite Party2 DogFamiliar\n End\nEnd", "__tile": null, "defUid": 577, "realEditorValues": [{
 									"id": "V_String",
 									"params": [
-										"Particle Smoke $party2x $party2y\\nChangeSprite Party2 HumanFamiliar\\nConversation SendOff\\nSetFlag SendOff True"
+										"If $flag.SendOff\\n Conversation SendOffRepeat\\nElse\\n Particle Smoke $party2x $party2y\\n ChangeSprite Party2 HumanFamiliar\\n Conversation SendOff\\n SetFlag SendOff True\\n If !$flag.PlanRival\\n  Particle Smoke $party2x $party2y\\n  ChangeSprite Party2 DogFamiliar\\n End\\nEnd"
 									]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] },
@@ -3963,10 +3963,10 @@
 									"params": ["Modi"]
 								}] },
 								{ "__identifier": "Direction", "__type": "String", "__value": null, "__tile": null, "defUid": 575, "realEditorValues": [] },
-								{ "__identifier": "Interact", "__type": "String", "__value": "Particle Smoke $party2x $party2y\n    ChangeSprite Party2 HumanFamiliar\n   Conversation SendOff\n    SetFlag SendOff True", "__tile": null, "defUid": 577, "realEditorValues": [{
+								{ "__identifier": "Interact", "__type": "String", "__value": "If $flag.SendOff\n Conversation SendOffRepeat\nElse\n Particle Smoke $party2x $party2y\n ChangeSprite Party2 HumanFamiliar\n Conversation SendOff\n SetFlag SendOff True\n If !$flag.PlanRival\n  Particle Smoke $party2x $party2y\n  ChangeSprite Party2 DogFamiliar\n End\nEnd", "__tile": null, "defUid": 577, "realEditorValues": [{
 									"id": "V_String",
 									"params": [
-										"Particle Smoke $party2x $party2y\\n    ChangeSprite Party2 HumanFamiliar\\n   Conversation SendOff\\n    SetFlag SendOff True"
+										"If $flag.SendOff\\n Conversation SendOffRepeat\\nElse\\n Particle Smoke $party2x $party2y\\n ChangeSprite Party2 HumanFamiliar\\n Conversation SendOff\\n SetFlag SendOff True\\n If !$flag.PlanRival\\n  Particle Smoke $party2x $party2y\\n  ChangeSprite Party2 DogFamiliar\\n End\\nEnd"
 									]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] },
@@ -3979,6 +3979,40 @@
 							],
 							"__worldX": 304,
 							"__worldY": 253
+						},
+						{
+							"__identifier": "NPC",
+							"__grid": [27,35],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#32DB00",
+							"iid": "8f455c60-b0a0-11ee-b4b9-ed36bd90b7a1",
+							"width": 16,
+							"height": 16,
+							"defUid": 572,
+							"px": [432,573],
+							"fieldInstances": [
+								{ "__identifier": "Sprite", "__type": "String", "__value": "Townie3", "__tile": null, "defUid": 573, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Townie3"]
+								}] },
+								{ "__identifier": "Label", "__type": "String", "__value": "Blake", "__tile": null, "defUid": 574, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Blake"]
+								}] },
+								{ "__identifier": "Direction", "__type": "String", "__value": null, "__tile": null, "defUid": 575, "realEditorValues": [] },
+								{ "__identifier": "Interact", "__type": "String", "__value": "Conversation FamilyToMontage", "__tile": null, "defUid": 577, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Conversation FamilyToMontage"]
+								}] },
+								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] },
+								{ "__identifier": "EnableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1397, "realEditorValues": [] },
+								{ "__identifier": "DisableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1396, "realEditorValues": [] },
+								{ "__identifier": "LabelOffset", "__type": "Int", "__value": 4, "__tile": null, "defUid": 1395, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
+							],
+							"__worldX": 432,
+							"__worldY": 573
 						}
 					]
 				},

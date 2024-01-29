@@ -70,6 +70,11 @@ namespace Elenigma.Scenes.MapScene
                     ChildController = mapScene.AddController(new SummonController(mapScene, Player, summonOverlay));
                     
                     Player.Idle();
+                    foreach (Hero follower in mapScene.Party.Skip(1))
+                    {
+                        follower.Idle();
+                    }
+
                     return;
                 }
             }
@@ -94,6 +99,12 @@ namespace Elenigma.Scenes.MapScene
                     Player.Idle();
                     Player.Velocity = Vector2.Zero;
 
+                    foreach (Hero follower in mapScene.Party.Skip(1))
+                    {
+                        follower.Idle();
+                        follower.Velocity = Vector2.Zero;
+                    }
+
                     return;
                 }
             }
@@ -103,6 +114,11 @@ namespace Elenigma.Scenes.MapScene
                 movement = Vector2.Zero;
                 Player.Idle();
                 Player.Velocity = Vector2.Zero;
+                foreach (Hero follower in mapScene.Party.Skip(1))
+                {
+                    follower.Idle();
+                    follower.Velocity = Vector2.Zero;
+                }
             }
 
             if (movement.Length() < Input.THUMBSTICK_DEADZONE_THRESHOLD) Player.Idle();

@@ -78,10 +78,13 @@ namespace Elenigma.SceneObjects
             if (activeControllers != null)
             {
                 i = 0;
+                PriorityLevel startingPriority = priorityLevel;
                 while (i < activeControllers.Count)
                 {
                     activeControllers[i].PreUpdate(gameTime);
                     i++;
+
+                    if (startingPriority != priorityLevel) break;
                 }
 
                 activeControllers.RemoveAll(x => x.Terminated);
@@ -91,10 +94,13 @@ namespace Elenigma.SceneObjects
 
             if (priorityLevel < PriorityLevel.TransitionLevel)
             {
+                PriorityLevel startingPriority = priorityLevel;
                 while (i < overlayList.Count)
                 {
                     overlayList[i].Update(gameTime);
                     i++;
+
+                    if (startingPriority != priorityLevel) break;
                 }
                 overlayList.RemoveAll(x => x.Terminated);
             }
@@ -201,6 +207,9 @@ namespace Elenigma.SceneObjects
         {
             if (index == -1) controllerList[(int)newController.PriorityLevel].Add(newController);
             else controllerList[(int)newController.PriorityLevel].Insert(index, newController);
+
+            if (priorityLevel < newController.PriorityLevel) priorityLevel = newController.PriorityLevel;
+
             return newController;
         }
 

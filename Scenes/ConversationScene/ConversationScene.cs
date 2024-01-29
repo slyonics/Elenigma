@@ -34,6 +34,21 @@ namespace Elenigma.Scenes.ConversationScene
                 backgroundSprite = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Background_" + conversationData.Background)];
         }
 
+        public ConversationScene(string conversationName, string autoProceed)
+            : base()
+        {
+            conversationData = CONVERSATIONS.FirstOrDefault(x => x.Name == conversationName);
+
+            string[] conversationScript = conversationData.DialogueRecords[0].Script;
+            if (conversationScript != null) RunScript(conversationData.DialogueRecords[0].Script);
+
+            conversationViewModel = new ConversationViewModel(this, conversationData, new Rectangle(), bool.Parse(autoProceed));
+            AddOverlay(conversationViewModel);
+
+            if (!string.IsNullOrEmpty(conversationData.Background))
+                backgroundSprite = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Background_" + conversationData.Background)];
+        }
+
         public ConversationScene(ConversationRecord iConversationData)
             : base()
         {

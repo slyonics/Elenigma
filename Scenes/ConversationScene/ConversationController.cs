@@ -52,6 +52,7 @@ namespace Elenigma.Scenes.ConversationScene
                 case "PortraitPosition": PortraitPosition(tokens); break;
                 case "PortraitColor": PortraitColor(tokens); break;
                 case "PortraitScale": PortraitScale(tokens); break;
+                case "PortraitVelocity": PortraitVelocity(tokens); break;
                 case "GameEvent": GameEvent(tokens); break;
                 case "EndGame": EndGame = true; break;
                 case "WaitForText": WaitForText(tokens); return false;
@@ -88,20 +89,7 @@ namespace Elenigma.Scenes.ConversationScene
 
         private void AddPortrait(string[] tokens)
         {
-            if (tokens.Length > 6)
-            {
-                string name = tokens[1];
-                string sprite = tokens[2];
-                int startX = int.Parse(tokens[3]);
-                int startY = int.Parse(tokens[4]);
-                int endX = int.Parse(tokens[5]);
-                int endY = int.Parse(tokens[6]);
-                float transitionLength = (tokens.Length > 7) ? float.Parse(tokens[7]) : 1.0f;
-
-                Portrait portrait = new Portrait(conversationScene, name, sprite, new Vector2(startX, startY), new Vector2(endX, endY), transitionLength);
-                conversationScene.AddPortrait(portrait);
-            }
-            else if (tokens.Length > 8)
+            if (tokens.Length > 8)
             {
                 string name = tokens[1];
                 string sprite = tokens[2];
@@ -114,6 +102,19 @@ namespace Elenigma.Scenes.ConversationScene
                 float transitionLength = (tokens.Length > 9) ? float.Parse(tokens[9]) : 1.0f;
 
                 Portrait portrait = new Portrait(conversationScene, name, sprite, new Vector2(positionX, positionY), cellWidth, cellHeight, cellCount, frameLength, transitionLength);
+                conversationScene.AddPortrait(portrait);
+            }
+            else if (tokens.Length > 6)
+            {
+                string name = tokens[1];
+                string sprite = tokens[2];
+                int startX = int.Parse(tokens[3]);
+                int startY = int.Parse(tokens[4]);
+                int endX = int.Parse(tokens[5]);
+                int endY = int.Parse(tokens[6]);
+                float transitionLength = (tokens.Length > 7) ? float.Parse(tokens[7]) : 1.0f;
+
+                Portrait portrait = new Portrait(conversationScene, name, sprite, new Vector2(startX, startY), new Vector2(endX, endY), transitionLength);
                 conversationScene.AddPortrait(portrait);
             }
             else
@@ -193,6 +194,16 @@ namespace Elenigma.Scenes.ConversationScene
 
             Portrait portrait = conversationScene.Portraits.Find(x => x.Name == name);
             portrait.AnimatedSprite.Scale = new Vector2(scaleX, scaleY);
+        }
+
+        public void PortraitVelocity(string[] tokens)
+        {
+            string name = tokens[1];
+            float scaleX = float.Parse(tokens[2]);
+            float scaleY = float.Parse(tokens[3]);
+
+            Portrait portrait = conversationScene.Portraits.Find(x => x.Name == name);
+            portrait.Velocity = new Vector2(scaleX, scaleY);
         }
 
         private void GameEvent(string[] tokens)

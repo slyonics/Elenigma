@@ -85,7 +85,7 @@ namespace Elenigma.Scenes.ConversationScene
         public override void FinishTransition()
         {
             Vector2 scale = portrait.AnimatedSprite.Scale;
-            portrait.AnimatedSprite = new AnimatedSprite(endSprite, null);
+            portrait.AnimatedSprite = new AnimatedSprite(endSprite, portrait.AnimatedSprite.AnimationList);
             portrait.Shader = null;
             portrait.AnimatedSprite.Scale = scale;
         }

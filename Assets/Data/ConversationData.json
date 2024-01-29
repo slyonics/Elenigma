@@ -271,7 +271,7 @@
 				"Text": "Yeah and you stay safe too. Let's go!"
 			}
 		],
-		"EndScript": [ "ChangeScene Elenigma.Scenes.MontageScene.MontageScene" ]
+		"EndScript": [ "ChangeScene Elenigma.Scenes.ConversationScene.ConversationScene Montage True" ]
 	},
 	{
 		"Name": "PlanRepeat",
@@ -466,14 +466,99 @@
 				"Speaker": "Arthur",
 				"Portrait": "Portraits_YoungMC",
 				"Text": "Understood. I will cherish these gifts dearly. I love you all so much and I think we are ready!"
+			}
+		],
+		"EndScript": [
+			"If $flag.RivalPlan",
+			"ChangeConversation FamilyToMontage",
+			"Else",
+			"ChangeConversation FamilyToRival",
+			"End"
+		]
+	},
+	{
+		"Name": "SendOffRepeat",
+		"DialogueRecords": [
+			{
+				"Speaker": "Dad, Mom, and Modi",
+				"Text": "Good luck Arthur!"
+			}
+		]
+	},
+	{
+		"Name": "FamilyToRival",
+		"DialogueRecords": [
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "Not quite! Have you talked with Shane tonight?"
 			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_YoungMC",
+				"Text": "Yes, but I still got one more thing to tell him."
+			}
+		]
+	},
+	{
+		"Name": "FamilyToMontage",
+		"DialogueRecords": [
 			{
 				"Speaker": "Nota",
 				"Portrait": "Portraits_HumanFamiliar",
 				"Text": "We sure are. Let's go!"
 			}
 		],
-		"EndScript": [ "ChangeScene Elenigma.Scenes.MontageScene.MontageScene" ]
+		"EndScript": [ "ChangeScene Elenigma.Scenes.ConversationScene.ConversationScene Montage True" ]
+	},
+	{
+		"Name": "Montage",
+		"Background": "Blank",
+		"DialogueRecords": [
+			{
+				"Text": "And so their journey began.",
+				"Script": [
+					"AddPortrait Runners MontageRunning1 45 98 64 32 4 200 0.4",
+					"PortraitVelocity Runners 8 0",
+					"SetAutoProceed 2000"
+				]
+			},
+			{
+				"Text": "Arthur Lux Gladius wanted to become stronger.",
+				"Script": [ "SetAutoProceed 2500" ]
+			},
+			{
+				"Text": "He wanted to come back home as a warrior, a protector, and a ray of light."
+			},
+			{
+				"Text": "One day he hoped to be the village leader and ensure their town lived in peace.",
+				"Script": [ "SetAutoProceed 2000" ]
+			},
+			{
+				"Text": "The young familiar Nota wanted to become confident."
+			},
+			{
+				"Text": "As a familiar, she would remain by Arthur's side.",
+				"Script": [ "SetAutoProceed 2500" ]
+			},
+			{
+				"Text": "Five years passed since their voyage began. They trained everyday.",
+				"Script": [
+					"PortraitSprite Runners MontageRunning2 1.0",
+					"Wait 6000",
+					"ProceedText"
+				]
+			},
+			{
+				"Text": "In moments of weakness, they relied on each other."
+			},
+			{
+				"Text": "As the lake shimmered and the wind whispered, who had they become?"
+			}
+		],
+		"EndScript": [
+			"ChangeScene Elenigma.Scenes.MapScene.MapScene TechWorldIntro SecretMeadow"
+		]
 	},
 	{
 		"Name": "SlyphIntro",
