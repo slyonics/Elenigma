@@ -3979,40 +3979,6 @@
 							],
 							"__worldX": 304,
 							"__worldY": 253
-						},
-						{
-							"__identifier": "NPC",
-							"__grid": [27,35],
-							"__pivot": [0,0],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#32DB00",
-							"iid": "8f455c60-b0a0-11ee-b4b9-ed36bd90b7a1",
-							"width": 16,
-							"height": 16,
-							"defUid": 572,
-							"px": [432,573],
-							"fieldInstances": [
-								{ "__identifier": "Sprite", "__type": "String", "__value": "Townie3", "__tile": null, "defUid": 573, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Townie3"]
-								}] },
-								{ "__identifier": "Label", "__type": "String", "__value": "Blake", "__tile": null, "defUid": 574, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Blake"]
-								}] },
-								{ "__identifier": "Direction", "__type": "String", "__value": null, "__tile": null, "defUid": 575, "realEditorValues": [] },
-								{ "__identifier": "Interact", "__type": "String", "__value": "Conversation FamilyToMontage", "__tile": null, "defUid": 577, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Conversation FamilyToMontage"]
-								}] },
-								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 579, "realEditorValues": [] },
-								{ "__identifier": "EnableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1397, "realEditorValues": [] },
-								{ "__identifier": "DisableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1396, "realEditorValues": [] },
-								{ "__identifier": "LabelOffset", "__type": "Int", "__value": 4, "__tile": null, "defUid": 1395, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
-							],
-							"__worldX": 432,
-							"__worldY": 573
 						}
 					]
 				},

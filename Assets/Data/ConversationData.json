@@ -469,7 +469,7 @@
 			}
 		],
 		"EndScript": [
-			"If $flag.RivalPlan",
+			"If $flag.PlanRival",
 			"ChangeConversation FamilyToMontage",
 			"Else",
 			"ChangeConversation FamilyToRival",
@@ -557,7 +557,7 @@
 			}
 		],
 		"EndScript": [
-			"ChangeScene Elenigma.Scenes.MapScene.MapScene TechWorldIntro SecretMeadow"
+			"ChangeScene Elenigma.Scenes.TitleScene.TitleScene"
 		]
 	},
 	{
