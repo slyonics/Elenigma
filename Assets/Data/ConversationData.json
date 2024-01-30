@@ -42,8 +42,7 @@
 				"Portrait": "Portraits_YoungMC",
 				"Text": "Maybe the villagers will know where she is."
 			}
-		],
-		"EndScript": [ "ChangeScene Elenigma.Scenes.ConversationScene.ConversationScene Montage True" ]
+		]
 	},
 	{
 		"Name": "NoGoMeadow",
@@ -451,11 +450,13 @@
 			},
 			{
 				"Portrait": "Portraits_Sword",
-				"Text": "Received Crystal Sword!"
+				"Text": "Received Crystal Sword!",
+				"Script": [ "Sound Pickup" ]
 			},
 			{
 				"Portrait": "Portraits_Map",
-				"Text": "Received Old Map!"
+				"Text": "Received Old Map!",
+				"Script": [ "Sound Pickup" ]
 			},
 			{
 				"Speaker": "Dad",
