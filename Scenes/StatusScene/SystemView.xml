@@ -6,8 +6,8 @@
 		<RadioBox Name="SaveList" Anchor="$CenterX,$CenterY" Bounds="-60,-63,180,148" InnerMargin="5,5,5,0" Items="Ref AvailableSaves" Scrolling="False">
 			<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="0,0,170,48" Alignment="Vertical" Action="Save" ActionParameter="Bind DataGrid.SaveSlot">
 				<Label Text="Bind DataGrid.Location" Font="Main" Alignment="Cascading" TextAlignment="Left" Bounds="2,0,144,16" Color="#4D2B32FF"/>
-				<Image Picture="Bind DataGrid.Portrait1" Alignment="Left" Bounds="0,14,32,32"/>
-				<Image Picture="Bind DataGrid.Portrait2" Alignment="Left" Bounds="0,14,32,32"/>
+				<Image Picture="Bind DataGrid.Portrait1" Alignment="Left" Bounds="0,16,32,32"/>
+				<Image Picture="Bind DataGrid.Portrait2" Alignment="Left" Bounds="0,16,32,32"/>
 			</RadioButton>
 		</RadioBox>
 

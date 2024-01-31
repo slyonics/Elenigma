@@ -3,12 +3,12 @@
 		"Name": "CrystalSword",
 		"Label": "Crystal Sword",
 		"Sprite": "Portraits_Sword",
-		"Description": "A crystal swordd."
+		"Description": "Sword cut from a single elemental crystal."
 	},
 	{
 		"Name": "OldMap",
 		"Label": "Old Map",
 		"Sprite": "Portraits_Map",
-		"Description": "An old and blank map."
+		"Description": "A map that magically writes itself."
 	}
 ]

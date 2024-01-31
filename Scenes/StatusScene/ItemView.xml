@@ -2,9 +2,9 @@
 <View>
 
 	<RadioBox Name="ItemList" Style="LightFrame" Anchor="$CenterX,$CenterY" Bounds="-60,-63,180,105" InnerMargin="4,5,4,0" Items="Bind AvailableItems" Scrolling="True" OnSelect="UpdateDescription" SelectSound="None">
-		<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="0,0,170,18" Alignment="Vertical" Action="SelectCommand" ActionParameter="Ref DataGrid" Enabled="Ref DataGrid.FieldUsable">
-			<Image Image="Ref DataGrid.ItemRecord.Sprite" Alignment="Cascading" Bounds="1,0,16,16"/>
-			<Label Text="Ref DataGrid.ItemRecord.Name" Font="Main" Alignment="Cascading" TextAlignment="Left" Bounds="1,0,132,16" Color="#4D2B32FF"/>
+		<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="0,0,170,18" Alignment="Vertical">
+			<Image Picture="Ref DataGrid.ItemRecord.Sprite" Alignment="Cascading" Bounds="1,1,16,16"/>
+			<Label Text="Ref DataGrid.ItemRecord.Label" Font="Main" Alignment="Cascading" TextAlignment="Left" Bounds="1,0,132,16" Color="#4D2B32FF"/>
 			<Label Text="x" Font="Main" Alignment="Cascading" TextAlignment="Right" Bounds="0,0,8,16" Visible="Ref DataGrid.Consumable"/>
 			<Label Text="Bind DataGrid.Quantity" Font="Main" Alignment="Cascading" TextAlignment="Left" Bounds="0,0,16,16" Visible="Ref DataGrid.Consumable"/>
 		</RadioButton>

@@ -125,6 +125,8 @@ namespace Elenigma.Scenes.MapScene
                 Hero follower = mapScene.AddEntity(new Hero(mapScene, mapScene.Tilemap, npc.Position, GameSprite.Actors_DogFamiliar, npc.Orientation));
                 mapScene.AddController(new FollowerController(mapScene, follower, mapScene.PartyLeader));
                 mapScene.AddParticle(new AnimationParticle(mapScene, follower.Position + new Vector2(1, 0), AnimationType.Smoke, true));
+
+                GameProfile.PlayerProfile.Party.Add(new HeroModel("Nota", "Portraits_HumanFamiliar", "Actors_DogFamiliar"));
             }
         }
     }

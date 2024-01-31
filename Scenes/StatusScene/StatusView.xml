@@ -9,9 +9,9 @@
 		<Label Text="Bind PlayerProfile.Money" Font="Main" Alignment="Left" TextAlignment="Right" Bounds="0,0,40,10" Color="#4D2B32FF"/>
 	</Panel>
 	
-	<Panel Name="PartyPanel" Style="LightFrame" Anchor="$CenterX,$CenterY" Bounds="-60,-63,180,105" InnerMargin="4,5,4,0" TransitionIn="Expand">
+	<Panel Name="PartyPanel" Style="LightFrame" Anchor="$CenterX,$CenterY" Bounds="-60,-63,180,120" InnerMargin="4,5,4,0" TransitionIn="Expand">
 		<RadioBox Name="PartyList" Items="Ref PlayerProfile.Party" Scrolling="False" Alignment="Stretch" Enabled="False" >
-			<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="0,0,170,32" Alignment="Vertical" Action="SelectParty" ActionParameter="Ref DataGrid">
+			<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="0,0,170,40" Alignment="Vertical" Action="SelectParty" ActionParameter="Ref DataGrid">
 				<Image Picture="Bind DataGrid.Portrait" Alignment="Cascading" Bounds="0,0,32,32"/>
 				<Panel Bounds="0,0,122,32" Alignment="Cascading">
 					<Label Text="Bind DataGrid.Name" Alignment="Cascading" Font="Main" TextAlignment="Left" Bounds="2,0,88,14" Color="#4D2B32FF"/>

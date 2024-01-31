@@ -68,6 +68,7 @@ namespace Elenigma.Scenes.ConversationScene
                 case "ChangeMap": MapScene.EventController.ChangeMap(tokens, MapScene.MapScene.Instance); break;
                 case "AnimateHero": MapScene.MapScene.Instance.Party[int.Parse(tokens[1])].PlayAnimation(tokens[2], new AnimationFollowup(() => { })); break;
                 case "ResetTrigger": EventTrigger.LastTrigger.Terminated = false; MapScene.MapScene.Instance.EventTriggers.Add(EventTrigger.LastTrigger); break;
+                case "GiveItem": GiveItem(tokens); break;
 
                 default: return false;
             }
@@ -257,6 +258,13 @@ namespace Elenigma.Scenes.ConversationScene
             if (conversationScript != null) scriptParser.RunScript(conversationData.DialogueRecords[0].Script);
 
             conversationScene.ConversationViewModel.ChangeConversation(conversationData);
+        }
+
+        public void GiveItem(string[] tokens)
+        {
+            var name = string.Join(' ', tokens.Skip(1));
+
+            GameProfile.AddInventory(name, -1);
         }
     }
 }

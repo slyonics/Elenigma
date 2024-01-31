@@ -142,6 +142,38 @@ namespace Elenigma.Models
             return newValue;
         }
 
+        public static void AddInventory(string itemName, int quantity)
+        {
+            var itemEntry = inventory.FirstOrDefault(x => x.Value.ItemRecord.Name == itemName);
+            if (itemEntry == null || quantity < 0)
+            {
+                inventory.Add(new ItemModel(itemName, quantity));
+            }
+            else
+            {
+                itemEntry.Value.Quantity.Value = itemEntry.Value.Quantity.Value + quantity;
+                if (itemEntry.Value.Quantity.Value < 1) inventory.Remove(itemEntry);
+            }
+        }
+
+        public static void RemoveInventory(ItemModel itemModel, int quantity)
+        {
+            var itemEntry = inventory.FirstOrDefault(x => x.Value == itemModel);
+
+            itemEntry.Value.Quantity.Value = itemEntry.Value.Quantity.Value + quantity;
+            if (itemEntry.Value.Quantity.Value < 1)
+            {
+                Inventory.Remove(itemEntry);
+            }
+        }
+
+        public static int GetInventoryCount(string itemName)
+        {
+            var itemEntry = inventory.FirstOrDefault(x => x.Value.ItemRecord.Name == itemName);
+            if (itemEntry == null) return 0;
+            else return itemEntry.Value.Quantity.Value;
+        }
+
         public static int ParseSlotNumber(string saveName)
         {
             int slotStart = saveName.LastIndexOf(SAVE_FOLDER) + 6;
