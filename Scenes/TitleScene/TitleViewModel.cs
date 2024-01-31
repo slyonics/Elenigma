@@ -104,6 +104,7 @@ namespace Elenigma.Scenes.TitleScene
                 case "New Game":
                     commandBox.Enabled = false;
                     GameProfile.NewState();
+                    GameProfile.PlayerProfile.Party.Add(new HeroModel("Arthur", "Portraits_YoungMC", "Actors_YoungMC"));
                     CrossPlatformGame.Transition(typeof(MapScene.MapScene), GameMap.TechWorldIntro, 22, 37, Orientation.Down);
                     break;
 

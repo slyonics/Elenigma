@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<View>
+	<Panel Style="LightFrame" Anchor="$CenterX,$CenterY" Bounds="-120,-84,149,21" InnerMargin="7,2,7,0" TransitionIn="Expand">
+		<Label Text="Ref LocationName" Font="Main" Alignment="Left" TextAlignment="Left" Color="#4D2B32FF"/>
+	</Panel>
+
+	<Panel Style="LightFrame" Anchor="$CenterX,$CenterY" Bounds="29,-84,91,21" InnerMargin="5,2,5,0" TransitionIn="Expand">
+		<Label Text="Gold:" Font="Main" Alignment="Left" TextAlignment="Left" Bounds="1,0,40,10" Color="#4D2B32FF"/>
+		<Label Text="Bind PlayerProfile.Money" Font="Main" Alignment="Left" TextAlignment="Right" Bounds="0,0,40,10" Color="#4D2B32FF"/>
+	</Panel>
+	
+	<Panel Name="PartyPanel" Style="LightFrame" Anchor="$CenterX,$CenterY" Bounds="-60,-63,180,105" InnerMargin="4,5,4,0" TransitionIn="Expand">
+		<RadioBox Name="PartyList" Items="Ref PlayerProfile.Party" Scrolling="False" Alignment="Stretch" Enabled="False" >
+			<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="0,0,170,32" Alignment="Vertical" Action="SelectParty" ActionParameter="Ref DataGrid">
+				<Image Picture="Bind DataGrid.Portrait" Alignment="Cascading" Bounds="0,0,32,32"/>
+				<Panel Bounds="0,0,122,32" Alignment="Cascading">
+					<Label Text="Bind DataGrid.Name" Alignment="Cascading" Font="Main" TextAlignment="Left" Bounds="2,0,88,14" Color="#4D2B32FF"/>
+				</Panel>
+			</RadioButton>
+		</RadioBox>
+	</Panel>
+
+	<Panel Style="LightFrame" Anchor="$CenterX,$CenterY" Bounds="-120,-63,60,58" InnerMargin="4,6,4,0" TransitionIn="Expand">
+		<RadioBox Name="CommandBox" Items="Bind AvailableCommands" Scrolling="False" Alignment="Stretch">
+			<RadioButton Style="Blank" PushedStyle="LabelGlow" Bounds="0,-1,50,16" Alignment="Vertical" Action="SelectCommand" ActionParameter="Ref DataGrid">
+				<Label Text="Ref DataGrid" Alignment="Left" Font="Main" TextAlignment="Left" Bounds="2,0,50,14" Color="#4D2B32FF"/>
+			</RadioButton>
+		</RadioBox>
+	</Panel>
+
+</View>

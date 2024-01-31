@@ -1,0 +1,14 @@
+[
+	{
+		"Name": "CrystalSword",
+		"Label": "Crystal Sword",
+		"Sprite": "Portraits_Sword",
+		"Description": "A crystal swordd."
+	},
+	{
+		"Name": "OldMap",
+		"Label": "Old Map",
+		"Sprite": "Portraits_Map",
+		"Description": "An old and blank map."
+	}
+]

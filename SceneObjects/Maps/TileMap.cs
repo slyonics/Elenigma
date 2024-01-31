@@ -48,6 +48,7 @@ namespace Elenigma.SceneObjects.Maps
         public List<Light> Lights { get; private set; } = new List<Light>();
 
         public string Name { get => gameMap.ToString(); }
+        public string Entrance { get; set; } = "Default";
 
         public Tilemap(MapScene iScene, GameMap iGameMap)
             : base(iScene, Vector2.Zero)

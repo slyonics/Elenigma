@@ -3979,6 +3979,35 @@
 							],
 							"__worldX": 304,
 							"__worldY": 253
+						},
+						{
+							"__identifier": "Travel",
+							"__grid": [18,19],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#447FDB",
+							"iid": "c86bac60-b0a0-11ee-a0d6-1fc6aa85ae9b",
+							"width": 39,
+							"height": 40,
+							"defUid": 628,
+							"px": [289,312],
+							"fieldInstances": [
+								{ "__identifier": "Name", "__type": "String", "__value": "Default", "__tile": null, "defUid": 629, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Default"]
+								}] },
+								{ "__identifier": "Direction", "__type": "String", "__value": "Down", "__tile": null, "defUid": 630, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Down"]
+								}] },
+								{ "__identifier": "Label", "__type": "String", "__value": "Default", "__tile": null, "defUid": 631, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Default"]
+								}] }
+							],
+							"__worldX": 289,
+							"__worldY": 312
 						}
 					]
 				},

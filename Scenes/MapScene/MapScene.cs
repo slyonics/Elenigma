@@ -117,6 +117,7 @@ namespace Elenigma.Scenes.MapScene
 
 
                                 EventTriggers.Add(new EventTrigger(this, entity));
+
                                 break;
                             }
                     }
@@ -164,6 +165,7 @@ namespace Elenigma.Scenes.MapScene
         public MapScene(string gameMap, string sourceMapName)
             : this((GameMap)Enum.Parse(typeof(GameMap), gameMap))
         {
+            Tilemap.Entrance = sourceMapName;
             var spawnZone = EventTriggers.First(x => x.Name == sourceMapName);
 
             Orientation orientation = spawnZone.Direction;
@@ -199,7 +201,7 @@ namespace Elenigma.Scenes.MapScene
         public void SaveMapPosition()
         {
             GameProfile.SetSaveData<string>("LastMapName", Tilemap.Name);
-            GameProfile.SetSaveData<Vector2>("LastPosition", PartyLeader.Position);
+            GameProfile.SetSaveData<string>("LastEntrance", Tilemap.Entrance);
             GameProfile.SetSaveData<string>("PlayerLocation", Tilemap.Level.FieldInstances.First(x => x.Identifier == "LocationName").Value);
         }
 
@@ -219,7 +221,7 @@ namespace Elenigma.Scenes.MapScene
             bool eventTriggered = false;
             foreach (EventTrigger eventTrigger in EventTriggers)
             {
-                if (eventTrigger.Bounds.Intersects(PartyLeader.Bounds) && !eventTrigger.Interactive)
+                if (eventTrigger.Bounds.Intersects(PartyLeader.Bounds) && !eventTrigger.Interactive && !eventTrigger.TravelZone)
                 {
                     eventTriggered = true;
                     eventTrigger.Terminated = true;

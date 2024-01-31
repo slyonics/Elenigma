@@ -32,8 +32,6 @@ namespace Elenigma.Scenes.SplashScene
 
         public void Notify(SkippableWaitController sender)
         {
-            GameProfile.NewState();
-
             CrossPlatformGame.Transition(typeof(IntroScene.IntroScene));
         }
 

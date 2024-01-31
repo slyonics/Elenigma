@@ -18,7 +18,7 @@ namespace Elenigma.Scenes.TitleScene
             : base(scene, PriorityLevel.GameLevel)
         {
             var saves = GameProfile.GetAllSaveData();
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 if (saves.ContainsKey(i))
                 {
@@ -76,10 +76,9 @@ namespace Elenigma.Scenes.TitleScene
                 GameProfile.SaveSlot = saveSlot;
                 GameProfile.LoadState("Save" + saveSlot + ".sav");
 
-                GameMap map = (GameMap)Enum.Parse(typeof(GameMap), GameProfile.GetSaveData<string>("LastMapName"));
-                int tileX = GameProfile.GetSaveData<int>("LastPositionX");
-                int tileY = GameProfile.GetSaveData<int>("LastPositionY");
-                CrossPlatformGame.Transition(typeof(MapScene.MapScene), map, tileX, tileY, Orientation.Down);
+                string map = GameProfile.GetSaveData<string>("LastMapName");
+                string entrance = GameProfile.GetSaveData<string>("LastEntrance");
+                CrossPlatformGame.Transition(typeof(MapScene.MapScene), map, entrance);
             }
         }
 

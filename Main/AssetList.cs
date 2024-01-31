@@ -8,6 +8,9 @@ namespace Elenigma.Main
         ConversationScene_SelectionView,
         CreditsScene_CreditsView,
         IntroScene_IntroView,
+        StatusScene_ItemView,
+        StatusScene_StatusView,
+        StatusScene_SystemView,
         TitleScene_ContinueView,
         TitleScene_SettingsView,
         TitleScene_TitleView,
@@ -91,6 +94,7 @@ namespace Elenigma.Main
     public enum GameData
     {
         ConversationData,
+        ItemData,
 
         None = -1
     }

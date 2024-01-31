@@ -23,7 +23,8 @@ namespace Elenigma.Models
 
         }
 
-        public List<SummonType> AvailableSummons { get; set; } = new List<SummonType>();
-        public ModelProperty<long> Money { get; set; } = new ModelProperty<long>(13);
+        public ModelCollection<SummonType> AvailableSummons { get; set; } = new ModelCollection<SummonType>();
+        public ModelCollection<HeroModel> Party { get; set; } = new ModelCollection<HeroModel>();
+        public ModelProperty<long> Money { get; set; } = new ModelProperty<long>(100);
     }
 }

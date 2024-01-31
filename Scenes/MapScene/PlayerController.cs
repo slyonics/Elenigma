@@ -50,20 +50,25 @@ namespace Elenigma.Scenes.MapScene
 
             InputFrame inputFrame = Input.CurrentInput;
 
-            if (Input.CurrentInput.CommandPressed(Command.Cancel))
+            if (inputFrame.CommandPressed(Command.Cancel))
             {
-                /*
-                Controller suspendController = mapScene.AddController(new Controller(PriorityLevel.MenuLevel));
+                Player.Idle();
+                foreach (Hero follower in mapScene.Party.Skip(1))
+                {
+                    follower.Idle();
+                }
 
-                StatusScene.StatusScene statusScene = new StatusScene.StatusScene();
+                Controller suspendController = mapScene.AddController(new Controller(PriorityLevel.MenuLevel));
+                StatusScene.StatusScene statusScene = new StatusScene.StatusScene(mapScene.LocationName);
                 statusScene.OnTerminated += new TerminationFollowup(suspendController.Terminate);
-                CrossPlatformGame.StackScene(statusScene);
+                CrossPlatformGame.StackScene(statusScene, true);
 
                 return;
-                */
             }
             else
             {
+
+                /*
                 if (inputFrame.CommandPressed(Command.Summon) && GameProfile.PlayerProfile.AvailableSummons.Count > 0)
                 {
                     SummonOverlay summonOverlay = mapScene.AddOverlay(new SummonOverlay(mapScene, Player, GameProfile.PlayerProfile.AvailableSummons));
@@ -76,7 +81,7 @@ namespace Elenigma.Scenes.MapScene
                     }
 
                     return;
-                }
+                }*/
             }
 
             Vector2 movement = Vector2.Zero;

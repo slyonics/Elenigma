@@ -33,7 +33,7 @@ namespace Elenigma.Models
         public static Dictionary<string, object> SaveData { get => saveData; }
 
         private static PlayerProfile playerProfile;
-        //private static ModelCollection<ItemModel> inventory;
+        private static ModelCollection<ItemModel> inventory;
         private static int worldTime = 360;
 
         public static void NewState()
@@ -42,7 +42,7 @@ namespace Elenigma.Models
             //saveSlot = 0;
             saveData = new Dictionary<string, object>(DEFAULT_SAVE_VALUES);
             playerProfile = new PlayerProfile();
-            //inventory = new ModelCollection<ItemModel>();
+            inventory = new ModelCollection<ItemModel>();
         }
 
         public static void LoadState(string saveFileName)
@@ -60,7 +60,7 @@ namespace Elenigma.Models
             {
                 saveData = (Dictionary<string, object>)binaryFormatter.Deserialize(fileStream);
                 playerProfile = (PlayerProfile)binaryFormatter.Deserialize(fileStream);
-                //inventory = (ModelCollection<ItemModel>)binaryFormatter.Deserialize(fileStream);
+                inventory = (ModelCollection<ItemModel>)binaryFormatter.Deserialize(fileStream);
             }
         }
 
@@ -91,8 +91,8 @@ namespace Elenigma.Models
                 binaryFormatter.Serialize(fileStream, playerProfile);
                 fileStream.Flush();
 
-                //binaryFormatter.Serialize(fileStream, inventory);
-                //fileStream.Flush();
+                binaryFormatter.Serialize(fileStream, inventory);
+                fileStream.Flush();
             }
         }
 
@@ -151,7 +151,7 @@ namespace Elenigma.Models
         }
 
         public static PlayerProfile PlayerProfile { get => playerProfile; }
-        // public static ModelCollection<ItemModel> Inventory { get => inventory; }
+        public static ModelCollection<ItemModel> Inventory { get => inventory; }
 
         public static int WorldTime { get => worldTime; set => worldTime = value; }
 

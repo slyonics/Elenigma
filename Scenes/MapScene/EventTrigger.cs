@@ -46,7 +46,7 @@ namespace Elenigma.Scenes.MapScene
                     break;
 
                 case "Travel":
-                    Interactive = true;
+                    if (Name != "Default") Interactive = true;
                     TravelZone = true;
                     Script = new string[] { "ChangeMap " + Name };
                     break;

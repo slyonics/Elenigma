@@ -451,12 +451,12 @@
 			{
 				"Portrait": "Portraits_Sword",
 				"Text": "Received Crystal Sword!",
-				"Script": [ "Sound Pickup" ]
+				"Script": [ "Sound Pickup", "AddItem CrystalSword" ]
 			},
 			{
 				"Portrait": "Portraits_Map",
 				"Text": "Received Old Map!",
-				"Script": [ "Sound Pickup" ]
+				"Script": [ "Sound Pickup", "AddItem OldMap" ]
 			},
 			{
 				"Speaker": "Dad",

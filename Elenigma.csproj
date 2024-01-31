@@ -96,7 +96,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Data\" />
     <Folder Include="Assets\Graphics\Actors\" />
     <Folder Include="Assets\Graphics\Portraits\" />
     <Folder Include="Assets\Graphics\Tiles\" />

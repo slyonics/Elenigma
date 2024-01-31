@@ -87,6 +87,7 @@ namespace Elenigma.Main
             AssetCache.LoadContent(Content, GraphicsDevice);
 
             ConversationScene.Initialize();
+            ItemRecord.ITEMS = AssetCache.LoadRecords<ItemRecord>("ItemData");
 
             CurrentScene = new IntroScene();
         }
