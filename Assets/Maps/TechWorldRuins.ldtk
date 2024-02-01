@@ -4228,9 +4228,11 @@
 							"defUid": 1057,
 							"px": [-16,167],
 							"fieldInstances": [
-								{ "__identifier": "Script", "__type": "String", "__value": "Conversation Cliffhanger", "__tile": null, "defUid": 1058, "realEditorValues": [{
+								{ "__identifier": "Script", "__type": "String", "__value": "Particle Smoke $party2x $party2y\nChangeSprite Party2 HumanFamiliar\nConversation Cliffhanger\nParticle Smoke $party2x $party2y\nChangeSprite Party2 BigDogFamiliar", "__tile": null, "defUid": 1058, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Conversation Cliffhanger"]
+									"params": [
+										"Particle Smoke $party2x $party2y\\nChangeSprite Party2 HumanFamiliar\\nConversation Cliffhanger\\nParticle Smoke $party2x $party2y\\nChangeSprite Party2 BigDogFamiliar"
+									]
 								}] },
 								{ "__identifier": "EnableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1059, "realEditorValues": [] },
 								{ "__identifier": "DisableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1060, "realEditorValues": [] }

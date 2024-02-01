@@ -79,7 +79,7 @@ namespace Elenigma.Scenes.MapScene
 
             if (GameProfile.GetSaveData<bool>("MetKeeva"))
             {
-                Hero follower = AddEntity(new Hero(this, Tilemap, leaderHero.Position, GameSprite.Actors_DogFamiliar));
+                Hero follower = AddEntity(new Hero(this, Tilemap, leaderHero.Position, (GameSprite)Enum.Parse(typeof(GameSprite), GameProfile.PlayerProfile.Party[1].Sprite.Value)));
                 AddController(new FollowerController(this, follower, leaderHero));
                 Party.Add(follower);
             }

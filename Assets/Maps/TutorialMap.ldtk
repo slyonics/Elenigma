@@ -3372,9 +3372,11 @@
 							"defUid": 1057,
 							"px": [72,79],
 							"fieldInstances": [
-								{ "__identifier": "Script", "__type": "String", "__value": "Conversation LogTutorial\nSetFlag LogTutorial True", "__tile": null, "defUid": 1058, "realEditorValues": [{
+								{ "__identifier": "Script", "__type": "String", "__value": "Particle Smoke $party2x $party2y\nChangeSprite Party2 HumanFamiliar\nConversation LogTutorial\nSetFlag LogTutorial True\nParticle Smoke $party2x $party2y\nChangeSprite Party2 BigDogFamiliar", "__tile": null, "defUid": 1058, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Conversation LogTutorial\\nSetFlag LogTutorial True"]
+									"params": [
+										"Particle Smoke $party2x $party2y\\nChangeSprite Party2 HumanFamiliar\\nConversation LogTutorial\\nSetFlag LogTutorial True\\nParticle Smoke $party2x $party2y\\nChangeSprite Party2 BigDogFamiliar"
+									]
 								}] },
 								{ "__identifier": "EnableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1059, "realEditorValues": [] },
 								{ "__identifier": "DisableIf", "__type": "String", "__value": "LogTutorial", "__tile": null, "defUid": 1060, "realEditorValues": [{

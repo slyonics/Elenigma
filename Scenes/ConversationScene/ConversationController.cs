@@ -70,7 +70,7 @@ namespace Elenigma.Scenes.ConversationScene
                     GameProfile.PlayerProfile.Party[0].Sprite.Value = "Actors_AdultMC";
                     GameProfile.WorldTime = 600;
                     //GameProfile.PlayerProfile.Party[1].Portrait.Value = "Portraits_AdultMC";
-                    //GameProfile.PlayerProfile.Party[1].Sprite.Value = "Portraits_AdultMC";
+                    GameProfile.PlayerProfile.Party[1].Sprite.Value = "Actors_BigDogFamiliar";
                     break;
 
                 case "ChangeMap": MapScene.EventController.ChangeMap(tokens, MapScene.MapScene.Instance); break;
