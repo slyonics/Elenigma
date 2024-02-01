@@ -14,7 +14,8 @@ namespace Elenigma.SceneObjects.Particles
     {
         Exclamation,
         Smoke,
-        Gust
+        Gust,
+        Miasma
     }
 
     public class AnimationParticle : Particle
@@ -24,6 +25,7 @@ namespace Elenigma.SceneObjects.Particles
             { AnimationType.Exclamation.ToString(), new Animation(0, 0, 16, 16, 8, new int[] { 20, 20, 20, 20, 20, 20, 20, 350 }) },
             { AnimationType.Smoke.ToString(), new Animation(0, 0, 32, 32, 7, 50) },
             { AnimationType.Gust.ToString(), new Animation(0, 0, 32, 32, 5, 80) },
+            { AnimationType.Miasma.ToString(), new Animation(0, 0, 32, 32, 9, 50) }
         };
 
         private List<Tuple<int, FrameFollowup>> frameEventList = new List<Tuple<int, FrameFollowup>>();
@@ -33,6 +35,8 @@ namespace Elenigma.SceneObjects.Particles
         {
             parentScene = iScene;
             position = iPosition;
+
+            priorityLevel = PriorityLevel.CutsceneLevel;
 
             var animationName = "Particles_" + iAnimationType;
             var animationSprite = (GameSprite)Enum.Parse(typeof(GameSprite), animationName);

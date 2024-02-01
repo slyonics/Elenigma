@@ -124,6 +124,19 @@ namespace Elenigma.Scenes.MapScene
                                 break;
                             }
 
+                        case "Particle":
+                            {
+                                var property = entity.FieldInstances.FirstOrDefault(x => x.Identifier == "DisableIf");
+                                if (property != null && property.Value != null && GameProfile.GetSaveData<bool>(property.Value)) continue;
+
+                                property = entity.FieldInstances.FirstOrDefault(x => x.Identifier == "EnableIf");
+                                if (property != null && property.Value != null && !GameProfile.GetSaveData<bool>(property.Value)) continue;
+
+                                ParticleSpawner obstacle = new ParticleSpawner(this, Tilemap, entity);
+                                AddEntity(obstacle);
+                                break;
+                            }
+
                         case "Interactable":
                         case "Automatic":
                         case "Travel":

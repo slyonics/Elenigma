@@ -133,6 +133,7 @@ namespace Elenigma.Main
         Background_Title,
         Particles_Exclamation,
         Particles_Gust,
+        Particles_Miasma,
         Particles_Smoke,
         Portraits_AdultMC,
         Portraits_DarkGoddess,

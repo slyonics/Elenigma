@@ -3034,43 +3034,6 @@
 			"allowedRefsEntityUid": null,
 			"allowedRefTags": [],
 			"tilesetUid": null
-		},
-		{
-			"identifier": "DayNight",
-			"doc": null,
-			"__type": "Color",
-			"uid": 1276,
-			"type": "F_Color",
-			"isArray": false,
-			"canBeNull": false,
-			"arrayMinLength": null,
-			"arrayMaxLength": null,
-			"editorDisplayMode": "Hidden",
-			"editorDisplayScale": 1,
-			"editorDisplayPos": "Above",
-			"editorLinkStyle": "StraightArrow",
-			"editorDisplayColor": null,
-			"editorAlwaysShow": false,
-			"editorShowInWorld": true,
-			"editorCutLongValues": true,
-			"editorTextSuffix": null,
-			"editorTextPrefix": null,
-			"useForSmartColor": true,
-			"exportToToc": false,
-			"searchable": false,
-			"min": null,
-			"max": null,
-			"regex": null,
-			"acceptFileTypes": null,
-			"defaultOverride": { "id": "V_Int", "params": [39387] },
-			"textLanguageMode": null,
-			"symmetricalRef": false,
-			"autoChainRef": true,
-			"allowOutOfLevelRef": true,
-			"allowedRefs": "OnlySame",
-			"allowedRefsEntityUid": null,
-			"allowedRefTags": [],
-			"tilesetUid": null
 		}
 	] },
 	"levels": [
@@ -3090,7 +3053,7 @@
 			"bgPos": null,
 			"bgPivotX": 0.5,
 			"bgPivotY": 0.5,
-			"__smartColor": "#7AC9EB",
+			"__smartColor": "#ADADB5",
 			"__bgPos": null,
 			"externalRelPath": null,
 			"fieldInstances": [
@@ -3101,8 +3064,7 @@
 				{ "__identifier": "Music", "__type": "String", "__value": "Home", "__tile": null, "defUid": 252, "realEditorValues": [{
 					"id": "V_String",
 					"params": ["Home"]
-				}] },
-				{ "__identifier": "DayNight", "__type": "Color", "__value": "#0D9CDA", "__tile": null, "defUid": 1276, "realEditorValues": [{ "id": "V_Int", "params": [892122] }] }
+				}] }
 			],
 			"layerInstances": [
 				{
