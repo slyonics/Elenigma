@@ -55,14 +55,7 @@ namespace Elenigma.Main
         Awakening,
         Elenigma,
         Home,
-        BeyondtheHills,
-        BlastingThroughtheSky,
-        ChoiceEncounter,
-        ExploringtheDepths,
-        FireStreaming,
-        NewDestinations,
-        Sanctuary,
-        Selection,
+        WasThisHome,
 
         None = -1
     }
@@ -105,6 +98,7 @@ namespace Elenigma.Main
         Up,
         UpSelected,
         Actors_AdultMC,
+        Actors_BigDogFamiliar,
         Actors_Blank,
         Actors_Cat,
         Actors_Chest,
@@ -136,6 +130,7 @@ namespace Elenigma.Main
         Particles_Miasma,
         Particles_Smoke,
         Portraits_AdultMC,
+        Portraits_BigDogFamiliar,
         Portraits_DarkGoddess,
         Portraits_DivineBeast,
         Portraits_DogFamiliar,

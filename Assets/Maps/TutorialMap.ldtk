@@ -3361,16 +3361,16 @@
 						},
 						{
 							"__identifier": "Automatic",
-							"__grid": [4,4],
+							"__grid": [9,8],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#D77643",
 							"iid": "bb6fb4a0-b0a0-11ee-8627-ad55af4ef4d8",
-							"width": 80,
-							"height": 66,
+							"width": 163,
+							"height": 142,
 							"defUid": 1057,
-							"px": [72,79],
+							"px": [149,136],
 							"fieldInstances": [
 								{ "__identifier": "Script", "__type": "String", "__value": "Particle Smoke $party2x $party2y\nChangeSprite Party2 HumanFamiliar\nConversation LogTutorial\nSetFlag LogTutorial True\nParticle Smoke $party2x $party2y\nChangeSprite Party2 BigDogFamiliar", "__tile": null, "defUid": 1058, "realEditorValues": [{
 									"id": "V_String",
@@ -3384,8 +3384,8 @@
 									"params": ["LogTutorial"]
 								}] }
 							],
-							"__worldX": 72,
-							"__worldY": 79
+							"__worldX": 149,
+							"__worldY": 136
 						},
 						{
 							"__identifier": "Automatic",

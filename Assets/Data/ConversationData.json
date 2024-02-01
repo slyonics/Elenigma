@@ -645,6 +645,11 @@
 				"Text": "Arthur... do you smell that? It smells like miasma."
 			},
 			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_AdultMC",
+				"Text": "Wait, what is going on?"
+			},
+			{
 				"Text": "[To be continued...]"
 			}
 		],
