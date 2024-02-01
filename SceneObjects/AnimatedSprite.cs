@@ -151,6 +151,14 @@ namespace Elenigma.SceneObjects
             {
                 timeToNextFrame -= frame.length;
                 frameIndex++;
+
+                if (frameIndex == actionFrame)
+                {
+                    actionFrame = -1;
+                    frameAction?.Invoke();
+                    frameAction = null;
+                }
+
                 if (frameIndex < animation.frames.Length) frame = animation.frames[frameIndex];
                 else
                 {
@@ -267,6 +275,15 @@ namespace Elenigma.SceneObjects
         {
             return new Rectangle((int)(position.X - frame.source.Width / 2), (int)(position.Y - frame.source.Height), frame.source.Width, frame.source.Height);
         }
+
+        public void OnFrame(int targetFrame, Action action)
+        {
+            actionFrame = targetFrame;
+            frameAction = action;
+        }
+
+        private int actionFrame = -1;
+        private Action frameAction = null;
 
         public Texture2D SpriteTexture { set => sprite = value; }
         public Color SpriteColor { get => spriteColor; set => spriteColor = value; }

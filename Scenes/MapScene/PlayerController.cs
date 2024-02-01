@@ -31,6 +31,8 @@ namespace Elenigma.Scenes.MapScene
 
         public Hero Player { get; set; }
 
+        private bool attacking = false;
+
         public PlayerController(MapScene iMapScene, Hero iPlayer)
             : base(PriorityLevel.GameLevel)
         {
@@ -84,6 +86,8 @@ namespace Elenigma.Scenes.MapScene
                 }*/
             }
 
+            if (attacking) return;
+
             Vector2 movement = Vector2.Zero;
             if (Input.LeftMouseState == Microsoft.Xna.Framework.Input.ButtonState.Pressed &&
                 Input.MousePosition.X >= 0 && Input.MousePosition.Y >= 0 && Input.MousePosition.X < CrossPlatformGame.ScreenWidth && Input.MousePosition.Y < CrossPlatformGame.ScreenHeight)
@@ -112,6 +116,23 @@ namespace Elenigma.Scenes.MapScene
 
                     return;
                 }
+            }
+            else if (inputFrame.CommandPressed(Command.Interact) && GameProfile.PlayerProfile.Party[0].Sprite.Value.ToString().Contains("Adult"))
+            {
+                Audio.PlaySound((GameSound)Enum.Parse(typeof(GameSound), "Slash" + Rng.RandomInt(1, 4).ToString()));
+
+                Player.Idle();
+                Player.Velocity = Vector2.Zero;
+
+                Player.OrientedAnimation("Attack", new AnimationFollowup(() => attacking = false));
+
+                attacking = true;
+
+                Bullet bullet = new Bullet(mapScene, mapScene.Tilemap, new Vector2(Player.InteractionZone.Center.X, Player.InteractionZone.Bottom), new Rectangle(-Player.InteractionZone.Width / 2, -Player.InteractionZone.Height, Player.InteractionZone.Width, Player.InteractionZone.Height));
+                
+                Player.AnimatedSprite.OnFrame(1, new Action(() => mapScene.AddBullet(bullet)));
+
+                return;
             }
 
             if (mapScene.ProcessAutoEvents())

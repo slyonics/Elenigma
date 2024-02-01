@@ -29,6 +29,7 @@ namespace Elenigma.SceneObjects.Maps
         }
 
         private MapScene mapScene;
+        public MapScene MapScene { get => mapScene; }
 
         private GameMap gameMap;
         public Definitions Definitions { get; set; }
@@ -379,6 +380,8 @@ namespace Elenigma.SceneObjects.Maps
                     colliderList.AddRange(GetTile(x, y).ColliderList);
                 }
             }
+
+            foreach (Obstacle obstacle in MapScene.Obstacles) colliderList.Add(obstacle.Bounds);
 
             colliderList.AddRange(MapColliders);
 

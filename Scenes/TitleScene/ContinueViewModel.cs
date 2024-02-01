@@ -71,7 +71,7 @@ namespace Elenigma.Scenes.TitleScene
             if (AvailableSaves[saveSlot].Location.Value == "- Empty Save -") Audio.PlaySound(GameSound.Error);
             else
             {
-                Audio.PlaySound(GameSound.Selection);
+                Audio.PlaySound(GameSound.Confirm);
 
                 GameProfile.SaveSlot = saveSlot;
                 GameProfile.LoadState("Save" + saveSlot + ".sav");

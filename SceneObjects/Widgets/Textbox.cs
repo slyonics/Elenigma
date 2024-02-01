@@ -127,7 +127,7 @@ namespace Elenigma.SceneObjects.Widgets
 
         public override void StartLeftClick(Vector2 mousePosition)
         {
-            Audio.PlaySound(GameSound.menu_select);
+            Audio.PlaySound(GameSound.Confirm);
 
             Active = !active;
 

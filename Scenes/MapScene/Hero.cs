@@ -25,7 +25,11 @@ namespace Elenigma.Scenes.MapScene
             RunDown,
             RunLeft,
             RunRight,
-            RunUp
+            RunUp,
+            AttackDown,
+            AttackLeft,
+            AttackRight,
+            AttackUp
         }
 
         public const int HERO_WIDTH = 32;
@@ -48,7 +52,11 @@ namespace Elenigma.Scenes.MapScene
             { HeroAnimation.RunDown.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 4, 120) },
             { HeroAnimation.RunLeft.ToString(), new Animation(0, 3, HERO_WIDTH, HERO_HEIGHT, 4, 120) },
             { HeroAnimation.RunRight.ToString(), new Animation(0, 2, HERO_WIDTH, HERO_HEIGHT, 4, 120) },
-            { HeroAnimation.RunUp.ToString(), new Animation(0, 1, HERO_WIDTH, HERO_HEIGHT, 4, 120) }
+            { HeroAnimation.RunUp.ToString(), new Animation(0, 1, HERO_WIDTH, HERO_HEIGHT, 4, 120) },
+            { HeroAnimation.AttackDown.ToString(), new Animation(0, 6, HERO_WIDTH, HERO_HEIGHT, 3, 120) },
+            { HeroAnimation.AttackLeft.ToString(), new Animation(0, 9, HERO_WIDTH, HERO_HEIGHT, 3, 120) },
+            { HeroAnimation.AttackRight.ToString(), new Animation(0, 8, HERO_WIDTH, HERO_HEIGHT, 3, 120) },
+            { HeroAnimation.AttackUp.ToString(), new Animation(0, 7, HERO_WIDTH, HERO_HEIGHT, 3, 120) }
         };
 
         protected MapScene mapScene;

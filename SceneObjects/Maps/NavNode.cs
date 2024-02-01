@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Elenigma.Scenes.MapScene;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -104,6 +105,8 @@ namespace Elenigma.SceneObjects.Maps
                     colliderList.AddRange(map.GetTile(x, y).ColliderList);
                 }
             }
+
+            foreach (Obstacle obstacle in map.MapScene.Obstacles) colliderList.Add(obstacle.Bounds);
 
             foreach (Rectangle collider in colliderList)
             {

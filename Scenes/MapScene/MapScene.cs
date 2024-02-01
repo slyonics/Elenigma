@@ -31,6 +31,11 @@ namespace Elenigma.Scenes.MapScene
         public PlayerController PlayerController { get; private set; }
 
         public List<Npc> NPCs { get; private set; } = new List<Npc>();
+
+        public List<Obstacle> Obstacles { get; private set; } = new List<Obstacle>();
+
+        public List<Bullet> Bullets { get; private set; } = new List<Bullet>();
+
         public List<EventTrigger> EventTriggers { get; private set; } = new List<EventTrigger>();
 
         private ParallaxBackdrop parallaxBackdrop;
@@ -66,7 +71,7 @@ namespace Elenigma.Scenes.MapScene
 
             Camera = new Camera(new Rectangle(0, 0, Tilemap.Width, Tilemap.Height));
 
-            var leaderHero = new Hero(this, Tilemap, new Vector2(32, 96), GameSprite.Actors_YoungMC);
+            var leaderHero = new Hero(this, Tilemap, new Vector2(32, 96), (GameSprite)Enum.Parse(typeof(GameSprite), GameProfile.PlayerProfile.Party[0].Sprite.Value));
             leaderHero.FootstepSound = GameSound.footsteps_grass_1;
             AddEntity(leaderHero);
             Party.Add(leaderHero);
@@ -102,6 +107,20 @@ namespace Elenigma.Scenes.MapScene
                                 }
                                 NPCs.Add(npc);
                                 AddEntity(npc);
+                                break;
+                            }
+
+                        case "Obstacle":
+                            {
+                                var property = entity.FieldInstances.FirstOrDefault(x => x.Identifier == "DisableIf");
+                                if (property != null && property.Value != null && GameProfile.GetSaveData<bool>(property.Value)) continue;
+
+                                property = entity.FieldInstances.FirstOrDefault(x => x.Identifier == "EnableIf");
+                                if (property != null && property.Value != null && !GameProfile.GetSaveData<bool>(property.Value)) continue;
+
+                                Obstacle obstacle = new Obstacle(this, Tilemap, entity);
+                                AddEntity(obstacle);
+                                Obstacles.Add(obstacle);
                                 break;
                             }
 
@@ -209,9 +228,22 @@ namespace Elenigma.Scenes.MapScene
         {
             base.Update(gameTime);
 
+            foreach (Bullet bullet in Bullets)
+            {
+                foreach (Obstacle obstacle in Obstacles)
+                {
+                    if (bullet.Bounds.Intersects(obstacle.Bounds))
+                    {
+                        obstacle.Hit();
+                    }
+                }
+            }
+
             Camera.Center(PartyLeader.Center);
 
             NPCs.RemoveAll(x => x.Terminated);
+            Obstacles.RemoveAll(x => x.Terminated);
+            Bullets.RemoveAll(x => x.Terminated);
 
             parallaxBackdrop?.Update(gameTime, Camera);
         }
@@ -285,6 +317,12 @@ namespace Elenigma.Scenes.MapScene
 
             TargetOverlay targetOverlay = AddOverlay(new TargetOverlay(this, PartyLeader.Center));
             AddController(new TargetController(this, PartyLeader, followerHero, targetOverlay));
+        }
+
+        public void AddBullet(Bullet bullet)
+        {
+            AddEntity(bullet);
+            Bullets.Add(bullet);
         }
     }
 }

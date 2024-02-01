@@ -35,7 +35,7 @@ namespace Elenigma.SceneObjects.Widgets
 
         protected GameSound CursorSound { get; set; } = GameSound.Cursor;
 
-        protected GameSound SelectSound { get; set; } = GameSound.Selection;
+        protected GameSound SelectSound { get; set; } = GameSound.Confirm;
 
         public RadioBox(Widget iParent, float widgetDepth)
             : base(iParent, widgetDepth)

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Elenigma.Scenes.MapScene;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
@@ -157,6 +158,7 @@ namespace Elenigma.SceneObjects.Maps
             List<Rectangle> entityColliders = ActorColliders;
 
             colliderList.AddRange(tilemap.MapColliders);
+            foreach (Obstacle obstacle in tilemap.MapScene.Obstacles) colliderList.Add(obstacle.Bounds);
             if (entityColliders != null) colliderList.AddRange(entityColliders);
             for (int y = startTileY; y <= endTileY; y++)
             {

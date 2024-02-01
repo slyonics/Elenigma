@@ -91,7 +91,7 @@ namespace Elenigma.Scenes.TitleScene
         {
             if (settingsViewModel != null)
             {
-                Audio.PlaySound(GameSound.Selection);
+                Audio.PlaySound(GameSound.Confirm);
                 return;
             }
 

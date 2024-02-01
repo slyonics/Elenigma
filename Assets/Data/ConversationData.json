@@ -567,8 +567,88 @@
 		],
 		"EndScript": [
 			"Wait 3000",
-			"ChangeScene Elenigma.Scenes.TitleScene.TitleScene"
+			"Growup",
+			"ChangeScene Elenigma.Scenes.MapScene.MapScene TutorialMap Default"
 		]
+	},
+	{
+		"Name": "LogTutorial",
+		"DialogueRecords": [
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "Can you believe 5 years have gone by so quickly?"
+			},
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "And who would have guessed you would unlock the ability to absorb natural mana..."
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_AdultMC",
+				"Text": "Has it really been that long of a voyage? Maybe it's time to head back home."
+			},
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "... let's test out how strong you are."
+			},
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "Try cutting down those tree stumps blocking our way back home."
+			},
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "If you can do that effortlessly, then I think it is time."
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_AdultMC",
+				"Text": "Another fitness test? You're really serious about this stuff, huh?"
+			},
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "Less talking, more cutting!"
+			}
+		]
+	},
+	{
+		"Name": "LogComplete",
+		"DialogueRecords": [
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_AdultMC",
+				"Text": "There, is this good enough?"
+			},
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "Hmm, could be better, but you pass. Let's go back home and see everyone!"
+			},
+			{
+				"Speaker": "Arthur",
+				"Portrait": "Portraits_AdultMC",
+				"Text": "Agreed. I can't wait to talk about everything that's happened!"
+			}
+		]
+	},
+	{
+		"Name": "Cliffhanger",
+		"DialogueRecords": [
+			{
+				"Speaker": "Nota",
+				"Portrait": "Portraits_HumanFamiliar",
+				"Text": "Arthur... do you smell that? It smells like miasma."
+			},
+			{
+				"Text": "[To be continued...]"
+			}
+		],
+		"EndScript": [ "ChangeScene Elenigma.Scenes.TitleScene.TitleScene" ]
 	},
 	{
 		"Name": "SlyphIntro",

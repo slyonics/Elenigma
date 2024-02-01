@@ -65,6 +65,14 @@ namespace Elenigma.Scenes.ConversationScene
                 case "SetAutoProceed": conversationScene.ConversationViewModel.AutoProceedLength = int.Parse(tokens[1]); break;
                 case "RemoveBackground": conversationScene.BackgroundSprite = null; break;
 
+                case "Growup":
+                    GameProfile.PlayerProfile.Party[0].Portrait.Value = "Portraits_AdultMC";
+                    GameProfile.PlayerProfile.Party[0].Sprite.Value = "Actors_AdultMC";
+                    GameProfile.WorldTime = 600;
+                    //GameProfile.PlayerProfile.Party[1].Portrait.Value = "Portraits_AdultMC";
+                    //GameProfile.PlayerProfile.Party[1].Sprite.Value = "Portraits_AdultMC";
+                    break;
+
                 case "ChangeMap": MapScene.EventController.ChangeMap(tokens, MapScene.MapScene.Instance); break;
                 case "AnimateHero": MapScene.MapScene.Instance.Party[int.Parse(tokens[1])].PlayAnimation(tokens[2], new AnimationFollowup(() => { })); break;
                 case "ResetTrigger": EventTrigger.LastTrigger.Terminated = false; MapScene.MapScene.Instance.EventTriggers.Add(EventTrigger.LastTrigger); break;

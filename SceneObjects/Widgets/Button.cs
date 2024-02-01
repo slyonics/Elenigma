@@ -22,7 +22,7 @@ namespace Elenigma.SceneObjects.Widgets
         protected string pushedStyle;
         protected string disabledStyle;
         protected bool clicking;
-        protected GameSound Sound { get; set; } = GameSound.menu_select;
+        protected GameSound Sound { get; set; } = GameSound.Confirm;
 
 
 
