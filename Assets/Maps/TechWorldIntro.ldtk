@@ -3591,9 +3591,9 @@
 								}] },
 								{ "__identifier": "EnableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1074, "realEditorValues": [] },
 								{ "__identifier": "DisableIf", "__type": "String", "__value": null, "__tile": null, "defUid": 1075, "realEditorValues": [] },
-								{ "__identifier": "Label", "__type": "String", "__value": "To West_Side", "__tile": null, "defUid": 1076, "realEditorValues": [{
+								{ "__identifier": "Label", "__type": "String", "__value": "To Village_Gate", "__tile": null, "defUid": 1076, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["To West_Side"]
+									"params": ["To Village_Gate"]
 								}] }
 							],
 							"__worldX": 2,
