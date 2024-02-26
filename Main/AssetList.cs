@@ -26,6 +26,7 @@ namespace Elenigma.Main
         Confirm,
         Cursor,
         dialogue_auto_scroll,
+        Door,
         Error,
         footsteps_dirt_1,
         footsteps_dirt_2,
@@ -45,6 +46,8 @@ namespace Elenigma.Main
         Slash3,
         Slash4,
         Talk,
+        wall_bump,
+        wall_enter,
         Wood,
 
         None = -1
@@ -86,6 +89,8 @@ namespace Elenigma.Main
         HeatDistortion,
         Pinwheel,
         Portrait,
+        Wall,
+        WallPlus,
 
         None = -1
     }
@@ -99,12 +104,15 @@ namespace Elenigma.Main
         Enter,
         Gamepad,
         Keyboard,
+        MiniMap,
         Target,
         Title,
         TurningBook,
         Up,
         UpSelected,
+        YouAreHere,
         Actors_AdultMC,
+        Actors_BigDogFamiliar,
         Actors_Blank,
         Actors_Cat,
         Actors_Chest,
@@ -136,6 +144,7 @@ namespace Elenigma.Main
         Particles_Miasma,
         Particles_Smoke,
         Portraits_AdultMC,
+        Portraits_BigDogFamiliar,
         Portraits_DarkGoddess,
         Portraits_DivineBeast,
         Portraits_DogFamiliar,
@@ -181,6 +190,7 @@ namespace Elenigma.Main
         Widgets_TechLabel,
         Widgets_TechSelected,
         Widgets_TechWindow,
+        Widgets_ThinPanel,
         Background_Eclipse_Eclipse0,
         Widgets_Buttons_ClearPanel,
         Widgets_Buttons_GamePanel,
