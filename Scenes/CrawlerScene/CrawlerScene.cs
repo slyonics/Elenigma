@@ -3,6 +3,7 @@ using Elenigma.SceneObjects.Controllers;
 using Elenigma.SceneObjects.Maps;
 using Elenigma.SceneObjects.Widgets;
 using Elenigma.Scenes.MapScene;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace Elenigma.Scenes.CrawlerScene
         public string MapName { get; private set; }
         public string LocationName { get; private set; }
         public float AmbientLight { get; private set; }
+
+        public static RenderTarget2D mapRender;
 
         private MapViewModel mapViewModel;
 
@@ -68,7 +71,7 @@ namespace Elenigma.Scenes.CrawlerScene
 
             MapName = iMapName;
 
-            mapViewModel = AddView(new MapViewModel(this, GameView.MapScene_MapView));
+            mapViewModel = AddView(new MapViewModel(this, GameView.CrawlerScene_MapView));
             MapPanel = mapViewModel.GetWidget<Panel>("MapPanel");
 
             LoadMap(MapName);
@@ -82,7 +85,7 @@ namespace Elenigma.Scenes.CrawlerScene
         {
             MapName = iMapName;
 
-            mapViewModel = AddView(new MapViewModel(this, GameView.MapScene_MapView));
+            mapViewModel = AddView(new MapViewModel(this, GameView.CrawlerScene_MapView));
             MapPanel = mapViewModel.GetWidget<Panel>("MapPanel");
 
             LoadMap(MapName, spawnName);
@@ -98,7 +101,7 @@ namespace Elenigma.Scenes.CrawlerScene
         {
             MapName = iMapName;
 
-            mapViewModel = AddView<MapViewModel>(new MapViewModel(this, GameView.MapScene_MapView));
+            mapViewModel = AddView<MapViewModel>(new MapViewModel(this, GameView.CrawlerScene_MapView));
             MapPanel = mapViewModel.GetWidget<SceneObjects.Widgets.Panel>("MapPanel");
 
             roomX = spawnX;
@@ -133,6 +136,7 @@ namespace Elenigma.Scenes.CrawlerScene
 
         private void LoadMap(string mapName, string spawnName = "Default")
         {
+            /*
             TiledMap tiledMap = new TiledMap();
             tiledMap.ParseXml(AssetCache.MAPS[(GameMap)Enum.Parse(typeof(GameMap), mapName)]);
 
@@ -306,6 +310,7 @@ namespace Elenigma.Scenes.CrawlerScene
             {
 
             }
+            */
 
             GameProfile.SetSaveData<string>("LastMap", MapFileName);
             GameProfile.SetSaveData<int>("LastRoomX", roomX);
@@ -314,6 +319,7 @@ namespace Elenigma.Scenes.CrawlerScene
             GameProfile.SetSaveData<string>("PlayerLocation", LocationName);
         }
 
+        /*
         void Lighting(TiledObject tiledObject)
         {
             int startX = (int)(tiledObject.x / WALL_LENGTH);
@@ -359,6 +365,12 @@ namespace Elenigma.Scenes.CrawlerScene
                     mapRoom?.BlendLighting();
                 }
             }
+        }
+        */
+
+        public static void Initialize(GraphicsDevice graphicsDevice, int screenScale, int multiSamples)
+        {
+            mapRender = new RenderTarget2D(graphicsDevice, 690 * screenScale, 420 * screenScale, false, SurfaceFormat.Color, DepthFormat.Depth16, multiSamples, RenderTargetUsage.PlatformContents);
         }
 
         public override void BeginScene()
@@ -494,8 +506,6 @@ namespace Elenigma.Scenes.CrawlerScene
                     else if (!Activate()) { WallBump(); return; }
                     break;
             }
-
-            mapViewModel.SetActor("Actors_Blank");
         }
 
         public void MoveTo(MapRoom destinationRoom)
@@ -525,7 +535,7 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public override void Draw(GraphicsDevice graphicsDevice, SpriteBatch spriteBatch, RenderTarget2D pixelRender, RenderTarget2D compositeRender)
         {
-            graphicsDevice.SetRenderTarget(CrossPlatformGame.GameInstance.mapRender);
+            graphicsDevice.SetRenderTarget(mapRender);
             DrawMap(graphicsDevice);
 
             graphicsDevice.SetRenderTarget(pixelRender);

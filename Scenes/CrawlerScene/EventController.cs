@@ -31,8 +31,6 @@ namespace Elenigma.Scenes.CrawlerScene
         {
             switch (tokens[0])
             {
-                case "Actor": Actor(tokens); break;
-                case "Animate": Animate(tokens); break;
                 case "GameEvent": GameEvent(tokens); break;
                 case "EndGame": EndGame = true; break;
                 case "ChangeMap": ChangeMap(tokens); Audio.PlaySound(GameSound.Door); break;
@@ -53,16 +51,6 @@ namespace Elenigma.Scenes.CrawlerScene
                 return GameProfile.GetSaveData<bool>(parameter.Split('.')[1]).ToString();
             }
             else return base.ParseParameter(parameter);
-        }
-
-        private void Actor(string[] tokens)
-        {
-            mapScene.MapViewModel.SetActor(tokens[1]);
-        }
-
-        private void Animate(string[] tokens)
-        {
-            mapScene.MapViewModel.AnimateActor(tokens[1]);
         }
 
         private void GameEvent(string[] tokens)

@@ -17,6 +17,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using static System.Formats.Asn1.AsnWriter;
+using Elenigma.Scenes.CrawlerScene;
 
 namespace Elenigma.Main
 {
@@ -129,6 +130,12 @@ namespace Elenigma.Main
                 }
             }
 
+            int multiSamples = 0;
+            if (Settings.GetProgramSetting<bool>("Antialiasing"))
+            {
+                multiSamples = 16;
+            }
+
             // IsMouseVisible = true;
             IsMouseVisible = false;
 
@@ -139,6 +146,8 @@ namespace Elenigma.Main
 
             gameRender = new RenderTarget2D(graphicsDeviceManager.GraphicsDevice, ScreenWidth, ScreenHeight);
             compositeRender = new RenderTarget2D(graphicsDeviceManager.GraphicsDevice, ScreenWidth, ScreenHeight, false, SurfaceFormat.Color, DepthFormat.Depth16, 0, RenderTargetUsage.PreserveContents);
+
+            CrawlerScene.Initialize(GraphicsDevice, screenScale, multiSamples);
         }
 
         private void CrossPlatformGame_Exiting(object sender, EventArgs e)

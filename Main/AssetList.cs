@@ -6,6 +6,7 @@ namespace Elenigma.Main
         ConversationScene_ConversationView2,
         ConversationScene_ConversationView3,
         ConversationScene_SelectionView,
+        CrawlerScene_MapView,
         CreditsScene_CreditsView,
         IntroScene_IntroView,
         StatusScene_ItemView,

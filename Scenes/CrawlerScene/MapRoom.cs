@@ -103,21 +103,9 @@ namespace Elenigma.Scenes.CrawlerScene
             defaultWall = (GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + wallSprite);
         }
 
-        public void ApplyTile(TiledCS.TiledMap tiledMap, TiledCS.TiledTileset tiledTileset, int gid, string layerName)
+        public void ApplyTile()
         {
-            TiledCS.TiledTile tileTemplate = tiledTileset.Tiles.FirstOrDefault(x => x.id == gid);
-
-            if (tileTemplate != null)
-            {
-                TiledCS.TiledProperty doorProperty = tileTemplate.properties.FirstOrDefault(x => x.name == "Door");
-                if (doorProperty != null)
-                {
-                    door = bool.Parse(doorProperty.value);
-                }
-                else door = false;
-            }
-
-
+            /*
             switch (layerName)
             {
                 case "Walls":
@@ -143,6 +131,7 @@ namespace Elenigma.Scenes.CrawlerScene
                     wallList.Add(Direction.Down, new RoomWall() { Orientation = Direction.Down, Texture = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[gid].image.source))] });
                     break;
             }
+            */
 
             ResetMinimapIcon();
         }
