@@ -5,8 +5,8 @@
 		<Image Name="MiniMap" Alignment="Stretch"/>
 	</Panel>
 	
-	<Panel Name="MapPanel" Style="MapFrame" Anchor="$CenterX,$CenterY" InnerMargin="24,24,24,24" Bounds="-369,-250,738,468">
-		<Image Picture="Bind MapRender" Alignment="Stretch" Color="Bind MapColor"/>
+	<Panel Name="MapPanel" Anchor="$CenterX,$CenterY" Bounds="-145,-90,290,180">
+		<Image Picture="Ref MapRender" Alignment="Stretch" Color="Bind MapColor"/>
 	</Panel>
 	
 	

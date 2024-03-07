@@ -29,11 +29,6 @@ namespace Elenigma.Scenes.CrawlerScene
         {
             mapScene = iScene;
 
-            if (!GameProfile.GetSaveData<bool>("GameIntro"))
-            {
-                MapColor.Value = Color.Black;
-            }
-
             LoadView(GameView.CrawlerScene_MapView);
 
             mapScene.AddOverlay(new MiniMap());

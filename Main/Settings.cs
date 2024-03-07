@@ -17,6 +17,7 @@ namespace Elenigma.Main
             { "DebugMode", false },
             { "Fullscreen", false },
             { "TargetResolution", "Best Fit" },
+            { "Antialiasing", false },
             { "SoundVolume", 100 },
             { "MusicVolume", 80 }
         };

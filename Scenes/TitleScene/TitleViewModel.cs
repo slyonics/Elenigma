@@ -31,7 +31,7 @@ namespace Elenigma.Scenes.TitleScene
         private RadioBox commandBox;
 
 
-        public List<string> AvailableCommands { get; set; } = new List<string>() { "New Game", "Continue", "Credits", "Exit" };
+        public List<string> AvailableCommands { get; set; } = new List<string>() { "New Game", "Continue", "Credits", "Map Test" };
 
         public TitleViewModel(Scene iScene, GameView viewName)
             : base(iScene, PriorityLevel.GameLevel)
@@ -116,7 +116,11 @@ namespace Elenigma.Scenes.TitleScene
 
                 case "Settings": commandBox.Enabled = false; SettingsMenu(); break;
                 case "Credits": commandBox.Enabled = false; Credits(); break;
-                case "Exit": commandBox.Enabled = false; CrossPlatformGame.GameInstance.Exit(); break;
+                case "Map Test":
+                    commandBox.Enabled = false;
+                    GameProfile.NewState();
+                    CrossPlatformGame.Transition(typeof(CrawlerScene.CrawlerScene), 0);
+                    break;
             }
         }
 

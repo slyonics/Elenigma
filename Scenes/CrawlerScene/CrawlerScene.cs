@@ -26,8 +26,8 @@ namespace Elenigma.Scenes.CrawlerScene
         private const int WALL_LENGTH = 128;
 
         public string MapName { get; private set; }
-        public string LocationName { get; private set; }
-        public float AmbientLight { get; private set; }
+        public string LocationName { get; private set; } = "Test Map";
+        public float AmbientLight { get; private set; } = 1;
 
         public static RenderTarget2D mapRender;
 
@@ -64,6 +64,38 @@ namespace Elenigma.Scenes.CrawlerScene
             Instance = this;
 
             miniMap = new MiniMap();
+        }
+
+        public CrawlerScene(int huh) : this()
+        {
+            mapViewModel = AddView(new MapViewModel(this, GameView.CrawlerScene_MapView));
+            MapPanel = mapViewModel.GetWidget<Panel>("MapPanel");
+
+            MapWidth = 5;
+            MapHeight = 5;
+            roomX = 2; roomY = 2;
+
+            mapRooms = new MapRoom[MapWidth, MapHeight];
+
+            for (int x = 1; x < MapWidth - 1; x++)
+            {
+                for (int y = 1; y < MapHeight - 1; y++)
+                {
+                    mapRooms[x, y] = new MapRoom(this, mapRooms, roomX, roomY, "ClassroomWall");
+                    mapRooms[x, y].ApplyWall(Direction.Down, AssetCache.SPRITES[GameSprite.Walls_ClassroomFloor]);
+                    mapRooms[x, y].ApplyWall(Direction.Up, AssetCache.SPRITES[GameSprite.Walls_PlainCeiling]);
+                }
+            }
+            
+
+            Lighting(2, 2, 1, 1);
+            AmbientLight = 0.8f; 
+
+            FinishMap();
+
+            mapRooms[roomX, roomY].EnterRoom();
+
+            movementController = AddController(new MovementController(this));
         }
 
         public CrawlerScene(string iMapName) : this()
@@ -319,23 +351,45 @@ namespace Elenigma.Scenes.CrawlerScene
             GameProfile.SetSaveData<string>("PlayerLocation", LocationName);
         }
 
-        /*
-        void Lighting(TiledObject tiledObject)
+        public void FinishMap()
         {
-            int startX = (int)(tiledObject.x / WALL_LENGTH);
-            int startY = (int)(tiledObject.y / WALL_LENGTH);
-            int width = (int)(tiledObject.width / WALL_LENGTH);
-            int height = (int)(tiledObject.height / WALL_LENGTH);
+            for (int x = 0; x < MapWidth; x++)
+            {
+                for (int y = 0; y < MapHeight; y++)
+                {
+                    if (mapRooms[x, y] != null) mapRooms[x, y].BuildNeighbors();
+                }
+            }
 
+
+
+            for (int x = 0; x < MapWidth; x++)
+            {
+                for (int y = 0; y < MapHeight; y++)
+                {
+                    if (mapRooms[x, y] != null) mapRooms[x, y].SetVertices(x, y);
+                }
+            }
+
+            GameProfile.SetSaveData<string>("LastMap", MapFileName);
+            GameProfile.SetSaveData<int>("LastRoomX", roomX);
+            GameProfile.SetSaveData<int>("LastRoomY", roomY);
+            GameProfile.SetSaveData<Direction>("LastDirection", direction);
+            GameProfile.SetSaveData<string>("PlayerLocation", LocationName);
+        }
+
+        
+        void Lighting(int startX, int startY, int width, int height)
+        {
             int fullBrightness = 0;
             int attenuatedBrightness = 4;
 
-
+            /*
             if (MapName.Contains("Night") || MapName.Contains("Dark"))
             {
                 attenuatedBrightness = 2;
             }
-
+            */
 
             MapRoom originRoom = mapRooms[startX + width / 2, startY + height / 2];
             List<MapRoom> visitedRooms = new List<MapRoom>();
@@ -366,11 +420,12 @@ namespace Elenigma.Scenes.CrawlerScene
                 }
             }
         }
-        */
+        
 
         public static void Initialize(GraphicsDevice graphicsDevice, int screenScale, int multiSamples)
         {
-            mapRender = new RenderTarget2D(graphicsDevice, 690 * screenScale, 420 * screenScale, false, SurfaceFormat.Color, DepthFormat.Depth16, multiSamples, RenderTargetUsage.PlatformContents);
+            screenScale = 1;
+            mapRender = new RenderTarget2D(graphicsDevice, 290 * screenScale, 180 * screenScale, false, SurfaceFormat.Color, DepthFormat.Depth16, multiSamples, RenderTargetUsage.PlatformContents);
         }
 
         public override void BeginScene()
