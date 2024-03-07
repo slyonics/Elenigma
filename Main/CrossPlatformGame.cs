@@ -28,8 +28,8 @@ namespace Elenigma.Main
         public static readonly string SETTINGS_DIRECTORY = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "AppData\\Local") + "\\" + CrossPlatformGame.GAME_NAME;
 
         private const int WINDOWED_MARGIN = 34;
-        private const int TARGET_SCREEN_WIDTH = 290;
-        private const int TARGET_SCREEN_HEIGHT = 180;
+        private const int TARGET_SCREEN_WIDTH = 800;
+        private const int TARGET_SCREEN_HEIGHT = 520;
         private const int MAXIMUM_SCREEN_WIDTH = 1920;
         private const int MAXIMUM_SCREEN_HEIGHT = 1080;
 

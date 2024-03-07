@@ -71,24 +71,25 @@ namespace Elenigma.Scenes.CrawlerScene
             mapViewModel = AddView(new MapViewModel(this, GameView.CrawlerScene_MapView));
             MapPanel = mapViewModel.GetWidget<Panel>("MapPanel");
 
-            MapWidth = 5;
-            MapHeight = 5;
-            roomX = 2; roomY = 2;
+            MapWidth = 7;
+            MapHeight = 7;
+            roomX = 3; roomY = 3;
 
             mapRooms = new MapRoom[MapWidth, MapHeight];
 
-            for (int x = 1; x < MapWidth - 1; x++)
+            for (int x = 2; x < MapWidth - 2; x++)
             {
-                for (int y = 1; y < MapHeight - 1; y++)
+                for (int y = 2; y < MapHeight - 2; y++)
                 {
-                    mapRooms[x, y] = new MapRoom(this, mapRooms, roomX, roomY, "ClassroomWall");
+                    mapRooms[x, y] = new MapRoom(this, mapRooms, x, y, "ClassroomWall");
+                    mapRooms[x, y].Blocked = false;
                     mapRooms[x, y].ApplyWall(Direction.Down, AssetCache.SPRITES[GameSprite.Walls_ClassroomFloor]);
                     mapRooms[x, y].ApplyWall(Direction.Up, AssetCache.SPRITES[GameSprite.Walls_PlainCeiling]);
                 }
             }
             
 
-            Lighting(2, 2, 1, 1);
+            Lighting(3, 3, 1, 1);
             AmbientLight = 0.8f; 
 
             FinishMap();
@@ -357,7 +358,7 @@ namespace Elenigma.Scenes.CrawlerScene
             {
                 for (int y = 0; y < MapHeight; y++)
                 {
-                    if (mapRooms[x, y] != null) mapRooms[x, y].BuildNeighbors();
+                    mapRooms[x, y]?.BuildNeighbors();
                 }
             }
 
@@ -367,7 +368,7 @@ namespace Elenigma.Scenes.CrawlerScene
             {
                 for (int y = 0; y < MapHeight; y++)
                 {
-                    if (mapRooms[x, y] != null) mapRooms[x, y].SetVertices(x, y);
+                    mapRooms[x, y]?.SetVertices(x, y);
                 }
             }
 
@@ -425,7 +426,7 @@ namespace Elenigma.Scenes.CrawlerScene
         public static void Initialize(GraphicsDevice graphicsDevice, int screenScale, int multiSamples)
         {
             screenScale = 1;
-            mapRender = new RenderTarget2D(graphicsDevice, 290 * screenScale, 180 * screenScale, false, SurfaceFormat.Color, DepthFormat.Depth16, multiSamples, RenderTargetUsage.PlatformContents);
+            mapRender = new RenderTarget2D(graphicsDevice, 800 * screenScale, 520 * screenScale, false, SurfaceFormat.Color, DepthFormat.Depth16, multiSamples, RenderTargetUsage.PlatformContents);
         }
 
         public override void BeginScene()

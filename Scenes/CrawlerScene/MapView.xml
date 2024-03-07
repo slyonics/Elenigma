@@ -5,7 +5,7 @@
 		<Image Name="MiniMap" Alignment="Stretch"/>
 	</Panel>
 	
-	<Panel Name="MapPanel" Anchor="$CenterX,$CenterY" Bounds="-145,-90,290,180">
+	<Panel Name="MapPanel" Anchor="$CenterX,$CenterY" Bounds="-400,-260,800,520">
 		<Image Picture="Ref MapRender" Alignment="Stretch" Color="Bind MapColor"/>
 	</Panel>
 	
