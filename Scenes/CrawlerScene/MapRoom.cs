@@ -68,7 +68,7 @@ namespace Elenigma.Scenes.CrawlerScene
         } };
 
         private Texture2D minimapSprite = AssetCache.SPRITES[GameSprite.MiniMap];
-        private static readonly Rectangle[] minimapSource = new Rectangle[] { new Rectangle(0, 0, 16, 16), new Rectangle(16, 0, 16, 16), new Rectangle(32, 0, 16, 16), new Rectangle(48, 0, 16, 16) };
+        private static readonly Rectangle[] minimapSource = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8), new Rectangle(24, 0, 8, 8) };
 
         private MapRoom[,] mapRooms;
         public int RoomX { get; set; }
@@ -101,6 +101,7 @@ namespace Elenigma.Scenes.CrawlerScene
             RoomX = x;
             RoomY = y;
             defaultWall = (GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + wallSprite);
+            waypointTile = 1;
         }
 
         public void ApplyTile()

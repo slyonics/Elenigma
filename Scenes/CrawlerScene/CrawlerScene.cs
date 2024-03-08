@@ -45,7 +45,7 @@ namespace Elenigma.Scenes.CrawlerScene
         private Direction direction;
 
         private Texture2D minimapSprite = AssetCache.SPRITES[GameSprite.YouAreHere];
-        private static readonly Rectangle[] minimapSource = new Rectangle[] { new Rectangle(0, 0, 16, 16), new Rectangle(16, 0, 16, 16), new Rectangle(32, 0, 16, 16), new Rectangle(48, 0, 16, 16) };
+        private static readonly Rectangle[] minimapSource = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8), new Rectangle(24, 0, 8, 8) };
 
         public Panel MapPanel { get; set; }
 
@@ -83,10 +83,17 @@ namespace Elenigma.Scenes.CrawlerScene
                     mapRooms[x, y].ApplyWall(Direction.Up, AssetCache.SPRITES[GameSprite.Walls_PlainCeiling]);
                 }
             }
-            
+
+            for (int x = 0; x < MapWidth; x++)
+            {
+                for (int y = 0; y < MapHeight; y++)
+                {
+                    mapRooms[x, y]?.BuildNeighbors();
+                }
+            }
 
             Lighting(3, 3, 1, 1);
-            AmbientLight = 0.8f; 
+            AmbientLight = 0.2f;
 
             FinishMap();
 
@@ -350,16 +357,6 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public void FinishMap()
         {
-            for (int x = 0; x < MapWidth; x++)
-            {
-                for (int y = 0; y < MapHeight; y++)
-                {
-                    mapRooms[x, y]?.BuildNeighbors();
-                }
-            }
-
-
-
             for (int x = 0; x < MapWidth; x++)
             {
                 for (int y = 0; y < MapHeight; y++)
@@ -654,17 +651,17 @@ namespace Elenigma.Scenes.CrawlerScene
                 for (int y = MinimapStartY; y < endY; y++)
                 {
                     MapRoom mapRoom = mapRooms[x, y];
-                    spriteBatch.Draw(minimapSprite, offset, new Rectangle(0, 0, 16, 16), Color.Black, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth - 0.001f);
+                    spriteBatch.Draw(minimapSprite, offset, new Rectangle(0, 0, 8, 8), Color.Black, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth - 0.001f);
                     mapRoom?.DrawMinimap(spriteBatch, offset, depth - 0.002f);
 
-                    offset.Y += 16;
+                    offset.Y += 8;
                 }
 
                 offset.Y = bounds.Y;
-                offset.X += 16;
+                offset.X += 8;
             }
 
-            spriteBatch.Draw(minimapSprite, new Vector2((roomX - MinimapStartX) * 16, (roomY - MinimapStartY) * 16) + new Vector2(bounds.X, bounds.Y), minimapSource[(int)direction], Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth - 0.003f);
+            spriteBatch.Draw(minimapSprite, new Vector2((roomX - MinimapStartX) * 8, (roomY - MinimapStartY) * 8) + new Vector2(bounds.X, bounds.Y), minimapSource[(int)direction], Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth - 0.003f);
         }
 
         private void DrawMap(GraphicsDevice graphicsDevice)
@@ -703,9 +700,9 @@ namespace Elenigma.Scenes.CrawlerScene
             if (PriorityLevel != PriorityLevel.GameLevel || controllerList.Any(x => x.Any(y => y is EventController))) return;
 
             Panel miniMapPanel = mapViewModel.GetWidget<Panel>("MiniMapPanel");
-            clickPosition -= new Vector2((miniMapPanel.InnerBounds.Width - 7 * 16) / 2, (miniMapPanel.InnerBounds.Height - 7 * 16) / 2);
-            int newRoomX = (int)clickPosition.X / 16 + MinimapStartX;
-            int newRoomY = (int)clickPosition.Y / 16 + MinimapStartY;
+            clickPosition -= new Vector2((miniMapPanel.InnerBounds.Width - 7 * 8) / 2, (miniMapPanel.InnerBounds.Height - 7 * 8) / 2);
+            int newRoomX = (int)clickPosition.X / 8 + MinimapStartX;
+            int newRoomY = (int)clickPosition.Y / 8 + MinimapStartY;
 
             if (newRoomX >= 0 && newRoomY >= 0 && newRoomX < mapRooms.GetLength(0) && newRoomY < mapRooms.GetLength(1))
             {

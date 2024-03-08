@@ -50,11 +50,11 @@ namespace Elenigma.Scenes.TitleScene
         public override void DrawBackground(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(backgroundColorSprite, new Rectangle(0, 0, CrossPlatformGame.ScreenWidth, CrossPlatformGame.ScreenHeight), new Rectangle(0, 0, 1, 1), Color.Black, 0.0f, Vector2.Zero, SpriteEffects.None, 1.0f);
-            spriteBatch.Draw(titleSprite, new Vector2(0), null, Color.White, 0.0f, Vector2.Zero, new Vector2(1.0f), SpriteEffects.None, 0.9f);
+            spriteBatch.Draw(titleSprite, new Rectangle(0, 0, CrossPlatformGame.ScreenWidth, CrossPlatformGame.ScreenHeight), null, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, 0.9f);
 
             if (titleMenuViewModel == null && (int)blinkProgress % 2 == 0 && priorityLevel != PriorityLevel.TransitionLevel)
             {
-                Text.DrawCenteredText(spriteBatch, new Vector2(CrossPlatformGame.ScreenWidth / 2 - 45, 118), GameFont.Main, "- Press Any Button -");
+                Text.DrawCenteredText(spriteBatch, new Vector2(CrossPlatformGame.ScreenWidth / 2, CrossPlatformGame.ScreenHeight / 2 + 30), GameFont.Main, "- Press Any Button -");
             }
         }
 
