@@ -28,8 +28,8 @@ namespace Elenigma.Main
         public static readonly string SETTINGS_DIRECTORY = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "AppData\\Local") + "\\" + CrossPlatformGame.GAME_NAME;
 
         private const int WINDOWED_MARGIN = 34;
-        private const int TARGET_SCREEN_WIDTH = 800;
-        private const int TARGET_SCREEN_HEIGHT = 520;
+        private const int TARGET_SCREEN_WIDTH = 580;
+        private const int TARGET_SCREEN_HEIGHT = 360;
         private const int MAXIMUM_SCREEN_WIDTH = 1920;
         private const int MAXIMUM_SCREEN_HEIGHT = 1080;
 
@@ -147,7 +147,7 @@ namespace Elenigma.Main
             gameRender = new RenderTarget2D(graphicsDeviceManager.GraphicsDevice, ScreenWidth, ScreenHeight);
             compositeRender = new RenderTarget2D(graphicsDeviceManager.GraphicsDevice, ScreenWidth, ScreenHeight, false, SurfaceFormat.Color, DepthFormat.Depth16, 0, RenderTargetUsage.PreserveContents);
 
-            CrawlerScene.Initialize(GraphicsDevice, screenScale, multiSamples);
+            CrawlerScene.Initialize(GraphicsDevice, multiSamples);
         }
 
         private void CrossPlatformGame_Exiting(object sender, EventArgs e)

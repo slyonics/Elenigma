@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <View>
 	
-	<Panel Name="MiniMapPanel" Bounds="Bind MiniMapBounds" InnerMargin="4,4,4,4">
-		<Image Name="MiniMap" Alignment="Stretch"/>
-	</Panel>
+	<Panel Name="MiniMapPanel" Style="ThinPanel" Anchor="$CenterX,$CenterY" InnerMargin="6,6,6,6" Bounds="54,20,108,108"/>
 	
-	<Panel Name="MapPanel" Anchor="$CenterX,$CenterY" Bounds="-400,-260,800,520">
+	<Panel Name="MapPanel" Anchor="$CenterX,$CenterY" Bounds="-162,-180,324,200">
 		<Image Picture="Ref MapRender" Alignment="Stretch" Color="Bind MapColor"/>
 	</Panel>
 	

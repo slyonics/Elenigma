@@ -30,8 +30,6 @@ namespace Elenigma.Scenes.CrawlerScene
             mapScene = iScene;
 
             LoadView(GameView.CrawlerScene_MapView);
-
-            mapScene.AddOverlay(new MiniMap());
         }
 
         public override void Update(GameTime gameTime)
@@ -58,7 +56,5 @@ namespace Elenigma.Scenes.CrawlerScene
         public RenderTarget2D MapRender { get => CrawlerScene.mapRender; }
 
         public ModelProperty<Color> MapColor { get; set; } = new ModelProperty<Color>(Color.White);
-
-        public ModelProperty<Rectangle> MiniMapBounds { get; set; } = new ModelProperty<Rectangle>(new Rectangle(CrossPlatformGame.ScreenWidth - 132, 12, 120, 120));
     }
 }

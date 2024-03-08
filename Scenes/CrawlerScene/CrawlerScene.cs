@@ -57,13 +57,9 @@ namespace Elenigma.Scenes.CrawlerScene
             return mapRooms[x, y];
         }
 
-        MiniMap miniMap;
-
         public CrawlerScene()
         {
             Instance = this;
-
-            miniMap = new MiniMap();
         }
 
         public CrawlerScene(int huh) : this()
@@ -423,10 +419,9 @@ namespace Elenigma.Scenes.CrawlerScene
         }
         
 
-        public static void Initialize(GraphicsDevice graphicsDevice, int screenScale, int multiSamples)
+        public static void Initialize(GraphicsDevice graphicsDevice, int multiSamples)
         {
-            screenScale = 1;
-            mapRender = new RenderTarget2D(graphicsDevice, 800 * screenScale, 520 * screenScale, false, SurfaceFormat.Color, DepthFormat.Depth16, multiSamples, RenderTargetUsage.PlatformContents);
+            mapRender = new RenderTarget2D(graphicsDevice, 324, 200, false, SurfaceFormat.Color, DepthFormat.Depth16, multiSamples, RenderTargetUsage.PlatformContents);
         }
 
         public override void BeginScene()
@@ -612,9 +607,11 @@ namespace Elenigma.Scenes.CrawlerScene
             DrawOverlay(spriteBatch);
             spriteBatch.End();
 
+            Rectangle miniMapBounds = MapViewModel.GetWidget<Panel>("MiniMapPanel").InnerBounds;
+            miniMapBounds.X += (int)MapViewModel.GetWidget<Panel>("MiniMapPanel").Position.X;
+            miniMapBounds.Y += (int)MapViewModel.GetWidget<Panel>("MiniMapPanel").Position.Y;
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, null);
-            miniMap.Draw(spriteBatch);
-            DrawMiniMap(spriteBatch, new Rectangle(CrossPlatformGame.ScreenWidth - 128, 16, 112, 112), Color.White, 0.6f);
+            DrawMiniMap(spriteBatch, miniMapBounds, Color.White, 0.6f);
             spriteBatch.End();
 
             graphicsDevice.SetRenderTarget(compositeRender);
