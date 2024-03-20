@@ -7,9 +7,9 @@
 		<Image Picture="Ref MapRender" Alignment="Stretch" Color="Bind MapColor"/>
 	</Panel>
 
-	<Panel Style="ThinPanel" Bounds="0,0,128,180"/>
-	<Panel Style="ThinPanel" Bounds="452,0,128,180"/>
-	<Panel Style="ThinPanel" Bounds="0,180,128,180"/>
+	<Image Picture="Portraits_IceMage" Bounds="0,0,128,180"/>
+	<Image Picture="Portraits_Barbarian" Bounds="452,0,128,180"/>
+	<Image Picture="Portraits_Druid" Bounds="0,180,128,180"/>
 	<Panel Style="ThinPanel" Bounds="452,180,128,180"/>
 	
 </View>

@@ -91,6 +91,7 @@ namespace Elenigma.Scenes.StatusScene
             {
                 ((MapScene.MapScene)CrossPlatformGame.SceneStack.First(x => x is MapScene.MapScene)).SaveMapPosition();
                 
+                /*
                 string portrait1 = GameProfile.PlayerProfile.Party[0].Portrait.Value;
                 string portrait2 = GameProfile.PlayerProfile.Party.Count() > 1 ? GameProfile.PlayerProfile.Party[1].Portrait.Value : GameSprite.Actors_Blank.ToString();
                 GameProfile.SetSaveData<string>("EnviPortrait", portrait1);
@@ -101,6 +102,7 @@ namespace Elenigma.Scenes.StatusScene
                 AvailableSaves[saveSlot].Location.Value = MapScene.MapScene.Instance.LocationName;
                 AvailableSaves[saveSlot].Portrait1.Value = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), portrait1)];
                 AvailableSaves[saveSlot].Portrait2.Value = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), portrait2)];
+                */
 
                 GameProfile.SaveState();
 
@@ -128,6 +130,7 @@ namespace Elenigma.Scenes.StatusScene
                     {
                         ((MapScene.MapScene)CrossPlatformGame.SceneStack.First(x => x is MapScene.MapScene)).SaveMapPosition();
 
+                        /*
                         string portrait1 = GameProfile.PlayerProfile.Party[0].Portrait.Value;
                         string portrait2 = GameProfile.PlayerProfile.Party.Count() > 1 ? GameProfile.PlayerProfile.Party[1].Portrait.Value : GameSprite.Actors_Blank.ToString();
                         GameProfile.SetSaveData<string>("EnviPortrait", portrait1);
@@ -138,6 +141,7 @@ namespace Elenigma.Scenes.StatusScene
                         AvailableSaves[saveSlot].Location.Value = MapScene.MapScene.Instance.LocationName;
                         AvailableSaves[saveSlot].Portrait1.Value = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), portrait1)];
                         AvailableSaves[saveSlot].Portrait2.Value = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), portrait2)];
+                        */
 
                         GameProfile.SaveState();
 

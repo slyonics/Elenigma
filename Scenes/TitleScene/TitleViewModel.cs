@@ -101,6 +101,7 @@ namespace Elenigma.Scenes.TitleScene
 
             switch (command)
             {
+                /*
                 case "New Game":
                     commandBox.Enabled = false;
                     GameProfile.NewState();
@@ -113,6 +114,7 @@ namespace Elenigma.Scenes.TitleScene
                     settingsViewModel = new ContinueViewModel(parentScene);
                     parentScene.AddOverlay(settingsViewModel);
                     break;
+                */
 
                 case "Settings": commandBox.Enabled = false; SettingsMenu(); break;
                 case "Credits": commandBox.Enabled = false; Credits(); break;

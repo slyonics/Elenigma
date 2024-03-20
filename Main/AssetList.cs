@@ -2,6 +2,9 @@ namespace Elenigma.Main
 {
     public enum GameView
     {
+        BattleScene_BattleView,
+        BattleScene_CommandView,
+        BattleScene_TargetView,
         ConversationScene_ConversationView,
         ConversationScene_ConversationView2,
         ConversationScene_ConversationView3,
@@ -145,11 +148,14 @@ namespace Elenigma.Main
         Particles_Miasma,
         Particles_Smoke,
         Portraits_AdultMC,
+        Portraits_Barbarian,
         Portraits_BigDogFamiliar,
         Portraits_DarkGoddess,
         Portraits_DivineBeast,
         Portraits_DogFamiliar,
+        Portraits_Druid,
         Portraits_HumanFamiliar,
+        Portraits_IceMage,
         Portraits_LightGod,
         Portraits_Map,
         Portraits_MontageBackground,

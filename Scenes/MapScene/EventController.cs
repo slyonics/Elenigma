@@ -119,6 +119,7 @@ namespace Elenigma.Scenes.MapScene
 
         public void Recruit(string[] tokens)
         {
+            /*
             if (tokens[1] == "Keeva")
             {
                 var npc = mapScene.NPCs.First(x => x.Name == "Familiar");
@@ -128,6 +129,7 @@ namespace Elenigma.Scenes.MapScene
 
                 GameProfile.PlayerProfile.Party.Add(new HeroModel("Nota", "Portraits_HumanFamiliar", "Actors_DogFamiliar"));
             }
+            */
         }
     }
 }
