@@ -121,6 +121,19 @@ namespace Elenigma.Scenes.TitleScene
                 case "Map Test":
                     commandBox.Enabled = false;
                     GameProfile.NewState();
+
+                    var sparr = new HeroModel(HeroType.Sparr, ClassType.Scholar, 15);
+                    sparr.Equip("Mahogany");
+                    sparr.Equip("Talisman");
+                    sparr.Equip("Fancy Robes");
+                    GameProfile.PlayerProfile.Party.Add(sparr);
+
+                    var envi = new HeroModel(HeroType.Envi, ClassType.Paragon, 15);
+                    envi.Equip("Battleaxe");
+                    envi.Equip("Talisman");
+                    envi.Equip("Steel Mail");
+                    GameProfile.PlayerProfile.Party.Add(envi);
+
                     CrossPlatformGame.Transition(typeof(CrawlerScene.CrawlerScene), 0);
                     break;
             }

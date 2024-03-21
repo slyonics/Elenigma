@@ -1,0 +1,341 @@
+[
+	{
+		"Name": "Banshee",
+		"Sprite": "Banshee",
+		"Level": 13,
+		"Class": "Undead",
+		"Exp": 1,
+		"Analysis": "Wailing spirit that portends the death of whomever hears its cry. Undead, weak VS holy, strong vs ice.",
+		"HP": 100,
+		"Agility": 25,
+		"Magic": 10,
+		"Attack": 25,
+		"Defense": 0,
+		"Evade": 0,
+		"MagicDefense": 5,
+		"AttackMultiplier": 7,
+		"MagicMultiplier": 6,
+		"ElementWeak": [ "Holy" ],
+		"ElementStrong": [ "Ice" ],
+		"ElementImmune": [ "Dark" ],
+		"Attacks": [
+			{
+				"Script": [ "Attack" ],
+				"Weight": 100
+			},
+			{
+				"Script": [
+					"Announce Terrifying Wail",
+					"Animate Attack",
+					"Wait 600",
+					"Sound Fireball",
+					"Multitarget",
+					"CenterEffect Skull $targetCenterX $targetCenterY 2",
+					"OnHit Ailment Fear",
+					"Flash 255 255 255",
+					"Ailment Fear"
+				],
+				"Weight": 50,
+				"Hit": 40,
+				"Targetting": "AllEnemy"
+			}
+		]
+	},
+	{
+		"Name": "Macabre",
+		"Sprite": "Macabre",
+		"Level": 13,
+		"Class": "Undead",
+		"Exp": 1,
+		"Analysis": "Put the Macabre description here.",
+		"HP": 330,
+		"Agility": 5,
+		"Magic": 30,
+		"Attack": 20,
+		"Defense": 0,
+		"Evade": 0,
+		"MagicDefense": 15,
+		"AttackMultiplier": 5,
+		"MagicMultiplier": 7,
+		"ElementWeak": [ "Blunt", "Holy" ],
+		"ElementStrong": [ "Ice", "Sharp" ],
+		"ElementImmune": [ "Dark" ],
+		"Attacks": [
+			{
+				"Script": [ "Attack" ],
+				"Weight": 25
+			},
+			{
+				"Script": [
+					"Announce Nether Vortex",
+					"Animate Attack",
+					"Wait 600",
+					"Sound Fireball",
+					"Multitarget",
+					"OnHit MonsterMagic",
+					"CenterEffect Darkness $targetCenterX $targetBottom 4",
+					"Flash 255 255 255",
+					"Damage MonsterMagic Dark"
+				],
+				"Weight": 50,
+				"Targetting": "AllEnemy"
+			},
+			{
+				"Script": [
+					"Announce Dislocate Soul",
+					"Animate Attack",
+					"Wait 600",
+					"Sound Fireball",
+					"CenterEffect BlackHole $targetCenterX $targetCenterY 11",
+					"OnHit Ailment Death",
+					"Flash 255 255 255",
+					"Ailment Death"
+				],
+				"Weight": 50,
+				"Hit": 50
+			}
+		]
+	},
+	{
+		"Name": "Harlequin",
+		"Sprite": "Harlequin",
+		"Level": 13,
+		"Exp": 1,
+		"Analysis": "Put the Harlequin description here.",
+		"HP": 120,
+		"Agility": 45,
+		"Magic": 20,
+		"Attack": 25,
+		"Defense": 0,
+		"Evade": 20,
+		"MagicDefense": 5,
+		"AttackMultiplier": 8,
+		"MagicMultiplier": 4,
+		"Attacks": [
+			{
+				"Script": [ "Attack" ],
+				"Weight": 100
+			}
+		]
+	},
+	{
+		"Name": "Dullahan",
+		"Sprite": "Dullahan",
+		"Level": 16,
+		"Class": "Undead",
+		"Exp": 6,
+		"Analysis": "Put the Dullahan description here.",
+		"HP": 666,
+		"Agility": 85,
+		"Magic": 1,
+		"Attack": 30,
+		"Defense": 10,
+		"Evade": 0,
+		"MagicDefense": 15,
+		"AttackMultiplier": 9,
+		"MagicMultiplier": 7,
+		"ElementWeak": [ "Holy" ],
+		"ElementStrong": [ "Ice" ],
+		"ElementImmune": [ "Dark" ],
+		"Attacks": [
+			{
+				"Script": [ "Attack" ],
+				"Weight": 100
+			},
+			{
+				"Script": [
+					"Announce Trample",
+					"Animate Attack",
+					"Wait 600",
+					"Sound Fireball",
+					"Multitarget",
+					"OnHit Monster",
+					"CenterEffect Bash $targetCenterX $targetCenterY 2",
+					"Flash 255 27 0",
+					"Damage Monster Blunt"
+				],
+				"Weight": 50,
+				"Targetting": "AllEnemy",
+				"Power": 25
+			}
+		]
+	},
+	{
+		"Name": "Leviathan",
+		"Sprite": "Leviathan",
+		"Level": 99,
+		"Class": "Boss",
+		"Exp": 60,
+		"Analysis": "Put the Leviathan description here.",
+		"HP": 99999,
+		"Agility": 99,
+		"Magic": 99,
+		"Attack": 99,
+		"Defense": 99,
+		"Evade": 33,
+		"MagicDefense": 99,
+		"AttackMultiplier": 99,
+		"MagicMultiplier": 99,
+		"Attacks": [
+			{
+				"Script": [ "Attack" ],
+				"Weight": 100
+			}
+		]
+	},
+	{
+		"Name": "Dire Rat",
+		"Sprite": "Rat",
+		"Level": 1,
+		"Class": "Beast",
+		"Exp": 2,
+		"Analysis": "Put the Rat description here.",
+		"HP": 20,
+		"Agility": 20,
+		"Magic": 0,
+		"Attack": 6,
+		"Defense": 0,
+		"Evade": 3,
+		"MagicDefense": 2,
+		"AttackMultiplier": 2,
+		"MagicMultiplier": 4,
+		"Attacks": [
+			{
+				"Script": [ "Attack" ],
+				"Weight": 100
+			}
+		]
+	},
+	{
+		"Name": "Mammoth Frog",
+		"Sprite": "Frog",
+		"Level": 3,
+		"Class": "Beast",
+		"Exp": 10,
+		"Analysis": "Put the Frog description here.",
+		"HP": 40,
+		"Agility": 4,
+		"Magic": 0,
+		"Attack": 9,
+		"Defense": 2,
+		"Evade": 0,
+		"MagicDefense": 3,
+		"AttackMultiplier": 2,
+		"MagicMultiplier": 4,
+		"ElementWeak": [ "Ice" ],
+		"Attacks": [
+			{
+				"Script": [ "Attack" ],
+				"Weight": 100
+			}
+		]
+	},
+	{
+		"Name": "Screech Bat",
+		"Sprite": "Bat",
+		"ShadowOffset": 20,
+		"Level": 4,
+		"Class": "Beast",
+		"Exp": 8,
+		"Analysis": "Put the Bat description here.",
+		"HP": 50,
+		"Agility": 40,
+		"Magic": 7,
+		"Attack": 9,
+		"Defense": 0,
+		"Evade": 40,
+		"MagicDefense": 2,
+		"AttackMultiplier": 2,
+		"MagicMultiplier": 4,
+		"ElementWeak": [ "Ranged", "Thunder" ],
+		"Attacks": [
+			{
+				"Script": [ "Attack" ],
+				"Weight": 100
+			},
+			{
+				"Script": [
+					"Announce Screech",
+					"Animate Attack",
+					"Wait 600",
+					"Sound Screech",
+					"Multitarget",
+					"CenterEffect Sonic $targetCenterX $targetCenterY 5",
+					"OnHit Ailment Confusion",
+					"Flash 255 255 255",
+					"Damage MonsterMagic Earth",
+					"Ailment Confusion"
+				],
+				"Weight": 50,
+				"Hit": 60,
+				"Targetting": "AllEnemy"
+			}
+		]
+	},
+	{
+		"Name": "Magic Bulb",
+		"Sprite": "Sprout",
+		"Level": 5,
+		"Class": "Beast",
+		"Exp": 10,
+		"Analysis": "Put the Bulb description here.",
+		"HP": 100,
+		"Agility": 10,
+		"Magic": 9,
+		"Attack": 10,
+		"Defense": 0,
+		"Evade": 0,
+		"MagicDefense": 5,
+		"MagicEvade": 10,
+		"AttackMultiplier": 2,
+		"MagicMultiplier": 4,
+		"ElementWeak": [ "Fire", "Ice", "Sharp" ],
+		"ElementStrong": [ "Blunt" ],
+		"Attacks": [
+			{
+				"Script": [ "Attack" ],
+				"Weight": 100
+			},
+			{
+				"Script": [
+					"Announce Stonefall",
+					"Animate Attack",
+					"Wait 600",
+					"Sound Fireball",
+					"Multitarget",
+					"OnHit MonsterMagic",
+					"Effect Stone $targetCenterX $targetBottom 3",
+					"Flash 165 42 42",
+					"Damage MonsterMagic Earth"
+				],
+				"Weight": 100,
+				"Targetting": "OneEnemy"
+			}
+		]
+	},
+	{
+		"Name": "Snap Turtle",
+		"Sprite": "Turtle",
+		"ShadowOffset": 0,
+		"Level": 6,
+		"Class": "Beast",
+		"Exp": 50,
+		"Analysis": "Put the Turtle description here.",
+		"HP": 160,
+		"Agility": 4,
+		"Magic": 5,
+		"Attack": 9,
+		"Defense": 2,
+		"Evade": 0,
+		"MagicDefense": 5,
+		"AttackMultiplier": 3,
+		"MagicMultiplier": 4,
+		"ElementWeak": [ "Ice" ],
+		"Attacks": [
+			{
+				"Script": [ "Attack" ],
+				"Weight": 100
+			}
+		]
+	}
+]

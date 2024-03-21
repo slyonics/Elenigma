@@ -28,7 +28,7 @@ namespace Elenigma.Scenes.TitleScene
         {
             base.BeginScene();
 
-            Audio.PlayMusic(GameMusic.Elenigma);
+            // Audio.PlayMusic(GameMusic.Elenigma);
         }
 
         public override void Update(GameTime gameTime)

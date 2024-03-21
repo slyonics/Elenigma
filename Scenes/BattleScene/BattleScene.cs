@@ -22,9 +22,6 @@ namespace Elenigma.Scenes.BattleScene
 
         private EncounterRecord encounterRecord;
 
-        public RenderTarget2D enemyBackgroundRender;
-        public RenderTarget2D playerBackgroundRender;
-
         private BattleViewModel battleViewModel;
 
         private bool introFinished = false;
@@ -53,22 +50,11 @@ namespace Elenigma.Scenes.BattleScene
 
             battleViewModel = AddView(new BattleViewModel(this, EncounterRecord.ENCOUNTERS.First(x => x.Name == encounterName)));
 
-            string backgroundName = encounterRecord.Background;
-            if (backgroundName == null) backgroundName = terrainType.ToString();
-            var backgroundSprite = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Background_" + backgroundName)];
-            battleViewModel.EnemyBackgroundRender.Value = backgroundSprite;
-
             List<Battler> battlerList = new List<Battler>();
             battlerList.AddRange(PlayerList);
             battlerList.AddRange(EnemyList);
 
             TargetViewModel.ClearLastTarget();
-        }
-
-        ~BattleScene()
-        {
-            enemyBackgroundRender?.Dispose();
-            playerBackgroundRender?.Dispose();
         }
 
         public override void BeginScene()

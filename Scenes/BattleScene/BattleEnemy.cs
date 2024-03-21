@@ -198,7 +198,7 @@ namespace Elenigma.Scenes.BattleScene
         public void Death()
         {
             deathTimeLeft = DEATH_DURATION;
-            Audio.PlaySound(GameSound.EnemyDeath);
+            Audio.PlaySound(GameSound.Error);
 
             foreach (BattlePlayer player in battleScene.PlayerList)
             {

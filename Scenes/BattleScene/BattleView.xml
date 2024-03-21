@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <View>
-	<Image Picture="Bind EnemyBackgroundRender" Bounds="0,0,290,128" Depth="1.0"/>
-
 	<Panel Name="BattlePanel" Anchor="$CenterX,$CenterY" Bounds="-145,-76,290,120" TransitionOut="Shrink">
 		<DataGrid Items="Ref InitialEnemies" Bounds="8,0,240,96" Alignment="Cascading" Scrolling="False">
 			<Scenes.BattleScene.BattleEnemy EnemyRecord="Ref DataGrid"/>

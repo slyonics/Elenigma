@@ -244,7 +244,6 @@ namespace Elenigma.Scenes.BattleScene
             else if (tokens.Count() == 3)
             {
                 attacker.Animate(tokens[1]);
-                if (tokens[2] != "Fists") battleScene.AddParticle(new WeaponParticle(battleScene, attacker as BattlePlayer, tokens[2], true));
             }
         }
 
@@ -357,14 +356,14 @@ namespace Elenigma.Scenes.BattleScene
 
             if (Rng.RandomInt(0, 99) > hit)
             {
-                Audio.PlaySound(GameSound.Miss);
+                Audio.PlaySound(GameSound.Error);
                 target.Miss();
 
                 return false;
             }
             else if (Rng.RandomInt(0, 99) < evade)
             {
-                Audio.PlaySound(GameSound.Miss);
+                Audio.PlaySound(GameSound.Error);
                 target.Miss();
 
                 return false;

@@ -425,7 +425,7 @@ namespace Elenigma.Scenes.CrawlerScene
         {
             base.BeginScene();
 
-            Audio.PlayMusic(GameMusic.Elenigma);
+            // Audio.PlayMusic(GameMusic.Elenigma);
 
             string waypoint = GameProfile.GetSaveData<string>("Waypoint");
             if (waypoint != null)

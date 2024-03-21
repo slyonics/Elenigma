@@ -41,8 +41,6 @@ namespace Elenigma.Scenes.BattleScene
                 EnemyNames.Add(new EnemyHeader() { Name = enemyName, Count = new ModelProperty<int>(InitialEnemies.Count(x => x.Name == enemyName)) });
             }
 
-            EnemyBackgroundRender.Value = iScene.enemyBackgroundRender;
-
             foreach (var model in GameProfile.PlayerProfile.Party)
             {
                 model.Value.NameColor = new ModelProperty<Color>(new Color(252, 252, 252, 255));
@@ -109,7 +107,6 @@ namespace Elenigma.Scenes.BattleScene
         public List<EnemyRecord> InitialEnemies { get; set; } = new List<EnemyRecord>();
 
         public ModelProperty<Rectangle> EnemyMargin { get; set; } = new ModelProperty<Rectangle>(new Rectangle());
-        public ModelProperty<Texture2D> EnemyBackgroundRender { get; set; } = new ModelProperty<Texture2D>(null);
 
         public ModelProperty<bool> ReadyToProceed { get; set; } = new ModelProperty<bool>(false);
         public ModelProperty<bool> PlayerTurn { get; set; } = new ModelProperty<bool>(false);

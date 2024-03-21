@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Elenigma.Scenes.BattleScene;
+
 namespace Elenigma.Models
 {
     [Serializable]
