@@ -151,6 +151,7 @@ namespace Elenigma.Scenes.BattleScene
 
             CrossPlatformGame.GameInstance.GraphicsDevice.SetRenderTarget(spriteRender);
             CrossPlatformGame.GameInstance.GraphicsDevice.Clear(Color.Transparent);
+            
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, shader, null);
             AnimatedSprite.Draw(spriteBatch, new Vector2(AnimatedSprite.SpriteBounds().Width / 2, AnimatedSprite.SpriteBounds().Height), null, 0.5f);
             spriteBatch.End();

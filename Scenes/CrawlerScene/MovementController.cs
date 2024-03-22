@@ -41,7 +41,7 @@ namespace Elenigma.Scenes.CrawlerScene
             }
             else if (Input.CurrentInput.CommandPressed(Command.Menu))
             {
-                BattleScene.BattleScene battleScene = new BattleScene.BattleScene("MacabreTower");
+                BattleScene.BattleScene battleScene = new BattleScene.BattleScene("CaveMagicBulb");
                 CrossPlatformGame.StackScene(battleScene, true);
 
 

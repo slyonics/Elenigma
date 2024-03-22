@@ -61,12 +61,14 @@ namespace Elenigma.Scenes.BattleScene
         {
             sceneStarted = true;
 
+            /*
             TransitionController transitionController = new TransitionController(TransitionDirection.In, 300);
             IntroShader colorFade = new IntroShader(Color.Black, transitionController.TransitionProgress);
             transitionController.UpdateTransition += new Action<float>(t => colorFade.Amount = t);
             transitionController.FinishTransition += new Action<TransitionDirection>(t => colorFade.Terminate());
             AddController(transitionController);
             CrossPlatformGame.TransitionShader = colorFade;
+            */
 
             if (encounterRecord.Music != GameMusic.None) Audio.PlayMusic(encounterRecord.Music);
             else Audio.PlayMusic(GameMusic.ChoiceEncounter);
@@ -74,7 +76,7 @@ namespace Elenigma.Scenes.BattleScene
 
         public override void EndScene()
         {
-            Audio.PlayMusic(mapMusic);
+            // Audio.PlayMusic(mapMusic);
 
             if (GameProfile.PlayerProfile.Party.Any(x => x.Value.HP.Value > 0))
             {
@@ -184,9 +186,11 @@ namespace Elenigma.Scenes.BattleScene
 
         public override void Draw(GraphicsDevice graphicsDevice, SpriteBatch spriteBatch, RenderTarget2D pixelRender, RenderTarget2D compositeRender)
         {
+            foreach (BattleEnemy battleEnemy in EnemyList) battleEnemy.DrawShader(spriteBatch);
+
             graphicsDevice.SetRenderTarget(pixelRender);
             graphicsDevice.Clear(Color.Transparent);
-
+            
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, null);
             DrawBackground(spriteBatch);
             spriteBatch.End();
@@ -197,9 +201,6 @@ namespace Elenigma.Scenes.BattleScene
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, shader, matrix);
             DrawGame(spriteBatch, shader, matrix);
             spriteBatch.End();
-
-            foreach (BattleEnemy battleEnemy in EnemyList) battleEnemy.DrawShader(spriteBatch);
-            graphicsDevice.SetRenderTarget(pixelRender);
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, null);
             DrawOverlay(spriteBatch);

@@ -4,7 +4,7 @@
 		<DataGrid Items="Ref InitialEnemies" Bounds="8,0,240,96" Alignment="Cascading" Scrolling="False">
 			<Scenes.BattleScene.BattleEnemy EnemyRecord="Ref DataGrid"/>
 		</DataGrid>
-		<DataGrid Items="Bind PlayerProfile.Party" Scrolling="False" Bounds="40,38,24,96" Alignment="Cascading">
+		<DataGrid Items="Bind PlayerProfile.Party" Scrolling="False" Bounds="4000,38,24,96" Alignment="Cascading">
 			<Panel Alignment="Vertical" Bounds="0,6,102,24">
 				<Scenes.BattleScene.BattlePlayer HeroModel="Bind DataGrid" Alignment="BottomLeft"/>
 			</Panel>
@@ -12,7 +12,7 @@
 		
 	</Panel>
 
-	<Panel Name="EnemyPanel" Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-145,30,290,60" InnerMargin="6,6,6,8" TransitionOut="Shrink">
+	<Panel Name="EnemyPanel" Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-14500,30,290,60" InnerMargin="6,6,6,8" TransitionOut="Shrink">
 		<DataGrid Items="Bind EnemyNames" Alignment="Cascading" Bounds="0,0,104,76">
 			<Panel Bounds="0,0,104,12" Alignment="Vertical">
 				<Label Text="Ref DataGrid.Name" Font="Main" Color="#FFFFFF" Alignment="Cascading" TextAlignment="Left" Bounds="0,0,96,12"/>
@@ -21,7 +21,7 @@
 		</DataGrid>
 	</Panel>
 
-	<Panel Name="PlayerPanel" Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-35,30,180,60" TransitionOut="Shrink" InnerMargin="8,8,8,8">
+	<Panel Name="PlayerPanel" Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-35,30,180,60" TransitionOut="Shrink" InnerMargin="8,8,8,8" Visible="False">
 
 		<Label Text="HP" Font="Interface" Alignment="Relative" TextAlignment="Center" Bounds="91,0,16,6"/>
 		<Label Text="MP" Font="Interface" Alignment="Relative" TextAlignment="Center" Bounds="146,0,16,6"/>
