@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <View>
-	<Panel Name="BattlePanel" Anchor="$CenterX,$CenterY" Bounds="-145,-76,290,120" TransitionOut="Shrink">
+	<Panel Name="BattlePanel" Anchor="$CenterX,$CenterY" Bounds="-85,-76,290,120" TransitionOut="Shrink">
 		<DataGrid Items="Ref InitialEnemies" Bounds="8,0,240,96" Alignment="Cascading" Scrolling="False">
 			<Scenes.BattleScene.BattleEnemy EnemyRecord="Ref DataGrid"/>
 		</DataGrid>

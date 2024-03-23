@@ -27,7 +27,6 @@ namespace Elenigma.Scenes.BattleScene
 
             EncounterEnemy[] encounterEnemies = encounterRecord.Enemies;
             int totalEnemyWidth = 0;
-            int enemyMargin = 0;
             foreach (EncounterEnemy enemy in encounterEnemies)
             {
                 EnemyRecord enemyRecord = new EnemyRecord(EnemyRecord.ENEMIES.First(x => x.Name == enemy.Name));

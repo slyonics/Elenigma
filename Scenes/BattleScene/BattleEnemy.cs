@@ -73,7 +73,7 @@ namespace Elenigma.Scenes.BattleScene
 
             battleScene.AddBattler(this);
 
-            battlerOffset = new Vector2(-160, 0);
+            // battlerOffset = new Vector2(-160, 0);
         }
 
         public static void Initialize()

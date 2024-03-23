@@ -134,6 +134,12 @@ namespace Elenigma.Scenes.TitleScene
                     envi.Equip("Steel Mail");
                     GameProfile.PlayerProfile.Party.Add(envi);
 
+                    sparr = new HeroModel(HeroType.Sparr, ClassType.Scholar, 15);
+                    sparr.Equip("Mahogany");
+                    sparr.Equip("Talisman");
+                    sparr.Equip("Fancy Robes");
+                    GameProfile.PlayerProfile.Party.Add(sparr);
+
                     CrossPlatformGame.Transition(typeof(CrawlerScene.CrawlerScene), 0);
                     break;
             }
