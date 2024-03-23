@@ -13,6 +13,7 @@ using System.IO;
 using Elenigma.Models;
 using Elenigma.SceneObjects.Widgets;
 using Elenigma.SceneObjects;
+using static Elenigma.SceneObjects.ParallaxBackdrop;
 
 namespace Elenigma.Scenes.CrawlerScene
 {
@@ -34,7 +35,7 @@ namespace Elenigma.Scenes.CrawlerScene
         private Texture2D minimapSprite = AssetCache.SPRITES[GameSprite.YouAreHere];
         private static readonly Rectangle[] minimapSource = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8), new Rectangle(24, 0, 8, 8) };
 
-
+        public int TileSize { get; set; }
         public int MapWidth { get; set; }
         public int MapHeight { get; set; }
 
@@ -65,21 +66,60 @@ namespace Elenigma.Scenes.CrawlerScene
         {
             parentScene = crawlerScene;
 
-            MapWidth = 7;
-            MapHeight = 7;
+            LoadMap(GameMap.CrawlerMap);
+        }
 
+        public void LoadMap(GameMap iGameMap, string spawnName = "Default")
+        {
+            gameMap = iGameMap;
+
+            LdtkJson ldtkJson = LdtkJson.FromJson(AssetCache.MAPS[gameMap]);
+            Definitions = ldtkJson.Defs;
+            Level = ldtkJson.Levels[0];
+            foreach (TilesetDefinition tilesetDefinition in Definitions.Tilesets)
+            {
+                tilesets.Add(tilesetDefinition.Uid, new Tileset(tilesetDefinition));
+            }
+
+            TileSize = (int)Level.LayerInstances[0].GridSize;
+            MapWidth = (int)Level.LayerInstances[0].CWid;
+            MapHeight = (int)Level.LayerInstances[0].CHei;
             mapRooms = new MapRoom[MapWidth, MapHeight];
 
-            for (int x = 2; x < MapWidth - 2; x++)
+
+            foreach (LayerInstance layer in Level.LayerInstances.Reverse())
             {
-                for (int y = 2; y < MapHeight - 2; y++)
+                if (layer.Type == "Entities") continue;
+
+                var tileset = Definitions.Tilesets.First(x => x.Uid == layer.TilesetDefUid);
+                foreach (var tile in layer.GridTiles)
                 {
-                    mapRooms[x, y] = new MapRoom(crawlerScene, this, x, y, "ClassroomWall");
+                    int x = (int)(tile.Px[0]) / TileSize;
+                    int y = (int)(tile.Px[1]) / TileSize;
+
+                    mapRooms[x, y] = new MapRoom(parentScene, this, x, y, "ClassroomWall");
                     mapRooms[x, y].Blocked = false;
                     mapRooms[x, y].ApplyWall(Direction.Down, AssetCache.SPRITES[GameSprite.Walls_ClassroomFloor]);
                     mapRooms[x, y].ApplyWall(Direction.Up, AssetCache.SPRITES[GameSprite.Walls_PlainCeiling]);
                 }
             }
+
+
+            /*
+            for (int x = 2; x < MapWidth - 2; x++)
+            {
+                for (int y = 2; y < MapHeight - 2; y++)
+                {
+                    mapRooms[x, y] = new MapRoom(parentScene, this, x, y, "ClassroomWall");
+                    mapRooms[x, y].Blocked = false;
+                    mapRooms[x, y].ApplyWall(Direction.Down, AssetCache.SPRITES[GameSprite.Walls_ClassroomFloor]);
+                    mapRooms[x, y].ApplyWall(Direction.Up, AssetCache.SPRITES[GameSprite.Walls_PlainCeiling]);
+                }
+            }
+            */
+
+
+
 
             for (int x = 0; x < MapWidth; x++)
             {
@@ -88,15 +128,12 @@ namespace Elenigma.Scenes.CrawlerScene
                     mapRooms[x, y]?.BuildNeighbors();
                 }
             }
-
+            
             Lighting(3, 3, 1, 1);
             AmbientLight = 0.2f;
 
             FinishMap();
-        }
 
-        private void LoadMap(string mapName, string spawnName = "Default")
-        {
             /*
             TiledMap tiledMap = new TiledMap();
             tiledMap.ParseXml(AssetCache.MAPS[(GameMap)Enum.Parse(typeof(GameMap), mapName)]);

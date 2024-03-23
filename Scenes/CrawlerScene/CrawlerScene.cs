@@ -192,58 +192,68 @@ namespace Elenigma.Scenes.CrawlerScene
         public void MoveForward()
         {
             TransitionController transitionController;
-            /*
+            
+            var currentRoom = floor.GetRoom(roomX, roomY);
+
             switch (direction)
             {
                 case Direction.North:
-                    if (roomY > 0 && mapRooms[roomX, roomY - 1] != null && !mapRooms[roomX, roomY - 1].Blocked && mapRooms[roomX, roomY].Neighbors.Contains(mapRooms[roomX, roomY - 1]))
+
+                    var northRoom = floor.GetRoom(roomX, roomY - 1);
+                    if (roomY > 0 && northRoom != null && !northRoom.Blocked && currentRoom.Neighbors.Contains(northRoom))
                     {
-                        if (mapRooms[roomX, roomY - 1].PreEnterScript != null) { mapRooms[roomX, roomY - 1].ActivatePreScript(); return; }
+                        if (northRoom.PreEnterScript != null) { northRoom.ActivatePreScript(); return; }
 
                         transitionController = new TransitionController(TransitionDirection.In, 300, PriorityLevel.TransitionLevel);
                         AddController(transitionController);
                         transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(0, 10, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosZ = 0; roomY--; mapRooms[roomX, roomY].EnterRoom(); });
+                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosZ = 0; roomY--; currentRoom.EnterRoom(); });
                     }
                     else if (!Activate()) { WallBump(); return; }
                     break;
+
                 case Direction.East:
-                    if (roomX < mapRooms.GetLength(0) - 1 && mapRooms[roomX + 1, roomY] != null && !mapRooms[roomX + 1, roomY].Blocked && mapRooms[roomX, roomY].Neighbors.Contains(mapRooms[roomX + 1, roomY]))
+                    var eastRoom = floor.GetRoom(roomX + 1, roomY);
+                    if (roomX < floor.MapWidth - 1 && eastRoom != null && !eastRoom.Blocked && currentRoom.Neighbors.Contains(eastRoom))
                     {
-                        if (mapRooms[roomX + 1, roomY].PreEnterScript != null) { mapRooms[roomX + 1, roomY].ActivatePreScript(); return; }
+                        if (eastRoom.PreEnterScript != null) { eastRoom.ActivatePreScript(); return; }
 
                         transitionController = new TransitionController(TransitionDirection.In, 300, PriorityLevel.TransitionLevel);
                         AddController(transitionController);
                         transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(0, 10, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosX = 0; roomX++; mapRooms[roomX, roomY].EnterRoom(); });
+                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosX = 0; roomX++; currentRoom.EnterRoom(); });
                     }
                     else if (!Activate()) { WallBump(); return; }
                     break;
+
                 case Direction.South:
-                    if (roomY < mapRooms.GetLength(1) - 1 && mapRooms[roomX, roomY + 1] != null && !mapRooms[roomX, roomY + 1].Blocked && mapRooms[roomX, roomY].Neighbors.Contains(mapRooms[roomX, roomY + 1]))
+                    var southRoom = floor.GetRoom(roomX, roomY + 1);
+                    if (roomY < floor.MapHeight - 1 && southRoom != null && !southRoom.Blocked && currentRoom.Neighbors.Contains(southRoom))
                     {
-                        if (mapRooms[roomX, roomY + 1].PreEnterScript != null) { mapRooms[roomX, roomY + 1].ActivatePreScript(); return; }
+                        if (southRoom.PreEnterScript != null) { southRoom.ActivatePreScript(); return; }
 
                         transitionController = new TransitionController(TransitionDirection.Out, 300, PriorityLevel.TransitionLevel);
                         AddController(transitionController);
                         transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(-10, 0, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosZ = 0; roomY++; mapRooms[roomX, roomY].EnterRoom(); });
+                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosZ = 0; roomY++; currentRoom.EnterRoom(); });
                     }
                     else if (!Activate()) { WallBump(); return; }
                     break;
+
                 case Direction.West:
-                    if (roomX > 0 && mapRooms[roomX - 1, roomY] != null && !mapRooms[roomX - 1, roomY].Blocked && mapRooms[roomX, roomY].Neighbors.Contains(mapRooms[roomX - 1, roomY]))
+                    var westRoom = floor.GetRoom(roomX - 1, roomY);
+                    if (roomX > 0 && westRoom != null && !westRoom.Blocked && currentRoom.Neighbors.Contains(westRoom))
                     {
-                        if (mapRooms[roomX - 1, roomY].PreEnterScript != null) { mapRooms[roomX - 1, roomY].ActivatePreScript(); return; }
+                        if (westRoom.PreEnterScript != null) { westRoom.ActivatePreScript(); return; }
 
                         transitionController = new TransitionController(TransitionDirection.Out, 300, PriorityLevel.TransitionLevel);
                         AddController(transitionController);
                         transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(-10, 0, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosX = 0; roomX--; mapRooms[roomX, roomY].EnterRoom(); });
+                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosX = 0; roomX--; currentRoom.EnterRoom(); });
                     }
                     else if (!Activate()) { WallBump(); return; }
                     break;
-            }*/
+            }
         }
 
         public void MoveTo(MapRoom destinationRoom)
