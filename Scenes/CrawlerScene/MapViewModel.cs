@@ -49,8 +49,6 @@ namespace Elenigma.Scenes.CrawlerScene
             }
         }
 
-        public Image.ImageDrawFunction DrawMiniMap { get => mapScene.DrawMiniMap; }
-
         public ModelProperty<string> MapName { get; set; } = new ModelProperty<string>("");
 
         public RenderTarget2D MapRender { get => CrawlerScene.mapRender; }

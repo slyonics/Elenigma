@@ -70,7 +70,6 @@ namespace Elenigma.Scenes.CrawlerScene
         private Texture2D minimapSprite = AssetCache.SPRITES[GameSprite.MiniMap];
         private static readonly Rectangle[] minimapSource = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8), new Rectangle(24, 0, 8, 8) };
 
-        private MapRoom[,] mapRooms;
         public int RoomX { get; set; }
         public int RoomY { get; set; }
         public bool Blocked { get; set; }
@@ -82,6 +81,7 @@ namespace Elenigma.Scenes.CrawlerScene
         private GraphicsDevice graphicsDevice = CrossPlatformGame.GameInstance.GraphicsDevice;
 
         private CrawlerScene parentScene;
+        private Floor parentFloor;
         private Matrix translationMatrix;
 
         private GameSprite defaultWall;
@@ -94,10 +94,10 @@ namespace Elenigma.Scenes.CrawlerScene
         public int brightnessLevel = 0;
         private float[] lightVertices;
 
-        public MapRoom(CrawlerScene mapScene, MapRoom[,] iMapRooms, int x, int y, string wallSprite)
+        public MapRoom(CrawlerScene mapScene, Floor iFloor, int x, int y, string wallSprite)
         {
             parentScene = mapScene;
-            mapRooms = iMapRooms;
+            parentFloor = iFloor;
             RoomX = x;
             RoomY = y;
             defaultWall = (GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + wallSprite);
@@ -155,7 +155,7 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public void SetVertices(int x, int y)
         {
-            translationMatrix = Matrix.CreateTranslation(new Vector3(10 * (x), 0, 10 * (mapRooms.GetLength(1) - y)));
+            translationMatrix = Matrix.CreateTranslation(new Vector3(10 * (x), 0, 10 * (parentFloor.MapHeight - y)));
 
             foreach (KeyValuePair<Direction, RoomWall> wall in wallList)
             {
@@ -193,7 +193,7 @@ namespace Elenigma.Scenes.CrawlerScene
             }
         }
 
-        public float Brightness(float x) { return Math.Min(1.0f, Math.Max(x / 4.0f, parentScene.AmbientLight)); }
+        public float Brightness(float x) { return Math.Min(1.0f, Math.Max(x / 4.0f, parentFloor.AmbientLight)); }
 
         public void BlendLighting()
         {
@@ -205,10 +205,10 @@ namespace Elenigma.Scenes.CrawlerScene
             {
                 for (int y = -1; y <= 1; y++)
                 {
-                    if (RoomX + x < 0 || RoomY + y < 0 || RoomX + x >= mapRooms.GetLength(0) || RoomY + y >= mapRooms.GetLength(1)) neighborBrightness[i] = brightnessLevel;
+                    if (RoomX + x < 0 || RoomY + y < 0 || RoomX + x >= parentFloor.MapWidth || RoomY + y >= parentFloor.MapHeight) neighborBrightness[i] = brightnessLevel;
                     else
                     {
-                        MapRoom mapRoom = mapRooms[RoomX + x, RoomY + y];
+                        MapRoom mapRoom = parentFloor.GetRoom(RoomX + x, RoomY + y);
                         neighborBrightness[i] = mapRoom == null || mapRoom.Blocked ? brightnessLevel : mapRoom.brightnessLevel;
                     }
                     i++;
@@ -271,25 +271,25 @@ namespace Elenigma.Scenes.CrawlerScene
         {
             if (!wallList.ContainsKey(Direction.West))
             {
-                if (RoomX > 0 && mapRooms[RoomX - 1, RoomY] != null && !mapRooms[RoomX - 1, RoomY].Blocked) Neighbors.Add(mapRooms[RoomX - 1, RoomY]);
+                if (RoomX > 0 && parentFloor.GetRoom(RoomX - 1, RoomY) != null && !parentFloor.GetRoom(RoomX - 1, RoomY).Blocked) Neighbors.Add(parentFloor.GetRoom(RoomX - 1, RoomY));
                 else wallList.Add(Direction.West, new RoomWall() { Orientation = Direction.West, Texture = AssetCache.SPRITES[defaultWall] });
             }
 
             if (!wallList.ContainsKey(Direction.East))
             {
-                if (RoomX < mapRooms.GetLength(0) - 1 && mapRooms[RoomX + 1, RoomY] != null && !mapRooms[RoomX + 1, RoomY].Blocked) Neighbors.Add(mapRooms[RoomX + 1, RoomY]);
+                if (RoomX < parentFloor.MapWidth - 1 && parentFloor.GetRoom(RoomX + 1, RoomY) != null && !parentFloor.GetRoom(RoomX + 1, RoomY).Blocked) Neighbors.Add(parentFloor.GetRoom(RoomX + 1, RoomY));
                 else wallList.Add(Direction.East, new RoomWall() { Orientation = Direction.East, Texture = AssetCache.SPRITES[defaultWall] });
             }
 
             if (!wallList.ContainsKey(Direction.North))
             {
-                if (RoomY > 0 && mapRooms[RoomX, RoomY - 1] != null && !mapRooms[RoomX, RoomY - 1].Blocked) Neighbors.Add(mapRooms[RoomX, RoomY - 1]);
+                if (RoomY > 0 && parentFloor.GetRoom(RoomX, RoomY - 1) != null && !parentFloor.GetRoom(RoomX, RoomY - 1).Blocked) Neighbors.Add(parentFloor.GetRoom(RoomX, RoomY - 1));
                 else wallList.Add(Direction.North, new RoomWall() { Orientation = Direction.North, Texture = AssetCache.SPRITES[defaultWall] });
             }
 
             if (!wallList.ContainsKey(Direction.South))
             {
-                if (RoomY < mapRooms.GetLength(1) - 1 && mapRooms[RoomX, RoomY + 1] != null && !mapRooms[RoomX, RoomY + 1].Blocked) Neighbors.Add(mapRooms[RoomX, RoomY + 1]);
+                if (RoomY < parentFloor.MapHeight - 1 && parentFloor.GetRoom(RoomX, RoomY + 1) != null && !parentFloor.GetRoom(RoomX, RoomY + 1).Blocked) Neighbors.Add(parentFloor.GetRoom(RoomX, RoomY + 1));
                 else if (!wallList.ContainsKey(Direction.South)) wallList.Add(Direction.South, new RoomWall() { Orientation = Direction.South, Texture = AssetCache.SPRITES[defaultWall] });
             }
         }
@@ -346,10 +346,10 @@ namespace Elenigma.Scenes.CrawlerScene
             {
                 switch (key)
                 {
-                    case Direction.North: return parentScene.GetRoom(RoomX, RoomY - 1);
-                    case Direction.East: return parentScene.GetRoom(RoomX + 1, RoomY);
-                    case Direction.South: return parentScene.GetRoom(RoomX, RoomY + 1);
-                    case Direction.West: return parentScene.GetRoom(RoomX - 1, RoomY);
+                    case Direction.North: return parentFloor.GetRoom(RoomX, RoomY - 1);
+                    case Direction.East: return parentFloor.GetRoom(RoomX + 1, RoomY);
+                    case Direction.South: return parentFloor.GetRoom(RoomX, RoomY + 1);
+                    case Direction.West: return parentFloor.GetRoom(RoomX - 1, RoomY);
                     default: return null;
                 }
             }

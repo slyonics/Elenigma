@@ -35,7 +35,6 @@ namespace Elenigma.Scenes.CrawlerScene
                 case "EndGame": EndGame = true; break;
                 case "ChangeMap": ChangeMap(tokens); Audio.PlaySound(GameSound.Door); break;
                 case "DisableEvent": mapRoom.Script = null; break;
-                case "SetWaypoint": SetWaypoint(tokens); break;
                 case "Conversation": Conversation(tokens); break;
                 case "Encounter": Encounter(tokens, scriptParser); break;
                 default: return false;
@@ -63,21 +62,11 @@ namespace Elenigma.Scenes.CrawlerScene
 
         private void ChangeMap(string[] tokens)
         {
-            mapScene.ResetWaypoints();
-
             Type sceneType = Type.GetType(tokens[1]);
             if (tokens.Length == 6) CrossPlatformGame.Transition(sceneType, tokens[2], int.Parse(tokens[3]), int.Parse(tokens[4]), (Direction)Enum.Parse(typeof(Direction), tokens[5]));
             else if (tokens.Length == 3) CrossPlatformGame.Transition(typeof(CrawlerScene), tokens[1], tokens[2]);
             else if (tokens.Length == 2) CrossPlatformGame.Transition(sceneType);
             else CrossPlatformGame.Transition(sceneType, tokens[2]);
-        }
-
-        public static void SetWaypoint(string[] tokens)
-        {
-            GameProfile.SetSaveData<string>("Waypoint", tokens[1]);
-
-            CrawlerScene.Instance.ApplyWaypoint(tokens[1]);
-
         }
 
         private void Conversation(string[] tokens)
