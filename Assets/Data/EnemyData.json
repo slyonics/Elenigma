@@ -1,5 +1,47 @@
 [
 	{
+		"Name": "Boss",
+		"Sprite": "Boss",
+		"Level": 13,
+		"Class": "Undead",
+		"Exp": 1,
+		"Analysis": "Wailing spirit that portends the death of whomever hears its cry. Undead, weak VS holy, strong vs ice.",
+		"HP": 100,
+		"Agility": 25,
+		"Magic": 10,
+		"Attack": 25,
+		"Defense": 0,
+		"Evade": 0,
+		"MagicDefense": 5,
+		"AttackMultiplier": 7,
+		"MagicMultiplier": 6,
+		"ElementWeak": [ "Holy" ],
+		"ElementStrong": [ "Ice" ],
+		"ElementImmune": [ "Dark" ],
+		"Attacks": [
+			{
+				"Script": [ "Attack" ],
+				"Weight": 100
+			},
+			{
+				"Script": [
+					"Announce Terrifying Wail",
+					"Animate Attack",
+					"Wait 600",
+					"Sound Fireball",
+					"Multitarget",
+					"CenterEffect Skull $targetCenterX $targetCenterY 2",
+					"OnHit Ailment Fear",
+					"Flash 255 255 255",
+					"Ailment Fear"
+				],
+				"Weight": 50,
+				"Hit": 40,
+				"Targetting": "AllEnemy"
+			}
+		]
+	},
+	{
 		"Name": "Banshee",
 		"Sprite": "Banshee",
 		"Level": 13,

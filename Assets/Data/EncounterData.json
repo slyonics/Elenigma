@@ -20,6 +20,16 @@
 		]
 	},
 	{
+		"Name": "BossTest",
+		"Enemies": [
+			{
+				"Name": "Boss",
+				"BattleOffsetX": 20,
+				"BattleOffsetY": -5
+			}
+		]
+	},
+	{
 		"Name": "BansheeTower",
 		"Enemies": [
 			{

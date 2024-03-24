@@ -196,6 +196,7 @@ namespace Elenigma.Main
         Enemies_Basilisk,
         Enemies_Bat,
         Enemies_Behemoth,
+        Enemies_Boss,
         Enemies_Dullahan,
         Enemies_Frog,
         Enemies_Harlequin,

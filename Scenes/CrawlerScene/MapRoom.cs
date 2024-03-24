@@ -86,10 +86,18 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public int RoomX { get; set; }
         public int RoomY { get; set; }
+
+
         public bool Blocked { get; set; }
+
+        public bool Obscured { get; set; } = true;
+
         public string[] Script { get; set; }
         public string[] PreEnterScript { get; set; }
         public Dictionary<Direction, string[]> ActivateScript { get; set; } = new Dictionary<Direction, string[]>();
+
+
+        public string[] InteractScript { get; set; }
 
         //public WallShader WallEffect { get; private set; }
         private GraphicsDevice graphicsDevice = CrossPlatformGame.GameInstance.GraphicsDevice;
@@ -183,6 +191,7 @@ namespace Elenigma.Scenes.CrawlerScene
             if (wallList.TryGetValue(direction, out var wall))
             {
                 wall.Texture = texture2D;
+                throw new Exception();
             }
             else
             {
@@ -286,6 +295,8 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public void DrawMinimap(SpriteBatch spriteBatch, Vector2 offset, float depth)
         {
+            if (Obscured) return;
+
             spriteBatch.Draw(minimapSprite, offset, minimapSource[waypointTile], Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
         }
 
@@ -324,6 +335,18 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public bool Activate(Direction direction)
         {
+            if (InteractScript == null) return false;
+            else
+            {
+                EventController eventController = new EventController(parentScene, InteractScript, this);
+                parentScene.AddController(eventController);
+                parentScene.ResetPathfinding();
+
+                return true;
+            }
+
+
+            /*
             string[] script;
             if (ActivateScript.TryGetValue(direction, out script))
             {
@@ -334,6 +357,7 @@ namespace Elenigma.Scenes.CrawlerScene
                 return true;
             }
             else return false;
+            */
         }
 
         public void ActivatePreScript()
@@ -348,6 +372,7 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public void EnterRoom()
         {
+            parentFloor.CalculateFieldOfView(parentFloor.GetRoom(parentScene.roomX, parentScene.roomY), 8);
 
             if (Script != null)
             {
@@ -355,7 +380,6 @@ namespace Elenigma.Scenes.CrawlerScene
                 parentScene.AddController(eventController);
                 parentScene.ResetPathfinding();
             }
-
         }
 
 

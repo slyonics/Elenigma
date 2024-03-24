@@ -26,7 +26,7 @@ namespace Elenigma.Scenes.CrawlerScene
         private const int WALL_LENGTH = 128;
 
         public string MapName { get; private set; }
-        public string LocationName { get; private set; } = "Test Map";
+        public string LocationName { get; set; } = "Test Map";
 
 
         public static RenderTarget2D mapRender;
@@ -329,7 +329,10 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public bool Activate()
         {
-            return floor.GetRoom(roomX, roomY).Activate(direction);
+            var roomAhead = floor.GetRoom(roomX, roomY)[direction];
+            if (roomAhead == null) return false;
+
+            return roomAhead.Activate(direction);
         }
 
         public void MiniMapClick(Vector2 clickPosition)
