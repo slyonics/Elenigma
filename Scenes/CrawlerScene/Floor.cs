@@ -226,20 +226,20 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public void DrawMiniMap(SpriteBatch spriteBatch, Rectangle bounds, Color color, float depth, int roomX, int roomY, Direction direction)
         {
-            MinimapStartX = Math.Max(0, roomX - 3);
-            int endX = MinimapStartX + 7;
+            MinimapStartX = Math.Max(0, roomX - 5);
+            int endX = MinimapStartX + 12;
             if (endX > mapRooms.GetLength(0) - 1)
             {
                 endX = mapRooms.GetLength(0) - 1;
-                MinimapStartX = Math.Max(0, endX - 7);
+                MinimapStartX = Math.Max(0, endX - 11);
             }
 
-            MinimapStartY = Math.Max(0, roomY - 3);
-            int endY = MinimapStartY + 7;
+            MinimapStartY = Math.Max(0, roomY - 5);
+            int endY = MinimapStartY + 12;
             if (endY > mapRooms.GetLength(1) - 1)
             {
                 endY = mapRooms.GetLength(1) - 1;
-                MinimapStartY = Math.Max(0, endY - 7);
+                MinimapStartY = Math.Max(0, endY - 11);
             }
 
             Vector2 offset = new Vector2(bounds.X, bounds.Y);
