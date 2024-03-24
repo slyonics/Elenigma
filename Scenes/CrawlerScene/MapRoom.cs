@@ -1,5 +1,6 @@
 ﻿using Elenigma.Models;
 using Elenigma.Scenes.MapScene;
+using ldtk;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,19 @@ namespace Elenigma.Scenes.CrawlerScene
             public Vector4[] Lighting { get; set; } = new Vector4[] { new Vector4(1.0f), new Vector4(1.0f), new Vector4(1.0f), new Vector4(1.0f) };
             public Texture2D Texture { get; set; }
             public WallShader Shader { get; set; }
+
+            public RoomWall(Direction iOrientation, Texture2D iTexture, float startU, float startV, float endU, float endV)
+            {
+                Orientation = iOrientation;
+                Texture = iTexture;
+
+                VertexPositionTexture[] quad = new VertexPositionTexture[4];
+                quad[0] = new VertexPositionTexture(VERTICES[Orientation][0], new Vector2(0.0f, 0.0f));
+                quad[1] = new VertexPositionTexture(VERTICES[Orientation][1], new Vector2(0.0f, 1.0f));
+                quad[2] = new VertexPositionTexture(VERTICES[Orientation][2], new Vector2(1.0f, 1.0f));
+                quad[3] = new VertexPositionTexture(VERTICES[Orientation][3], new Vector2(1.0f, 0.0f));
+                Quad = quad;
+            }
 
         }
 
@@ -104,13 +118,14 @@ namespace Elenigma.Scenes.CrawlerScene
             waypointTile = 1;
         }
 
-        public void ApplyTile()
+        public void ApplyTile(string layerName, TilesetDefinition tileset, TileInstance tile)
         {
-            /*
+            
             switch (layerName)
             {
                 case "Walls":
                     Blocked = true;
+                    /*
                     if (RoomX > 0 && mapRooms[RoomX - 1, RoomY] != null && !mapRooms[RoomX - 1, RoomY].Blocked)
                         mapRooms[RoomX - 1, RoomY].ApplyWall(Direction.East, AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[gid].image.source))]);
 
@@ -122,17 +137,18 @@ namespace Elenigma.Scenes.CrawlerScene
 
                     if (RoomY < mapRooms.GetLength(1) - 1 && mapRooms[RoomX, RoomY + 1] != null && !mapRooms[RoomX, RoomY + 1].Blocked)
                         mapRooms[RoomX, RoomY + 1].ApplyWall(Direction.North, AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[gid].image.source))]);
+                    */
                     break;
 
                 case "Ceiling":
-                    wallList.Add(Direction.Up, new RoomWall() { Orientation = Direction.Up, Texture = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[gid].image.source))] });
+                    wallList.Add(Direction.Up, new RoomWall(Direction.Up, AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[gid].image.source))] });
                     break;
 
                 case "Floor":
                     wallList.Add(Direction.Down, new RoomWall() { Orientation = Direction.Down, Texture = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[gid].image.source))] });
                     break;
             }
-            */
+            
 
             ResetMinimapIcon();
         }
@@ -145,11 +161,7 @@ namespace Elenigma.Scenes.CrawlerScene
             }
             else
             {
-                wallList.Add(direction, new RoomWall()
-                {
-                    Orientation = direction,
-                    Texture = texture2D
-                });
+                wallList.Add(direction, new RoomWall(direction, texture2D, 0, 0, 1, 1));
             }
         }
 
@@ -157,15 +169,6 @@ namespace Elenigma.Scenes.CrawlerScene
         {
             translationMatrix = Matrix.CreateTranslation(new Vector3(10 * (x), 0, 10 * (parentFloor.MapHeight - y)));
 
-            foreach (KeyValuePair<Direction, RoomWall> wall in wallList)
-            {
-                VertexPositionTexture[] quad = new VertexPositionTexture[4];
-                quad[0] = new VertexPositionTexture(VERTICES[wall.Value.Orientation][0], new Vector2(0.0f, 0.0f));
-                quad[1] = new VertexPositionTexture(VERTICES[wall.Value.Orientation][1], new Vector2(0.0f, 1.0f));
-                quad[2] = new VertexPositionTexture(VERTICES[wall.Value.Orientation][2], new Vector2(1.0f, 1.0f));
-                quad[3] = new VertexPositionTexture(VERTICES[wall.Value.Orientation][3], new Vector2(1.0f, 0.0f));
-                wall.Value.Quad = quad;
-            }
 
             BuildShader();
         }
@@ -272,25 +275,25 @@ namespace Elenigma.Scenes.CrawlerScene
             if (!wallList.ContainsKey(Direction.West))
             {
                 if (RoomX > 0 && parentFloor.GetRoom(RoomX - 1, RoomY) != null && !parentFloor.GetRoom(RoomX - 1, RoomY).Blocked) Neighbors.Add(parentFloor.GetRoom(RoomX - 1, RoomY));
-                else wallList.Add(Direction.West, new RoomWall() { Orientation = Direction.West, Texture = AssetCache.SPRITES[defaultWall] });
+                //else wallList.Add(Direction.West, new RoomWall() { Orientation = Direction.West, Texture = AssetCache.SPRITES[defaultWall] });
             }
 
             if (!wallList.ContainsKey(Direction.East))
             {
                 if (RoomX < parentFloor.MapWidth - 1 && parentFloor.GetRoom(RoomX + 1, RoomY) != null && !parentFloor.GetRoom(RoomX + 1, RoomY).Blocked) Neighbors.Add(parentFloor.GetRoom(RoomX + 1, RoomY));
-                else wallList.Add(Direction.East, new RoomWall() { Orientation = Direction.East, Texture = AssetCache.SPRITES[defaultWall] });
+                //else wallList.Add(Direction.East, new RoomWall() { Orientation = Direction.East, Texture = AssetCache.SPRITES[defaultWall] });
             }
 
             if (!wallList.ContainsKey(Direction.North))
             {
                 if (RoomY > 0 && parentFloor.GetRoom(RoomX, RoomY - 1) != null && !parentFloor.GetRoom(RoomX, RoomY - 1).Blocked) Neighbors.Add(parentFloor.GetRoom(RoomX, RoomY - 1));
-                else wallList.Add(Direction.North, new RoomWall() { Orientation = Direction.North, Texture = AssetCache.SPRITES[defaultWall] });
+                //else wallList.Add(Direction.North, new RoomWall() { Orientation = Direction.North, Texture = AssetCache.SPRITES[defaultWall] });
             }
 
             if (!wallList.ContainsKey(Direction.South))
             {
                 if (RoomY < parentFloor.MapHeight - 1 && parentFloor.GetRoom(RoomX, RoomY + 1) != null && !parentFloor.GetRoom(RoomX, RoomY + 1).Blocked) Neighbors.Add(parentFloor.GetRoom(RoomX, RoomY + 1));
-                else if (!wallList.ContainsKey(Direction.South)) wallList.Add(Direction.South, new RoomWall() { Orientation = Direction.South, Texture = AssetCache.SPRITES[defaultWall] });
+                //else if (!wallList.ContainsKey(Direction.South)) wallList.Add(Direction.South, new RoomWall() { Orientation = Direction.South, Texture = AssetCache.SPRITES[defaultWall] });
             }
         }
 

@@ -96,11 +96,20 @@ namespace Elenigma.Scenes.CrawlerScene
                 {
                     int x = (int)(tile.Px[0]) / TileSize;
                     int y = (int)(tile.Px[1]) / TileSize;
+                    var room = mapRooms[x, y];
 
-                    mapRooms[x, y] = new MapRoom(parentScene, this, x, y, "ClassroomWall");
+                    if (room == null)
+                    {
+                        room = mapRooms[x, y] = new MapRoom(parentScene, this, x, y, "ClassroomWall");
+                    }
+
+                    room.ApplyTile(layer.Identifier, tileset, tile);
+
+                    /*
                     mapRooms[x, y].Blocked = false;
                     mapRooms[x, y].ApplyWall(Direction.Down, AssetCache.SPRITES[GameSprite.Walls_ClassroomFloor]);
                     mapRooms[x, y].ApplyWall(Direction.Up, AssetCache.SPRITES[GameSprite.Walls_PlainCeiling]);
+                    */
                 }
             }
 
@@ -129,8 +138,8 @@ namespace Elenigma.Scenes.CrawlerScene
                 }
             }
             
-            Lighting(3, 3, 1, 1);
-            AmbientLight = 0.2f;
+            //Lighting(3, 3, 1, 1);
+            AmbientLight = 0.6f;
 
             FinishMap();
 
