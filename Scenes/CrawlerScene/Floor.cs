@@ -100,33 +100,12 @@ namespace Elenigma.Scenes.CrawlerScene
 
                     if (room == null)
                     {
-                        room = mapRooms[x, y] = new MapRoom(parentScene, this, x, y, "ClassroomWall");
+                        room = mapRooms[x, y] = new MapRoom(parentScene, this, x, y);
                     }
 
                     room.ApplyTile(layer.Identifier, tileset, tile);
-
-                    /*
-                    mapRooms[x, y].Blocked = false;
-                    mapRooms[x, y].ApplyWall(Direction.Down, AssetCache.SPRITES[GameSprite.Walls_ClassroomFloor]);
-                    mapRooms[x, y].ApplyWall(Direction.Up, AssetCache.SPRITES[GameSprite.Walls_PlainCeiling]);
-                    */
                 }
             }
-
-
-            /*
-            for (int x = 2; x < MapWidth - 2; x++)
-            {
-                for (int y = 2; y < MapHeight - 2; y++)
-                {
-                    mapRooms[x, y] = new MapRoom(parentScene, this, x, y, "ClassroomWall");
-                    mapRooms[x, y].Blocked = false;
-                    mapRooms[x, y].ApplyWall(Direction.Down, AssetCache.SPRITES[GameSprite.Walls_ClassroomFloor]);
-                    mapRooms[x, y].ApplyWall(Direction.Up, AssetCache.SPRITES[GameSprite.Walls_PlainCeiling]);
-                }
-            }
-            */
-
 
 
 
@@ -137,187 +116,39 @@ namespace Elenigma.Scenes.CrawlerScene
                     mapRooms[x, y]?.BuildNeighbors();
                 }
             }
-            
-            //Lighting(3, 3, 1, 1);
+
+            foreach (LayerInstance layer in Level.LayerInstances)
+            {
+                if (layer.Type == "Entities")
+                {
+                    foreach (var entity in layer.EntityInstances) ParseEntity(entity);
+                }
+            }
+
             AmbientLight = 0.6f;
 
             FinishMap();
+        }
 
-            /*
-            TiledMap tiledMap = new TiledMap();
-            tiledMap.ParseXml(AssetCache.MAPS[(GameMap)Enum.Parse(typeof(GameMap), mapName)]);
-
-            TiledTileset tiledTileset = new TiledTileset();
-            tiledTileset.ParseXml(AssetCache.MAPS[(GameMap)Enum.Parse(typeof(GameMap), Path.GetFileNameWithoutExtension(tiledMap.Tilesets[0].source))]);
-
-            MapFileName = mapName;
-
-            string wallSprite = "";
-            TiledProperty wallProperty = tiledMap.Properties.FirstOrDefault(x => x.name == "Wall");
-            if (wallProperty != null)
+        private void ParseEntity(EntityInstance entity)
+        {
+            switch (entity.Identifier)
             {
-                wallSprite = wallProperty.value;
-            }
+                case "Light":
+                    int startX = (int)(entity.Px[0] / TileSize);
+                    int startY = (int)(entity.Px[1] / TileSize);
+                    int endX = (int)(entity.Width / TileSize);
+                    int endY = (int)(entity.Height / TileSize);
 
-            TiledProperty nameProperty = tiledMap.Properties.FirstOrDefault(x => x.name == "Name");
-            if (nameProperty != null)
-            {
-                MapViewModel.MapName.Value = nameProperty.value;
-                MapName = nameProperty.value;
-            }
-
-            TiledProperty ambientProperty = tiledMap.Properties.FirstOrDefault(x => x.name == "AmbientLight");
-            if (ambientProperty != null)
-            {
-                AmbientLight = float.Parse(ambientProperty.value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture);
-            }
-
-            TiledProperty locationNameProperty = tiledMap.Properties.FirstOrDefault(x => x.name == "LocationName");
-            if (ambientProperty != null)
-            {
-                LocationName = locationNameProperty.value;
-            }
-
-            MapWidth = tiledMap.Width;
-            MapHeight = tiledMap.Height;
-            mapRooms = new MapRoom[MapWidth, MapHeight];
-
-            foreach (TiledLayer tiledLayer in tiledMap.Layers)
-            {
-                if (tiledLayer.type == TiledLayerType.TileLayer)
-                {
-                    int x = 0, y = 0;
-
-                    foreach (int tileGID in tiledLayer.data)
+                    int brightness = 4;
+                    foreach (FieldInstance field in entity.FieldInstances)
                     {
-                        int tile = tileGID - tiledMap.Tilesets[0].firstgid;
-                        if (tile >= 0)
-                        {
-                            if (mapRooms[x, y] == null) mapRooms[x, y] = new MapRoom(this, mapRooms, x, y, wallSprite);
-                            mapRooms[x, y].ApplyTile(tiledMap, tiledTileset, tile, tiledLayer.name);
-                        }
-
-                        x++;
-                        if (x >= MapWidth) { x = 0; y++; }
-                    }
-                }
-            }
-
-            foreach (TiledLayer tiledLayer in tiledMap.Layers)
-            {
-                void LoadWallObject(TiledObject tiledObject)
-                {
-                    int centerX = (int)(tiledObject.x + tiledObject.width / 2);
-                    int centerY = (int)(tiledObject.y - tiledObject.height / 2);
-                    int wallGID = tiledObject.gid - tiledMap.Tilesets[0].firstgid;
-
-                    if (centerX % WALL_LENGTH > WALL_LENGTH / 3)
-                    {
-                        MapRoom northRoom = mapRooms[centerX / WALL_LENGTH, (int)Math.Round((float)centerY / WALL_LENGTH) - 1];
-                        MapRoom southRoom = mapRooms[centerX / WALL_LENGTH, (int)Math.Round((float)centerY / WALL_LENGTH)];
-                        Texture2D texture = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[wallGID].image.source))];
-                        if (northRoom != null && !northRoom.Blocked) northRoom.ApplyWall(Direction.South, texture);
-                        if (southRoom != null && !southRoom.Blocked) southRoom.ApplyWall(Direction.North, texture);
-                    }
-                    else
-                    {
-                        MapRoom westRoom = mapRooms[(int)Math.Round((float)centerX / WALL_LENGTH) - 1, centerY / WALL_LENGTH];
-                        MapRoom eastRoom = mapRooms[(int)Math.Round((float)centerX / WALL_LENGTH), centerY / WALL_LENGTH];
-                        Texture2D texture = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[wallGID].image.source))];
-                        if (westRoom != null && !westRoom.Blocked) westRoom.ApplyWall(Direction.East, texture);
-                        if (eastRoom != null && !eastRoom.Blocked) eastRoom.ApplyWall(Direction.West, texture);
-                    }
-                }
-
-                if (tiledLayer.type == TiledLayerType.ObjectLayer)
-                {
-                    if (tiledLayer.name == "Spawns" && roomX < 0 && roomY < 0)
-                    {
-                        TiledObject spawn = tiledLayer.objects.FirstOrDefault(x => x.name == spawnName);
-                        roomX = (int)(spawn.x / WALL_LENGTH);
-                        roomY = (int)(spawn.y / WALL_LENGTH);
-                        direction = (Direction)Enum.Parse(typeof(Direction), spawn.properties.First(x => x.name == "Direction").value);
-                        cameraX = (float)(Math.PI * (int)direction / 2.0f);
+                        if (field.Identifier == "Brightness") brightness = (int)field.Value;
                     }
 
-                    foreach (TiledObject tiledObject in tiledLayer.objects)
-                    {
-                        switch (tiledLayer.name)
-                        {
-                            case "Events": LoadEvent(tiledObject); break;
-                            case "Walls": LoadWallObject(tiledObject); break;
-                        }
-
-                        void LoadEvent(TiledObject tiledObject)
-                        {
-                            if (tiledObject.type != null)
-                            {
-                                if (tiledObject.type == "Enter")
-                                {
-                                    TiledProperty disableProperty = tiledObject.properties.FirstOrDefault(x => x.name == "DisableIf");
-                                    if (disableProperty == null || !GameProfile.GetSaveData<bool>(disableProperty.value))
-                                    {
-                                        mapRooms[(int)(tiledObject.x / WALL_LENGTH), (int)(tiledObject.y / WALL_LENGTH)].Script = tiledObject.properties.First(x => x.name == "Script").value.Split('\n');
-                                    }
-                                }
-                                else if (tiledObject.type == "BeforeEnter")
-                                {
-                                    TiledProperty disableProperty = tiledObject.properties.FirstOrDefault(x => x.name == "DisableIf");
-                                    if (disableProperty == null || !GameProfile.GetSaveData<bool>(disableProperty.value))
-                                    {
-                                        mapRooms[(int)(tiledObject.x / WALL_LENGTH), (int)(tiledObject.y / WALL_LENGTH)].PreEnterScript = tiledObject.properties.First(x => x.name == "Script").value.Split('\n');
-                                    }
-                                }
-                                else if (tiledObject.type == "ActivateNorth")
-                                {
-                                    mapRooms[(int)(tiledObject.x / WALL_LENGTH), (int)(tiledObject.y / WALL_LENGTH) + 1].ActivateScript[Direction.North] = tiledObject.properties.First(x => x.name == "Script").value.Split('\n');
-                                }
-                                else if (tiledObject.type == "ActivateSouth")
-                                {
-                                    mapRooms[(int)(tiledObject.x / WALL_LENGTH), (int)(tiledObject.y / WALL_LENGTH) - 1].ActivateScript[Direction.South] = tiledObject.properties.First(x => x.name == "Script").value.Split('\n');
-                                }
-                                else if (tiledObject.type == "ActivateEast")
-                                {
-                                    mapRooms[(int)(tiledObject.x / WALL_LENGTH) - 1, (int)(tiledObject.y / WALL_LENGTH)].ActivateScript[Direction.East] = tiledObject.properties.First(x => x.name == "Script").value.Split('\n');
-                                }
-                                else if (tiledObject.type == "ActivateWest")
-                                {
-                                    mapRooms[(int)(tiledObject.x / WALL_LENGTH) + 1, (int)(tiledObject.y / WALL_LENGTH)].ActivateScript[Direction.West] = tiledObject.properties.First(x => x.name == "Script").value.Split('\n');
-                                }
-                            }
-                        }
-                    }
-                }
+                    Lighting(startX, startY, endX, endY, brightness);
+                    break;
             }
-
-            for (int x = 0; x < MapWidth; x++)
-            {
-                for (int y = 0; y < MapHeight; y++)
-                {
-                    if (mapRooms[x, y] != null) mapRooms[x, y].BuildNeighbors();
-                }
-            }
-
-
-            TiledLayer lightLayer = tiledMap.Layers.FirstOrDefault(x => x.type == TiledLayerType.ObjectLayer && x.name == "Lighting");
-            if (lightLayer != null)
-            {
-                foreach (TiledObject tiledObject in lightLayer.objects) Lighting(tiledObject);
-            }
-
-            for (int x = 0; x < MapWidth; x++)
-            {
-                for (int y = 0; y < MapHeight; y++)
-                {
-                    if (mapRooms[x, y] != null) mapRooms[x, y].SetVertices(x, y);
-                }
-            }
-
-            if (MapName == "School (Night)" || MapName == "Dark Library")
-            {
-
-            }
-            */
         }
 
         public void FinishMap()
@@ -332,17 +163,10 @@ namespace Elenigma.Scenes.CrawlerScene
         }
 
 
-        void Lighting(int startX, int startY, int width, int height)
+        void Lighting(int startX, int startY, int width, int height, int brightness)
         {
             int fullBrightness = 0;
-            int attenuatedBrightness = 4;
-
-            /*
-            if (MapName.Contains("Night") || MapName.Contains("Dark"))
-            {
-                attenuatedBrightness = 2;
-            }
-            */
+            int attenuatedBrightness = brightness;
 
             MapRoom originRoom = mapRooms[startX + width / 2, startY + height / 2];
             List<MapRoom> visitedRooms = new List<MapRoom>();

@@ -27,10 +27,10 @@ namespace Elenigma.Scenes.CrawlerScene
                 Texture = iTexture;
 
                 VertexPositionTexture[] quad = new VertexPositionTexture[4];
-                quad[0] = new VertexPositionTexture(VERTICES[Orientation][0], new Vector2(0.0f, 0.0f));
-                quad[1] = new VertexPositionTexture(VERTICES[Orientation][1], new Vector2(0.0f, 1.0f));
-                quad[2] = new VertexPositionTexture(VERTICES[Orientation][2], new Vector2(1.0f, 1.0f));
-                quad[3] = new VertexPositionTexture(VERTICES[Orientation][3], new Vector2(1.0f, 0.0f));
+                quad[0] = new VertexPositionTexture(VERTICES[Orientation][0], new Vector2(startU, startV));
+                quad[1] = new VertexPositionTexture(VERTICES[Orientation][1], new Vector2(startU, endV));
+                quad[2] = new VertexPositionTexture(VERTICES[Orientation][2], new Vector2(endU, endV));
+                quad[3] = new VertexPositionTexture(VERTICES[Orientation][3], new Vector2(endU, startV));
                 Quad = quad;
             }
 
@@ -98,8 +98,6 @@ namespace Elenigma.Scenes.CrawlerScene
         private Floor parentFloor;
         private Matrix translationMatrix;
 
-        private GameSprite defaultWall;
-
         private bool door = false;
         int waypointTile;
 
@@ -108,44 +106,71 @@ namespace Elenigma.Scenes.CrawlerScene
         public int brightnessLevel = 0;
         private float[] lightVertices;
 
-        public MapRoom(CrawlerScene mapScene, Floor iFloor, int x, int y, string wallSprite)
+        public MapRoom(CrawlerScene mapScene, Floor iFloor, int x, int y)
         {
             parentScene = mapScene;
             parentFloor = iFloor;
             RoomX = x;
             RoomY = y;
-            defaultWall = (GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + wallSprite);
             waypointTile = 1;
         }
 
         public void ApplyTile(string layerName, TilesetDefinition tileset, TileInstance tile)
         {
-            
+
             switch (layerName)
             {
                 case "Walls":
-                    Blocked = true;
-                    /*
-                    if (RoomX > 0 && mapRooms[RoomX - 1, RoomY] != null && !mapRooms[RoomX - 1, RoomY].Blocked)
-                        mapRooms[RoomX - 1, RoomY].ApplyWall(Direction.East, AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[gid].image.source))]);
+                    {
+                        Blocked = true;
 
-                    if (RoomX < mapRooms.GetLength(0) - 1 && mapRooms[RoomX + 1, RoomY] != null && !mapRooms[RoomX + 1, RoomY].Blocked)
-                        mapRooms[RoomX + 1, RoomY].ApplyWall(Direction.West, AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[gid].image.source))]);
+                        string tilesetName = tileset.RelPath.Replace("../Graphics/", "").Replace(".png", "").Replace('/', '_');
+                        var SpriteAtlas = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), tilesetName)];
+                        float startU = tile.Src[0] / (float)SpriteAtlas.Width;
+                        float startV = tile.Src[1] / (float)SpriteAtlas.Height;
+                        float endU = startU + parentFloor.TileSize / (float)SpriteAtlas.Width;
+                        float endV = startV + parentFloor.TileSize / (float)SpriteAtlas.Height;
 
-                    if (RoomY > 0 && mapRooms[RoomX, RoomY - 1] != null && !mapRooms[RoomX, RoomY - 1].Blocked)
-                        mapRooms[RoomX, RoomY - 1].ApplyWall(Direction.South, AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[gid].image.source))]);
+                        var westWall = this[Direction.West];
+                        if (RoomX > 0 && westWall != null && !westWall.Blocked)
+                            westWall.ApplyWall(Direction.East, SpriteAtlas, startU, startV, endU, endV);
 
-                    if (RoomY < mapRooms.GetLength(1) - 1 && mapRooms[RoomX, RoomY + 1] != null && !mapRooms[RoomX, RoomY + 1].Blocked)
-                        mapRooms[RoomX, RoomY + 1].ApplyWall(Direction.North, AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[gid].image.source))]);
-                    */
+                        var eastWall = this[Direction.East];
+                        if (RoomX < parentFloor.MapWidth - 1 && eastWall != null && !eastWall.Blocked)
+                            eastWall.ApplyWall(Direction.West, SpriteAtlas, startU, startV, endU, endV);
+
+                        var northWall = this[Direction.North];
+                        if (RoomY > 0 && northWall != null && !northWall.Blocked)
+                            northWall.ApplyWall(Direction.South, SpriteAtlas, startU, startV, endU, endV);
+
+                        var southWall = this[Direction.South];
+                        if (RoomY < parentFloor.MapHeight - 1 && southWall != null && !southWall.Blocked)
+                            southWall.ApplyWall(Direction.North, SpriteAtlas, startU, startV, endU, endV);
+                    }
                     break;
 
                 case "Ceiling":
-                    wallList.Add(Direction.Up, new RoomWall(Direction.Up, AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[gid].image.source))] });
+                    {
+                        string tilesetName = tileset.RelPath.Replace("../Graphics/", "").Replace(".png", "").Replace('/', '_');
+                        var SpriteAtlas = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), tilesetName)];
+                        float startU = tile.Src[0] / (float)SpriteAtlas.Width;
+                        float startV = tile.Src[1] / (float)SpriteAtlas.Height;
+                        float endU = startU + parentFloor.TileSize / (float)SpriteAtlas.Width;
+                        float endV = startV + parentFloor.TileSize / (float)SpriteAtlas.Height;
+                        wallList.Add(Direction.Up, new RoomWall(Direction.Up, SpriteAtlas, startU, startV, endU, endV));
+                    }
                     break;
 
                 case "Floor":
-                    wallList.Add(Direction.Down, new RoomWall() { Orientation = Direction.Down, Texture = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Walls_" + Path.GetFileNameWithoutExtension(tiledTileset.Tiles[gid].image.source))] });
+                    {
+                        string tilesetName = tileset.RelPath.Replace("../Graphics/", "").Replace(".png", "").Replace('/', '_');
+                        var SpriteAtlas = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), tilesetName)];
+                        float startU = tile.Src[0] / (float)SpriteAtlas.Width;
+                        float startV = tile.Src[1] / (float)SpriteAtlas.Height;
+                        float endU = startU + parentFloor.TileSize / (float)SpriteAtlas.Width;
+                        float endV = startV + parentFloor.TileSize / (float)SpriteAtlas.Height;
+                        wallList.Add(Direction.Down, new RoomWall(Direction.Down, SpriteAtlas, startU, startV, endU, endV));
+                    }
                     break;
             }
             
@@ -153,7 +178,7 @@ namespace Elenigma.Scenes.CrawlerScene
             ResetMinimapIcon();
         }
 
-        public void ApplyWall(Direction direction, Texture2D texture2D)
+        public void ApplyWall(Direction direction, Texture2D texture2D, float startU, float startV, float endU, float endV)
         {
             if (wallList.TryGetValue(direction, out var wall))
             {
@@ -161,7 +186,7 @@ namespace Elenigma.Scenes.CrawlerScene
             }
             else
             {
-                wallList.Add(direction, new RoomWall(direction, texture2D, 0, 0, 1, 1));
+                wallList.Add(direction, new RoomWall(direction, texture2D, startU, startV, endU, endV));
             }
         }
 
