@@ -41,7 +41,7 @@ namespace Elenigma.Main
             oldMouseState = newMouseState;
             newMouseState = Mouse.GetState();
 
-            // if (newMouseState.LeftButton == ButtonState.Pressed) MOUSE_MODE = true;
+            if (newMouseState.LeftButton == ButtonState.Pressed) MOUSE_MODE = true;
 
             MousePosition = new Vector2(newMouseState.Position.X, newMouseState.Position.Y) / CrossPlatformGame.Scale;
 

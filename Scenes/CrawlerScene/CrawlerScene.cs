@@ -25,7 +25,6 @@ namespace Elenigma.Scenes.CrawlerScene
 
         private const int WALL_LENGTH = 128;
 
-        public string MapName { get; private set; }
         public string LocationName { get; set; } = "Test Map";
 
 
@@ -72,9 +71,6 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public CrawlerScene(string iMapName) : this()
         {
-
-            MapName = iMapName;
-
             mapViewModel = AddView(new MapViewModel(this, GameView.CrawlerScene_MapView));
             MapPanel = mapViewModel.GetWidget<Panel>("MapPanel");
 
@@ -87,8 +83,6 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public CrawlerScene(string iMapName, string spawnName) : this()
         {
-            MapName = iMapName;
-
             mapViewModel = AddView(new MapViewModel(this, GameView.CrawlerScene_MapView));
             MapPanel = mapViewModel.GetWidget<Panel>("MapPanel");
 
@@ -103,8 +97,6 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public CrawlerScene(string iMapName, int spawnX, int spawnY, Direction iDirection) : this()
         {
-            MapName = iMapName;
-
             mapViewModel = AddView<MapViewModel>(new MapViewModel(this, GameView.CrawlerScene_MapView));
             MapPanel = mapViewModel.GetWidget<SceneObjects.Widgets.Panel>("MapPanel");
 
@@ -333,26 +325,6 @@ namespace Elenigma.Scenes.CrawlerScene
             if (roomAhead == null) return false;
 
             return roomAhead.Activate(direction);
-        }
-
-        public void MiniMapClick(Vector2 clickPosition)
-        {
-            /*
-            if (PriorityLevel != PriorityLevel.GameLevel || controllerList.Any(x => x.Any(y => y is EventController))) return;
-
-            Panel miniMapPanel = mapViewModel.GetWidget<Panel>("MiniMapPanel");
-            clickPosition -= new Vector2((miniMapPanel.InnerBounds.Width - 7 * 8) / 2, (miniMapPanel.InnerBounds.Height - 7 * 8) / 2);
-            int newRoomX = (int)clickPosition.X / 8 + MinimapStartX;
-            int newRoomY = (int)clickPosition.Y / 8 + MinimapStartY;
-
-            if (newRoomX >= 0 && newRoomY >= 0 && newRoomX < mapRooms.GetLength(0) && newRoomY < mapRooms.GetLength(1))
-            {
-                if (mapRooms[newRoomX, newRoomY] != null && !mapRooms[newRoomX, newRoomY].Blocked)
-                {
-                    movementController.Path = GetPath(mapRooms[roomX, roomY], mapRooms[newRoomX, newRoomY]);
-                }
-            }
-            */
         }
 
         public MapViewModel MapViewModel { get => mapViewModel; }

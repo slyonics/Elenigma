@@ -145,8 +145,8 @@ namespace Elenigma.Main
                 multiSamples = 16;
             }
 
-            // IsMouseVisible = true;
-            IsMouseVisible = false;
+            IsMouseVisible = true;
+            //IsMouseVisible = false;
 
             graphicsDeviceManager.IsFullScreen = fullscreen;
             graphicsDeviceManager.PreferredBackBufferWidth = scaledScreenWidth;

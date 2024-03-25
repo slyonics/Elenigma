@@ -52,7 +52,7 @@ namespace Elenigma.Scenes.CrawlerScene
 
         CrawlerScene parentScene;
 
-
+        public string LocationName { get; private set; } = "Location";
         public float AmbientLight { get; private set; } = 1;
 
 
@@ -131,7 +131,7 @@ namespace Elenigma.Scenes.CrawlerScene
                 switch (field.Identifier)
                 {
                     case "Music": if (!string.IsNullOrEmpty(field.Value)) Audio.PlayMusic((GameMusic)Enum.Parse(typeof(GameMusic), field.Value)); break;
-                    case "LocationName": if (!string.IsNullOrEmpty(field.Value)) parentScene.LocationName = (string)field.Value; else parentScene.LocationName = Level.Identifier; break;
+                    case "LocationName": if (!string.IsNullOrEmpty(field.Value)) LocationName = (string)field.Value; else LocationName = Level.Identifier; break;
                     case "AmbientLight": AmbientLight = (float)field.Value; break;
                 }
             }
