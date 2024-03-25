@@ -48,7 +48,7 @@ namespace Elenigma.Scenes.CrawlerScene
 
         private int bumpCooldown;
 
-        
+        public float BillboardRotation { get; private set; }
 
         public CrawlerScene()
         {
@@ -111,6 +111,7 @@ namespace Elenigma.Scenes.CrawlerScene
 
             floor.GetRoom(roomX, roomY).EnterRoom();
 
+
             movementController = AddController(new MovementController(this));
         }
 
@@ -160,7 +161,16 @@ namespace Elenigma.Scenes.CrawlerScene
             TransitionController transitionController = new TransitionController(TransitionDirection.Out, 300, PriorityLevel.TransitionLevel);
             AddController(transitionController);
 
-            transitionController.UpdateTransition += new Action<float>(t => cameraX = MathHelper.Lerp(((float)(Math.PI * ((int)direction - 1) / 2.0f)), (float)(Math.PI * (int)direction / 2.0f), t));
+            transitionController.UpdateTransition += new Action<float>(t =>
+            {
+                cameraX = MathHelper.Lerp(((float)(Math.PI * ((int)direction - 1) / 2.0f)), (float)(Math.PI * (int)direction / 2.0f), t);
+                if (t <= 0.5f)
+                {
+                    var dir = (direction == Direction.North) ? Direction.West : direction - 1;
+                    BillboardRotation = (float)(Math.PI * (int)dir / 2.0f);
+                }
+            });
+            
             transitionController.FinishTransition += new Action<TransitionDirection>(t =>
             {
                 if (direction == Direction.North) direction = Direction.West; else direction--;
@@ -173,7 +183,16 @@ namespace Elenigma.Scenes.CrawlerScene
             TransitionController transitionController = new TransitionController(TransitionDirection.In, 300, PriorityLevel.TransitionLevel);
             AddController(transitionController);
 
-            transitionController.UpdateTransition += new Action<float>(t => cameraX = MathHelper.Lerp(((float)(Math.PI * (int)direction / 2.0f)), (float)(Math.PI * ((int)direction + 1) / 2.0f), t));
+            transitionController.UpdateTransition += new Action<float>(t =>
+            {
+                cameraX = MathHelper.Lerp(((float)(Math.PI * (int)direction / 2.0f)), (float)(Math.PI * ((int)direction + 1) / 2.0f), t);
+                if (t >= 0.5f)
+                {
+                    var dir = (direction == Direction.West) ? Direction.North : direction + 1;
+                    BillboardRotation = (float)(Math.PI * (int)dir / 2.0f);
+                }
+            });
+
             transitionController.FinishTransition += new Action<TransitionDirection>(t =>
             {
                 if (direction == Direction.West) direction = Direction.North; else direction++;
@@ -277,7 +296,7 @@ namespace Elenigma.Scenes.CrawlerScene
         {
             graphicsDevice.SetRenderTarget(mapRender);
             floor.DrawMap(graphicsDevice, mapViewModel.GetWidget<Panel>("MapPanel"), roomX, roomY, cameraPosX, cameraPosZ, cameraX);
-
+            
             graphicsDevice.SetRenderTarget(pixelRender);
             graphicsDevice.Clear(Color.Transparent);
 

@@ -13,7 +13,6 @@ using System.IO;
 using Elenigma.Models;
 using Elenigma.SceneObjects.Widgets;
 using Elenigma.SceneObjects;
-using static Elenigma.SceneObjects.ParallaxBackdrop;
 
 namespace Elenigma.Scenes.CrawlerScene
 {
@@ -51,6 +50,9 @@ namespace Elenigma.Scenes.CrawlerScene
         private bool revealAll;
 
         CrawlerScene parentScene;
+
+
+        private List<Billboard> billboards = new List<Billboard>();
 
         public string LocationName { get; private set; } = "Location";
         public float AmbientLight { get; private set; } = 1;
@@ -168,6 +170,22 @@ namespace Elenigma.Scenes.CrawlerScene
                         mapRooms[startX, startY].InteractScript = entity.FieldInstances.First(x => x.Identifier == "Script").Value.Split('\n');
                     }
                     break;
+
+                case "Foe":
+                    {
+                        string sprite = "";
+                        foreach (FieldInstance field in entity.FieldInstances)
+                        {
+                            if (field.Identifier == "Sprite") sprite = field.Value;
+                        }
+
+                        int startX = (int)((entity.Px[0] + entity.Width / 2) / TileSize);
+                        int startY = (int)((entity.Px[1] + entity.Height / 2) / TileSize);
+
+                        var billboard = new Billboard(parentScene, this, AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite),"Enemies_" + sprite)], startX, startY);
+                        billboards.Add(billboard);
+                    }
+                    break;
             }
         }
 
@@ -229,7 +247,6 @@ namespace Elenigma.Scenes.CrawlerScene
                 mapBounds.X += (int)mapWindow.Position.X;
                 mapBounds.Y += (int)mapWindow.Position.Y;
 
-
                 Vector3 cameraUp = new Vector3(0, -1, 0);
                 Vector3 cameraPos = new Vector3(cameraPosX + 10 * roomX, 0, cameraPosZ + 10 * (mapRooms.GetLength(1) - roomY));
                 Matrix viewMatrix = Matrix.CreateLookAt(cameraPos, cameraPos + Vector3.Transform(new Vector3(0, 0, 1), Matrix.CreateRotationY(cameraX)), cameraUp);
@@ -241,6 +258,9 @@ namespace Elenigma.Scenes.CrawlerScene
                         mapRooms[x, y]?.Draw(viewMatrix);
                     }
                 }
+
+                //foreach (Billboard billboard in billboards) billboard.Draw(viewMatrix, parentScene.BillboardRotation);
+                foreach (Billboard billboard in billboards) billboard.Draw(viewMatrix, cameraX);
             }
         }
 

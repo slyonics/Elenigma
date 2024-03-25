@@ -77,7 +77,7 @@ float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
     float realBright = lerp(xBright1, xBright2, 1 - (lightTexV / 4.0));
  
     float4 rawTextureColor = tex2D(textureSampler, input.TextureCoordinate);    
-    float4 litTextureColor = float4(rawTextureColor.x * realBright, rawTextureColor.y * realBright, rawTextureColor.z * realBright, 1);
+    float4 litTextureColor = float4(rawTextureColor.x * realBright, rawTextureColor.y * realBright, rawTextureColor.z * realBright, rawTextureColor.w);
     return litTextureColor;
 
     //return saturate(textureColor * (input.Color) + AmbientColor * AmbientIntensity + specular);

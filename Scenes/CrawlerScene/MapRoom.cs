@@ -36,9 +36,6 @@ namespace Elenigma.Scenes.CrawlerScene
 
         }
 
-        private const int ATLAS_ROWS = 16;
-        private const int WALL_SPRITE_LENGTH = 128;
-        private const int ATLAS_LENGTH = 2048;
         private const int WALL_HALF_LENGTH = 5;
         private const int CAM_HEIGHT = -1;
         private static readonly short[] INDICES = new short[] { 0, 2, 1, 2, 0, 3 };

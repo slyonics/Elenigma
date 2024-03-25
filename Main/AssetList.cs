@@ -129,7 +129,6 @@ namespace Elenigma.Main
         Pinwheel,
         Portrait,
         Wall,
-        WallPlus,
 
         None = -1
     }
