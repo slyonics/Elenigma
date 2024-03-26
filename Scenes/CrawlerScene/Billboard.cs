@@ -21,22 +21,15 @@ namespace Elenigma.Scenes.CrawlerScene
         private int height = -2;
         private static readonly short[] INDICES = new short[] { 0, 2, 1, 2, 0, 3 };
 
-        public MapRoom HostRoom;
-
-        public int RoomX { get; set; }
-        public int RoomY { get; set; }
-
         private GraphicsDevice graphicsDevice = CrossPlatformGame.GameInstance.GraphicsDevice;
 
         private CrawlerScene parentScene;
 
         private Matrix translationMatrix;
 
-        public Billboard(CrawlerScene mapScene, Floor iFloor, Texture2D sprite, int x, int y, int size)
+        public Billboard(CrawlerScene mapScene, Floor iFloor, Texture2D sprite, int size)
         {
             parentScene = mapScene;
-            RoomX = x;
-            RoomY = y;
 
             height = 4 - size;
 
@@ -64,13 +57,11 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public float Brightness(float x) { return Math.Min(1.0f, Math.Max(x / 4.0f, parentScene.Floor.AmbientLight)); }
 
-        public void Draw(Matrix viewMatrix, float x, float z, float rotation)
+        public void Draw(Matrix viewMatrix, float x, float z, float rotation, float brightness)
         {
             Shader.World = Matrix.CreateRotationY(rotation) * Matrix.CreateTranslation(new Vector3(x, height, z));
             Shader.View = viewMatrix;
-
-            var room = parentScene.Floor.GetRoom(RoomX, RoomY);
-            Shader.Brightness = new Vector4(room.Brightness(room.brightnessLevel));
+            Shader.Brightness = new Vector4(brightness);
 
             foreach (EffectPass pass in Shader.Effect.CurrentTechnique.Passes)
             {

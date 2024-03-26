@@ -36,6 +36,7 @@ namespace Elenigma.Scenes.CrawlerScene
         private float cameraPosX = 0.0f;
         private float cameraPosZ = 0.0f;
 
+        private Skybox skybox;
         private Floor floor;
         public List<Foe> FoeList { get; set; } = new List<Foe>();
         
@@ -59,6 +60,7 @@ namespace Elenigma.Scenes.CrawlerScene
             mapViewModel = AddView(new MapViewModel(this, GameView.CrawlerScene_MapView));
             MapPanel = mapViewModel.GetWidget<Panel>("MapPanel");
 
+            skybox = new Skybox(AssetCache.SPRITES[GameSprite.Background_Skybox]);
             floor = new Floor(this);
 
             roomX = 3; roomY = 3;
@@ -217,7 +219,7 @@ namespace Elenigma.Scenes.CrawlerScene
                         transitionController = new TransitionController(TransitionDirection.In, 300, PriorityLevel.TransitionLevel);
                         AddController(transitionController);
                         transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(0, 10, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosZ = 0; roomY--; currentRoom.EnterRoom(); });
+                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosZ = 0; roomY--; currentRoom.EnterRoom(); MoveFoes(); });
                     }
                     else if (!Activate()) { WallBump(); return; }
                     break;
@@ -231,7 +233,7 @@ namespace Elenigma.Scenes.CrawlerScene
                         transitionController = new TransitionController(TransitionDirection.In, 300, PriorityLevel.TransitionLevel);
                         AddController(transitionController);
                         transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(0, 10, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosX = 0; roomX++; currentRoom.EnterRoom(); });
+                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosX = 0; roomX++; currentRoom.EnterRoom(); MoveFoes(); });
                     }
                     else if (!Activate()) { WallBump(); return; }
                     break;
@@ -245,7 +247,7 @@ namespace Elenigma.Scenes.CrawlerScene
                         transitionController = new TransitionController(TransitionDirection.Out, 300, PriorityLevel.TransitionLevel);
                         AddController(transitionController);
                         transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(-10, 0, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosZ = 0; roomY++; currentRoom.EnterRoom(); });
+                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosZ = 0; roomY++; currentRoom.EnterRoom(); MoveFoes(); });
                     }
                     else if (!Activate()) { WallBump(); return; }
                     break;
@@ -259,7 +261,7 @@ namespace Elenigma.Scenes.CrawlerScene
                         transitionController = new TransitionController(TransitionDirection.Out, 300, PriorityLevel.TransitionLevel);
                         AddController(transitionController);
                         transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(-10, 0, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosX = 0; roomX--; currentRoom.EnterRoom(); });
+                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosX = 0; roomX--; currentRoom.EnterRoom(); MoveFoes(); });
                     }
                     else if (!Activate()) { WallBump(); return; }
                     break;
@@ -300,9 +302,14 @@ namespace Elenigma.Scenes.CrawlerScene
             Vector3 cameraPos = new Vector3(cameraPosX + 10 * roomX, 0, cameraPosZ + 10 * (floor.MapHeight - roomY));
             Matrix viewMatrix = Matrix.CreateLookAt(cameraPos, cameraPos + Vector3.Transform(new Vector3(0, 0, 1), Matrix.CreateRotationY(cameraX)), cameraUp);
 
+            graphicsDevice.Clear(new Color(0.0f, 1.0f, 0.5f, 0.0f));
+            graphicsDevice.DepthStencilState = DepthStencilState.None;
+            skybox?.Draw(graphicsDevice, viewMatrix, cameraPos);
+
+            graphicsDevice.DepthStencilState = DepthStencilState.Default;
             floor.DrawMap(graphicsDevice, mapViewModel.GetWidget<Panel>("MapPanel"), viewMatrix, cameraX);
             foreach (Foe foe in FoeList) foe.Draw(graphicsDevice, viewMatrix, cameraX);
-            
+
             graphicsDevice.SetRenderTarget(pixelRender);
             graphicsDevice.Clear(Color.Transparent);
 
@@ -350,6 +357,14 @@ namespace Elenigma.Scenes.CrawlerScene
             if (roomAhead == null) return false;
 
             return roomAhead.Activate(direction);
+        }
+
+        public void MoveFoes()
+        {
+            foreach (Foe foe in FoeList)
+            {
+                foe.Move((Direction)Rng.RandomInt(0, 3));
+            }
         }
 
         public MapViewModel MapViewModel { get => mapViewModel; }

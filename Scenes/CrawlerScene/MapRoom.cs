@@ -1,5 +1,6 @@
 ﻿using Elenigma.Models;
 using Elenigma.Scenes.MapScene;
+using FMOD;
 using ldtk;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -34,6 +35,18 @@ namespace Elenigma.Scenes.CrawlerScene
                 Quad = quad;
             }
 
+            public RoomWall(Direction iOrientation, Texture2D iTexture, Dictionary<Direction, Vector3[]> vertices, float startU, float startV, float endU, float endV)
+            {
+                Orientation = iOrientation;
+                Texture = iTexture;
+
+                VertexPositionTexture[] quad = new VertexPositionTexture[4];
+                quad[0] = new VertexPositionTexture(vertices[Orientation][0], new Vector2(startU, startV));
+                quad[1] = new VertexPositionTexture(vertices[Orientation][1], new Vector2(startU, endV));
+                quad[2] = new VertexPositionTexture(vertices[Orientation][2], new Vector2(endU, endV));
+                quad[3] = new VertexPositionTexture(vertices[Orientation][3], new Vector2(endU, startV));
+                Quad = quad;
+            }
         }
 
         private const int WALL_HALF_LENGTH = 5;
@@ -78,8 +91,10 @@ namespace Elenigma.Scenes.CrawlerScene
                     new Vector3(-WALL_HALF_LENGTH, WALL_HALF_LENGTH + CAM_HEIGHT, -WALL_HALF_LENGTH) }
         } };
 
-        private Texture2D minimapSprite = AssetCache.SPRITES[GameSprite.MiniMap];
+        private static Texture2D minimapSprite = AssetCache.SPRITES[GameSprite.MiniMap];
         private static readonly Rectangle[] minimapSource = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8), new Rectangle(24, 0, 8, 8) };
+        private static Texture2D enemyIndicator = AssetCache.SPRITES[GameSprite.FoeMarker];
+        private static readonly Rectangle[] enemySource = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8), new Rectangle(24, 0, 8, 8) };
 
         public int RoomX { get; set; }
         public int RoomY { get; set; }
@@ -91,9 +106,6 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public string[] Script { get; set; }
         public string[] PreEnterScript { get; set; }
-        public Dictionary<Direction, string[]> ActivateScript { get; set; } = new Dictionary<Direction, string[]>();
-
-
         public string[] InteractScript { get; set; }
 
         //public WallShader WallEffect { get; private set; }
@@ -110,6 +122,8 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public int brightnessLevel = 0;
         private float[] lightVertices;
+
+        public Foe Foe { get; set; }
 
         public MapRoom(CrawlerScene mapScene, Floor iFloor, int x, int y)
         {
@@ -295,8 +309,10 @@ namespace Elenigma.Scenes.CrawlerScene
             if (Obscured) return;
 
             spriteBatch.Draw(minimapSprite, offset, minimapSource[waypointTile], Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
-        }
 
+            if (Foe != null)
+            spriteBatch.Draw(enemyIndicator, offset, enemySource[(int)Foe.Direction], Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth - 0.002f);
+        }
         public void ResetMinimapIcon()
         {
             waypointTile = Blocked ? 0 : 1;

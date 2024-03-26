@@ -31,7 +31,7 @@ namespace Elenigma.Scenes.CrawlerScene
             public Texture2D SpriteAtlas { get; private set; }
         }
 
-        private Texture2D minimapSprite = AssetCache.SPRITES[GameSprite.YouAreHere];
+        private Texture2D minimapPlayer = AssetCache.SPRITES[GameSprite.YouAreHere];
         private static readonly Rectangle[] minimapSource = new Rectangle[] { new Rectangle(0, 0, 8, 8), new Rectangle(8, 0, 8, 8), new Rectangle(16, 0, 8, 8), new Rectangle(24, 0, 8, 8) };
 
         public int TileSize { get; set; }
@@ -231,8 +231,6 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public void DrawMap(GraphicsDevice graphicsDevice, Panel mapWindow, Matrix viewMatrix, float cameraX)
         {
-            graphicsDevice.Clear(new Color(0.0f, 1.0f, 0.5f, 0.0f));
-
             if (!mapWindow.Transitioning)
             {
                 Rectangle mapBounds = mapWindow.InnerBounds;
@@ -245,14 +243,6 @@ namespace Elenigma.Scenes.CrawlerScene
                     {
                         mapRooms[x, y]?.Draw(viewMatrix);
                     }
-                }
-
-                //foreach (Billboard billboard in billboards) billboard.Draw(viewMatrix, parentScene.BillboardRotation);
-                foreach (Billboard billboard in billboards)
-                {
-                    float x = 10 * (billboard.RoomX);
-                    float z = 10 * (parentScene.Floor.MapHeight - billboard.RoomY);
-                    billboard.Draw(viewMatrix, x, z, cameraX);
                 }
             }
         }
@@ -281,7 +271,7 @@ namespace Elenigma.Scenes.CrawlerScene
                 for (int y = MinimapStartY; y < endY; y++)
                 {
                     MapRoom mapRoom = mapRooms[x, y];
-                    spriteBatch.Draw(minimapSprite, offset, new Rectangle(0, 0, 8, 8), Color.Black, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth - 0.001f);
+                    spriteBatch.Draw(minimapPlayer, offset, new Rectangle(0, 0, 8, 8), Color.Black, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth - 0.001f);
                     mapRoom?.DrawMinimap(spriteBatch, offset, depth - 0.002f);
 
                     offset.Y += 8;
@@ -291,7 +281,7 @@ namespace Elenigma.Scenes.CrawlerScene
                 offset.X += 8;
             }
 
-            spriteBatch.Draw(minimapSprite, new Vector2((roomX - MinimapStartX) * 8, (roomY - MinimapStartY) * 8) + new Vector2(bounds.X, bounds.Y), minimapSource[(int)direction], Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth - 0.003f);
+            spriteBatch.Draw(minimapPlayer, new Vector2((roomX - MinimapStartX) * 8, (roomY - MinimapStartY) * 8) + new Vector2(bounds.X, bounds.Y), minimapSource[(int)direction], Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth - 0.004f);
         }
 
         public List<MapRoom> GetPath(MapRoom startTile, MapRoom endTile)
