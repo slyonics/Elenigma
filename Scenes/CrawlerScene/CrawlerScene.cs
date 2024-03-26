@@ -23,8 +23,6 @@ namespace Elenigma.Scenes.CrawlerScene
     {
         public static CrawlerScene Instance;
 
-        private const int WALL_LENGTH = 128;
-
         public string LocationName { get; set; } = "Test Map";
 
 
@@ -39,6 +37,7 @@ namespace Elenigma.Scenes.CrawlerScene
         private float cameraPosZ = 0.0f;
 
         private Floor floor;
+        public List<Foe> FoeList { get; set; } = new List<Foe>();
         
         public int roomX = -1;
         public int roomY = -1;
@@ -295,7 +294,14 @@ namespace Elenigma.Scenes.CrawlerScene
         public override void Draw(GraphicsDevice graphicsDevice, SpriteBatch spriteBatch, RenderTarget2D pixelRender, RenderTarget2D compositeRender)
         {
             graphicsDevice.SetRenderTarget(mapRender);
-            floor.DrawMap(graphicsDevice, mapViewModel.GetWidget<Panel>("MapPanel"), roomX, roomY, cameraPosX, cameraPosZ, cameraX);
+            graphicsDevice.BlendState = BlendState.AlphaBlend;
+
+            Vector3 cameraUp = new Vector3(0, -1, 0);
+            Vector3 cameraPos = new Vector3(cameraPosX + 10 * roomX, 0, cameraPosZ + 10 * (floor.MapHeight - roomY));
+            Matrix viewMatrix = Matrix.CreateLookAt(cameraPos, cameraPos + Vector3.Transform(new Vector3(0, 0, 1), Matrix.CreateRotationY(cameraX)), cameraUp);
+
+            floor.DrawMap(graphicsDevice, mapViewModel.GetWidget<Panel>("MapPanel"), viewMatrix, cameraX);
+            foreach (Foe foe in FoeList) foe.Draw(graphicsDevice, viewMatrix, cameraX);
             
             graphicsDevice.SetRenderTarget(pixelRender);
             graphicsDevice.Clear(Color.Transparent);

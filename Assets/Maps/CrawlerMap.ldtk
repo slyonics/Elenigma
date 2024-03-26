@@ -11,7 +11,7 @@
 	"iid": "5c1d34d0-3b70-11ee-9d66-d3a28cc7a2b6",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 1451,
+	"nextUid": 1452,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -730,6 +730,43 @@
 					"allowedRefsEntityUid": null,
 					"allowedRefTags": [],
 					"tilesetUid": null
+				},
+				{
+					"identifier": "Size",
+					"doc": null,
+					"__type": "Int",
+					"uid": 1451,
+					"type": "F_Int",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": 1,
+					"max": 12,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": { "id": "V_Int", "params": [6] },
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
 				}
 			]
 		}
@@ -1144,7 +1181,8 @@
 									"params": ["Frog"]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
-								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] }
+								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
+								{ "__identifier": "Size", "__type": "Int", "__value": 6, "__tile": null, "defUid": 1451, "realEditorValues": [] }
 							],
 							"__worldX": 48,
 							"__worldY": 80
@@ -1167,7 +1205,8 @@
 									"params": ["Boss"]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
-								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] }
+								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
+								{ "__identifier": "Size", "__type": "Int", "__value": 10, "__tile": null, "defUid": 1451, "realEditorValues": [{ "id": "V_Int", "params": [10] }] }
 							],
 							"__worldX": 32,
 							"__worldY": 176
@@ -1190,7 +1229,8 @@
 									"params": ["Frog"]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
-								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] }
+								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
+								{ "__identifier": "Size", "__type": "Int", "__value": 6, "__tile": null, "defUid": 1451, "realEditorValues": [] }
 							],
 							"__worldX": 208,
 							"__worldY": 176
@@ -1213,7 +1253,8 @@
 									"params": ["Frog"]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
-								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] }
+								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
+								{ "__identifier": "Size", "__type": "Int", "__value": 6, "__tile": null, "defUid": 1451, "realEditorValues": [] }
 							],
 							"__worldX": 176,
 							"__worldY": 32
@@ -1236,7 +1277,8 @@
 									"params": ["Frog"]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
-								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] }
+								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
+								{ "__identifier": "Size", "__type": "Int", "__value": 6, "__tile": null, "defUid": 1451, "realEditorValues": [] }
 							],
 							"__worldX": 160,
 							"__worldY": 256
