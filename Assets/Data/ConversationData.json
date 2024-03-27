@@ -620,19 +620,9 @@
 		"Name": "LogComplete",
 		"DialogueRecords": [
 			{
-				"Speaker": "Arthur",
-				"Portrait": "Portraits_AdultMC",
-				"Text": "There, is this good enough?"
-			},
-			{
-				"Speaker": "Nota",
-				"Portrait": "Portraits_BigDogFamiliar",
-				"Text": "Hmm, could be better, but you pass. Let's go back home and see everyone!"
-			},
-			{
-				"Speaker": "Arthur",
-				"Portrait": "Portraits_AdultMC",
-				"Text": "Agreed. I can't wait to talk about everything that's happened!"
+				"Speaker": "The Mage",
+				"Portrait": "Portraits_MiniMage",
+				"Text": "Text placeholder."
 			}
 		]
 	},

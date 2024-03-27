@@ -122,23 +122,29 @@ namespace Elenigma.Scenes.TitleScene
                     commandBox.Enabled = false;
                     GameProfile.NewState();
 
-                    var sparr = new HeroModel(HeroType.Sparr, ClassType.Scholar, 15);
-                    sparr.Equip("Mahogany");
-                    sparr.Equip("Talisman");
-                    sparr.Equip("Fancy Robes");
-                    GameProfile.PlayerProfile.Party.Add(sparr);
+                    var tank = new HeroModel(HeroType.TheTank, ClassType.Tank, 15);
+                    tank.Equip("Battleaxe");
+                    tank.Equip("Talisman");
+                    tank.Equip("Steel Mail");
+                    GameProfile.PlayerProfile.Party.Add(tank);
 
-                    var envi = new HeroModel(HeroType.Envi, ClassType.Paragon, 15);
-                    envi.Equip("Battleaxe");
-                    envi.Equip("Talisman");
-                    envi.Equip("Steel Mail");
-                    GameProfile.PlayerProfile.Party.Add(envi);
+                    var warrior = new HeroModel(HeroType.TheWarrior, ClassType.Warrior, 15);
+                    warrior.Equip("Battleaxe");
+                    warrior.Equip("Bracers");
+                    warrior.Equip("Steel Mail");
+                    GameProfile.PlayerProfile.Party.Add(warrior);
 
-                    sparr = new HeroModel(HeroType.Sparr, ClassType.Scholar, 15);
-                    sparr.Equip("Mahogany");
-                    sparr.Equip("Talisman");
-                    sparr.Equip("Fancy Robes");
-                    GameProfile.PlayerProfile.Party.Add(sparr);
+                    var mage = new HeroModel(HeroType.TheMage, ClassType.Mage, 15);
+                    mage.Equip("Mahogany");
+                    mage.Equip("Talisman");
+                    mage.Equip("Fancy Robes");
+                    GameProfile.PlayerProfile.Party.Add(mage);
+
+                    var cleric = new HeroModel(HeroType.TheCleric, ClassType.Cleric, 15);
+                    cleric.Equip("Mahogany");
+                    cleric.Equip("Talisman");
+                    cleric.Equip("Fancy Robes");
+                    GameProfile.PlayerProfile.Party.Add(cleric);
 
                     CrossPlatformGame.Transition(typeof(CrawlerScene.CrawlerScene), 0);
                     break;

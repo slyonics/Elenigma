@@ -294,12 +294,6 @@ namespace Elenigma.Scenes.BattleScene
                     evade = target.Stats.Evade.Value;
                     break;
 
-                case "Bows":
-                    if (attacker.Stats.Class.Value == ClassType.Hunter && target is BattleEnemy && ((BattleEnemy)target).Scoped) hit = 100;
-                    hit = ((ItemRecord)commandRecord).Hit;
-                    evade = target.Stats.Evade.Value / 2;
-                    break;
-
                 case "Axes":
                     hit = ((ItemRecord)commandRecord).Hit;
                     evade = target.Stats.Evade.Value;

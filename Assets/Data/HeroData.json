@@ -1,52 +1,54 @@
 [
 	{
-		"Name": "Envi",
+		"Name": "TheMage",
 		"Sprites": {
-			"Fool": "AdvF",
-			"Warrior": "BarF",
-			"Hunter": "HntF",
-			"Scholar": "SchF",
-			"Minstrel": "MinF",
-			"Paragon": "PrgF",
-			"Warlock": "WarF"
+			"Mage": "Mage"
 		},
 		"Portraits": {
-			"Fool": "AdvF",
-			"Warrior": "BarF",
-			"Hunter": "HntF",
-			"Scholar": "SchF",
-			"Minstrel": "MinF",
-			"Paragon": "PrgF",
-			"Warlock": "WarF"
+			"Mage": "Mage"
 		},
-		"StrengthModifier": 4,
-		"AgilityModifier": 4,
-		"VitalityModifier": 1,
-		"MagicModifier": 1
+		"StrengthModifier": 0,
+		"AgilityModifier": 0,
+		"VitalityModifier": 0,
+		"MagicModifier": 0
 	},
 	{
-		"Name": "Sparr",
+		"Name": "TheCleric",
 		"Sprites": {
-			"Fool": "AdvM",
-			"Warrior": "BarM",
-			"Hunter": "HntM",
-			"Scholar": "SchM",
-			"Minstrel": "MinM",
-			"Paragon": "PrgM",
-			"Warlock": "WarM"
+			"Cleric": "Cleric"
 		},
 		"Portraits": {
-			"Fool": "AdvM",
-			"Warrior": "BarM",
-			"Hunter": "HntM",
-			"Scholar": "SchM",
-			"Minstrel": "MinM",
-			"Paragon": "PrgM",
-			"Warlock": "WarM"
+			"Cleric": "Cleric"
 		},
-		"StrengthModifier": 1,
-		"AgilityModifier": 1,
-		"VitalityModifier": 4,
-		"MagicModifier": 4
+		"StrengthModifier": 0,
+		"AgilityModifier": 0,
+		"VitalityModifier": 0,
+		"MagicModifier": 0
+	},
+	{
+		"Name": "TheWarrior",
+		"Sprites": {
+			"Warrior": "Warrior"
+		},
+		"Portraits": {
+			"Warrior": "Warrior"
+		},
+		"StrengthModifier": 0,
+		"AgilityModifier": 0,
+		"VitalityModifier": 0,
+		"MagicModifier": 0
+	},
+	{
+		"Name": "TheTank",
+		"Sprites": {
+			"Tank": "Tank"
+		},
+		"Portraits": {
+			"Tank": "Tank"
+		},
+		"StrengthModifier": 0,
+		"AgilityModifier": 0,
+		"VitalityModifier": 0,
+		"MagicModifier": 0
 	}
 ]

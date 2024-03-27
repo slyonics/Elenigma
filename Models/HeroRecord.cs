@@ -8,8 +8,10 @@ namespace Elenigma.Models
 {
     public enum HeroType
     {
-        Envi,
-        Sparr
+        TheMage,
+        TheCleric,
+        TheWarrior,
+        TheTank
     }
 
     public enum BattleCommand

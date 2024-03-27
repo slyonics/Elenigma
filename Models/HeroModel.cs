@@ -144,33 +144,10 @@ namespace Elenigma.Models
         {
             GrowAfterBattle(EXP_TABLE[iLevel]);
 
-            ClassProfiles.Add(new ClassProfile() { Class = ClassType.Fool });
+            ClassProfiles.Add(new ClassProfile() { Class = ClassType.Tank });
             ClassProfiles.Add(new ClassProfile() { Class = ClassType.Warrior });
-            ClassProfiles.Add(new ClassProfile() { Class = ClassType.Scholar });
-            ClassProfiles.Add(new ClassProfile() { Class = ClassType.Hunter });
-            ClassProfiles.Add(new ClassProfile() { Class = ClassType.Minstrel });
-            ClassProfiles.Add(new ClassProfile() { Class = ClassType.Paragon });
-            ClassProfiles.Add(new ClassProfile() { Class = ClassType.Warlock });
-
-            if (heroType == Models.HeroType.Sparr)
-            {
-                ClassProfiles[(int)ClassType.Fool].Upgrades.Add("Fool");
-
-                ClassProfiles[(int)ClassType.Scholar].Upgrades.Add("Researcher");
-                ClassProfiles[(int)ClassType.Scholar].Commands.Add(BattleCommand.Magic);
-                ClassProfiles[(int)ClassType.Scholar].Abilities.Add("Freeze");
-                ClassProfiles[(int)ClassType.Scholar].Abilities.Add("Life Sprinkle");
-
-                ClassProfiles[(int)ClassType.Hunter].Upgrades.Add("Trapper");
-                ClassProfiles[(int)ClassType.Hunter].Commands.Add(BattleCommand.Scope);
-            }
-            else
-            {
-                ClassProfiles[(int)ClassType.Fool].Upgrades.Add("Fool");
-
-                ClassProfiles[(int)ClassType.Warrior].Upgrades.Add("Chieftain");
-                ClassProfiles[(int)ClassType.Warrior].Commands.Add(BattleCommand.Throw);
-            }
+            ClassProfiles.Add(new ClassProfile() { Class = ClassType.Mage });
+            ClassProfiles.Add(new ClassProfile() { Class = ClassType.Cleric });
 
             int i = 1;
             foreach (BattleCommand command in ClassProfiles[(int)classType].Commands)
@@ -394,7 +371,7 @@ namespace Elenigma.Models
             return reports;
         }
 
-        public ModelProperty<HeroType> HeroType { get; set; } = new ModelProperty<HeroType>(Models.HeroType.Envi);
+        public ModelProperty<HeroType> HeroType { get; set; } = new ModelProperty<HeroType>(Models.HeroType.TheCleric);
 
         public ModelProperty<string> Sprite { get; set; } = new ModelProperty<string>(GameSprite.Actors_AdultMC.ToString());
         public ModelProperty<string> BattleSprite { get; set; } = new ModelProperty<string>(GameSprite.Actors_AdultMC.ToString());

@@ -9,13 +9,10 @@ namespace Elenigma.Models
 {
     public enum ClassType
     {
-        Fool,
+        Cleric,
         Warrior,
-        Scholar,
-        Hunter,
-        Minstrel,
-        Paragon,
-        Warlock,
+        Mage,
+        Tank,
 
         Monster,
         Undead,

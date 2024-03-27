@@ -191,6 +191,17 @@ namespace Elenigma.Scenes.CrawlerScene
                         float endU = startU + parentFloor.TileSize / (float)SpriteAtlas.Width;
                         float endV = startV + parentFloor.TileSize / (float)SpriteAtlas.Height;
                         wallList.Add(Direction.Down, new RoomWall(Direction.Down, SpriteAtlas, startU, startV, endU, endV));
+
+                        var terrain = tileset.EnumTags.FirstOrDefault(x => x.TileIds.Contains(tile.T));
+                        if (terrain != null)
+                        {
+                            switch (terrain.EnumValueId)
+                            {
+                                case "Blocked":
+                                    Blocked = true;
+                                    break;
+                            }
+                        }
                     }
                     break;
             }

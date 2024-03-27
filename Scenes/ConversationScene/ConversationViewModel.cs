@@ -207,7 +207,7 @@ namespace Elenigma.Scenes.ConversationScene
 
         public event Action OnDialogueScrolled;
 
-        public ModelProperty<Rectangle> Window { get; set; } = new ModelProperty<Rectangle>(new Rectangle(-120, 20, 240, 61));
+        public ModelProperty<Rectangle> Window { get; set; } = new ModelProperty<Rectangle>(new Rectangle(-162, 55, 224, 65));
         public ModelProperty<bool> ReadyToProceed { get; set; } = new ModelProperty<bool>(false);
         public ModelProperty<GameFont> ConversationFont { get; set; } = new ModelProperty<GameFont>(GameFont.Main);
         public ModelProperty<string> Dialogue { get; set; } = new ModelProperty<string>("");

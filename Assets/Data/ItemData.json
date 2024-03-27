@@ -61,41 +61,13 @@
 		]
 	},
 	{
-		"Name": "Rusty Sword",
-		"Animation": "Guarding",
-		"Description": "Old, worn, but still usable sword from an earlier time.",
-		"Icon": "Sword",
-		"ItemType": "Weapon",
-		"Targetting": "OneEnemy",
-		"UsableBy": [ "Fool", "Warrior", "Paragon", "Warlock" ],
-		"Attack": 16,
-		"Hit": 100,
-		"Weight": 10,
-		"BattleScript": [
-			"Animate Attack Sword",
-			"Sound Slash",
-			"CenterEffect Slash $targetCenterX $targetCenterY 1",
-			"OnHit Swords Sharp",
-			"Flash 255 27 0",
-			"Damage Swords Sharp"
-		],
-		"ThrowScript": [
-			"Announce Rusty Sword",
-			"Animate Attack",
-			"Sound Slash",
-			"CenterEffect Slash $targetCenterX $targetCenterY 1",
-			"Flash 255 27 0",
-			"Damage Throw"
-		]
-	},
-	{
 		"Name": "Battleaxe",
 		"Animation": "Guarding",
 		"Description": "A basic axe.",
 		"Icon": "Axe",
 		"ItemType": "Weapon",
 		"Targetting": "OneEnemy",
-		"UsableBy": [ "Fool", "Warrior", "Paragon", "Warlock" ],
+		"UsableBy": [ "Tank", "Warrior" ],
 		"Attack": 20,
 		"Hit": 90,
 		"Weight": 3,
@@ -117,34 +89,13 @@
 		]
 	},
 	{
-		"Name": "Longbow",
-		"Animation": "Guarding",
-		"Description": "A hunting bow that also serves well in combat.",
-		"Icon": "Bow",
-		"ItemType": "Weapon",
-		"Targetting": "OneEnemy",
-		"UsableBy": [ "Fool", "Hunter", "Minstrel", "Paragon" ],
-		"Attack": 20,
-		"Hit": 90,
-		"Weight": 3,
-		"BattleScript": [
-			"Animate Shoot Bow",
-			"Wait 800",
-			"Sound Slash",
-			"CenterEffect Slash $targetCenterX $targetCenterY 1",
-			"OnHit Bows Ranged",
-			"Flash 255 27 0",
-			"Damage Bows Ranged"
-		]
-	},
-	{
 		"Name": "Mahogany",
 		"Animation": "Guarding",
 		"Description": "Beautiful wood staff given to scholars as a symbol of office.",
 		"Icon": "Staff",
 		"ItemType": "Weapon",
 		"Targetting": "OneEnemy",
-		"UsableBy": [ "Fool", "Warrior", "Hunter", "Scholar", "Minstrel", "Paragon", "Warlock" ],
+		"UsableBy": [ "Mage", "Warrior", "Tank", "Cleric" ],
 		"Attack": 10,
 		"Hit": 100,
 		"Weight": 8,
@@ -172,7 +123,7 @@
 		"Icon": "Club",
 		"ItemType": "Weapon",
 		"Targetting": "OneEnemy",
-		"UsableBy": [ "Fool", "Warrior", "Hunter", "Scholar", "Minstrel", "Paragon", "Warlock" ],
+		"UsableBy": [ "Warrior", "Tank", "Cleric" ],
 		"Attack": 15,
 		"Hit": 100,
 		"Weight": 4,
@@ -200,7 +151,7 @@
 		"Icon": "Mace",
 		"ItemType": "Weapon",
 		"Targetting": "OneEnemy",
-		"UsableBy": [ "Fool", "Warrior", "Paragon", "Warlock" ],
+		"UsableBy": [ "Tank", "Warrior", "Cleric" ],
 		"Attack": 30,
 		"Hit": 75,
 		"Weight": 20,
@@ -245,7 +196,7 @@
 		"Description": "Hard leather bands worn around the arms for protection.",
 		"Icon": "Bracelet",
 		"ItemType": "Shield",
-		"UsableBy": [ "Fool", "Warrior", "Hunter", "Minstrel", "Paragon", "Warlock" ],
+		"UsableBy": [ "Warrior", "Tank" ],
 		"Evade": 5,
 		"MagicEvade": 0,
 		"Weight": 4
@@ -255,7 +206,7 @@
 		"Description": "Small good-luck charm that repels hostile magic.",
 		"Icon": "Shield",
 		"ItemType": "Shield",
-		"UsableBy": [ "Fool", "Warrior", "Hunter", "Minstrel", "Scholar", "Warlock" ],
+		"UsableBy": [ "Mage", "Warrior", "Tank", "Cleric" ],
 		"Evade": 0,
 		"MagicEvade": 5,
 		"Weight": 1
@@ -265,27 +216,17 @@
 		"Description": "A small, lightweight shield.",
 		"Icon": "Shield",
 		"ItemType": "Shield",
-		"UsableBy": [ "Fool", "Warrior", "Paragon", "Warlock" ],
+		"UsableBy": [ "Tank" ],
 		"Evade": 10,
 		"MagicEvade": 5,
 		"Weight": 8
-	},
-	{
-		"Name": "Best Shield",
-		"Description": "The best shield!",
-		"Icon": "Shield",
-		"ItemType": "Shield",
-		"UsableBy": [ "Fool", "Warrior", "Paragon", "Warlock" ],
-		"Evade": 90,
-		"MagicEvade": 90,
-		"Weight": 1
 	},
 	{
 		"Name": "Aegis",
 		"Description": "Legendary shield that repels magic and curses.",
 		"Icon": "Shield",
 		"ItemType": "Shield",
-		"UsableBy": [ "Fool", "Warrior", "Paragon", "Warlock" ],
+		"UsableBy": [ "Tank" ],
 		"Evade": 20,
 		"MagicEvade": 50,
 		"Weight": 24
@@ -295,7 +236,7 @@
 		"Description": "Heavy metal armor.",
 		"Icon": "Armor",
 		"ItemType": "Armor",
-		"UsableBy": [ "Fool", "Warrior", "Paragon", "Warlock" ],
+		"UsableBy": [ "Tank", "Warrior" ],
 		"Defense": 15,
 		"MagicDefense": 8,
 		"Weight": 20
@@ -305,37 +246,17 @@
 		"Description": "Elaborate robes worn by scholars as a symbol of office.",
 		"Icon": "Robe",
 		"ItemType": "Armor",
-		"UsableBy": [ "Fool", "Warrior", "Hunter", "Scholar", "Minstrel", "Paragon", "Warlock" ],
+		"UsableBy": [ "Cleric", "Mage" ],
 		"Defense": 5,
 		"MagicDefense": 7,
 		"Weight": 8
-	},
-	{
-		"Name": "Hide Armor",
-		"Description": "Primitive light armor made from animal hides and fur.",
-		"Icon": "Vest",
-		"ItemType": "Armor",
-		"UsableBy": [ "Fool", "Warrior", "Hunter", "Minstrel", "Paragon", "Warlock" ],
-		"Defense": 8,
-		"MagicDefense": 5,
-		"Weight": 8
-	},
-	{
-		"Name": "Motley",
-		"Description": "Bright, abstract clothing for clowns to wear.",
-		"Icon": "Robe",
-		"ItemType": "Armor",
-		"UsableBy": [ "Fool", "Minstrel" ],
-		"Defense": 20,
-		"MagicDefense": 25,
-		"Weight": 3
 	},
 	{
 		"Name": "Silver Cross",
 		"Description": "Grants resistance to darkness and immunity to instant KO.",
 		"Icon": "Holy",
 		"ItemType": "Accessory",
-		"UsableBy": [ "Fool", "Hunter", "Minstrel", "Paragon" ],
+		"UsableBy": [ "Mage", "Warrior", "Tank", "Cleric" ],
 		"ElementsStrong": [ "Dark" ],
 		"AilmentsImmune": [ "Death" ]
 	},
@@ -344,7 +265,7 @@
 		"Description": "Once per battle, survive a KO at 1 HP.",
 		"Icon": "Holy",
 		"ItemType": "Accessory",
-		"UsableBy": [ "Fool", "Warrior", "Hunter", "Minstrel", "Warlock" ],
+		"UsableBy": [ "Mage", "Warrior", "Tank", "Cleric" ],
 		"AutoBuffs": [ "AutoRevive" ]
 	},
 	{
@@ -352,7 +273,7 @@
 		"Description": "Natural mana crystal that slightly boosts magic power.",
 		"Icon": "Ice",
 		"ItemType": "Accessory",
-		"UsableBy": [ "Fool", "Scholar", "Minstrel", "Warlock" ],
+		"UsableBy": [ "Mage" ],
 		"MagicModifier": 2
 	}
 ]

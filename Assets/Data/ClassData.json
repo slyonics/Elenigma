@@ -1,6 +1,6 @@
 [
 	{
-		"Name": "Fool",
+		"Name": "Cleric",
 		"BaseStrength": 24,
 		"BaseAgility": 24,
 		"BaseVitality": 24,
@@ -14,38 +14,17 @@
 		"BaseMagic": 1
 	},
 	{
-		"Name": "Hunter",
+		"Name": "Tank",
 		"BaseStrength": 26,
 		"BaseAgility": 40,
 		"BaseVitality": 26,
 		"BaseMagic": 18
 	},
 	{
-		"Name": "Scholar",
+		"Name": "Mage",
 		"BaseStrength": 15,
 		"BaseAgility": 23,
 		"BaseVitality": 23,
 		"BaseMagic": 49
-	},
-	{
-		"Name": "Minstrel",
-		"BaseStrength": 17,
-		"BaseAgility": 32,
-		"BaseVitality": 15,
-		"BaseMagic": 35
-	},
-	{
-		"Name": "Paragon",
-		"BaseStrength": 39,
-		"BaseAgility": 38,
-		"BaseVitality": 38,
-		"BaseMagic": 25
-	},
-	{
-		"Name": "Warlock",
-		"BaseStrength": 39,
-		"BaseAgility": 25,
-		"BaseVitality": 38,
-		"BaseMagic": 38
 	}
 ]

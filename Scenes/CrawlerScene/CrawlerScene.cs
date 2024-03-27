@@ -206,6 +206,17 @@ namespace Elenigma.Scenes.CrawlerScene
             TransitionController transitionController;
             
             var currentRoom = floor.GetRoom(roomX, roomY);
+            var destinationRoom = currentRoom[direction];
+            if (destinationRoom == null || destinationRoom.Blocked)
+            {
+                if (!Activate())
+                {
+                    WallBump();
+                    return;
+                }
+            }
+
+            if (destinationRoom.PreEnterScript != null) { destinationRoom.ActivatePreScript(); return; }
 
             switch (direction)
             {
@@ -219,7 +230,10 @@ namespace Elenigma.Scenes.CrawlerScene
                         transitionController = new TransitionController(TransitionDirection.In, 300, PriorityLevel.TransitionLevel);
                         AddController(transitionController);
                         transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(0, 10, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosZ = 0; roomY--; currentRoom.EnterRoom(); MoveFoes(); });
+                        transitionController.FinishTransition += new Action<TransitionDirection>(t => {
+                            cameraPosZ = 0; roomY--;
+                            currentRoom.EnterRoom();
+                            MoveFoes(); });
                     }
                     else if (!Activate()) { WallBump(); return; }
                     break;

@@ -57,8 +57,8 @@ namespace Elenigma.SceneObjects.Widgets
             string[] textLines = Text.Split('\n');
             string longestLine = textLines.MaxBy(x => Main.Text.GetStringLength(Font, x));
 
-            int width = Main.Text.GetStringLength(Font, longestLine) + InnerMargin.X + InnerMargin.Width; // Math.Max(Text.GetStringLength(font, text) + TOOLTIP_MARGIN_WIDTH * 2, textplateFrame.FrameWidth * 3) + 20;
-            int height = Main.Text.GetStringHeight(Font) * textLines.Count() + InnerMargin.Y + InnerMargin.Height + 3; //Math.Max(Text.GetStringHeight(font) + TOOLTIP_MARGIN_HEIGHT * 2, textplateFrame.FrameHeight * 3);
+            int width = Main.Text.GetStringLength(Font, longestLine) + InnerMargin.X + InnerMargin.Width + 4; // Math.Max(Text.GetStringLength(font, text) + TOOLTIP_MARGIN_WIDTH * 2, textplateFrame.FrameWidth * 3) + 20;
+            int height = Main.Text.GetStringHeight(Font) * textLines.Count() + InnerMargin.Y + InnerMargin.Height - 2; //Math.Max(Text.GetStringHeight(font) + TOOLTIP_MARGIN_HEIGHT * 2, textplateFrame.FrameHeight * 3);
 
             if (Alignment == Alignment.Center)
             {
@@ -86,8 +86,8 @@ namespace Elenigma.SceneObjects.Widgets
             string[] textLines = Text.Split('\n');
             string longestLine = textLines.MaxBy(x => Main.Text.GetStringLength(Font, x));
 
-            int width = Main.Text.GetStringLength(Font, longestLine) + InnerMargin.X + InnerMargin.Width; // Math.Max(Text.GetStringLength(font, text) + TOOLTIP_MARGIN_WIDTH * 2, textplateFrame.FrameWidth * 3) + 20;
-            int height = Main.Text.GetStringHeight(Font) * textLines.Count() + InnerMargin.Y + InnerMargin.Height + 3; // Math.Max(Text.GetStringHeight(font) + TOOLTIP_MARGIN_HEIGHT * 2, textplateFrame.FrameHeight * 3);
+            int width = Main.Text.GetStringLength(Font, longestLine) + InnerMargin.X + InnerMargin.Width + 4; // Math.Max(Text.GetStringLength(font, text) + TOOLTIP_MARGIN_WIDTH * 2, textplateFrame.FrameWidth * 3) + 20;
+            int height = Main.Text.GetStringHeight(Font) * textLines.Count() + InnerMargin.Y + InnerMargin.Height - 2; // Math.Max(Text.GetStringHeight(font) + TOOLTIP_MARGIN_HEIGHT * 2, textplateFrame.FrameHeight * 3);
 
             if (Alignment == Alignment.Center)
             {
