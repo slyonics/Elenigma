@@ -125,6 +125,13 @@ namespace Elenigma.SceneObjects.Widgets
                 Main.Text.DrawCenteredText(spriteBatch, new Vector2(InnerBounds.Center.X, InnerBounds.Center.Y + offset) + Position, Font, textLine, Color, row);
                 row++;
             }
+
+            foreach (Widget widget in ChildList)
+            {
+                if (widget.Visible)
+                    
+                    widget.Draw(spriteBatch);
+            }
         }
     }
 }

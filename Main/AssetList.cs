@@ -137,6 +137,7 @@ namespace Elenigma.Main
     {
         Ailments,
         Clouds,
+        Coral,
         Down,
         DownSelected,
         Enter,
@@ -144,9 +145,9 @@ namespace Elenigma.Main
         Gamepad,
         Keyboard,
         MiniMap,
+        ProceedText,
         Target,
         Title,
-        TurningBook,
         Up,
         UpSelected,
         YouAreHere,

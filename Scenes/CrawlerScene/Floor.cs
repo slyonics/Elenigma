@@ -208,7 +208,7 @@ namespace Elenigma.Scenes.CrawlerScene
                 foreach (MapRoom room in roomsToVisit)
                 {
                     room.brightnessLevel += attenuatedBrightness;
-                    nextRooms.AddRange(room.Neighbors.FindAll(x => !x.Blocked && !visitedRooms.Contains(x) && !nextRooms.Contains(x)));
+                    nextRooms.AddRange(room.Neighbors.FindAll(x => !x.Occluding && !visitedRooms.Contains(x) && !nextRooms.Contains(x)));
                 }
 
                 roomsToVisit = nextRooms;
@@ -496,7 +496,7 @@ namespace Elenigma.Scenes.CrawlerScene
                         }
                     }
 
-                    bool curBlocked = (room == null || room.Blocked);
+                    bool curBlocked = (room == null || room.Occluding);
 
                     if (prevWasBlocked)
                     {

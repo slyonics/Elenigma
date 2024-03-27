@@ -74,7 +74,7 @@ namespace Elenigma.Scenes.CrawlerScene
 
             TransitionController controller = new TransitionController(TransitionDirection.In, 300, PriorityLevel.CutsceneLevel);
             crawlerScene.AddController(controller);
-            controller.UpdateTransition += new Action<float>(t => CurrentRoom.Foe.MoveInterval = t);
+            controller.UpdateTransition += new Action<float>(t => MoveInterval = t);
             controller.FinishTransition += new Action<TransitionDirection>(t => { CurrentRoom.Foe = null; CurrentRoom = DestinationRoom; CurrentRoom.Foe = this; });
         }
 

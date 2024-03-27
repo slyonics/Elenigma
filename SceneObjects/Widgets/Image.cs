@@ -63,7 +63,10 @@ namespace Elenigma.SceneObjects.Widgets
                 if (Alignment == Alignment.Bottom)
                     spriteBatch.Draw(Picture, new Rectangle(currentWindow.Left + (int)Position.X, (int)Position.Y + currentWindow.Top, currentWindow.Width, currentWindow.Height), null, drawColor, 0.0f, Vector2.Zero, SpriteEffects.None, Depth);
                 // spriteBatch.Draw(picture, new Rectangle(currentWindow.Left + (int)Position.X, -currentWindow.Height + (int)Position.Y + parent.InnerBounds.Height / 2 - parent.InnerMargin.Y * CrossPlatformGame.Scale, currentWindow.Width, currentWindow.Height), null, color, 0.0f, Vector2.Zero, SpriteEffects.None, depth - 0.0001f);
-                else spriteBatch.Draw(Picture, new Rectangle(currentWindow.X + (int)Position.X, currentWindow.Y + (int)Position.Y, currentWindow.Width, currentWindow.Height), null, drawColor, 0.0f, Vector2.Zero, SpriteEffects.None, Depth);
+                else if (Alignment == Alignment.BottomRight)
+                    spriteBatch.Draw(Picture, new Rectangle(currentWindow.Right + (int)Position.X, (int)Position.Y + currentWindow.Top, currentWindow.Width, currentWindow.Height), null, drawColor, 0.0f, Vector2.Zero, SpriteEffects.None, Depth); 
+                else 
+                    spriteBatch.Draw(Picture, new Rectangle(currentWindow.X + (int)Position.X, currentWindow.Y + (int)Position.Y, currentWindow.Width, currentWindow.Height), null, drawColor, 0.0f, Vector2.Zero, SpriteEffects.None, Depth);
             }
             else if (Sprite != null)
             {

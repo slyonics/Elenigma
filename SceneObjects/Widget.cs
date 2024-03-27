@@ -293,6 +293,8 @@ namespace Elenigma.SceneObjects
                 case Alignment.BottomRight:
                     currentWindow.X = parent.InnerBounds.Right + bounds.X;
                     currentWindow.Y = parent.InnerBounds.Bottom + bounds.Y;
+                    currentWindow.Width = bounds.Width;
+                    currentWindow.Height = bounds.Height;
                     break;
 
                 case Alignment.Bottom:

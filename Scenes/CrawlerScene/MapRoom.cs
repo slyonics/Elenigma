@@ -101,6 +101,7 @@ namespace Elenigma.Scenes.CrawlerScene
 
 
         public bool Blocked { get; set; }
+        public bool Occluding { get; set; }
 
         public bool Obscured { get; set; } = true;
 
@@ -142,6 +143,7 @@ namespace Elenigma.Scenes.CrawlerScene
                 case "Walls":
                     {
                         Blocked = true;
+                        Occluding = true;
 
                         string tilesetName = tileset.RelPath.Replace("../Graphics/", "").Replace(".png", "").Replace('/', '_');
                         var SpriteAtlas = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), tilesetName)];
@@ -151,19 +153,19 @@ namespace Elenigma.Scenes.CrawlerScene
                         float endV = startV + parentFloor.TileSize / (float)SpriteAtlas.Height;
 
                         var westWall = this[Direction.West];
-                        if (RoomX > 0 && westWall != null && !westWall.Blocked)
+                        if (RoomX > 0 && westWall != null && !westWall.Occluding)
                             westWall.ApplyWall(Direction.East, SpriteAtlas, startU, startV, endU, endV);
 
                         var eastWall = this[Direction.East];
-                        if (RoomX < parentFloor.MapWidth - 1 && eastWall != null && !eastWall.Blocked)
+                        if (RoomX < parentFloor.MapWidth - 1 && eastWall != null && !eastWall.Occluding)
                             eastWall.ApplyWall(Direction.West, SpriteAtlas, startU, startV, endU, endV);
 
                         var northWall = this[Direction.North];
-                        if (RoomY > 0 && northWall != null && !northWall.Blocked)
+                        if (RoomY > 0 && northWall != null && !northWall.Occluding)
                             northWall.ApplyWall(Direction.South, SpriteAtlas, startU, startV, endU, endV);
 
                         var southWall = this[Direction.South];
-                        if (RoomY < parentFloor.MapHeight - 1 && southWall != null && !southWall.Blocked)
+                        if (RoomY < parentFloor.MapHeight - 1 && southWall != null && !southWall.Occluding)
                             southWall.ApplyWall(Direction.North, SpriteAtlas, startU, startV, endU, endV);
                     }
                     break;
@@ -286,7 +288,7 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public void Draw(Matrix viewMatrix)
         {
-            if (Blocked) return;
+            if (Occluding) return;
 
             foreach (KeyValuePair<Direction, RoomWall> wall in wallList)
             {
@@ -308,14 +310,15 @@ namespace Elenigma.Scenes.CrawlerScene
         {
             if (Obscured) return;
 
-            spriteBatch.Draw(minimapSprite, offset, minimapSource[waypointTile], Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
+            Color color = Occluding ? Color.CornflowerBlue : Color.White;
+            spriteBatch.Draw(minimapSprite, offset, minimapSource[waypointTile], color, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth);
 
             if (Foe != null)
             spriteBatch.Draw(enemyIndicator, offset, enemySource[(int)Foe.Direction], Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, depth - 0.002f);
         }
         public void ResetMinimapIcon()
         {
-            waypointTile = Blocked ? 0 : 1;
+            waypointTile = Occluding ? 0 : 1;
             if (door) waypointTile = 2;
         }
 

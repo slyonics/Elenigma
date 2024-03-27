@@ -1,15 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <View>
 
-	<Panel Style="LightFrame" Anchor="$CenterX,$CenterY" Bounds="Bind Window" InnerMargin="8,5,8,8" TransitionIn="Expand" TransitionOut="Shrink">
-		<CrawlText Name="ConversationText" Text="Bind Dialogue" Font="Bind ConversationFont" Alignment="Stretch" Color="#4D2B32FF" VoiceSound="Blip"/>
+	<Panel Style="ThinPanel" Anchor="$CenterX,$CenterY" Bounds="Bind Window" InnerMargin="8,5,8,8" TransitionIn="Expand" TransitionOut="Shrink">
+		<CrawlText Name="ConversationText" Text="Bind Dialogue" Font="Bind ConversationFont" Alignment="Stretch" Color="#EBEDE9FF" VoiceSound="Blip"/>
 
-		<Panel Style="PortraitFrame" Alignment="Left" Bounds="0,-42,42,42" Visible="Bind ShowPortrait">
+		<Panel Style="ThinPanel" Alignment="Left" Bounds="0,-42,42,42" Visible="Bind ShowPortrait">
 			<Image Picture="Bind Portrait" Alignment="Center" Bounds="0,0,32,32"/>
 		</Panel>
-		<Textplate Name="SpeakerPlate" Style="Textplate_Panel" Alignment="Left" Bounds="-1,-26,-1,-1" InnerMargin="9,1,7,1" Font="Bind ConversationFont" Text="Bind Speaker" Color="#4D2B32FF"/>
 		
-		<Image Sprite="TurningBook,0,0,32,32,31,100,-1" Alignment="BottomRight" Bounds="16,6,12,12" Visible="Bind ReadyToProceed"/>
+		<Textplate Name="SpeakerPlate" Style="ThinPanel" Alignment="Left" Bounds="-1,-26,-1,-1" InnerMargin="9,1,7,1" Font="Bind ConversationFont" Text="Bind Speaker" Color="#4D2B32FF">
+			<Image Picture="Coral" Alignment="BottomRight" Bounds="-18,-18,16,16"/>
+		</Textplate>
+		
+		<Image Sprite="ProceedText,0,0,32,32,9,150,-1" Alignment="BottomRight" Bounds="16,6,12,12" Visible="Bind ReadyToProceed"/>
 	</Panel>
   
 </View>

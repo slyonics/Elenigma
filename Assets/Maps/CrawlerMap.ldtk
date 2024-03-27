@@ -11,7 +11,7 @@
 	"iid": "5c1d34d0-3b70-11ee-9d66-d3a28cc7a2b6",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 1452,
+	"nextUid": 1453,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -784,16 +784,16 @@
 			"spacing": 0,
 			"padding": 0,
 			"tags": [],
-			"tagsSourceEnumUid": null,
-			"enumTags": [],
+			"tagsSourceEnumUid": 1452,
+			"enumTags": [ { "enumValueId": "Blocked", "tileIds": [4,33] }, { "enumValueId": "Occluding", "tileIds": [11,12,13,14] } ],
 			"customData": [],
 			"savedSelections": [],
 			"cachedPixelData": {
-				"opaqueTiles": "11111000000111100000001111000000010000000000110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-				"averageColors": "f011fb86f975f853f7bc301100000000000000000000f975fa75fa86fa750000000000000000000000000000fdb9fdb9fca9fcb90000000000000000000000000000f6ac0000000000000000000000000000000000000000f566f5660000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+				"opaqueTiles": "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+				"averageColors": "f011fb86f975f853f7bcfdddf123fffffffffffffffff975fa75fa86fa75fffffffffffffffffffffffffffffdb9fdb9fca9fcb9fffffffffffffffffffffffffffff6acfffffffffffffffffffffffffffffffffffffffff566f566ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
 			}
 		}
-	], "enums": [], "externalEnums": [], "levelFields": [
+	], "enums": [{ "identifier": "SpecialTiles", "uid": 1452, "values": [ { "id": "Blocked", "tileRect": null, "color": 12470831 }, { "id": "Occluding", "tileRect": null, "color": 14120515 } ], "iconTilesetUid": 633, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }], "externalEnums": [], "levelFields": [
 		{
 			"identifier": "LocationName",
 			"doc": null,
@@ -1510,7 +1510,7 @@
 						{ "px": [208,16], "src": [0,32], "f": 0, "t": 22, "d": [33], "a": 1 },
 						{ "px": [224,16], "src": [0,32], "f": 0, "t": 22, "d": [34], "a": 1 },
 						{ "px": [48,32], "src": [0,32], "f": 0, "t": 22, "d": [43], "a": 1 },
-						{ "px": [64,32], "src": [0,32], "f": 0, "t": 22, "d": [44], "a": 1 },
+						{ "px": [64,32], "src": [64,0], "f": 0, "t": 4, "d": [44], "a": 1 },
 						{ "px": [80,32], "src": [16,32], "f": 0, "t": 23, "d": [45], "a": 1 },
 						{ "px": [96,32], "src": [32,32], "f": 0, "t": 24, "d": [46], "a": 1 },
 						{ "px": [112,32], "src": [0,32], "f": 0, "t": 22, "d": [47], "a": 1 },
@@ -1576,8 +1576,8 @@
 						{ "px": [192,176], "src": [0,32], "f": 0, "t": 22, "d": [232], "a": 1 },
 						{ "px": [208,176], "src": [0,32], "f": 0, "t": 22, "d": [233], "a": 1 },
 						{ "px": [224,176], "src": [0,32], "f": 0, "t": 22, "d": [234], "a": 1 },
-						{ "px": [16,192], "src": [0,32], "f": 0, "t": 22, "d": [241], "a": 1 },
-						{ "px": [32,192], "src": [0,32], "f": 0, "t": 22, "d": [242], "a": 1 },
+						{ "px": [16,192], "src": [64,0], "f": 0, "t": 4, "d": [241], "a": 1 },
+						{ "px": [32,192], "src": [64,0], "f": 0, "t": 4, "d": [242], "a": 1 },
 						{ "px": [64,192], "src": [48,32], "f": 0, "t": 25, "d": [244], "a": 1 },
 						{ "px": [112,192], "src": [16,32], "f": 0, "t": 23, "d": [247], "a": 1 },
 						{ "px": [192,192], "src": [0,32], "f": 0, "t": 22, "d": [252], "a": 1 },
@@ -1585,7 +1585,7 @@
 						{ "px": [224,192], "src": [0,32], "f": 0, "t": 22, "d": [254], "a": 1 },
 						{ "px": [240,192], "src": [48,32], "f": 0, "t": 25, "d": [255], "a": 1 },
 						{ "px": [256,192], "src": [0,32], "f": 0, "t": 22, "d": [256], "a": 1 },
-						{ "px": [16,208], "src": [0,32], "f": 0, "t": 22, "d": [261], "a": 1 },
+						{ "px": [16,208], "src": [64,0], "f": 0, "t": 4, "d": [261], "a": 1 },
 						{ "px": [32,208], "src": [16,32], "f": 0, "t": 23, "d": [262], "a": 1 },
 						{ "px": [48,208], "src": [0,32], "f": 0, "t": 22, "d": [263], "a": 1 },
 						{ "px": [64,208], "src": [0,32], "f": 0, "t": 22, "d": [264], "a": 1 },
