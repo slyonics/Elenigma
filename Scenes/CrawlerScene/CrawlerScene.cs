@@ -203,7 +203,7 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public void MoveForward()
         {
-            TransitionController transitionController;
+            TransitionController transitionController = null;
             
             var currentRoom = floor.GetRoom(roomX, roomY);
             var destinationRoom = currentRoom[direction];
@@ -221,65 +221,49 @@ namespace Elenigma.Scenes.CrawlerScene
             switch (direction)
             {
                 case Direction.North:
-
-                    var northRoom = floor.GetRoom(roomX, roomY - 1);
-                    if (roomY > 0 && northRoom != null && !northRoom.Blocked && currentRoom.Neighbors.Contains(northRoom))
-                    {
-                        if (northRoom.PreEnterScript != null) { northRoom.ActivatePreScript(); return; }
-
                         transitionController = new TransitionController(TransitionDirection.In, 300, PriorityLevel.TransitionLevel);
-                        AddController(transitionController);
                         transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(0, 10, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t => {
+                        transitionController.FinishTransition += new Action<TransitionDirection>(t =>
+                        {
                             cameraPosZ = 0; roomY--;
                             currentRoom.EnterRoom();
-                            MoveFoes(); });
-                    }
-                    else if (!Activate()) { WallBump(); return; }
+                            MoveFoes();
+                        });
                     break;
 
                 case Direction.East:
-                    var eastRoom = floor.GetRoom(roomX + 1, roomY);
-                    if (roomX < floor.MapWidth - 1 && eastRoom != null && !eastRoom.Blocked && currentRoom.Neighbors.Contains(eastRoom))
-                    {
-                        if (eastRoom.PreEnterScript != null) { eastRoom.ActivatePreScript(); return; }
-
                         transitionController = new TransitionController(TransitionDirection.In, 300, PriorityLevel.TransitionLevel);
-                        AddController(transitionController);
                         transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(0, 10, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosX = 0; roomX++; currentRoom.EnterRoom(); MoveFoes(); });
-                    }
-                    else if (!Activate()) { WallBump(); return; }
+                        transitionController.FinishTransition += new Action<TransitionDirection>(t =>
+                        {
+                            cameraPosX = 0; roomX++;
+                            currentRoom.EnterRoom();
+                            MoveFoes();
+                        });
                     break;
 
                 case Direction.South:
-                    var southRoom = floor.GetRoom(roomX, roomY + 1);
-                    if (roomY < floor.MapHeight - 1 && southRoom != null && !southRoom.Blocked && currentRoom.Neighbors.Contains(southRoom))
-                    {
-                        if (southRoom.PreEnterScript != null) { southRoom.ActivatePreScript(); return; }
-
                         transitionController = new TransitionController(TransitionDirection.Out, 300, PriorityLevel.TransitionLevel);
-                        AddController(transitionController);
                         transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(-10, 0, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosZ = 0; roomY++; currentRoom.EnterRoom(); MoveFoes(); });
-                    }
-                    else if (!Activate()) { WallBump(); return; }
+                        transitionController.FinishTransition += new Action<TransitionDirection>(t =>
+                        {
+                            cameraPosZ = 0; roomY++; currentRoom.EnterRoom(); MoveFoes();
+                        });
                     break;
 
                 case Direction.West:
-                    var westRoom = floor.GetRoom(roomX - 1, roomY);
-                    if (roomX > 0 && westRoom != null && !westRoom.Blocked && currentRoom.Neighbors.Contains(westRoom))
-                    {
-                        if (westRoom.PreEnterScript != null) { westRoom.ActivatePreScript(); return; }
-
                         transitionController = new TransitionController(TransitionDirection.Out, 300, PriorityLevel.TransitionLevel);
-                        AddController(transitionController);
                         transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(-10, 0, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t => { cameraPosX = 0; roomX--; currentRoom.EnterRoom(); MoveFoes(); });
-                    }
-                    else if (!Activate()) { WallBump(); return; }
+                        transitionController.FinishTransition += new Action<TransitionDirection>(t =>
+                        {
+                            cameraPosX = 0; roomX--;
+                            currentRoom.EnterRoom();
+                            MoveFoes();
+                        });
                     break;
             }
+
+            AddController(transitionController);
         }
 
         public void MoveTo(MapRoom destinationRoom)
