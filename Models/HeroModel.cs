@@ -130,7 +130,7 @@ namespace Elenigma.Models
             MP.Value = MaxMP.Value;
 
             Sprite.Value = "Actors_" + heroRecord.Sprites[Class.Value.ToString()];
-            BattleSprite.Value = "Battlers_" + heroRecord.Sprites[Class.Value.ToString()];
+            BattleSprite.Value = "Portraits_" + heroRecord.Sprites[Class.Value.ToString()];
             PortraitSprite.Value = "Portraits_" + heroRecord.Portraits[Class.Value.ToString()];
             ShadowSprite.Value = GameSprite.Actors_DroneShadow.ToString();
 

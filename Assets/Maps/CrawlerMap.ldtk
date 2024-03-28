@@ -1069,13 +1069,16 @@
 							"defUid": 1447,
 							"px": [48,80],
 							"fieldInstances": [
-								{ "__identifier": "Sprite", "__type": "String", "__value": "Frog", "__tile": null, "defUid": 1448, "realEditorValues": [{
+								{ "__identifier": "Sprite", "__type": "String", "__value": "SandEater", "__tile": null, "defUid": 1448, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Frog"]
+									"params": ["SandEater"]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
 								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
-								{ "__identifier": "Encounter", "__type": "String", "__value": "BossTest", "__tile": null, "defUid": 1453, "realEditorValues": [] }
+								{ "__identifier": "Encounter", "__type": "String", "__value": "Sand Eater", "__tile": null, "defUid": 1453, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Sand Eater"]
+								}] }
 							],
 							"__worldX": 48,
 							"__worldY": 80
@@ -1093,13 +1096,16 @@
 							"defUid": 1447,
 							"px": [32,176],
 							"fieldInstances": [
-								{ "__identifier": "Sprite", "__type": "String", "__value": "Boss", "__tile": null, "defUid": 1448, "realEditorValues": [{
+								{ "__identifier": "Sprite", "__type": "String", "__value": "SandSnake", "__tile": null, "defUid": 1448, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Boss"]
+									"params": ["SandSnake"]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
 								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
-								{ "__identifier": "Encounter", "__type": "String", "__value": "BossTest", "__tile": null, "defUid": 1453, "realEditorValues": [] }
+								{ "__identifier": "Encounter", "__type": "String", "__value": "Sand Snake", "__tile": null, "defUid": 1453, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Sand Snake"]
+								}] }
 							],
 							"__worldX": 32,
 							"__worldY": 176
@@ -1117,13 +1123,16 @@
 							"defUid": 1447,
 							"px": [208,176],
 							"fieldInstances": [
-								{ "__identifier": "Sprite", "__type": "String", "__value": "Frog", "__tile": null, "defUid": 1448, "realEditorValues": [{
+								{ "__identifier": "Sprite", "__type": "String", "__value": "Skulls", "__tile": null, "defUid": 1448, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Frog"]
+									"params": ["Skulls"]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
 								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
-								{ "__identifier": "Encounter", "__type": "String", "__value": "BossTest", "__tile": null, "defUid": 1453, "realEditorValues": [] }
+								{ "__identifier": "Encounter", "__type": "String", "__value": "Skulls", "__tile": null, "defUid": 1453, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Skulls"]
+								}] }
 							],
 							"__worldX": 208,
 							"__worldY": 176
@@ -1141,13 +1150,16 @@
 							"defUid": 1447,
 							"px": [176,32],
 							"fieldInstances": [
-								{ "__identifier": "Sprite", "__type": "String", "__value": "Frog", "__tile": null, "defUid": 1448, "realEditorValues": [{
+								{ "__identifier": "Sprite", "__type": "String", "__value": "CursedEye", "__tile": null, "defUid": 1448, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Frog"]
+									"params": ["CursedEye"]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
 								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
-								{ "__identifier": "Encounter", "__type": "String", "__value": "BossTest", "__tile": null, "defUid": 1453, "realEditorValues": [] }
+								{ "__identifier": "Encounter", "__type": "String", "__value": "Cursed Eye", "__tile": null, "defUid": 1453, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Cursed Eye"]
+								}] }
 							],
 							"__worldX": 176,
 							"__worldY": 32
@@ -1165,16 +1177,46 @@
 							"defUid": 1447,
 							"px": [160,256],
 							"fieldInstances": [
-								{ "__identifier": "Sprite", "__type": "String", "__value": "Frog", "__tile": null, "defUid": 1448, "realEditorValues": [{
+								{ "__identifier": "Sprite", "__type": "String", "__value": "SandBunny", "__tile": null, "defUid": 1448, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["Frog"]
+									"params": ["SandBunny"]
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
 								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
-								{ "__identifier": "Encounter", "__type": "String", "__value": "BossTest", "__tile": null, "defUid": 1453, "realEditorValues": [] }
+								{ "__identifier": "Encounter", "__type": "String", "__value": "Sand Bunny", "__tile": null, "defUid": 1453, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Sand Bunny"]
+								}] }
 							],
 							"__worldX": 160,
 							"__worldY": 256
+						},
+						{
+							"__identifier": "Foe",
+							"__grid": [8,7],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#FEAE34",
+							"iid": "1e146be0-d7b0-11ee-9382-33c89de07f71",
+							"width": 16,
+							"height": 16,
+							"defUid": 1447,
+							"px": [128,112],
+							"fieldInstances": [
+								{ "__identifier": "Sprite", "__type": "String", "__value": "SeaFoam", "__tile": null, "defUid": 1448, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["SeaFoam"]
+								}] },
+								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
+								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
+								{ "__identifier": "Encounter", "__type": "String", "__value": "Sea Foam", "__tile": null, "defUid": 1453, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Sea Foam"]
+								}] }
+							],
+							"__worldX": 128,
+							"__worldY": 112
 						}
 					]
 				},

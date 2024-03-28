@@ -1,9 +1,49 @@
 [
 	{
-		"Name": "BossTest",
+		"Name": "Skulls",
 		"Enemies": [
 			{
-				"Name": "Mammoth Frog"
+				"Name": "Skulls"
+			}
+		]
+	},
+	{
+		"Name": "Sea Foam",
+		"Enemies": [
+			{
+				"Name": "Sea Foam"
+			}
+		]
+	},
+	{
+		"Name": "Cursed Eye",
+		"Enemies": [
+			{
+				"Name": "Cursed Eye"
+			}
+		]
+	},
+	{
+		"Name": "Sand Bunny",
+		"Enemies": [
+			{
+				"Name": "Sand Bunny"
+			}
+		]
+	},
+	{
+		"Name": "Sand Eater",
+		"Enemies": [
+			{
+				"Name": "Sand Eater"
+			}
+		]
+	},
+	{
+		"Name": "Sand Snake",
+		"Enemies": [
+			{
+				"Name": "Sand Snake"
 			}
 		]
 	}

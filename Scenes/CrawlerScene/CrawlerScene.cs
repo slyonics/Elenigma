@@ -220,7 +220,7 @@ namespace Elenigma.Scenes.CrawlerScene
             }
 
             TransitionDirection transitionDirection = (direction == Direction.North || direction == Direction.East) ? TransitionDirection.In : TransitionDirection.Out;
-            transitionController = new TransitionController(transitionDirection, 300, PriorityLevel.TransitionLevel);
+            transitionController = new TransitionController(transitionDirection, 300, PriorityLevel.CutsceneLevel);
 
             if (destinationRoom.Foe != null)
             {
@@ -248,6 +248,8 @@ namespace Elenigma.Scenes.CrawlerScene
             }
             else
             {
+                MoveFoes(destinationRoom);
+
                 switch (direction)
                 {
                     case Direction.North: transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(0, 10, t)); break;
@@ -263,7 +265,6 @@ namespace Elenigma.Scenes.CrawlerScene
                     roomX = destinationRoom.RoomX;
                     roomY = destinationRoom.RoomY;
                     destinationRoom.EnterRoom();
-                    MoveFoes();
                 });
             }
         }
@@ -385,11 +386,11 @@ namespace Elenigma.Scenes.CrawlerScene
             return roomAhead.Activate(direction);
         }
 
-        public void MoveFoes()
+        public void MoveFoes(MapRoom playerDestination)
         {
             foreach (Foe foe in FoeList)
             {
-                foe.Move((Direction)Rng.RandomInt(0, 3));
+                foe.Move(playerDestination);
             }
         }
 

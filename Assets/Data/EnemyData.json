@@ -1,7 +1,7 @@
 [
 	{
-		"Name": "Boss",
-		"Sprite": "Boss",
+		"Name": "Cursed Eye",
+		"Sprite": "CursedEye",
 		"Level": 13,
 		"Class": "Undead",
 		"Exp": 1,
@@ -42,50 +42,8 @@
 		]
 	},
 	{
-		"Name": "Banshee",
-		"Sprite": "Banshee",
-		"Level": 13,
-		"Class": "Undead",
-		"Exp": 1,
-		"Analysis": "Wailing spirit that portends the death of whomever hears its cry. Undead, weak VS holy, strong vs ice.",
-		"HP": 100,
-		"Agility": 25,
-		"Magic": 10,
-		"Attack": 25,
-		"Defense": 0,
-		"Evade": 0,
-		"MagicDefense": 5,
-		"AttackMultiplier": 7,
-		"MagicMultiplier": 6,
-		"ElementWeak": [ "Holy" ],
-		"ElementStrong": [ "Ice" ],
-		"ElementImmune": [ "Dark" ],
-		"Attacks": [
-			{
-				"Script": [ "Attack" ],
-				"Weight": 100
-			},
-			{
-				"Script": [
-					"Announce Terrifying Wail",
-					"Animate Attack",
-					"Wait 600",
-					"Sound Fireball",
-					"Multitarget",
-					"CenterEffect Skull $targetCenterX $targetCenterY 2",
-					"OnHit Ailment Fear",
-					"Flash 255 255 255",
-					"Ailment Fear"
-				],
-				"Weight": 50,
-				"Hit": 40,
-				"Targetting": "AllEnemy"
-			}
-		]
-	},
-	{
-		"Name": "Macabre",
-		"Sprite": "Macabre",
+		"Name": "Skulls",
+		"Sprite": "Skulls",
 		"Level": 13,
 		"Class": "Undead",
 		"Exp": 1,
@@ -161,73 +119,8 @@
 		]
 	},
 	{
-		"Name": "Dullahan",
-		"Sprite": "Dullahan",
-		"Level": 16,
-		"Class": "Undead",
-		"Exp": 6,
-		"Analysis": "Put the Dullahan description here.",
-		"HP": 666,
-		"Agility": 85,
-		"Magic": 1,
-		"Attack": 30,
-		"Defense": 10,
-		"Evade": 0,
-		"MagicDefense": 15,
-		"AttackMultiplier": 9,
-		"MagicMultiplier": 7,
-		"ElementWeak": [ "Holy" ],
-		"ElementStrong": [ "Ice" ],
-		"ElementImmune": [ "Dark" ],
-		"Attacks": [
-			{
-				"Script": [ "Attack" ],
-				"Weight": 100
-			},
-			{
-				"Script": [
-					"Announce Trample",
-					"Animate Attack",
-					"Wait 600",
-					"Sound Fireball",
-					"Multitarget",
-					"OnHit Monster",
-					"CenterEffect Bash $targetCenterX $targetCenterY 2",
-					"Flash 255 27 0",
-					"Damage Monster Blunt"
-				],
-				"Weight": 50,
-				"Targetting": "AllEnemy",
-				"Power": 25
-			}
-		]
-	},
-	{
-		"Name": "Leviathan",
-		"Sprite": "Leviathan",
-		"Level": 99,
-		"Class": "Boss",
-		"Exp": 60,
-		"Analysis": "Put the Leviathan description here.",
-		"HP": 99999,
-		"Agility": 99,
-		"Magic": 99,
-		"Attack": 99,
-		"Defense": 99,
-		"Evade": 33,
-		"MagicDefense": 99,
-		"AttackMultiplier": 99,
-		"MagicMultiplier": 99,
-		"Attacks": [
-			{
-				"Script": [ "Attack" ],
-				"Weight": 100
-			}
-		]
-	},
-	{
-		"Name": "Dire Rat",
-		"Sprite": "Rat",
+		"Name": "Sand Bunny",
+		"Sprite": "SandBunny",
 		"Level": 1,
 		"Class": "Beast",
 		"Exp": 2,
@@ -249,32 +142,8 @@
 		]
 	},
 	{
-		"Name": "Mammoth Frog",
-		"Sprite": "Frog",
-		"Level": 3,
-		"Class": "Beast",
-		"Exp": 10,
-		"Analysis": "Put the Frog description here.",
-		"HP": 40,
-		"Agility": 4,
-		"Magic": 0,
-		"Attack": 9,
-		"Defense": 2,
-		"Evade": 0,
-		"MagicDefense": 3,
-		"AttackMultiplier": 2,
-		"MagicMultiplier": 4,
-		"ElementWeak": [ "Ice" ],
-		"Attacks": [
-			{
-				"Script": [ "Attack" ],
-				"Weight": 100
-			}
-		]
-	},
-	{
-		"Name": "Screech Bat",
-		"Sprite": "Bat",
+		"Name": "Sea Foam",
+		"Sprite": "SeaFoam",
 		"ShadowOffset": 20,
 		"Level": 4,
 		"Class": "Beast",
@@ -315,8 +184,8 @@
 		]
 	},
 	{
-		"Name": "Magic Bulb",
-		"Sprite": "Sprout",
+		"Name": "Sand Eater",
+		"Sprite": "SandEater",
 		"Level": 5,
 		"Class": "Beast",
 		"Exp": 10,
@@ -356,8 +225,8 @@
 		]
 	},
 	{
-		"Name": "Snap Turtle",
-		"Sprite": "Turtle",
+		"Name": "Sand Snake",
+		"Sprite": "SandSnake",
 		"ShadowOffset": 0,
 		"Level": 6,
 		"Class": "Beast",

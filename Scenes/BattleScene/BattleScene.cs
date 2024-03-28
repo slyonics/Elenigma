@@ -209,12 +209,12 @@ namespace Elenigma.Scenes.BattleScene
             DrawGame(spriteBatch, shader, matrix);
             spriteBatch.End();
 
+            foreach (BattlePlayer battlePlayer in PlayerList) battlePlayer.DrawShader(spriteBatch);
+
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, null);
             DrawOverlay(spriteBatch);
             spriteBatch.End();
-
-            foreach (BattlePlayer battlePlayer in PlayerList) battlePlayer.DrawShader(spriteBatch);
-
+            
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, null);
             foreach (Particle particle in overlayParticleList) particle.Draw(spriteBatch, null);
             foreach (BattlePlayer battlePlayer in PlayerList) battlePlayer.DrawAilment(spriteBatch);

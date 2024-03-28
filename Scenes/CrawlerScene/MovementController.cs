@@ -21,6 +21,8 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public override void PreUpdate(GameTime gameTime)
         {
+            if (mapScene.FoeList.Any(x => x.IsMoving)) return;
+
             InputFrame inputFrame = Input.CurrentInput;
             if (inputFrame.CommandDown(Command.Left)) { Path.Clear(); mapScene.TurnLeft(); }
             else if (inputFrame.CommandDown(Command.Right)) { Path.Clear(); mapScene.TurnRight(); }

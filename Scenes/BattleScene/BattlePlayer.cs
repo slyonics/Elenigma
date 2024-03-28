@@ -14,8 +14,8 @@ namespace Elenigma.Scenes.BattleScene
 {
     public class BattlePlayer : Battler
     {
-        public const int HERO_WIDTH = 21;
-        public const int HERO_HEIGHT = 21;
+        public const int HERO_WIDTH = 128;
+        public const int HERO_HEIGHT = 180;
 
         protected enum HeroAnimation
         {
@@ -38,19 +38,19 @@ namespace Elenigma.Scenes.BattleScene
         public static readonly Dictionary<string, Animation> HERO_ANIMATIONS = new Dictionary<string, Animation>()
         {
             { HeroAnimation.Ready.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 400) },
-            { HeroAnimation.Walking.ToString(), new Animation(1, 0, HERO_WIDTH, HERO_HEIGHT, 2, 50) },
-            { HeroAnimation.Victory.ToString(), new Animation(6, 1, HERO_WIDTH, HERO_HEIGHT, 2, 700) },
-            { HeroAnimation.Guarding.ToString(), new Animation(0, 3, HERO_WIDTH, HERO_HEIGHT, 1, 1000) },
-            { HeroAnimation.Stab.ToString(), new Animation(3, 0, HERO_WIDTH, HERO_HEIGHT, 3, new int[] { 100, 100, 300 }) },
-            { HeroAnimation.Attack.ToString(), new Animation(3, 1, HERO_WIDTH, HERO_HEIGHT, 3, new int[] { 100, 100, 300 }) },
-            { HeroAnimation.Shoot.ToString(), new Animation(3, 2, HERO_WIDTH, HERO_HEIGHT, 3, new int[] { 500, 50, 200 }) },
-            { HeroAnimation.Chanting.ToString(), new Animation(0, 2, HERO_WIDTH, HERO_HEIGHT, 3, 1000) },
-            { HeroAnimation.Spell.ToString(), new Animation(3, 4, HERO_WIDTH, HERO_HEIGHT, 3, new int[] { 100, 100, 300 }) },
-            { HeroAnimation.Item.ToString(), new Animation(3, 5, HERO_WIDTH, HERO_HEIGHT, 3, new int[] { 100, 100, 300 }) },
-            { HeroAnimation.Point.ToString(), new Animation(3, 2, HERO_WIDTH, HERO_HEIGHT, 1, 1000) },
-            { HeroAnimation.Hit.ToString(), new Animation(0, 4, HERO_WIDTH, HERO_HEIGHT, 1, 600) },
-            { HeroAnimation.Hurting.ToString(), new Animation(6, 2, HERO_WIDTH, HERO_HEIGHT, 3, 100) },
-            { HeroAnimation.Dead.ToString(), new Animation(6, 5, HERO_WIDTH, HERO_HEIGHT, 1, 1000) }
+            { HeroAnimation.Walking.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 50) },
+            { HeroAnimation.Victory.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 700) },
+            { HeroAnimation.Guarding.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 1000) },
+            { HeroAnimation.Stab.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 300) },
+            { HeroAnimation.Attack.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 300) },
+            { HeroAnimation.Shoot.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 300) },
+            { HeroAnimation.Chanting.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 1000) },
+            { HeroAnimation.Spell.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 300) },
+            { HeroAnimation.Item.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 300) },
+            { HeroAnimation.Point.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 1000) },
+            { HeroAnimation.Hit.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 600) },
+            { HeroAnimation.Hurting.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 100) },
+            { HeroAnimation.Dead.ToString(), new Animation(0, 0, HERO_WIDTH, HERO_HEIGHT, 1, 1000) }
         };
 
         public static readonly Dictionary<string, Animation> SHADOW_ANIMATIONS = new Dictionary<string, Animation>()
@@ -85,7 +85,7 @@ namespace Elenigma.Scenes.BattleScene
             shader = AssetCache.EFFECTS[GameShader.BattlePlayer].Clone();
             shader.Parameters["flashInterval"].SetValue(0.0f);
 
-            battlerOffset = new Vector2(160, 0);
+            // battlerOffset = new Vector2(160, 0);
         }
 
         public override void LoadAttributes(XmlNode xmlNode)
@@ -103,9 +103,17 @@ namespace Elenigma.Scenes.BattleScene
 
             AnimatedSprite = new AnimatedSprite(AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), HeroModel.BattleSprite.Value)], HERO_ANIMATIONS);
             AnimatedSprite.PlayAnimation("Walking");
-
+            
             bounds = AnimatedSprite.SpriteBounds();
-            bounds.X += GetParent<DataGrid>().ChildList.IndexOf(parent) * 2;
+            currentWindow.X += parent.InnerBounds.Left;
+            currentWindow.Y += parent.InnerBounds.Top;
+
+            if (GetParent<DataGrid>().ChildList.IndexOf(parent) % 2 == 1)
+            {
+                currentWindow.X += 324;
+                bounds.X += 324;
+            }
+
             battleScene.AddBattler(this);
 
             HeroModel.UpdateHealthColor();
@@ -117,16 +125,6 @@ namespace Elenigma.Scenes.BattleScene
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            if (battlerOffset.X > 0)
-            {
-                battlerOffset.X -= gameTime.ElapsedGameTime.Milliseconds / 1000.0f * 250.0f;
-                if (battlerOffset.X <= 0)
-                {
-                    battlerOffset.X = 0;
-                    Idle();
-                }
-            }
 
             if (prepTimeLeft > 0 && !battleScene.InitiativeSuspended)
             {
@@ -143,7 +141,11 @@ namespace Elenigma.Scenes.BattleScene
         {
             base.Draw(spriteBatch);
 
-            shadowSprite?.Draw(spriteBatch, new Vector2(Bottom.X, Bottom.Y + 2) + battlerOffset, null, Depth);
+            foreach (Widget widget in ChildList)
+            {
+                if (widget.Visible)
+                    widget.Draw(spriteBatch);
+            }
         }
 
         public void DrawShader(SpriteBatch spriteBatch)
@@ -151,7 +153,7 @@ namespace Elenigma.Scenes.BattleScene
             if (!drawSprite) return;
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, shader, null);
-            AnimatedSprite.Draw(spriteBatch, Bottom + battlerOffset - new Vector2(0, Dead ? 0 : HeroModel.FlightHeight.Value), null, Depth);
+            AnimatedSprite.Draw(spriteBatch, Bottom - new Vector2(0, Dead ? 0 : HeroModel.FlightHeight.Value), null, Depth);
             spriteBatch.End();
         }
 
@@ -305,8 +307,10 @@ namespace Elenigma.Scenes.BattleScene
             else PlayAnimation("Dead");
         }
 
-        public override Vector2 Top { get => new Vector2(currentWindow.Center.X, currentWindow.Center.Y + bounds.Y - bounds.Height / 4) + Position; }
-        public override Vector2 Center { get => new Vector2(currentWindow.Center.X, currentWindow.Center.Y + bounds.Y + bounds.Height / 4) + Position; }
+        public override Vector2 Bottom { get => new Vector2(currentWindow.Center.X, currentWindow.Bottom) + Position + battlerOffset; }
+
+        public override Vector2 Top { get => new Vector2(currentWindow.Center.X, currentWindow.Top) + Position + battlerOffset; }
+        public override Vector2 Center { get => new Vector2(currentWindow.Center.X, currentWindow.Center.Y) + Position + battlerOffset; }
 
         public override Rectangle SpriteBounds
         {

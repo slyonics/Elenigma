@@ -72,10 +72,14 @@ namespace Elenigma.Scenes.CrawlerScene
             }
         }
 
-        public void Move(Direction moveDirection)
+
+
+        public void Move(MapRoom playerDestination)
         {
+            var moveDirection = (Direction)Rng.RandomInt(0, 3);
+
             var newRoom = CurrentRoom[moveDirection];
-            if (newRoom == null || newRoom.Blocked) return;
+            if (newRoom == null || newRoom.Blocked || newRoom == playerDestination) return;
 
             Direction = moveDirection;
             MoveInterval = 0.0f;
@@ -84,7 +88,7 @@ namespace Elenigma.Scenes.CrawlerScene
             TransitionController controller = new TransitionController(TransitionDirection.In, 300, PriorityLevel.CutsceneLevel);
             crawlerScene.AddController(controller);
             controller.UpdateTransition += new Action<float>(t => MoveInterval = t);
-            controller.FinishTransition += new Action<TransitionDirection>(t => { CurrentRoom.Foe = null; CurrentRoom = DestinationRoom; CurrentRoom.Foe = this; });
+            controller.FinishTransition += new Action<TransitionDirection>(t => { CurrentRoom.Foe = null; CurrentRoom = DestinationRoom; CurrentRoom.Foe = this; DestinationRoom = null; });
         }
 
         public void Threaten(Direction moveDirection)

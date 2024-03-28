@@ -7,9 +7,9 @@
 		<Image Picture="Ref MapRender" Alignment="Stretch" Color="Bind MapColor"/>
 	</Panel>
 
-	<Image Picture="Portraits_Tank" Bounds="0,0,128,180"/>
-	<Image Picture="Portraits_Warrior" Bounds="452,0,128,180"/>
-	<Image Picture="Portraits_Mage" Bounds="0,180,128,180"/>
-	<Image Picture="Portraits_Cleric" Bounds="452,180,128,180"/>
+	<Image Picture="Portraits_Tank" Bounds="0,0,128,180" Depth="0.8"/>
+	<Image Picture="Portraits_Warrior" Bounds="452,0,128,180" Depth="0.8"/>
+	<Image Picture="Portraits_Mage" Bounds="0,180,128,180" Depth="0.8"/>
+	<Image Picture="Portraits_Cleric" Bounds="452,180,128,180" Depth="0.8"/>
 	
 </View>

@@ -119,12 +119,6 @@ namespace Elenigma.Scenes.BattleScene
             AilmentSprite?.Update(gameTime);
 
             ParticleList.RemoveAll(x => x.Terminated);
-
-            if (battlerOffset.X < 0)
-            {
-                battlerOffset.X += gameTime.ElapsedGameTime.Milliseconds / 1000.0f * 500.0f;
-                if (battlerOffset.X >= 0) battlerOffset.X = 0;
-            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -136,6 +130,8 @@ namespace Elenigma.Scenes.BattleScene
 
         public virtual void DrawShadow(SpriteBatch spriteBatch)
         {
+            return;
+
             if (shadow == null) return;
 
             Color shadowColor = Color.Lerp(SHADOW_COLOR, new Color(0, 0, 0, 0), Math.Min(1.0f, positionZ / (currentWindow.Width + currentWindow.Height) / 2));

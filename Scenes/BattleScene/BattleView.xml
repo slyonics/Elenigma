@@ -4,13 +4,20 @@
 		<DataGrid Items="Ref InitialEnemies" Bounds="0,0,324,200" Alignment="Cascading" Scrolling="False">
 			<Scenes.BattleScene.BattleEnemy EnemyRecord="Ref DataGrid" Alignment="Bottom"/>
 		</DataGrid>
-		<DataGrid Items="Bind PlayerProfile.Party" Scrolling="False" Bounds="4000,38,24,96" Alignment="Cascading">
-			<Panel Alignment="Vertical" Bounds="0,6,102,24">
-				<Scenes.BattleScene.BattlePlayer HeroModel="Bind DataGrid" Alignment="BottomLeft"/>
-			</Panel>
-		</DataGrid>
-		
 	</Panel>
+
+	<DataGrid Items="Bind PlayerProfile.Party" Scrolling="False" Bounds="-290,-180,256,360" Anchor="$CenterX,$CenterY">
+		<Panel Alignment="Cascading" Bounds="0,0,128,180">
+			<Scenes.BattleScene.BattlePlayer HeroModel="Bind DataGrid" Alignment="Center">
+				<Panel Style="LightFrame" Bounds="8,64,64,24">
+					
+				</Panel>
+				<Panel Style="ThinPanel" Bounds="8,86,64,24">
+
+				</Panel>
+			</Scenes.BattleScene.BattlePlayer>
+		</Panel>
+	</DataGrid>
 
 	<Panel Name="EnemyPanel" Style="BattleWindow" Anchor="$CenterX,$CenterY" Bounds="-14500,30,290,60" InnerMargin="6,6,6,8" TransitionOut="Shrink">
 		<DataGrid Items="Bind EnemyNames" Alignment="Cascading" Bounds="0,0,104,76">
