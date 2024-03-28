@@ -399,7 +399,7 @@ namespace Elenigma.Scenes.CrawlerScene
 
         public void EnterRoom()
         {
-            parentFloor.CalculateFieldOfView(parentFloor.GetRoom(parentScene.roomX, parentScene.roomY), 8);
+            parentFloor.CalculateFieldOfView(this, 8);
 
             if (Script != null)
             {

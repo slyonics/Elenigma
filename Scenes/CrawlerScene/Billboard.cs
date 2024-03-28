@@ -18,22 +18,20 @@ namespace Elenigma.Scenes.CrawlerScene
             public Texture2D Texture { get; set; }
             public WallShader Shader { get; set; }
 
-        private int height = -2;
+        private float height = -2;
         private static readonly short[] INDICES = new short[] { 0, 2, 1, 2, 0, 3 };
 
         private GraphicsDevice graphicsDevice = CrossPlatformGame.GameInstance.GraphicsDevice;
 
         private CrawlerScene parentScene;
 
-        private Matrix translationMatrix;
-
-        public Billboard(CrawlerScene mapScene, Floor iFloor, Texture2D sprite, int size)
+        public Billboard(CrawlerScene mapScene, Floor iFloor, Texture2D sprite, float sizeWidth, float sizeHeight)
         {
             parentScene = mapScene;
 
-            height = 4 - size;
+            height = 4.0f - sizeHeight;
 
-            Shader = new WallShader(Matrix.CreatePerspectiveFieldOfView((float)Math.PI / 2f, 472 / 332.0f, 0.7f, 10000.0f));
+            Shader = new WallShader(Matrix.CreatePerspectiveFieldOfView((float)Math.PI / 2f, 320 / 200.0f, 0.7f, 10000.0f));
             Shader.WallTexture = Texture = sprite;
 
             float startU = 0.0f;
@@ -42,10 +40,10 @@ namespace Elenigma.Scenes.CrawlerScene
             float endV = 1.0f;
             Vector3[] VERTICES = new Vector3[]
             {
-                    new Vector3(-size / 2, 0, 0),
-                    new Vector3(-size / 2, size, 0),
-                    new Vector3(size / 2, size, 0),
-                    new Vector3(size / 2, 0, 0)
+                    new Vector3(-sizeWidth / 2, 0, 0),
+                    new Vector3(-sizeWidth / 2, sizeHeight, 0),
+                    new Vector3(sizeWidth / 2, sizeHeight, 0),
+                    new Vector3(sizeWidth / 2, 0, 0)
             };
             VertexPositionTexture[] quad = new VertexPositionTexture[4];
             quad[0] = new VertexPositionTexture(VERTICES[0], new Vector2(startU, startV));

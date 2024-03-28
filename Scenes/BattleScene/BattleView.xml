@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <View>
-	<Panel Name="BattlePanel" Anchor="$CenterX,$CenterY" Bounds="-85,-76,290,120" TransitionOut="Shrink">
-		<DataGrid Items="Ref InitialEnemies" Bounds="8,0,240,96" Alignment="Cascading" Scrolling="False">
-			<Scenes.BattleScene.BattleEnemy EnemyRecord="Ref DataGrid"/>
+	<Panel Name="BattlePanel" Anchor="$CenterX,$CenterY" Bounds="-162,-180,324,200" TransitionOut="Shrink">
+		<DataGrid Items="Ref InitialEnemies" Bounds="0,0,324,200" Alignment="Cascading" Scrolling="False">
+			<Scenes.BattleScene.BattleEnemy EnemyRecord="Ref DataGrid" Alignment="Bottom"/>
 		</DataGrid>
 		<DataGrid Items="Bind PlayerProfile.Party" Scrolling="False" Bounds="4000,38,24,96" Alignment="Cascading">
 			<Panel Alignment="Vertical" Bounds="0,6,102,24">

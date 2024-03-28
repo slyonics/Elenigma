@@ -11,7 +11,7 @@
 	"iid": "5c1d34d0-3b70-11ee-9d66-d3a28cc7a2b6",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 1453,
+	"nextUid": 1454,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -732,13 +732,13 @@
 					"tilesetUid": null
 				},
 				{
-					"identifier": "Size",
+					"identifier": "Encounter",
 					"doc": null,
-					"__type": "Int",
-					"uid": 1451,
-					"type": "F_Int",
+					"__type": "String",
+					"uid": 1453,
+					"type": "F_String",
 					"isArray": false,
-					"canBeNull": false,
+					"canBeNull": true,
 					"arrayMinLength": null,
 					"arrayMaxLength": null,
 					"editorDisplayMode": "Hidden",
@@ -754,11 +754,14 @@
 					"useForSmartColor": false,
 					"exportToToc": false,
 					"searchable": false,
-					"min": 1,
-					"max": 12,
+					"min": null,
+					"max": null,
 					"regex": null,
 					"acceptFileTypes": null,
-					"defaultOverride": { "id": "V_Int", "params": [6] },
+					"defaultOverride": {
+						"id": "V_String",
+						"params": ["BossTest"]
+					},
 					"textLanguageMode": null,
 					"symmetricalRef": false,
 					"autoChainRef": true,
@@ -1072,7 +1075,7 @@
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
 								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
-								{ "__identifier": "Size", "__type": "Int", "__value": 6, "__tile": null, "defUid": 1451, "realEditorValues": [] }
+								{ "__identifier": "Encounter", "__type": "String", "__value": "BossTest", "__tile": null, "defUid": 1453, "realEditorValues": [] }
 							],
 							"__worldX": 48,
 							"__worldY": 80
@@ -1096,7 +1099,7 @@
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
 								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
-								{ "__identifier": "Size", "__type": "Int", "__value": 10, "__tile": null, "defUid": 1451, "realEditorValues": [{ "id": "V_Int", "params": [10] }] }
+								{ "__identifier": "Encounter", "__type": "String", "__value": "BossTest", "__tile": null, "defUid": 1453, "realEditorValues": [] }
 							],
 							"__worldX": 32,
 							"__worldY": 176
@@ -1120,7 +1123,7 @@
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
 								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
-								{ "__identifier": "Size", "__type": "Int", "__value": 6, "__tile": null, "defUid": 1451, "realEditorValues": [] }
+								{ "__identifier": "Encounter", "__type": "String", "__value": "BossTest", "__tile": null, "defUid": 1453, "realEditorValues": [] }
 							],
 							"__worldX": 208,
 							"__worldY": 176
@@ -1144,7 +1147,7 @@
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
 								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
-								{ "__identifier": "Size", "__type": "Int", "__value": 6, "__tile": null, "defUid": 1451, "realEditorValues": [] }
+								{ "__identifier": "Encounter", "__type": "String", "__value": "BossTest", "__tile": null, "defUid": 1453, "realEditorValues": [] }
 							],
 							"__worldX": 176,
 							"__worldY": 32
@@ -1168,7 +1171,7 @@
 								}] },
 								{ "__identifier": "Behavior", "__type": "String", "__value": null, "__tile": null, "defUid": 1449, "realEditorValues": [] },
 								{ "__identifier": "Interact", "__type": "String", "__value": null, "__tile": null, "defUid": 1450, "realEditorValues": [] },
-								{ "__identifier": "Size", "__type": "Int", "__value": 6, "__tile": null, "defUid": 1451, "realEditorValues": [] }
+								{ "__identifier": "Encounter", "__type": "String", "__value": "BossTest", "__tile": null, "defUid": 1453, "realEditorValues": [] }
 							],
 							"__worldX": 160,
 							"__worldY": 256

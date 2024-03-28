@@ -41,11 +41,6 @@ namespace Elenigma.Scenes.CrawlerScene
             }
             else if (Input.CurrentInput.CommandPressed(Command.Menu))
             {
-                BattleScene.BattleScene battleScene = new BattleScene.BattleScene("BossTest");
-                CrossPlatformGame.StackScene(battleScene, true);
-
-
-
                 Path.Clear();
 
                 //mapScene.AddView(new MenuViewModel(mapScene));

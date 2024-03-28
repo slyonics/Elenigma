@@ -209,61 +209,63 @@ namespace Elenigma.Scenes.CrawlerScene
             var destinationRoom = currentRoom[direction];
             if (destinationRoom == null || destinationRoom.Blocked)
             {
-                if (!Activate())
-                {
-                    WallBump();
-                    return;
-                }
+                if (!Activate()) WallBump();
+                return;
             }
 
-            if (destinationRoom.PreEnterScript != null) { destinationRoom.ActivatePreScript(); return; }
-
-            switch (direction)
+            if (destinationRoom.PreEnterScript != null)
             {
-                case Direction.North:
-                        transitionController = new TransitionController(TransitionDirection.In, 300, PriorityLevel.TransitionLevel);
-                        transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(0, 10, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t =>
-                        {
-                            cameraPosZ = 0; roomY--;
-                            currentRoom.EnterRoom();
-                            MoveFoes();
-                        });
-                    break;
-
-                case Direction.East:
-                        transitionController = new TransitionController(TransitionDirection.In, 300, PriorityLevel.TransitionLevel);
-                        transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(0, 10, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t =>
-                        {
-                            cameraPosX = 0; roomX++;
-                            currentRoom.EnterRoom();
-                            MoveFoes();
-                        });
-                    break;
-
-                case Direction.South:
-                        transitionController = new TransitionController(TransitionDirection.Out, 300, PriorityLevel.TransitionLevel);
-                        transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(-10, 0, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t =>
-                        {
-                            cameraPosZ = 0; roomY++; currentRoom.EnterRoom(); MoveFoes();
-                        });
-                    break;
-
-                case Direction.West:
-                        transitionController = new TransitionController(TransitionDirection.Out, 300, PriorityLevel.TransitionLevel);
-                        transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(-10, 0, t));
-                        transitionController.FinishTransition += new Action<TransitionDirection>(t =>
-                        {
-                            cameraPosX = 0; roomX--;
-                            currentRoom.EnterRoom();
-                            MoveFoes();
-                        });
-                    break;
+                destinationRoom.ActivatePreScript();
+                return;
             }
 
-            AddController(transitionController);
+            TransitionDirection transitionDirection = (direction == Direction.North || direction == Direction.East) ? TransitionDirection.In : TransitionDirection.Out;
+            transitionController = new TransitionController(transitionDirection, 300, PriorityLevel.TransitionLevel);
+
+            if (destinationRoom.Foe != null)
+            {
+                switch (direction)
+                {
+                    case Direction.North: transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(0, 2.95f, t)); break;
+                    case Direction.East: transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(0, 2.95f, t)); break;
+                    case Direction.South: transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(-2.95f, 0, t)); break;
+                    case Direction.West: transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(-2.95f, 0, t)); break;
+                }
+
+                AddController(transitionController);
+                transitionController.FinishTransition += new Action<TransitionDirection>(t =>
+                {
+                    switch (direction)
+                    {
+                        case Direction.North: cameraPosZ = 2.95f; break;
+                        case Direction.East: cameraPosX = 2.95f; break;
+                        case Direction.South: cameraPosZ = -2.95f; break;
+                        case Direction.West: cameraPosX = -2.95f; break;
+                    }
+
+                    destinationRoom.Foe.Threaten(direction);
+                });
+            }
+            else
+            {
+                switch (direction)
+                {
+                    case Direction.North: transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(0, 10, t)); break;
+                    case Direction.East: transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(0, 10, t)); break;
+                    case Direction.South: transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(-10, 0, t)); break;
+                    case Direction.West: transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(-10, 0, t)); break;
+                }
+
+                AddController(transitionController);
+                transitionController.FinishTransition += new Action<TransitionDirection>(t =>
+                {
+                    cameraPosX = cameraPosZ = 0;
+                    roomX = destinationRoom.RoomX;
+                    roomY = destinationRoom.RoomY;
+                    destinationRoom.EnterRoom();
+                    MoveFoes();
+                });
+            }
         }
 
         public void MoveTo(MapRoom destinationRoom)
@@ -280,6 +282,32 @@ namespace Elenigma.Scenes.CrawlerScene
                 if (requiredDirection == direction + 1 || (requiredDirection == Direction.North && direction == Direction.West)) TurnRight();
                 else TurnLeft();
             }
+        }
+
+        public void FinishMovement()
+        {
+            var currentRoom = floor.GetRoom(roomX, roomY);
+            var destinationRoom = currentRoom[direction];
+
+            TransitionDirection transitionDirection = (direction == Direction.North || direction == Direction.East) ? TransitionDirection.In : TransitionDirection.Out;
+            var transitionController = new TransitionController(transitionDirection, 300, PriorityLevel.TransitionLevel);
+            
+            switch (direction)
+            {
+                case Direction.North: transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(2.95f, 10, t)); break;
+                case Direction.East: transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(2.95f, 10, t)); break;
+                case Direction.South: transitionController.UpdateTransition += new Action<float>(t => cameraPosZ = MathHelper.Lerp(-10, -2.95f, t)); break;
+                case Direction.West: transitionController.UpdateTransition += new Action<float>(t => cameraPosX = MathHelper.Lerp(-10, -2.95f, t)); break;
+            }
+
+            AddController(transitionController);
+            transitionController.FinishTransition += new Action<TransitionDirection>(t =>
+            {
+                cameraPosX = cameraPosZ = 0;
+                roomX = destinationRoom.RoomX;
+                roomY = destinationRoom.RoomY;
+                destinationRoom.EnterRoom();
+            });
         }
 
         private void WallBump()

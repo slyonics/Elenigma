@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FMOD;
 using Elenigma.SceneObjects.Maps;
+using Elenigma.Scenes.CrawlerScene;
 
 namespace Elenigma.Scenes.BattleScene
 {
@@ -33,7 +34,11 @@ namespace Elenigma.Scenes.BattleScene
 
         public List<BattleController> BattleEventQueue { get; } = new List<BattleController>();
 
-        public BattleScene(string encounterName)
+
+        private Foe foe;
+
+
+        public BattleScene(string encounterName, Foe iFoe)
         {
             encounterRecord = EncounterRecord.ENCOUNTERS.First(x => x.Name == encounterName);
 
@@ -46,6 +51,8 @@ namespace Elenigma.Scenes.BattleScene
                 Texture2D enemySprite = AssetCache.SPRITES[(GameSprite)Enum.Parse(typeof(GameSprite), "Enemies_" + enemyData.Sprite)];
                 totalEnemyWidth += enemySprite.Width;
             }
+
+            foe = iFoe;
 
 
             battleViewModel = AddView(new BattleViewModel(this, EncounterRecord.ENCOUNTERS.First(x => x.Name == encounterName)));
@@ -244,6 +251,8 @@ namespace Elenigma.Scenes.BattleScene
         {
             BattleOver = true;
 
+            foe.Destroy();
+
             Task.Delay(500).ContinueWith(t =>
             {
                 int expGain = 0;
@@ -274,13 +283,7 @@ namespace Elenigma.Scenes.BattleScene
                 var convoScene = new ConversationScene.ConversationScene(victoryConversation, new Rectangle(-145, 30, 290, 60));
                 convoScene.OnTerminated += new TerminationFollowup(() =>
                 {
-                    TransitionController transitionOut = new TransitionController(TransitionDirection.Out, 600);
-                    ColorFade colorFade = new ColorFade(Color.Black, transitionOut.TransitionProgress);
-                    transitionOut.UpdateTransition += new Action<float>(t => colorFade.Amount = t);
-                    this.AddController(transitionOut);
-                    this.SceneShader = colorFade;
-                    CrossPlatformGame.TransitionShader = colorFade;
-                    transitionOut.FinishTransition += new Action<TransitionDirection>(t => EndScene());
+                    EndScene();
                 });
 
                 CrossPlatformGame.StackScene(convoScene);

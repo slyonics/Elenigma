@@ -62,18 +62,12 @@ namespace Elenigma.Scenes.BattleScene
             shadow = ENEMY_SHADOWS["Enemies_" + EnemyRecord.Sprite];
             spriteRender = new RenderTarget2D(CrossPlatformGame.GameInstance.GraphicsDevice, AnimatedSprite.SpriteBounds().Width, AnimatedSprite.SpriteBounds().Height);
 
-            Alignment = EnemyRecord.BattleAlignment;
-            bounds.X = EnemyRecord.BattleOffsetX;
-            bounds.Y = EnemyRecord.BattleOffsetY;
+            bounds.X = parent.InnerBounds.Center.X;
+            bounds.Y -= 5; // EnemyRecord.BattleOffsetY;
             bounds.Width = AnimatedSprite.SpriteBounds().Width;
             bounds.Height = AnimatedSprite.SpriteBounds().Height;
-            bounds.Y -= EnemyRecord.ShadowOffset / 2;
-
-            //if (Alignment == Alignment.Cascading) bounds.Inflate(4, 4);
 
             battleScene.AddBattler(this);
-
-            // battlerOffset = new Vector2(-160, 0);
         }
 
         public static void Initialize()
@@ -103,6 +97,8 @@ namespace Elenigma.Scenes.BattleScene
 
         public override void DrawShadow(SpriteBatch spriteBatch)
         {
+            return;
+
             Color shadowColor = Color.Lerp(SHADOW_COLOR, new Color(0, 0, 0, 0), Math.Min(1.0f, positionZ / (AnimatedSprite.SpriteBounds().Width + AnimatedSprite.SpriteBounds().Height) / 2));
             if (Dead) shadowColor.A = (byte)MathHelper.Lerp(0, shadowColor.A, (float)deathTimeLeft / DEATH_DURATION);
             spriteBatch.Draw(shadow, new Vector2((int)(Center.X - shadow.Width / 2), (int)(Bottom.Y - shadow.Height * 3 / 4) + 1 + EnemyRecord.ShadowOffset) + battlerOffset, null, shadowColor, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, SHADOW_DEPTH);
